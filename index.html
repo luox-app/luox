@@ -53,7 +53,7 @@ const createSampleTableHeader = (table, sampleCount) => {
 
 const createTableHeader = (table, sampleCount) => {
   const sampleTitles = new Array(sampleCount).fill("").map((_, index) => "S"+index)
-  const titles = ["Condition"].concat(sampleTitles)
+  const titles = ["Condition", ...sampleTitles]
   console.log(titles)
   appendCells(table, "th", titles)
 }
@@ -63,7 +63,7 @@ const asDecimal = (number) => number.toFixed(2)
 
 const createTableRow = (table, wavelength, samples, formatter) => {
   const formattedSamples = samples.map(formatter)
-  appendCells(table, "td", [wavelength].concat(formattedSamples))
+  appendCells(table, "td", [wavelength, ...formattedSamples])
 }
 
 const handleFiles = async (event) => {
