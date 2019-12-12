@@ -19,10 +19,6 @@ td {
 <h1>Lightbox</h1>
 <input type="file" name="file" id="file-input"/>
 <table class="table table-sm" id="spectrum-table">
-  <tr>
-    <th scope="col">Wavelength [nm]</th>
-    <th colspan="3">Spectral irradiance [W/(m<sup>2</sup> nm)]</th>
-  </tr>
 </table>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -32,6 +28,20 @@ td {
 
 const fileInput = document.getElementById('file-input')
 const spectrumTable = document.getElementById('spectrum-table')
+
+const createTableHeader = (table, sampleCount) => {
+  const row = document.createElement("tr")
+  const wavelengthHeading = document.createElement("th")
+  const text = document.createTextNode("Wavelength [nm]")
+  wavelengthHeading.appendChild(text)
+  row.appendChild(wavelengthHeading)
+  const cell = document.createElement("th")
+  cell.setAttribute("colspan", sampleCount)
+  const sampleHeading = document.createTextNode("Spectral irradiance [W/(m² nm)]")
+  cell.appendChild(sampleHeading)
+  row.appendChild(cell)
+  table.appendChild(row)
+}
 
 const createTableRow = (table, wavelength, samples) => {
   const row = document.createElement("tr")
@@ -53,6 +63,8 @@ const handleFiles = async (event) => {
   for (const file of fileList) {
     const fileContents = await file.text()
     const lines = fileContents.match(/[^\r\n]+/g)
+    const fieldCount = lines[0].split(",").length
+    createTableHeader(spectrumTable, fieldCount - 1)
     for (const line of lines) {
       const [wavelength, ...samples] = line.split(",")
       const floatSamples = samples.map(parseFloat)
