@@ -27,9 +27,6 @@ td {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script>
 
-const fileInput = document.getElementById('file-input')
-const spectrumTable = document.getElementById('spectrum-table')
-
 const asExponential = (number) => number.toExponential(2)
 const asDecimal = (number) => number.toFixed(2)
 
@@ -74,25 +71,6 @@ const parseCSV = async (file) => {
   )
   return [rows, fieldCount -1]
 }
-
-const handleFiles = async (event) => {
-  const fileList = fileInput.files
-  for (const file of fileList) {
-    const [rows, sampleCount] = await parseCSV(file)
-    const luminanceTotals = await calculateLuminance(rows, sampleCount)
-
-    createTableHeader(spectrumTable, sampleCount)
-    createTableRow(spectrumTable, "Illuminance [lux]", luminanceTotals, asDecimal)
-
-    createSampleTableHeader(spectrumTable, sampleCount)
-    for (const row of rows) {
-      const [wavelength, ...samples] = row
-      createTableRow(spectrumTable, wavelength, samples, asExponential)
-    }
-  }
-}
-
-fileInput.addEventListener("change", handleFiles, false);
 
 const mapSamples = (rows, func) => {
   return rows.map((row) => {
@@ -139,6 +117,28 @@ const loadJSON = (filename) => {
 }
 
 const getvl1924Data = () => loadJSON("./vl1924.json")
+
+const fileInput = document.getElementById('file-input')
+const spectrumTable = document.getElementById('spectrum-table')
+
+const handleFiles = async (event) => {
+  const fileList = fileInput.files
+  for (const file of fileList) {
+    const [rows, sampleCount] = await parseCSV(file)
+
+    const luminanceTotals = await calculateLuminance(rows, sampleCount)
+    createTableHeader(spectrumTable, sampleCount)
+    createTableRow(spectrumTable, "Illuminance [lux]", luminanceTotals, asDecimal)
+
+    createSampleTableHeader(spectrumTable, sampleCount)
+    for (const row of rows) {
+      const [wavelength, ...samples] = row
+      createTableRow(spectrumTable, wavelength, samples, asExponential)
+    }
+  }
+}
+
+fileInput.addEventListener("change", handleFiles, false);
 
 </script>
 </body>
