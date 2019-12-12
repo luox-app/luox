@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lightbox</title>
+</head>
+<body>
+<h1>Lightbox</h1>
+<input type="file" name="file" id="file-input"/>
+<table id="spectrum-table">
+</table>
+<script>
+
+const fileInput = document.getElementById('file-input')
+const spectrumTable = document.getElementById('spectrum-table')
+
+const createTableRow = (table, wavelength, samples) => {
+  const row = document.createElement("tr")
+  const waveCell = document.createElement("td")
+  const waveText = document.createTextNode(wavelength);
+  waveCell.appendChild(waveText)
+  row.appendChild(waveCell)
+  for (const sample of samples) {
+    const cell = document.createElement("td")
+    const text = document.createTextNode(sample.toExponential())
+    cell.appendChild(text)
+    row.appendChild(cell)
+  }
+  table.appendChild(row)
+}
+
+const handleFiles = async (event) => {
+  const fileList = fileInput.files
+  for (const file of fileList) {
+    const fileContents = await file.text()
+    const lines = fileContents.match(/[^\r\n]+/g)
+    for (const line of lines) {
+      const [wavelength, ...samples] = line.split(",")
+      const floatSamples = samples.map(parseFloat)
+      createTableRow(spectrumTable, wavelength, floatSamples)
+    }
+  }
+}
+fileInput.addEventListener("change", handleFiles, false);
+</script>
+</body>
+</html>
