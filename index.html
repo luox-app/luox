@@ -63,14 +63,52 @@ const handleFiles = async (event) => {
     const lines = fileContents.match(/[^\r\n]+/g)
     const fieldCount = lines[0].split(",").length
     createTableHeader(spectrumTable, fieldCount - 1)
-    for (const line of lines) {
-      const [wavelength, ...samples] = line.split(",")
-      const floatSamples = samples.map(parseFloat)
-      createTableRow(spectrumTable, wavelength, floatSamples)
+    mappedLines = lines.map((line) =>
+      line.split(",").map(parseFloat)
+    )
+    const luminanceTotals = await calculateLuminance(mappedLines)
+    createTableRow(spectrumTable, "Illuminance [lux]", luminanceTotals)
+    for (const line of mappedLines) {
+      const [wavelength, ...samples] = line
+      createTableRow(spectrumTable, wavelength, samples)
     }
   }
 }
 fileInput.addEventListener("change", handleFiles, false);
+
+const calculateLuminance = async (lines) => {
+  const vl1924 = await getvl1924Data()
+
+  const weightedSamples = lines.map((line) => {
+    const [wavelength, ...samples] = line
+    const weight = vl1924[wavelength]
+    return samples.map((sample) =>
+      sample * weight * 683
+    )
+  })
+
+  return weightedSamples.reduce((acc, samples) => {
+    return acc.map((luminance, index) =>
+      luminance + samples[index]
+    )},
+    new Array(weightedSamples[0].length).fill(0)
+  )
+}
+
+const getvl1924Data = () => {
+  const promise = new Promise((resolve, reject) => {
+    function reqListener () {
+      resolve(JSON.parse(this.responseText))
+    }
+
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", reqListener);
+    oReq.open("GET", "./vl1924.json");
+    oReq.send();
+  })
+
+  return promise
+}
 </script>
 </body>
 </html>
