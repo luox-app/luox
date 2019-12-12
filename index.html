@@ -30,6 +30,9 @@ td {
 const fileInput = document.getElementById('file-input')
 const spectrumTable = document.getElementById('spectrum-table')
 
+const asExponential = (number) => number.toExponential(2)
+const asDecimal = (number) => number.toFixed(2)
+
 const appendCells = (table, cellType, cells) => {
   const row = document.createElement("tr")
   const domCells = cells.map((cellText) =>  {
@@ -57,9 +60,6 @@ const createTableHeader = (table, sampleCount) => {
   console.log(titles)
   appendCells(table, "th", titles)
 }
-
-const asExponential = (number) => number.toExponential(2)
-const asDecimal = (number) => number.toFixed(2)
 
 const createTableRow = (table, wavelength, samples, formatter) => {
   const formattedSamples = samples.map(formatter)
