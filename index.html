@@ -94,22 +94,36 @@ const handleFiles = async (event) => {
 
 fileInput.addEventListener("change", handleFiles, false);
 
-const calculateLuminance = async (lines, sampleCount) => {
-  const vl1924 = await getvl1924Data()
-
-  const weightedSamples = lines.map((line) => {
-    const [wavelength, ...samples] = line
-    const weight = vl1924[wavelength]
-    return samples.map((sample) =>
-      sample * weight * 683
+const mapSamples = (rows, func) => {
+  return rows.map((row) => {
+    const [wavelength, ...samples] = row
+    const mapped = samples.map((sample) =>
+      func(wavelength, sample)
     )
+    return [wavelength, ...mapped]
   })
+}
 
-  return weightedSamples.reduce((acc, samples) => {
+const reduceSamples = (rows, sampleCount, func) => {
+  return rows.reduce((acc, row) => {
+    const [wavelength, ...samples] = row
     return acc.map((luminance, index) =>
-      luminance + samples[index]
+      func(wavelength, luminance, samples[index])
     )},
     new Array(sampleCount).fill(0)
+  )
+}
+
+const calculateLuminance = async (rows, sampleCount) => {
+  const vl1924 = await getvl1924Data()
+
+  const weighted = mapSamples(rows, (wavelength, sample) => {
+    const weight = vl1924[wavelength]
+    return sample * weight * 683
+  })
+
+  return reduceSamples(weighted, sampleCount,
+    (w, luminance, sample) => luminance + sample
   )
 }
 
