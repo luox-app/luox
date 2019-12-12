@@ -80,7 +80,7 @@ const handleFiles = async (event) => {
   const fileList = fileInput.files
   for (const file of fileList) {
     const [rows, sampleCount] = await parseCSV(file)
-    const luminanceTotals = await calculateLuminance(rows)
+    const luminanceTotals = await calculateLuminance(rows, sampleCount)
 
     createTableHeader(spectrumTable, sampleCount)
     createTableRow(spectrumTable, "Illuminance [lux]", luminanceTotals, asDecimal)
@@ -92,9 +92,10 @@ const handleFiles = async (event) => {
     }
   }
 }
+
 fileInput.addEventListener("change", handleFiles, false);
 
-const calculateLuminance = async (lines) => {
+const calculateLuminance = async (lines, sampleCount) => {
   const vl1924 = await getvl1924Data()
 
   const weightedSamples = lines.map((line) => {
@@ -109,7 +110,7 @@ const calculateLuminance = async (lines) => {
     return acc.map((luminance, index) =>
       luminance + samples[index]
     )},
-    new Array(weightedSamples[0].length).fill(0)
+    new Array(sampleCount).fill(0)
   )
 }
 
