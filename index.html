@@ -29,33 +29,30 @@ td {
 const fileInput = document.getElementById('file-input')
 const spectrumTable = document.getElementById('spectrum-table')
 
-const createTableHeader = (table, sampleCount) => {
+const appendCells = (table, cellType, cells) => {
   const row = document.createElement("tr")
-  const wavelengthHeading = document.createElement("th")
-  const text = document.createTextNode("Wavelength [nm]")
-  wavelengthHeading.appendChild(text)
-  row.appendChild(wavelengthHeading)
-  const cell = document.createElement("th")
-  cell.setAttribute("colspan", sampleCount)
-  const sampleHeading = document.createTextNode("Spectral irradiance [W/(m² nm)]")
-  cell.appendChild(sampleHeading)
-  row.appendChild(cell)
-  table.appendChild(row)
-}
-
-const createTableRow = (table, wavelength, samples) => {
-  const row = document.createElement("tr")
-  const waveCell = document.createElement("td")
-  const waveText = document.createTextNode(wavelength);
-  waveCell.appendChild(waveText)
-  row.appendChild(waveCell)
-  for (const sample of samples) {
-    const cell = document.createElement("td")
-    const text = document.createTextNode(sample.toExponential(2))
+  const domCells = cells.map((cellText) =>  {
+    const cell = document.createElement(cellType)
+    const text = document.createTextNode(cellText)
     cell.appendChild(text)
+    return cell
+  })
+  for (cell of domCells) {
     row.appendChild(cell)
   }
   table.appendChild(row)
+  return domCells
+}
+
+const createTableHeader = (table, sampleCount) => {
+  const titles = ["Wavelength [nm]", "Spectral irradiance [W/(m² nm)]"]
+  const cells = appendCells(table, "th", titles)
+  cells[1].setAttribute("colspan", sampleCount)
+}
+
+const createTableRow = (table, wavelength, samples) => {
+  const formattedSamples = samples.map((sample) => sample.toExponential(2))
+  appendCells(table, "td", [wavelength].concat(formattedSamples))
 }
 
 const handleFiles = async (event) => {
