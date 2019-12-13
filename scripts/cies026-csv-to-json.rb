@@ -3,7 +3,7 @@ require 'json'
 
 data = {}
 
-File.open('cies026.csv') do |file|
+File.open('data/cies026.csv') do |file|
   file.each_line.with_index do |line, index|
     next if index == 0
 
@@ -18,6 +18,6 @@ File.open('cies026.csv') do |file|
   end
 end
 
-File.open('cies026.json', 'w') do |file|
+File.open('dist/cies026.json', 'w') do |file|
   file.puts(data.to_json)
 end
