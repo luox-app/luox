@@ -112,7 +112,8 @@ const calculateLuminance = async (rows, sampleCount) => {
 
 const calculateIrradiance = async (rows, sampleCount, key) => {
   const data = await getcies026Data()
-  return integrateWithWeights(rows, sampleCount, data, key)
+  const samplesInWatts = integrateWithWeights(rows, sampleCount, data, key)
+  return samplesInWatts.map((sample) => sample * 1000)
 }
 
 const loadJSON = (filename) => {
