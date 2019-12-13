@@ -3,7 +3,6 @@ export const tableToCSV = (table) => {
   return rows.reduce((acc, row) => {
       const cells = Array.from(row.querySelectorAll('td, th'))
       const csv = cells.map((item) => item.innerText).join(',')
-      console.log(csv)
       return acc.concat(csv)
   }, []).join('\n')
 }
