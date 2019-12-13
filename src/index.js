@@ -1,3 +1,6 @@
+import VL1924 from './vl1924.json'
+import CIES026 from './cies026.json'
+
 const asExponential = (number) => number.toExponential(2)
 const asDecimal = (number) => number.toFixed(2)
 
@@ -9,7 +12,7 @@ const appendCells = (table, cellType, cells) => {
     cell.appendChild(text)
     return cell
   })
-  for (cell of domCells) {
+  for (const cell of domCells) {
     row.appendChild(cell)
   }
   table.appendChild(row)
@@ -76,32 +79,16 @@ const integrateWithWeights = (rows, sampleCount, data, key) => {
   )
 }
 
-const calculateLuminance = async (rows, sampleCount) => {
-  const data = await getvl1924Data()
+const calculateLuminance = (rows, sampleCount) => {
   const key = 'vl1924'
-  const samplesInWatts = integrateWithWeights(rows, sampleCount, data, key)
+  const samplesInWatts = integrateWithWeights(rows, sampleCount, VL1924, key)
   return samplesInWatts.map((sample) => sample * 683)
 }
 
-const calculateIrradiance = async (rows, sampleCount, key) => {
-  const data = await getcies026Data()
-  const samplesInWatts = integrateWithWeights(rows, sampleCount, data, key)
+const calculateIrradiance = (rows, sampleCount, key) => {
+  const samplesInWatts = integrateWithWeights(rows, sampleCount, CIES026, key)
   return samplesInWatts.map((sample) => sample * 1000)
 }
-
-const loadJSON = (filename) => {
-  return new Promise((resolve, reject) => {
-    const request = new XMLHttpRequest()
-    request.addEventListener("load", () => {
-      resolve(JSON.parse(request.responseText))
-    })
-    request.open("GET", filename)
-    request.send()
-  })
-}
-
-const getvl1924Data = () => loadJSON("./vl1924.json")
-const getcies026Data = () => loadJSON("./cies026.json")
 
 const fileInput = document.getElementById('file-input')
 const spectrumTable = document.getElementById('spectrum-table')
@@ -113,12 +100,12 @@ const handleFiles = async (event) => {
 
     createTableHeader(spectrumTable, sampleCount)
 
-    const luminanceTotals = await calculateLuminance(rows, sampleCount)
-    const sConeTotals = await calculateIrradiance(rows, sampleCount, 'sCone')
-    const mConeTotals = await calculateIrradiance(rows, sampleCount, 'mCone')
-    const lConeTotals = await calculateIrradiance(rows, sampleCount, 'lCone')
-    const rodTotals = await calculateIrradiance(rows, sampleCount, 'rod')
-    const melTotals = await calculateIrradiance(rows, sampleCount, 'mel')
+    const luminanceTotals = calculateLuminance(rows, sampleCount)
+    const sConeTotals = calculateIrradiance(rows, sampleCount, 'sCone')
+    const mConeTotals = calculateIrradiance(rows, sampleCount, 'mCone')
+    const lConeTotals = calculateIrradiance(rows, sampleCount, 'lCone')
+    const rodTotals = calculateIrradiance(rows, sampleCount, 'rod')
+    const melTotals = calculateIrradiance(rows, sampleCount, 'mel')
     createTableRow(spectrumTable, "Illuminance [lux]", luminanceTotals, asDecimal)
     createTableRow(spectrumTable, "S-cone-opic irradiance (mW/m²)", sConeTotals, asDecimal)
     createTableRow(spectrumTable, "M-cone-opic irradiance (mW/m²)", mConeTotals, asDecimal)
