@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "start": "webpack-dev-server --content-base ./dist --open"
+    "build": "mkdir -p dist && webpack",
+    "start": "mkdir -p dist && webpack-dev-server --content-base ./dist --open"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/freerange/lightbox#readme",
   "devDependencies": {
+    "copy-webpack-plugin": "^5.1.1",
     "eslint": "^6.7.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
