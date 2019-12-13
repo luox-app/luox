@@ -1,5 +1,6 @@
 import VL1924 from './vl1924.json'
 import CIES026 from './cies026.json'
+import {downloadCSVButton} from './csvExport.js'
 
 const asExponential = (number) => number.toExponential(2)
 const asDecimal = (number) => number.toFixed(2)
@@ -92,13 +93,15 @@ const calculateIrradiance = (rows, sampleCount, key) => {
 
 const fileInput = document.getElementById('file-input')
 const spectrumTable = document.getElementById('spectrum-table')
+const calculationTable = document.getElementById('calculation-table')
+const footerButtons = document.getElementById('table-actions')
 
 const handleFiles = async () => {
   const fileList = fileInput.files
   for (const file of fileList) {
     const [rows, sampleCount] = await parseCSV(file)
 
-    createTableHeader(spectrumTable, sampleCount)
+    createTableHeader(calculationTable, sampleCount)
 
     const luminanceTotals = calculateLuminance(rows, sampleCount)
     const sConeTotals = calculateIrradiance(rows, sampleCount, 'sCone')
@@ -106,18 +109,24 @@ const handleFiles = async () => {
     const lConeTotals = calculateIrradiance(rows, sampleCount, 'lCone')
     const rodTotals = calculateIrradiance(rows, sampleCount, 'rod')
     const melTotals = calculateIrradiance(rows, sampleCount, 'mel')
-    createTableRow(spectrumTable, "Illuminance [lux]", luminanceTotals, asDecimal)
-    createTableRow(spectrumTable, "S-cone-opic irradiance (mW/m²)", sConeTotals, asDecimal)
-    createTableRow(spectrumTable, "M-cone-opic irradiance (mW/m²)", mConeTotals, asDecimal)
-    createTableRow(spectrumTable, "L-cone-opic irradiance (mW/m²)", lConeTotals, asDecimal)
-    createTableRow(spectrumTable, "Rhodopic irradiance (mW/m²)", rodTotals, asDecimal)
-    createTableRow(spectrumTable, "Melanopic irradiance (mW/m²)", melTotals, asDecimal)
+    createTableRow(calculationTable, "Illuminance [lux]", luminanceTotals, asDecimal)
+    createTableRow(calculationTable, "S-cone-opic irradiance (mW/m²)", sConeTotals, asDecimal)
+    createTableRow(calculationTable, "M-cone-opic irradiance (mW/m²)", mConeTotals, asDecimal)
+    createTableRow(calculationTable, "L-cone-opic irradiance (mW/m²)", lConeTotals, asDecimal)
+    createTableRow(calculationTable, "Rhodopic irradiance (mW/m²)", rodTotals, asDecimal)
+    createTableRow(calculationTable, "Melanopic irradiance (mW/m²)", melTotals, asDecimal)
 
     createSampleTableHeader(spectrumTable, sampleCount)
     for (const row of rows) {
       const [wavelength, ...samples] = row
       createTableRow(spectrumTable, wavelength, samples, asExponential)
     }
+
+    const calcCSVButton = downloadCSVButton(calculationTable, "btn btn-primary", "download-calc", "Download calculation CSV")
+    footerButtons.appendChild(calcCSVButton);
+    const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-primary", "download-spectrum", "Download spectrum CSV")
+    footerButtons.appendChild(spectrumCSVButton);
+
   }
 }
 
