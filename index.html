@@ -68,6 +68,8 @@ const parseCSV = async (file) => {
   const fieldCount = lines[0].split(",").length
   const rows = lines.map((line) =>
     line.split(",").map(parseFloat)
+  ).filter(([wavelength, ...row]) =>
+    wavelength >= 380 && wavelength <= 780
   )
   return [rows, fieldCount -1]
 }
