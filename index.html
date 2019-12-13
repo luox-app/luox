@@ -141,8 +141,16 @@ const handleFiles = async (event) => {
 
     const luminanceTotals = await calculateLuminance(rows, sampleCount)
     const sConeTotals = await calculateIrradiance(rows, sampleCount, 'sCone')
+    const mConeTotals = await calculateIrradiance(rows, sampleCount, 'mCone')
+    const lConeTotals = await calculateIrradiance(rows, sampleCount, 'lCone')
+    const rodTotals = await calculateIrradiance(rows, sampleCount, 'rod')
+    const melTotals = await calculateIrradiance(rows, sampleCount, 'mel')
     createTableRow(spectrumTable, "Illuminance [lux]", luminanceTotals, asDecimal)
     createTableRow(spectrumTable, "S-cone-opic irradiance (mW/m²)", sConeTotals, asDecimal)
+    createTableRow(spectrumTable, "M-cone-opic irradiance (mW/m²)", mConeTotals, asDecimal)
+    createTableRow(spectrumTable, "L-cone-opic irradiance (mW/m²)", lConeTotals, asDecimal)
+    createTableRow(spectrumTable, "Rhodopic irradiance (mW/m²)", rodTotals, asDecimal)
+    createTableRow(spectrumTable, "Melanopic irradiance (mW/m²)", melTotals, asDecimal)
 
     createSampleTableHeader(spectrumTable, sampleCount)
     for (const row of rows) {
