@@ -12,7 +12,7 @@ jobs:
     - name: Install Node Modules
       run: npm ci
     - name: Run webpacker
-      run: webpack
+      run: npm build
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.4.0
       env:
