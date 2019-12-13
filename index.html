@@ -96,7 +96,7 @@ const calculateLuminance = async (rows, sampleCount) => {
   const vl1924 = await getvl1924Data()
 
   const weighted = mapSamples(rows, (wavelength, sample) => {
-    const weight = vl1924[wavelength]
+    const weight = vl1924[wavelength]['vl1924']
     return sample * weight * 683
   })
 

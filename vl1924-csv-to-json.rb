@@ -6,7 +6,9 @@ data = {}
 File.open('vl1924.csv') do |file|
   file.each_line do |line|
     row = CSV.parse_line(line.strip).map(&:strip)
-    data[row.first.to_i] = row.last.to_f
+    data[row.first.to_i] = {
+      'vl1924' => row.last.to_f
+    }
   end
 end
 
