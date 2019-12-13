@@ -105,6 +105,19 @@ const calculateLuminance = async (rows, sampleCount) => {
   )
 }
 
+const calculateSCone = async (rows, sampleCount) => {
+  const cies026 = await getcies026Data()
+
+  const weighted = mapSamples(rows, (wavelength, sample) => {
+    const weight = cies026[wavelength]['sCone']
+    return sample * weight
+  })
+
+  return reduceSamples(weighted, sampleCount,
+    (w, irradiance, sample) => irradiance + sample
+  )
+}
+
 const loadJSON = (filename) => {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest()
@@ -117,6 +130,7 @@ const loadJSON = (filename) => {
 }
 
 const getvl1924Data = () => loadJSON("./vl1924.json")
+const getcies026Data = () => loadJSON("./cies026.json")
 
 const fileInput = document.getElementById('file-input')
 const spectrumTable = document.getElementById('spectrum-table')
@@ -127,8 +141,10 @@ const handleFiles = async (event) => {
     const [rows, sampleCount] = await parseCSV(file)
 
     const luminanceTotals = await calculateLuminance(rows, sampleCount)
+    const sConeTotals = await calculateSCone(rows, sampleCount)
     createTableHeader(spectrumTable, sampleCount)
     createTableRow(spectrumTable, "Illuminance [lux]", luminanceTotals, asDecimal)
+    createTableRow(spectrumTable, "S-cone-opic irradiance (mW/m²)", sConeTotals, asDecimal)
 
     createSampleTableHeader(spectrumTable, sampleCount)
     for (const row of rows) {
