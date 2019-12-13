@@ -92,30 +92,27 @@ const reduceSamples = (rows, sampleCount, func) => {
   )
 }
 
-const calculateLuminance = async (rows, sampleCount) => {
-  const vl1924 = await getvl1924Data()
-
+const integrateWithWeights = (rows, sampleCount, data, key) => {
   const weighted = mapSamples(rows, (wavelength, sample) => {
-    const weight = vl1924[wavelength]['vl1924']
-    return sample * weight * 683
-  })
-
-  return reduceSamples(weighted, sampleCount,
-    (w, luminance, sample) => luminance + sample
-  )
-}
-
-const calculateSCone = async (rows, sampleCount) => {
-  const cies026 = await getcies026Data()
-
-  const weighted = mapSamples(rows, (wavelength, sample) => {
-    const weight = cies026[wavelength]['sCone']
+    const weight = data[wavelength][key]
     return sample * weight
   })
 
   return reduceSamples(weighted, sampleCount,
-    (w, irradiance, sample) => irradiance + sample
+    (w, runningTotal, sample) => runningTotal + sample
   )
+}
+
+const calculateLuminance = async (rows, sampleCount) => {
+  const data = await getvl1924Data()
+  const key = 'vl1924'
+  const samplesInWatts = integrateWithWeights(rows, sampleCount, data, key)
+  return samplesInWatts.map((sample) => sample * 683)
+}
+
+const calculateIrradiance = async (rows, sampleCount, key) => {
+  const data = await getcies026Data()
+  return integrateWithWeights(rows, sampleCount, data, key)
 }
 
 const loadJSON = (filename) => {
@@ -140,9 +137,10 @@ const handleFiles = async (event) => {
   for (const file of fileList) {
     const [rows, sampleCount] = await parseCSV(file)
 
-    const luminanceTotals = await calculateLuminance(rows, sampleCount)
-    const sConeTotals = await calculateSCone(rows, sampleCount)
     createTableHeader(spectrumTable, sampleCount)
+
+    const luminanceTotals = await calculateLuminance(rows, sampleCount)
+    const sConeTotals = await calculateIrradiance(rows, sampleCount, 'sCone')
     createTableRow(spectrumTable, "Illuminance [lux]", luminanceTotals, asDecimal)
     createTableRow(spectrumTable, "S-cone-opic irradiance (mW/m²)", sConeTotals, asDecimal)
 
