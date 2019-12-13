@@ -42,7 +42,7 @@ const parseCSV = async (file) => {
   const fieldCount = lines[0].split(",").length
   const rows = lines.map((line) =>
     line.split(",").map(parseFloat)
-  ).filter(([wavelength, ...row]) =>
+  ).filter(([wavelength]) =>
     wavelength >= 380 && wavelength <= 780
   )
   return [rows, fieldCount -1]
@@ -93,7 +93,7 @@ const calculateIrradiance = (rows, sampleCount, key) => {
 const fileInput = document.getElementById('file-input')
 const spectrumTable = document.getElementById('spectrum-table')
 
-const handleFiles = async (event) => {
+const handleFiles = async () => {
   const fileList = fileInput.files
   for (const file of fileList) {
     const [rows, sampleCount] = await parseCSV(file)
