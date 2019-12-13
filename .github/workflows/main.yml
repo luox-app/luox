@@ -9,11 +9,27 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+      
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    
     - name: Install Node Modules
       run: npm ci
-    - name: Run webpacker
+    
+    - name: Build Project
       run: npm build
-    - name: Deploy
+    
+    - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v2.4.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
