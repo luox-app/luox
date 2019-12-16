@@ -94,6 +94,8 @@ const calculateIrradiance = (rows, sampleCount, key) => {
 const areaUnitSelect = document.getElementById('area-units')
 const powerUnitSelect = document.getElementById('power-units')
 const fileInput = document.getElementById('file-input')
+const fileButton = document.getElementById('upload-form-submit')
+const uploadForm = document.getElementById('upload-form')
 const spectrumTable = document.getElementById('spectrum-table')
 const calculationTable = document.getElementById('calculation-table')
 const footerButtons = document.getElementById('table-actions')
@@ -104,7 +106,15 @@ const conversionFunction = (areaSelect, powerSelect) => {
   return (wavelength, sample) =>  sample / powerScale * areaScale
 }
 
-const handleFiles = async () => {
+const handleFileSelect = () => {
+  const fileList = fileInput.files
+  console.log(fileList)
+  fileButton.disabled = fileList.length === 0
+}
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+
   const fileList = fileInput.files
   for (const file of fileList) {
     const [rawRows, sampleCount] = await parseCSV(file)
@@ -139,8 +149,8 @@ const handleFiles = async () => {
 
     document.getElementById('file-upload').style.display = 'none';
     document.getElementById('file-uploaded').style.display = 'block';
-
   }
 }
 
-fileInput.addEventListener("change", handleFiles, false);
+fileInput.addEventListener("change", handleFileSelect, false);
+uploadForm.addEventListener("submit", handleSubmit, false);

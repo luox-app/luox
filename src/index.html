@@ -38,6 +38,10 @@ footer #table-actions a {
 #file-uploaded {
   display: none;
 }
+#file-upload {
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
 </style>
 </head>
 <body>
@@ -45,23 +49,29 @@ footer #table-actions a {
 <div class="container">
   <h1>Lightbox</h1>
   <div id="file-upload">
-    <p>Upload spectrum data in wavelength vs irradiance in
-    <select id="power-units">
-      <option value="1000000"> µW</option>
-      <option value="1000" >mW</option>
-      <option value="1" selected>W</option>
-    </select>
-    per
-    <select id="area-units">
-      <option value="1000000">mm²</option>
-      <option value="10000">cm²</option>
-      <option value="1" selected>m²</option>
-    </select>
-    </p>
-    <p>
-    <label for="file-input">Choose a CSV file:</label>
-    <input type="file" name="file" id="file-input"/>
-    </p>
+    <form id="upload-form">
+    <div class="form-inline">
+      <p> Upload a dataset with wavelength in nm and irradiances in
+      <select class="form-control" id="power-units">
+        <option value="1000000"> µW</option>
+        <option value="1000" >mW</option>
+        <option value="1" selected>W</option>
+      </select>
+      per
+      <select class="form-control" id="area-units">
+        <option value="1000000">mm²</option>
+        <option value="10000">cm²</option>
+        <option value="1" selected>m²</option>
+      </select>
+      </p>
+    </div>
+    <div class="form-group">
+      <input type="file" class="form-control-file" id="file-input">
+    </div>
+    <div class="form-group">
+      <button type="submit" disabled id="upload-form-submit" class="btn btn-primary">Upload</button>
+    </div>
+    </form>
   </div>
   <div id="file-uploaded">
     <a href=".">Choose another dataset</a>
