@@ -91,15 +91,25 @@ const calculateIrradiance = (rows, sampleCount, key) => {
   return samplesInWatts.map((sample) => sample * 1000)
 }
 
+const areaUnitSelect = document.getElementById('area-units')
+const powerUnitSelect = document.getElementById('power-units')
 const fileInput = document.getElementById('file-input')
 const spectrumTable = document.getElementById('spectrum-table')
 const calculationTable = document.getElementById('calculation-table')
 const footerButtons = document.getElementById('table-actions')
 
+const conversionFunction = (areaSelect, powerSelect) => {
+  const areaScale = parseFloat(areaSelect.options[areaSelect.selectedIndex].value)
+  const powerScale = parseFloat(powerSelect.options[powerSelect.selectedIndex].value)
+  return (wavelength, sample) =>  sample / powerScale * areaScale
+}
+
 const handleFiles = async () => {
   const fileList = fileInput.files
   for (const file of fileList) {
-    const [rows, sampleCount] = await parseCSV(file)
+    const [rawRows, sampleCount] = await parseCSV(file)
+    const unitConversion = conversionFunction(areaUnitSelect, powerUnitSelect)
+    const rows = mapSamples(rawRows, unitConversion)
 
     createTableHeader(calculationTable, sampleCount)
 
@@ -126,6 +136,9 @@ const handleFiles = async () => {
     footerButtons.appendChild(calcCSVButton);
     const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-primary", "download-spectrum", "Download spectrum CSV")
     footerButtons.appendChild(spectrumCSVButton);
+
+    document.getElementById('file-upload').style.display = 'none';
+    document.getElementById('file-uploaded').style.display = 'block';
 
   }
 }
