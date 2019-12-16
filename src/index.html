@@ -51,7 +51,7 @@ footer #table-actions a {
   <div id="file-upload">
     <form id="upload-form">
     <div class="form-inline">
-      <p> Upload a dataset with wavelength in nm and irradiances in
+      <p> Upload a dataset* with wavelength in nm and irradiances in
       <select class="form-control" id="power-units">
         <option value="1000000"> µW</option>
         <option value="1000" >mW</option>
@@ -72,6 +72,7 @@ footer #table-actions a {
       <button type="submit" disabled id="upload-form-submit" class="btn btn-primary">Upload</button>
     </div>
     </form>
+    <p class="text-muted small">* dataset should be a CSV-format text file with one row per nm wavelength. Each row should contain a column for wavelength and a number of samples. Download an <a href="sample.csv">example dataset</a> file.</p>
   </div>
   <div id="file-uploaded">
     <a href=".">Choose another dataset</a>
