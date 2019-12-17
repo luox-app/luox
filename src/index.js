@@ -1,6 +1,7 @@
 import VL1924 from './vl1924.json'
 import CIES026 from './cies026.json'
 import {downloadCSVButton} from './csvExport.js'
+import Papa from 'papaparse'
 
 const asExponential = (number) => number.toExponential(2)
 const asDecimal = (number) => number.toFixed(2)
@@ -39,11 +40,9 @@ const createTableRow = (table, wavelength, samples, formatter) => {
 
 const parseCSV = async (file) => {
   const fileContents = await file.text()
-  const lines = fileContents.match(/[^\r\n]+/g)
-  const fieldCount = lines[0].split(",").length
-  const rows = lines.map((line) =>
-    line.split(",").map(parseFloat)
-  ).filter(([wavelength]) =>
+  const lines = Papa.parse(fileContents, {"dynamicTyping": true})
+  const fieldCount = lines.data[0].length
+  const rows = lines.data.filter(([wavelength]) =>
     wavelength >= 380 && wavelength <= 780
   )
   return [rows, fieldCount -1]
