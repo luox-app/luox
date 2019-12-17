@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "build": "mkdir -p dist && webpack",
     "start": "mkdir -p dist && webpack-dev-server --content-base ./dist --open"
   },
@@ -22,6 +22,8 @@
   "devDependencies": {
     "copy-webpack-plugin": "^5.1.1",
     "eslint": "^6.7.2",
+    "jsdom": "^15.2.1",
+    "mocha": "^6.2.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
