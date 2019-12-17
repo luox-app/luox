@@ -33,6 +33,7 @@ jobs:
       run: npm run-script build
 
     - name: Deploy to gh-pages
+      if: github.ref == 'refs/heads/master'
       uses: peaceiris/actions-gh-pages@v2.4.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
