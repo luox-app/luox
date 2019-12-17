@@ -40,12 +40,16 @@ const createTableRow = (table, wavelength, samples, formatter) => {
 
 const parseCSV = async (file) => {
   const fileContents = await file.text()
-  const lines = Papa.parse(fileContents, {"dynamicTyping": true})
-  const fieldCount = lines.data[0].length
-  const rows = lines.data.filter(([wavelength]) =>
+  const result = Papa.parse(fileContents,
+    {"dynamicTyping": true,
+    "header": false})
+  const {data, errors} = result;
+
+  const fieldCount = data[0].length
+  const rows = data.filter(([wavelength]) =>
     wavelength >= 380 && wavelength <= 780
   )
-  return [rows, fieldCount -1]
+  return [errors, rows, fieldCount -1]
 }
 
 const mapSamples = (rows, func) => {
@@ -98,6 +102,8 @@ const uploadForm = document.getElementById('upload-form')
 const spectrumTable = document.getElementById('spectrum-table')
 const calculationTable = document.getElementById('calculation-table')
 const footerButtons = document.getElementById('table-actions')
+const fileUploadSection = document.getElementById('file-upload')
+const fileUploadedSection =  document.getElementById('file-uploaded')
 
 const conversionFunction = (areaSelect, powerSelect) => {
   const areaScale = parseFloat(areaSelect.options[areaSelect.selectedIndex].value)
@@ -107,16 +113,10 @@ const conversionFunction = (areaSelect, powerSelect) => {
 
 const handleFileSelect = () => {
   const fileList = fileInput.files
-  console.log(fileList)
   fileButton.disabled = fileList.length === 0
 }
 
-const handleSubmit = async (event) => {
-  event.preventDefault();
-
-  const fileList = fileInput.files
-  for (const file of fileList) {
-    const [rawRows, sampleCount] = await parseCSV(file)
+const createTables = (rawRows, sampleCount) => {
     const unitConversion = conversionFunction(areaUnitSelect, powerUnitSelect)
     const rows = mapSamples(rawRows, unitConversion)
 
@@ -145,9 +145,50 @@ const handleSubmit = async (event) => {
     footerButtons.appendChild(calcCSVButton);
     const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-primary", "download-spectrum", "Download spectrum CSV")
     footerButtons.appendChild(spectrumCSVButton);
+}
 
-    document.getElementById('file-upload').style.display = 'none';
-    document.getElementById('file-uploaded').style.display = 'block';
+const createErrorTable = (errors) => {
+  const header = document.createElement('p')
+  const textNode = document.createTextNode('We had some problems understanding that file:')
+  header.appendChild(textNode)
+  fileUploadedSection.appendChild(header)
+  const table = document.createElement('table')
+  table.setAttribute('class', 'errors')
+  table.setAttribute('class', 'table')
+
+  for (const error of errors) {
+    const row = document.createElement('tr')
+
+    const rowNum = document.createElement('td')
+    const rowNumText = document.createTextNode(`line ${error.row}`)
+    rowNum.appendChild(rowNumText)
+
+    const message = document.createElement('td')
+    const messageText = document.createTextNode(error.message)
+    message.appendChild(messageText)
+
+    row.appendChild(rowNum)
+    row.appendChild(message)
+
+    table.appendChild(row)
+  }
+  fileUploadedSection.appendChild(table)
+}
+
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  const fileList = fileInput.files
+  for (const file of fileList) {
+    const [errors, rawRows, sampleCount] = await parseCSV(file)
+    if (errors.length === 0) {
+      createTables(rawRows, sampleCount)
+    } else {
+      createErrorTable(errors)
+    }
+    fileUploadSection.style.display = 'none';
+    fileUploadedSection.style.display = 'block';
   }
 }
 
