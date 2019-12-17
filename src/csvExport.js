@@ -1,4 +1,4 @@
- const tableToCSV = (table) => {
+export const tableToCSV = (table) => {
   const rows = Array.from(table.querySelectorAll('tr'))
   return rows.reduce((acc, row) => {
       const cells = Array.from(row.querySelectorAll('td, th'))
@@ -7,7 +7,7 @@
   }, []).join('\n')
 }
 
-const downloadCSVButton = (table, className, filename, title) => {
+export const downloadCSVButton = (table, className, filename, title) => {
   const csv = tableToCSV(table)
   const csvFile = new Blob([csv], {"type": 'text/csv'})
   const downloadLink =  document.createElement('a')
@@ -17,6 +17,3 @@ const downloadCSVButton = (table, className, filename, title) => {
   downloadLink.innerText = title
   return downloadLink
 }
-
-exports.tableToCSV = tableToCSV
-exports.downloadCSVButton = downloadCSVButton

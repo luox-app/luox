@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --require @babel/register",
     "build": "mkdir -p dist && webpack",
     "start": "mkdir -p dist && webpack-dev-server --content-base ./dist --open"
   },
@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/freerange/lightbox#readme",
   "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/register": "^7.7.4",
     "copy-webpack-plugin": "^5.1.1",
     "eslint": "^6.7.2",
     "jsdom": "^15.2.1",
