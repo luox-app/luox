@@ -1,7 +1,5 @@
-import VL1924 from './vl1924.json'
-import CIES026 from './cies026.json'
 import {downloadCSVButton} from './csvExport.js'
-import {sprague} from './sprague.js'
+import {mapSamples, calculateLuminance, calculateIrradiance, interpolateData} from './rows.js'
 import Papa from 'papaparse'
 
 const asExponential = (number) => number.toExponential(2)
@@ -53,48 +51,6 @@ const parseCSV = async (file) => {
   return [errors, rows, fieldCount -1]
 }
 
-const mapSamples = (rows, func) => {
-  return rows.map((row) => {
-    const [wavelength, ...samples] = row
-    const mapped = samples.map((sample) =>
-      func(wavelength, sample)
-    )
-    return [wavelength, ...mapped]
-  })
-}
-
-const reduceSamples = (rows, sampleCount, func) => {
-  return rows.reduce((acc, row) => {
-    const [wavelength, ...samples] = row
-    return acc.map((luminance, index) =>
-      func(wavelength, luminance, samples[index])
-    )},
-    new Array(sampleCount).fill(0)
-  )
-}
-
-const integrateWithWeights = (rows, sampleCount, data, key) => {
-  const weighted = mapSamples(rows, (wavelength, sample) => {
-    const weight = data[wavelength][key]
-    return sample * weight
-  })
-
-  return reduceSamples(weighted, sampleCount,
-    (w, runningTotal, sample) => runningTotal + sample
-  )
-}
-
-const calculateLuminance = (rows, sampleCount) => {
-  const key = 'vl1924'
-  const samplesInWatts = integrateWithWeights(rows, sampleCount, VL1924, key)
-  return samplesInWatts.map((sample) => sample * 683)
-}
-
-const calculateIrradiance = (rows, sampleCount, key) => {
-  const samplesInWatts = integrateWithWeights(rows, sampleCount, CIES026, key)
-  return samplesInWatts.map((sample) => sample * 1000)
-}
-
 const areaUnitSelect = document.getElementById('area-units')
 const powerUnitSelect = document.getElementById('power-units')
 const fileInput = document.getElementById('file-input')
@@ -115,24 +71,6 @@ const conversionFunction = (areaSelect, powerSelect) => {
 const handleFileSelect = () => {
   const fileList = fileInput.files
   fileButton.disabled = fileList.length === 0
-}
-
-const interpolateData = (rows, sampleCount) => {
-  const shortestWavelength = rows[0][0]
-  const longestWavelength = rows[rows.length - 1][0]
-  const wavelengthInterval = rows[1][0] - rows[0][0]
-  let interpolatedRows = []
-  for (let wavelength = shortestWavelength; wavelength <= longestWavelength; wavelength++) {
-    interpolatedRows[wavelength - shortestWavelength] = [wavelength]
-  }
-  for (let locationIdx = 1; locationIdx <= sampleCount; locationIdx++) {
-    const locationIrradiances = rows.map((row) => row[locationIdx])
-    const interpolatedIrradiances = sprague(locationIrradiances, wavelengthInterval)
-    for (let wavelengthIdx = 0; wavelengthIdx < interpolatedRows.length; wavelengthIdx++) {
-      interpolatedRows[wavelengthIdx][locationIdx] = interpolatedIrradiances[wavelengthIdx]
-    }
-  }
-  return interpolatedRows
 }
 
 const createTables = (rawRows, sampleCount) => {
