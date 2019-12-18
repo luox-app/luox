@@ -46,8 +46,11 @@ function[p] = sprague(spectra,f)
       a5    = (-5*r(j-2)+25*r(j-1)-50*r(j)+50*r(j+1)-25*r(j+2)+5*r(j+3))/24;
       y     = a0+a1*xx+a2*xx.^2+a3*xx.^3+a4*xx.^4+a5*xx.^5;
       index = j-2;
-      p(i,(index-1)*f+1) = r(j);
-      p(i,(index-1)*f+1+1:(index-1)*f+1+f-1) = y;
+      idx = (index-1)*f+1;
+      p(i,idx) = r(j);
+      s = (index-1)*f+1+1;
+      e = (index-1)*f+1+f-1;
+      p(i,s:e) = y;
     end
     p(i,f*(N-5)+1) = r(N-2);
   end
