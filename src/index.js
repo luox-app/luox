@@ -68,8 +68,7 @@ const handleFileSelect = () => {
   fileButton.disabled = fileList.length === 0
 }
 
-const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons) => {
-  const unitConversion = conversionFunction(areaUnitSelect, powerUnitSelect)
+const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, unitConversion, footerButtons) => {
   const rows = mapSamples(rawRows, unitConversion)
   const interpolatedRows = interpolateData(rows, sampleCount)
 
@@ -141,7 +140,8 @@ const handleSubmit = async (event) => {
       const areaUnitSelect = document.getElementById('area-units')
       const powerUnitSelect = document.getElementById('power-units')
       const footerButtons = document.getElementById('table-actions')
-      createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons)
+      const unitConversion = conversionFunction(areaUnitSelect, powerUnitSelect)
+      createTables(rawRows, sampleCount, spectrumTable, calculationTable, unitConversion, footerButtons)
     } else {
       createErrorTable(errors)
     }
