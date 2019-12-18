@@ -42,36 +42,46 @@ const createTableRow = (table, wavelength, samples, formatter) => {
   appendCells(table, "td", [wavelength, ...formattedSamples])
 }
 
+const createCalculationTable = (table, rows, sampleCount) => {
+  createTableHeader(table, sampleCount)
+
+  const luminanceTotals = calculateLuminance(rows, sampleCount)
+  const sConeTotals = calculateIrradiance(rows, sampleCount, 'sCone')
+  const mConeTotals = calculateIrradiance(rows, sampleCount, 'mCone')
+  const lConeTotals = calculateIrradiance(rows, sampleCount, 'lCone')
+  const rodTotals = calculateIrradiance(rows, sampleCount, 'rod')
+  const melTotals = calculateIrradiance(rows, sampleCount, 'mel')
+  createTableRow(table, "Illuminance [lux]", luminanceTotals, asDecimal)
+  createTableRow(table, "S-cone-opic irradiance (mW/m²)", sConeTotals, asDecimal)
+  createTableRow(table, "M-cone-opic irradiance (mW/m²)", mConeTotals, asDecimal)
+  createTableRow(table, "L-cone-opic irradiance (mW/m²)", lConeTotals, asDecimal)
+  createTableRow(table, "Rhodopic irradiance (mW/m²)", rodTotals, asDecimal)
+  createTableRow(table, "Melanopic irradiance (mW/m²)", melTotals, asDecimal)
+}
+
+const createSpectrumTable = (table, rows, sampleCount) => {
+  createSampleTableHeader(table, sampleCount)
+  for (const row of rows) {
+    const [wavelength, ...samples] = row
+    createTableRow(table, wavelength, samples, asExponential)
+  }
+}
+
+const createDownloadButtons = (element, calculationTable, spectrumTable) => {
+  const calcCSVButton = downloadCSVButton(calculationTable, "btn btn-primary", "download-calc", "Download calculation CSV")
+  element.appendChild(calcCSVButton);
+  const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-primary", "download-spectrum", "Download spectrum CSV")
+  element.appendChild(spectrumCSVButton);
+}
+
 export const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons) => {
   const unitConversion = conversionFunction(areaUnitSelect, powerUnitSelect)
   const rows = mapSamples(rawRows, unitConversion)
   const interpolatedRows = interpolateData(rows, sampleCount)
 
-  createTableHeader(calculationTable, sampleCount)
-
-  const luminanceTotals = calculateLuminance(interpolatedRows, sampleCount)
-  const sConeTotals = calculateIrradiance(interpolatedRows, sampleCount, 'sCone')
-  const mConeTotals = calculateIrradiance(interpolatedRows, sampleCount, 'mCone')
-  const lConeTotals = calculateIrradiance(interpolatedRows, sampleCount, 'lCone')
-  const rodTotals = calculateIrradiance(interpolatedRows, sampleCount, 'rod')
-  const melTotals = calculateIrradiance(interpolatedRows, sampleCount, 'mel')
-  createTableRow(calculationTable, "Illuminance [lux]", luminanceTotals, asDecimal)
-  createTableRow(calculationTable, "S-cone-opic irradiance (mW/m²)", sConeTotals, asDecimal)
-  createTableRow(calculationTable, "M-cone-opic irradiance (mW/m²)", mConeTotals, asDecimal)
-  createTableRow(calculationTable, "L-cone-opic irradiance (mW/m²)", lConeTotals, asDecimal)
-  createTableRow(calculationTable, "Rhodopic irradiance (mW/m²)", rodTotals, asDecimal)
-  createTableRow(calculationTable, "Melanopic irradiance (mW/m²)", melTotals, asDecimal)
-
-  createSampleTableHeader(spectrumTable, sampleCount)
-  for (const row of rows) {
-    const [wavelength, ...samples] = row
-    createTableRow(spectrumTable, wavelength, samples, asExponential)
-  }
-
-  const calcCSVButton = downloadCSVButton(calculationTable, "btn btn-primary", "download-calc", "Download calculation CSV")
-  footerButtons.appendChild(calcCSVButton);
-  const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-primary", "download-spectrum", "Download spectrum CSV")
-  footerButtons.appendChild(spectrumCSVButton);
+  createCalculationTable(calculationTable, interpolatedRows, sampleCount)
+  createSpectrumTable(spectrumTable, rows, sampleCount)
+  createDownloadButtons(footerButtons, calculationTable, spectrumTable)
 }
 
 export const createErrorTable = (errors, fileUploadedSection) => {
