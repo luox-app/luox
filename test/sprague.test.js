@@ -2,6 +2,12 @@ var { sprague } = require('./../src/sprague.js')
 var assert = require('assert');
 
 describe('sprague', function() {
+  it('should return unmodified input when interpolation factor is 1', function() {
+    const input = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    const actual = sprague(input, 1)
+    assert.deepStrictEqual(actual, input)
+  });
+
   it('should generate intermediate values when interpolation factor is 2', function() {
     const input = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
     const expected = [
