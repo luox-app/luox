@@ -54,7 +54,6 @@ const parseCSV = async (file) => {
 const fileInput = document.getElementById('file-input')
 const fileButton = document.getElementById('upload-form-submit')
 const uploadForm = document.getElementById('upload-form')
-const footerButtons = document.getElementById('table-actions')
 const fileUploadSection = document.getElementById('file-upload')
 const fileUploadedSection =  document.getElementById('file-uploaded')
 
@@ -69,7 +68,7 @@ const handleFileSelect = () => {
   fileButton.disabled = fileList.length === 0
 }
 
-const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect) => {
+const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons) => {
   const unitConversion = conversionFunction(areaUnitSelect, powerUnitSelect)
   const rows = mapSamples(rawRows, unitConversion)
   const interpolatedRows = interpolateData(rows, sampleCount)
@@ -141,7 +140,8 @@ const handleSubmit = async (event) => {
       const calculationTable = document.getElementById('calculation-table')
       const areaUnitSelect = document.getElementById('area-units')
       const powerUnitSelect = document.getElementById('power-units')
-      createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect)
+      const footerButtons = document.getElementById('table-actions')
+      createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons)
     } else {
       createErrorTable(errors)
     }
