@@ -19,7 +19,6 @@ const fileInput = document.getElementById('file-input')
 const fileButton = document.getElementById('upload-form-submit')
 const uploadForm = document.getElementById('upload-form')
 const fileUploadSection = document.getElementById('file-upload')
-const fileUploadedSection =  document.getElementById('file-uploaded')
 
 const conversionFunction = (areaSelect, powerSelect) => {
   const areaScale = parseFloat(areaSelect.options[areaSelect.selectedIndex].value)
@@ -32,7 +31,7 @@ const handleFileSelect = () => {
   fileButton.disabled = fileList.length === 0
 }
 
-const createErrorTable = (errors) => {
+const createErrorTable = (errors, fileUploadedSection) => {
   const header = document.createElement('p')
   const textNode = document.createTextNode('We had some problems understanding that file:')
   header.appendChild(textNode)
@@ -63,6 +62,8 @@ const createErrorTable = (errors) => {
 const handleSubmit = async (event) => {
   event.preventDefault();
 
+  const fileUploadedSection =  document.getElementById('file-uploaded')
+
   const fileList = fileInput.files
   for (const file of fileList) {
     const [errors, rawRows, sampleCount] = await parseCSV(file)
@@ -75,7 +76,7 @@ const handleSubmit = async (event) => {
       const unitConversion = conversionFunction(areaUnitSelect, powerUnitSelect)
       createTables(rawRows, sampleCount, spectrumTable, calculationTable, unitConversion, footerButtons)
     } else {
-      createErrorTable(errors)
+      createErrorTable(errors, fileUploadedSection)
     }
     fileUploadSection.style.display = 'none';
     fileUploadedSection.style.display = 'block';
