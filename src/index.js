@@ -16,9 +16,7 @@ const parseCSV = async (file) => {
 }
 
 const fileInput = document.getElementById('file-input')
-const fileButton = document.getElementById('upload-form-submit')
 const uploadForm = document.getElementById('upload-form')
-const fileUploadSection = document.getElementById('file-upload')
 
 const conversionFunction = (areaSelect, powerSelect) => {
   const areaScale = parseFloat(areaSelect.options[areaSelect.selectedIndex].value)
@@ -28,6 +26,7 @@ const conversionFunction = (areaSelect, powerSelect) => {
 
 const handleFileSelect = () => {
   const fileList = fileInput.files
+  const fileButton = document.getElementById('upload-form-submit')
   fileButton.disabled = fileList.length === 0
 }
 
@@ -35,6 +34,7 @@ const handleSubmit = async (event) => {
   event.preventDefault();
 
   const fileUploadedSection =  document.getElementById('file-uploaded')
+  const fileUploadSection = document.getElementById('file-upload')
 
   const fileList = fileInput.files
   for (const file of fileList) {
