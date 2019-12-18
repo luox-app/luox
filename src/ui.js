@@ -66,3 +66,31 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
   const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-primary", "download-spectrum", "Download spectrum CSV")
   footerButtons.appendChild(spectrumCSVButton);
 }
+
+export const createErrorTable = (errors, fileUploadedSection) => {
+  const header = document.createElement('p')
+  const textNode = document.createTextNode('We had some problems understanding that file:')
+  header.appendChild(textNode)
+  fileUploadedSection.appendChild(header)
+  const table = document.createElement('table')
+  table.setAttribute('class', 'errors')
+  table.setAttribute('class', 'table')
+
+  for (const error of errors) {
+    const row = document.createElement('tr')
+
+    const rowNum = document.createElement('td')
+    const rowNumText = document.createTextNode(`line ${error.row}`)
+    rowNum.appendChild(rowNumText)
+
+    const message = document.createElement('td')
+    const messageText = document.createTextNode(error.message)
+    message.appendChild(messageText)
+
+    row.appendChild(rowNum)
+    row.appendChild(message)
+
+    table.appendChild(row)
+  }
+  fileUploadedSection.appendChild(table)
+}
