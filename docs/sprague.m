@@ -6,6 +6,10 @@
 % *** f is an interpolation factor
 % *** e.g. if f=2 the sampling rate is doubled
 % ===================================================
+% This is copied from page 36 of "Computational Colour
+% Science Using MATLAB" (Westland et al) which was
+% supplied by Manuel Spitschan.
+% ===================================================
 function[p] = sprague(spectra,f)
   if (f<2|((f-floor(f))>0))
     disp("invalid f value - premature termination");
