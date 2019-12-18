@@ -1,6 +1,7 @@
 import VL1924 from './vl1924.json'
 import CIES026 from './cies026.json'
 import {downloadCSVButton} from './csvExport.js'
+import {sprague} from './sprague.js'
 import Papa from 'papaparse'
 
 const asExponential = (number) => number.toExponential(2)
@@ -116,18 +117,37 @@ const handleFileSelect = () => {
   fileButton.disabled = fileList.length === 0
 }
 
+const interpolateData = (rows, sampleCount) => {
+  const shortestWavelength = rows[0][0]
+  const longestWavelength = rows[rows.length - 1][0]
+  const wavelengthInterval = rows[1][0] - rows[0][0]
+  let interpolatedRows = []
+  for (let wavelength = shortestWavelength; wavelength <= longestWavelength; wavelength++) {
+    interpolatedRows[wavelength - shortestWavelength] = [wavelength]
+  }
+  for (let locationIdx = 1; locationIdx <= sampleCount; locationIdx++) {
+    const locationIrradiances = rows.map((row) => row[locationIdx])
+    const interpolatedIrradiances = sprague(locationIrradiances, wavelengthInterval)
+    for (let wavelengthIdx = 0; wavelengthIdx < interpolatedRows.length; wavelengthIdx++) {
+      interpolatedRows[wavelengthIdx][locationIdx] = interpolatedIrradiances[wavelengthIdx]
+    }
+  }
+  return interpolatedRows
+}
+
 const createTables = (rawRows, sampleCount) => {
     const unitConversion = conversionFunction(areaUnitSelect, powerUnitSelect)
     const rows = mapSamples(rawRows, unitConversion)
+    const interpolatedRows = interpolateData(rows, sampleCount)
 
     createTableHeader(calculationTable, sampleCount)
 
-    const luminanceTotals = calculateLuminance(rows, sampleCount)
-    const sConeTotals = calculateIrradiance(rows, sampleCount, 'sCone')
-    const mConeTotals = calculateIrradiance(rows, sampleCount, 'mCone')
-    const lConeTotals = calculateIrradiance(rows, sampleCount, 'lCone')
-    const rodTotals = calculateIrradiance(rows, sampleCount, 'rod')
-    const melTotals = calculateIrradiance(rows, sampleCount, 'mel')
+    const luminanceTotals = calculateLuminance(interpolatedRows, sampleCount)
+    const sConeTotals = calculateIrradiance(interpolatedRows, sampleCount, 'sCone')
+    const mConeTotals = calculateIrradiance(interpolatedRows, sampleCount, 'mCone')
+    const lConeTotals = calculateIrradiance(interpolatedRows, sampleCount, 'lCone')
+    const rodTotals = calculateIrradiance(interpolatedRows, sampleCount, 'rod')
+    const melTotals = calculateIrradiance(interpolatedRows, sampleCount, 'mel')
     createTableRow(calculationTable, "Illuminance [lux]", luminanceTotals, asDecimal)
     createTableRow(calculationTable, "S-cone-opic irradiance (mW/m²)", sConeTotals, asDecimal)
     createTableRow(calculationTable, "M-cone-opic irradiance (mW/m²)", mConeTotals, asDecimal)
