@@ -4,6 +4,12 @@ import {downloadCSVButton} from './csvExport.js'
 const asExponential = (number) => number.toExponential(2)
 const asDecimal = (number) => number.toFixed(2)
 
+const conversionFunction = (areaSelect, powerSelect) => {
+  const areaScale = parseFloat(areaSelect.options[areaSelect.selectedIndex].value)
+  const powerScale = parseFloat(powerSelect.options[powerSelect.selectedIndex].value)
+  return (wavelength, sample) =>  sample / powerScale * areaScale
+}
+
 const appendCells = (table, cellType, cells) => {
   const row = document.createElement("tr")
   const domCells = cells.map((cellText) =>  {
@@ -36,7 +42,8 @@ const createTableRow = (table, wavelength, samples, formatter) => {
   appendCells(table, "td", [wavelength, ...formattedSamples])
 }
 
-export const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, unitConversion, footerButtons) => {
+export const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons) => {
+  const unitConversion = conversionFunction(areaUnitSelect, powerUnitSelect)
   const rows = mapSamples(rawRows, unitConversion)
   const interpolatedRows = interpolateData(rows, sampleCount)
 

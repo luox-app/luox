@@ -4,12 +4,6 @@ import {createTables, createErrorTable} from './ui.js'
 const fileInput = document.getElementById('file-input')
 const uploadForm = document.getElementById('upload-form')
 
-const conversionFunction = (areaSelect, powerSelect) => {
-  const areaScale = parseFloat(areaSelect.options[areaSelect.selectedIndex].value)
-  const powerScale = parseFloat(powerSelect.options[powerSelect.selectedIndex].value)
-  return (wavelength, sample) =>  sample / powerScale * areaScale
-}
-
 const handleFileSelect = () => {
   const fileList = fileInput.files
   const fileButton = document.getElementById('upload-form-submit')
@@ -31,8 +25,7 @@ const handleSubmit = async (event) => {
       const areaUnitSelect = document.getElementById('area-units')
       const powerUnitSelect = document.getElementById('power-units')
       const footerButtons = document.getElementById('table-actions')
-      const unitConversion = conversionFunction(areaUnitSelect, powerUnitSelect)
-      createTables(rawRows, sampleCount, spectrumTable, calculationTable, unitConversion, footerButtons)
+      createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons)
     } else {
       createErrorTable(errors, fileUploadedSection)
     }
