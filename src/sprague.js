@@ -48,15 +48,15 @@ export const sprague = (spectrum, f) => {
 
   for (let j = 2; j < N - 3; j += 1) {
     const a0 = r[j]
-    const a1 = (2*r[j-2]-16*r[j-1]+16*r[j+1]-2*r[j+2])/24;
-    const a2 = (-r[j-2]+16*r[j-1]-30*r[j]+16*r[j+1]-r[j+2])/24;
-    const a3 = (-9*r[j-2]+39*r[j-1]-70*r[j]+66*r[j+1]-33*r[j+2]+7*r[j+3])/24;
-    const a4 = (13*r[j-2]-64*r[j-1]+126*r[j]-124*r[j+1]+61*r[j+2]-12*r[j+3])/24;
-    const a5 = (-5*r[j-2]+25*r[j-1]-50*r[j]+50*r[j+1]-25*r[j+2]+5*r[j+3])/24;
+    const a1 = (2 * r[j - 2] - 16 * r[j - 1] + 16 * r[j + 1] - 2 * r[j + 2]) / 24;
+    const a2 = (-r[j - 2] + 16 * r[j - 1] - 30 * r[j] + 16 * r[j + 1] - r[j + 2]) / 24;
+    const a3 = (-9 * r[j - 2] + 39 * r[j - 1] - 70 * r[j] + 66 * r[j + 1] - 33 * r[j + 2] + 7 * r[j + 3]) / 24;
+    const a4 = (13 * r[j - 2] - 64 * r[j - 1] + 126 * r[j] - 124 * r[j + 1] + 61 * r[j + 2] - 12 * r[j + 3]) / 24;
+    const a5 = (-5 * r[j - 2] + 25 * r[j - 1] - 50 * r[j] + 50 * r[j + 1] - 25 * r[j + 2] + 5 * r[j + 3]) / 24;
 
     const y = new Array(xx.length)
     for (let i = 0; i < xx.length; i += 1) {
-      y[i] = a0 + a1*xx[i] + (a2*xx[i])**2 + (a3*xx[i])**3 + (a4*xx[i])**4 + (a5*xx[i])**5
+      y[i] = a0 + a1 * xx[i] + (a2 * xx[i]) ** 2 + (a3 * xx[i]) ** 3 + (a4 * xx[i]) ** 4 + (a5 * xx[i]) ** 5
     }
 
     const index = j-2
