@@ -45,8 +45,8 @@ export const calculateIrradiance = (rows, sampleCount, key) => {
 }
 
 export const interpolateData = (rows, sampleCount) => {
-  const shortestWavelength = rows[0][0]
-  const longestWavelength = rows[rows.length - 1][0]
+  const shortestWavelength = rows[0][0] // eslint-disable-line prefer-destructuring
+  const longestWavelength = rows[rows.length - 1][0] // eslint-disable-line prefer-destructuring
   const wavelengthInterval = rows[1][0] - rows[0][0]
   const interpolatedRows = []
   for (let wavelength = shortestWavelength; wavelength <= longestWavelength; wavelength += 1) {
