@@ -2,6 +2,7 @@
  * This is a port of the Matlab function defined in docs/sprague.m
  *
  */
+ /* eslint-disable max-lines-per-function */
 export const sprague = (spectrum, f) => {
   const c1 = [884, -1960, 3033, -2648, 1080, -180]
   const c2 = [508, -540, 488, -367, 144, -24]
@@ -77,3 +78,4 @@ export const sprague = (spectrum, f) => {
 
   return p
 }
+/* eslint-enable max-lines-per-function */
