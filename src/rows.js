@@ -48,7 +48,7 @@ export const interpolateData = (rows, sampleCount) => {
   const shortestWavelength = rows[0][0]
   const longestWavelength = rows[rows.length - 1][0]
   const wavelengthInterval = rows[1][0] - rows[0][0]
-  let interpolatedRows = []
+  const interpolatedRows = []
   for (let wavelength = shortestWavelength; wavelength <= longestWavelength; wavelength += 1) {
     interpolatedRows[wavelength - shortestWavelength] = [wavelength]
   }
