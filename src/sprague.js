@@ -11,25 +11,25 @@ export const sprague = (spectrum, f) => {
 
   let p1 = 0
   for (let i = 0; i < 6; i += 1) {
-    p1 += (c1[i] * r[i])
+    p1 += c1[i] * r[i]
   }
   p1 /= 209
 
   let p2 = 0
   for (let i = 0; i < 6; i += 1) {
-    p2 += (c2[i] * r[i])
+    p2 += c2[i] * r[i]
   }
   p2 /= 209
 
   let p3 = 0
   for (let i = 0; i < 6; i += 1) {
-    p3 += (c3[i] * r[i + 10])
+    p3 += c3[i] * r[i + 10]
   }
   p3 /= 209
 
   let p4 = 0
   for (let i = 0; i < 6; i += 1) {
-    p4 += (c4[i] * r[i + 10])
+    p4 += c4[i] * r[i + 10]
   }
   p4 /= 209
 
