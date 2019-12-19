@@ -49,13 +49,13 @@ export const interpolateData = (rows, sampleCount) => {
   const longestWavelength = rows[rows.length - 1][0]
   const wavelengthInterval = rows[1][0] - rows[0][0]
   let interpolatedRows = []
-  for (let wavelength = shortestWavelength; wavelength <= longestWavelength; wavelength++) {
+  for (let wavelength = shortestWavelength; wavelength <= longestWavelength; wavelength += 1) {
     interpolatedRows[wavelength - shortestWavelength] = [wavelength]
   }
-  for (let locationIdx = 1; locationIdx <= sampleCount; locationIdx++) {
+  for (let locationIdx = 1; locationIdx <= sampleCount; locationIdx += 1) {
     const locationIrradiances = rows.map((row) => row[locationIdx])
     const interpolatedIrradiances = sprague(locationIrradiances, wavelengthInterval)
-    for (let wavelengthIdx = 0; wavelengthIdx < interpolatedRows.length; wavelengthIdx++) {
+    for (let wavelengthIdx = 0; wavelengthIdx < interpolatedRows.length; wavelengthIdx += 1) {
       interpolatedRows[wavelengthIdx][locationIdx] = interpolatedIrradiances[wavelengthIdx]
     }
   }
