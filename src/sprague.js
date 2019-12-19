@@ -39,32 +39,32 @@ export const sprague = (spectrum, f) => {
 
   const p = new Array(f * (N - 5) + 1).fill(0)
 
-  let xx = new Array(f - 1)
+  const xx = new Array(f - 1)
   for (let i = 0; i < xx.length; i++) {
     xx[i] = (i + 1) / f
   }
 
   for (let j = 2; j < N - 3; j++) {
-    let a0 = r[j]
-    let a1 = (2*r[j-2]-16*r[j-1]+16*r[j+1]-2*r[j+2])/24;
-    let a2 = (-r[j-2]+16*r[j-1]-30*r[j]+16*r[j+1]-r[j+2])/24;
-    let a3 = (-9*r[j-2]+39*r[j-1]-70*r[j]+66*r[j+1]-33*r[j+2]+7*r[j+3])/24;
-    let a4 = (13*r[j-2]-64*r[j-1]+126*r[j]-124*r[j+1]+61*r[j+2]-12*r[j+3])/24;
-    let a5 = (-5*r[j-2]+25*r[j-1]-50*r[j]+50*r[j+1]-25*r[j+2]+5*r[j+3])/24;
+    const a0 = r[j]
+    const a1 = (2*r[j-2]-16*r[j-1]+16*r[j+1]-2*r[j+2])/24;
+    const a2 = (-r[j-2]+16*r[j-1]-30*r[j]+16*r[j+1]-r[j+2])/24;
+    const a3 = (-9*r[j-2]+39*r[j-1]-70*r[j]+66*r[j+1]-33*r[j+2]+7*r[j+3])/24;
+    const a4 = (13*r[j-2]-64*r[j-1]+126*r[j]-124*r[j+1]+61*r[j+2]-12*r[j+3])/24;
+    const a5 = (-5*r[j-2]+25*r[j-1]-50*r[j]+50*r[j+1]-25*r[j+2]+5*r[j+3])/24;
 
-    let y = new Array(xx.length)
+    const y = new Array(xx.length)
     for (let i = 0; i < xx.length; i++) {
       y[i] = a0 + a1*xx[i] + Math.pow(a2*xx[i], 2) + Math.pow(a3*xx[i], 3) + Math.pow(a4*xx[i], 4) + Math.pow(a5*xx[i], 5)
     }
 
-    let index = j-2
+    const index = j-2
 
-    let idx = index * f
+    const idx = index * f
 
     p[idx] = r[j]
 
-    let start = idx + 1
-    let end = start + f - 1
+    const start = idx + 1
+    const end = start + f - 1
     let yIdx = 0
     for (let i = start; i <= end; i++) {
       p[i] = y[yIdx]
