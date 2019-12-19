@@ -1,5 +1,7 @@
-// This is a port of the Matlab function defined in docs/sprague.m
-//
+/*
+ * This is a port of the Matlab function defined in docs/sprague.m
+ *
+ */
 export const sprague = (spectrum, f) => {
   const c1 = [884, -1960, 3033, -2648, 1080, -180]
   const c2 = [508, -540, 488, -367, 144, -24]
