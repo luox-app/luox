@@ -1,5 +1,6 @@
 import {mapSamples, calculateLuminance, calculateIrradiance, interpolateData} from './rows.js'
 import {downloadCSVButton} from './csvExport.js'
+import Chart from 'chart.js'
 
 const asExponential = (number) => number.toExponential(2)
 const asDecimal = (number) => number.toFixed(2)
@@ -74,12 +75,74 @@ const createDownloadButtons = (element, calculationTable, spectrumTable) => {
   element.appendChild(spectrumCSVButton);
 }
 
-export const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons) => {
+/* eslint-disable max-lines-per-function */
+const createChart = (chartCanvas, rows) => {
+  const xAxislabels = []
+  const datasets = []
+  for (let rowIdx = 0; rowIdx < rows.length; rowIdx += 1) {
+    const row = rows[rowIdx]
+    const [wavelength, ...samples] = row
+    xAxislabels.push(wavelength)
+    for (let sampleIdx = 0; sampleIdx < samples.length; sampleIdx += 1) {
+      if (rowIdx === 0) {
+        const r = Math.ceil(Math.random() * 16).toString(16)
+        const g = Math.ceil(Math.random() * 16).toString(16)
+        const b = Math.ceil(Math.random() * 16).toString(16)
+        const lineColor = '#' + r + g + b
+        datasets[sampleIdx] = {
+          'backgroundColor': lineColor,
+          'borderColor': lineColor,
+          'data': [],
+          'fill': false,
+          'label': 'S' + sampleIdx,
+          'pointRadius': 1
+        }
+      }
+      const sample = samples[sampleIdx]
+      datasets[sampleIdx].data.push(sample)
+    }
+  }
+
+  new Chart(chartCanvas, { // eslint-disable-line no-new
+    'data': {
+      datasets,
+      'labels': xAxislabels
+    },
+    'options': {
+      'scales': {
+        'xAxes': [
+          {
+            'gridLines': {
+              'display': false
+            },
+            'scaleLabel': {
+              'display': true,
+              'labelString': 'Wavelength [nm]'
+            }
+          }
+        ],
+        'yAxes': [
+          {
+            'scaleLabel': {
+              'display': true,
+              'labelString': 'Spectral irradiance [W/(m² nm)]'
+            }
+          }
+        ]
+      }
+    },
+    'type': 'line'
+  });
+}
+/* eslint-enable max-lines-per-function */
+
+export const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons, chartCanvas) => {
   const unitConversion = conversionFunction(areaUnitSelect, powerUnitSelect)
   const rows = mapSamples(rawRows, unitConversion)
   const interpolatedRows = interpolateData(rows, sampleCount)
 
   createCalculationTable(calculationTable, interpolatedRows, sampleCount)
+  createChart(chartCanvas, interpolatedRows)
   createSpectrumTable(spectrumTable, rows, sampleCount)
   createDownloadButtons(footerButtons, calculationTable, spectrumTable)
 }

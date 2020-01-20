@@ -25,7 +25,8 @@ const handleSubmit = async (event) => {
       const areaUnitSelect = document.getElementById('area-units')
       const powerUnitSelect = document.getElementById('power-units')
       const footerButtons = document.getElementById('table-actions')
-      createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons)
+      const chartCanvas = document.getElementById('chart-canvas')
+      createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons, chartCanvas)
     } else {
       createErrorTable(errors, fileUploadedSection)
     }
