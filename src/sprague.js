@@ -57,7 +57,7 @@ export const sprague = (spectrum, f) => {
 
     const y = new Array(xx.length)
     for (let i = 0; i < xx.length; i += 1) {
-      y[i] = a0 + (a1 * xx[i]) + ((a2 * xx[i]) ** 2) + ((a3 * xx[i]) ** 3) + ((a4 * xx[i]) ** 4) + ((a5 * xx[i]) ** 5)
+      y[i] = a0 + (a1 * xx[i]) + (a2 * (xx[i] ** 2)) + (a3 * (xx[i] ** 3)) + (a4 * (xx[i] ** 4)) + (a5 * (xx[i] ** 5))
     }
 
     const index = j-2

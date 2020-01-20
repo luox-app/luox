@@ -30,4 +30,12 @@ describe('sprague', function() {
     const actual = sprague(input, 3)
     assert.deepStrictEqual(actual.map((n) => n.toFixed(4)), expected.map((n) => n.toFixed(4)))
   });
+
+  it('should generate the same values as the matlab code for the same input', function() {
+    const input = [9.73E-05, 1.67E-06, 5.56E-05, 7.15E-04, 6.14E-03, 9.54E-03, 2.63E-03, 6.90E-04, 2.35E-04, 9.64E-05, 5.61E-05, 3.04E-05, 3.78E-05, 3.38E-05, 6.34E-05, 1.22E-04];
+    const expected = [0.0000973000, 0.0000830695, 0.0000725613, 0.0000600094, 0.0000438577];
+
+    const actual = sprague(input, 10).slice(0, 5);
+    assert.deepStrictEqual(actual.map((n) => n.toFixed(10)), expected.map((n) => n.toFixed(10)))
+  });
 });
