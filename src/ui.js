@@ -86,7 +86,6 @@ const generateHues = (sampleCount) => {
 
 /* eslint-disable max-lines-per-function */
 const createChart = (chartCanvas, rows, sampleCount) => {
-  const xAxislabels = []
   const datasets = []
   const hues = generateHues(sampleCount)
 
@@ -95,27 +94,18 @@ const createChart = (chartCanvas, rows, sampleCount) => {
     datasets[sampleIdx] = {
       'backgroundColor': lineColor,
       'borderColor': lineColor,
-      'data': [],
+      'data': rows.map((row) => row[sampleIdx + 1]),
       'fill': false,
       'label': 'S' + sampleIdx,
       'pointRadius': 1
     }
   }
-
-  for (let rowIdx = 0; rowIdx < rows.length; rowIdx += 1) {
-    const row = rows[rowIdx]
-    const [wavelength, ...samples] = row
-
-    xAxislabels.push(wavelength)
-    for (let sampleIdx = 0; sampleIdx < samples.length; sampleIdx += 1) {
-      datasets[sampleIdx].data.push(samples[sampleIdx])
-    }
-  }
+  const waveLengths = rows.map((row) => row[0]);
 
   new Chart(chartCanvas, { // eslint-disable-line no-new
     'data': {
       datasets,
-      'labels': xAxislabels
+      'labels': waveLengths
     },
     'options': {
       'scales': {
