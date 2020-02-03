@@ -122,6 +122,9 @@ const createChart = (chartCanvas, rows) => {
             'scaleLabel': {
               'display': true,
               'labelString': 'Wavelength [nm]'
+            },
+            'ticks': {
+              'maxTicksLimit': 20
             }
           }
         ],
