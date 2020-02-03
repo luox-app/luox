@@ -112,9 +112,6 @@ const createChart = (chartCanvas, rows) => {
       'scales': {
         'xAxes': [
           {
-            'gridLines': {
-              'display': false
-            },
             'scaleLabel': {
               'display': true,
               'labelString': 'Wavelength [nm]'
