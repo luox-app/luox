@@ -53,11 +53,11 @@ const createCalculationTable = (table, rows, sampleCount) => {
   const rodTotals = calculateIrradiance(rows, sampleCount, 'rod')
   const melTotals = calculateIrradiance(rows, sampleCount, 'mel')
   createTableRow(table, "Illuminance [lux]", luminanceTotals, asDecimal)
-  createTableRow(table, "S-cone-opic irradiance (mW/m²)", sConeTotals, asDecimal)
-  createTableRow(table, "M-cone-opic irradiance (mW/m²)", mConeTotals, asDecimal)
-  createTableRow(table, "L-cone-opic irradiance (mW/m²)", lConeTotals, asDecimal)
-  createTableRow(table, "Rhodopic irradiance (mW/m²)", rodTotals, asDecimal)
-  createTableRow(table, "Melanopic irradiance (mW/m²)", melTotals, asDecimal)
+  createTableRow(table, "S-cone-opic irradiance (mW/m²)", sConeTotals, asExponential)
+  createTableRow(table, "M-cone-opic irradiance (mW/m²)", mConeTotals, asExponential)
+  createTableRow(table, "L-cone-opic irradiance (mW/m²)", lConeTotals, asExponential)
+  createTableRow(table, "Rhodopic irradiance (mW/m²)", rodTotals, asExponential)
+  createTableRow(table, "Melanopic irradiance (mW/m²)", melTotals, asExponential)
 }
 
 const createSpectrumTable = (table, rows, sampleCount) => {
