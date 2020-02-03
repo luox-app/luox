@@ -79,16 +79,23 @@ const createDownloadButtons = (element, calculationTable, spectrumTable) => {
 const createChart = (chartCanvas, rows) => {
   const xAxislabels = []
   const datasets = []
+  const hues = []
+
   for (let rowIdx = 0; rowIdx < rows.length; rowIdx += 1) {
     const row = rows[rowIdx]
     const [wavelength, ...samples] = row
+
+    if (rowIdx === 0) {
+      const hueInterval = 360 / samples.length
+      for (let i = 0; i < samples.length; i += 1) {
+        hues.push(i * hueInterval)
+      }
+    }
+
     xAxislabels.push(wavelength)
     for (let sampleIdx = 0; sampleIdx < samples.length; sampleIdx += 1) {
       if (rowIdx === 0) {
-        const r = Math.ceil(Math.random() * 16).toString(16)
-        const g = Math.ceil(Math.random() * 16).toString(16)
-        const b = Math.ceil(Math.random() * 16).toString(16)
-        const lineColor = '#' + r + g + b
+        const lineColor = 'hsl(' + hues[sampleIdx] + ',100%,50%)'
         datasets[sampleIdx] = {
           'backgroundColor': lineColor,
           'borderColor': lineColor,
