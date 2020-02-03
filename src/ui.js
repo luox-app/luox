@@ -32,9 +32,12 @@ const createSampleTableHeader = (table, sampleCount) => {
   cells[1].setAttribute("colspan", sampleCount)
 }
 
+const sampleTitles = (sampleCount) => {
+  return new Array(sampleCount).fill("").map((_, index) => "S"+index)
+}
+
 const createTableHeader = (table, sampleCount) => {
-  const sampleTitles = new Array(sampleCount).fill("").map((_, index) => "S"+index)
-  const titles = ["Condition", ...sampleTitles]
+  const titles = ["Condition", ...sampleTitles(sampleCount)]
   appendCells(table, "th", titles)
 }
 
@@ -88,6 +91,7 @@ const generateHues = (sampleCount) => {
 const createChart = (chartCanvas, rows, sampleCount) => {
   const datasets = []
   const hues = generateHues(sampleCount)
+  const labels = sampleTitles(sampleCount)
 
   for (let sampleIdx = 0; sampleIdx < sampleCount; sampleIdx += 1) {
     const lineColor = 'hsl(' + hues[sampleIdx] + ',100%,50%)'
@@ -96,7 +100,7 @@ const createChart = (chartCanvas, rows, sampleCount) => {
       'borderColor': lineColor,
       'data': rows.map((row) => row[sampleIdx + 1]),
       'fill': false,
-      'label': 'S' + sampleIdx,
+      'label': labels[sampleIdx],
       'pointRadius': 1
     }
   }
