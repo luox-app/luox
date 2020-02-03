@@ -149,7 +149,7 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
   const interpolatedRows = interpolateData(rows, sampleCount)
 
   createCalculationTable(calculationTable, interpolatedRows, sampleCount)
-  createChart(chartCanvas, interpolatedRows)
+  createChart(chartCanvas, rows)
   createSpectrumTable(spectrumTable, rows, sampleCount)
   createDownloadButtons(footerButtons, calculationTable, spectrumTable)
 }
