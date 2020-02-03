@@ -90,25 +90,25 @@ const createChart = (chartCanvas, rows, sampleCount) => {
   const datasets = []
   const hues = generateHues(sampleCount)
 
+  for (let sampleIdx = 0; sampleIdx < sampleCount; sampleIdx += 1) {
+    const lineColor = 'hsl(' + hues[sampleIdx] + ',100%,50%)'
+    datasets[sampleIdx] = {
+      'backgroundColor': lineColor,
+      'borderColor': lineColor,
+      'data': [],
+      'fill': false,
+      'label': 'S' + sampleIdx,
+      'pointRadius': 1
+    }
+  }
+
   for (let rowIdx = 0; rowIdx < rows.length; rowIdx += 1) {
     const row = rows[rowIdx]
     const [wavelength, ...samples] = row
 
     xAxislabels.push(wavelength)
     for (let sampleIdx = 0; sampleIdx < samples.length; sampleIdx += 1) {
-      if (rowIdx === 0) {
-        const lineColor = 'hsl(' + hues[sampleIdx] + ',100%,50%)'
-        datasets[sampleIdx] = {
-          'backgroundColor': lineColor,
-          'borderColor': lineColor,
-          'data': [],
-          'fill': false,
-          'label': 'S' + sampleIdx,
-          'pointRadius': 1
-        }
-      }
-      const sample = samples[sampleIdx]
-      datasets[sampleIdx].data.push(sample)
+      datasets[sampleIdx].data.push(samples[sampleIdx])
     }
   }
 
