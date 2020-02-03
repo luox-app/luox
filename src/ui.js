@@ -75,22 +75,24 @@ const createDownloadButtons = (element, calculationTable, spectrumTable) => {
   element.appendChild(spectrumCSVButton);
 }
 
+const generateHues = (sampleCount) => {
+  const hues = []
+  const hueInterval = 360 / sampleCount
+  for (let i = 0; i < sampleCount; i += 1) {
+    hues.push(i * hueInterval)
+  }
+  return hues
+}
+
 /* eslint-disable max-lines-per-function */
-const createChart = (chartCanvas, rows) => {
+const createChart = (chartCanvas, rows, sampleCount) => {
   const xAxislabels = []
   const datasets = []
-  const hues = []
+  const hues = generateHues(sampleCount)
 
   for (let rowIdx = 0; rowIdx < rows.length; rowIdx += 1) {
     const row = rows[rowIdx]
     const [wavelength, ...samples] = row
-
-    if (rowIdx === 0) {
-      const hueInterval = 360 / samples.length
-      for (let i = 0; i < samples.length; i += 1) {
-        hues.push(i * hueInterval)
-      }
-    }
 
     xAxislabels.push(wavelength)
     for (let sampleIdx = 0; sampleIdx < samples.length; sampleIdx += 1) {
@@ -149,7 +151,7 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
   const interpolatedRows = interpolateData(rows, sampleCount)
 
   createCalculationTable(calculationTable, interpolatedRows, sampleCount)
-  createChart(chartCanvas, rows)
+  createChart(chartCanvas, rows, sampleCount)
   createSpectrumTable(spectrumTable, rows, sampleCount)
   createDownloadButtons(footerButtons, calculationTable, spectrumTable)
 }
