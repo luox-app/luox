@@ -47,6 +47,9 @@ footer #table-actions a {
   border: 1px solid #ddd;
   padding: 1rem;
 }
+#chart-data-source {
+  display: none;
+}
 </style>
 </head>
 <body>
@@ -84,6 +87,19 @@ footer #table-actions a {
   </div>
   <table class="table table-sm mt-4 result-table" id="calculation-table">
   </table>
+
+  <form id="chart-data-source">
+    <hr>
+    <div class="form-check-inline">
+      <input class="form-check-input" type="radio" name="chart-data" value="raw" id="chart-data-raw">
+      <label class="form-check-label" for="chart-data-raw">Raw data</label>
+    </div>
+    <div class="form-check-inline">
+      <input class="form-check-input" type="radio" name="chart-data" value="normalised" id="chart-data-normalised">
+      <label class="form-check-label" for="chart-data-normalised">Normalised data</label>
+    </div>
+  </form>
+
   <canvas id="chart-canvas" width="400" height="200"></canvas>
   <table class="table table-sm mt-4 result-table" id="spectrum-table">
   </table>

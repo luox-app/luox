@@ -106,7 +106,7 @@ const createChart = (chartCanvas, rows, sampleCount) => {
   }
   const waveLengths = rows.map((row) => row[0]);
 
-  new Chart(chartCanvas, { // eslint-disable-line no-new
+  return new Chart(chartCanvas, { // eslint-disable-line no-new
     'data': {
       datasets,
       'labels': waveLengths
@@ -144,8 +144,37 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
   const rows = mapSamples(rawRows, unitConversion)
   const interpolatedRows = interpolateData(rows, sampleCount)
 
+  const maxValues = []
+  for (let sampleIdx = 0; sampleIdx < sampleCount; sampleIdx += 1) {
+    const spectrum = rows.map((row) => row[sampleIdx + 1])
+    maxValues[sampleIdx] = Math.max(...spectrum)
+  }
+  const normalisedRows = rows.map((row) => {
+    const [wavelength, ...samples] = row
+    const normalised = samples.map((sample, index) => sample / maxValues[index])
+    return [wavelength, ...normalised]
+  })
+
   createCalculationTable(calculationTable, interpolatedRows, sampleCount)
-  createChart(chartCanvas, rows, sampleCount)
+
+  const chart = createChart(chartCanvas, rows, sampleCount)
+  $('#chart-data-source input[name="chart-data"]').click((event) => {
+    if (event.target.value === 'raw') {
+      chart.options.scales.yAxes[0].scaleLabel.labelString = 'Spectral irradiance [W/(m² nm)]'
+      chart.data.datasets.forEach((dataset, index) => {
+        dataset.data = rows.map((row) => row[index + 1])
+      })
+      chart.update()
+    } else if (event.target.value === 'normalised') {
+      chart.options.scales.yAxes[0].scaleLabel.labelString = 'Normalised spectral irradiance (relative to max.)'
+      chart.data.datasets.forEach((dataset, index) => {
+        dataset.data = normalisedRows.map((row) => row[index + 1])
+      })
+      chart.update()
+    }
+  })
+  $('#chart-data-source').show()
+
   createSpectrumTable(spectrumTable, rows, sampleCount)
   createDownloadButtons(footerButtons, calculationTable, spectrumTable)
 }
