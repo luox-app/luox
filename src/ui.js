@@ -159,19 +159,20 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
 
   const chart = createChart(chartCanvas, rows, sampleCount)
   $('#chart-data-source input[name="chart-data"]').click((event) => {
+    let data = []
+    let yAxisLabel = ''
     if (event.target.value === 'raw') {
-      chart.options.scales.yAxes[0].scaleLabel.labelString = 'Spectral irradiance [W/(m² nm)]'
-      chart.data.datasets.forEach((dataset, index) => {
-        dataset.data = rows.map((row) => row[index + 1])
-      })
-      chart.update()
+      yAxisLabel = 'Spectral irradiance [W/(m² nm)]'
+      data = rows
     } else if (event.target.value === 'normalised') {
-      chart.options.scales.yAxes[0].scaleLabel.labelString = 'Normalised spectral irradiance (relative to max.)'
-      chart.data.datasets.forEach((dataset, index) => {
-        dataset.data = normalisedRows.map((row) => row[index + 1])
-      })
-      chart.update()
+      yAxisLabel = 'Normalised spectral irradiance (relative to max.)'
+      data = normalisedRows
     }
+    chart.options.scales.yAxes[0].scaleLabel.labelString = yAxisLabel
+    chart.data.datasets.forEach((dataset, index) => {
+      dataset.data = data.map((row) => row[index + 1])
+    })
+    chart.update()
   })
   $('#chart-data-source input#chart-data-raw').prop('checked', true)
   $('#chart-data-source').show()
