@@ -5,8 +5,8 @@ import {sprague} from './sprague.js'
 export const mapSamples = (rows, func) => {
   return rows.map((row) => {
     const [wavelength, ...samples] = row
-    const mapped = samples.map((sample) =>
-      func(wavelength, sample)
+    const mapped = samples.map((sample, sampleIndex) =>
+      func(wavelength, sample, sampleIndex)
     )
     return [wavelength, ...mapped]
   })

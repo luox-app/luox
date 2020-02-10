@@ -149,10 +149,8 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
     const spectrum = rows.map((row) => row[sampleIdx + 1])
     maxValues[sampleIdx] = Math.max(...spectrum)
   }
-  const normalisedRows = rows.map((row) => {
-    const [wavelength, ...samples] = row
-    const normalised = samples.map((sample, index) => sample / maxValues[index])
-    return [wavelength, ...normalised]
+  const normalisedRows = mapSamples(rows, (wavelength, sample, sampleIndex) => {
+    return sample / maxValues[sampleIndex]
   })
 
   createCalculationTable(calculationTable, interpolatedRows, sampleCount)
