@@ -173,6 +173,7 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
       chart.update()
     }
   })
+  $('#chart-data-source input#chart-data-raw').prop('checked', true)
   $('#chart-data-source').show()
 
   createSpectrumTable(spectrumTable, rows, sampleCount)
