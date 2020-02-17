@@ -15,6 +15,8 @@ const handleSubmit = async (event) => {
 
   const fileUploadedSection =  document.getElementById('file-uploaded')
   const fileUploadSection = document.getElementById('file-upload')
+  const resultsSection = document.getElementById('results')
+  const errorsSection = document.getElementById('errors')
 
   const fileList = fileInput.files
   for (const file of fileList) {
@@ -27,8 +29,10 @@ const handleSubmit = async (event) => {
       const footerButtons = document.getElementById('table-actions')
       const chartCanvas = document.getElementById('chart-canvas')
       createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons, chartCanvas)
+      resultsSection.style.display = 'block';
     } else {
       createErrorTable(errors, fileUploadedSection)
+      errorsSection.style.display = 'block';
     }
     fileUploadSection.style.display = 'none';
     fileUploadedSection.style.display = 'block';

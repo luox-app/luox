@@ -32,13 +32,10 @@ footer {
 footer #table-actions a {
   margin-left: 20px;
 }
-#file-uploaded {
+#file-uploaded, #results, #errors {
   display: none;
 }
 #file-upload {
   border: 1px solid #ddd;
   padding: 1rem;
-}
-#chart-data-source {
-  display: none;
 }
