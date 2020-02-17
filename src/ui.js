@@ -169,7 +169,7 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
       yAxisLabel = 'Normalised spectral irradiance (relative to max.)'
       data = normalisedRows
     } else if (event.target.value === 'log10') {
-      yAxisLabel = 'Log10'
+      yAxisLabel = 'Log spectral irradiance [log W/(m² nm)]'
       data = log10Rows
     }
     chart.options.scales.yAxes[0].scaleLabel.labelString = yAxisLabel
