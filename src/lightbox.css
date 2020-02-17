@@ -1,0 +1,44 @@
+body {
+  font-family: Verdana, sans-serif;
+}
+
+table.errors {
+  table-layout: fixed;
+}
+
+.result-table td:not(:first-child),
+.result-table th:not(:first-child) {
+  width: 7rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.result-table th:not(:first-child) {
+  text-align: center;
+}
+.result-table td:not(:first-child) {
+  text-align: right;
+}
+.result-table td {
+  font-variant-numeric: tabular-nums;
+}
+main>.container {
+  padding-bottom: 80px;
+}
+footer {
+  background-color: #eee;
+  padding: 15px;
+  text-align: right;
+}
+footer #table-actions a {
+  margin-left: 20px;
+}
+#file-uploaded {
+  display: none;
+}
+#file-upload {
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+#chart-data-source {
+  display: none;
+}
