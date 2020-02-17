@@ -11,6 +11,7 @@
     <main>
       <div class="container">
         <h1>Lightbox</h1>
+
         <div id="file-upload">
           <form id="upload-form">
             <div class="form-inline">
@@ -37,9 +38,11 @@
           </form>
           <p class="text-muted small">* dataset should be a CSV-format text file with one row per nm wavelength. Each row should contain a column for wavelength and a number of samples. Download an <a href="sample.csv">example dataset containing samples at 1nm intervals</a> or an <a href="sample-10nm.csv">example dataset containing samples at 10nm intervals</a>.</p>
         </div>
+
         <div id="file-uploaded">
           <a href=".">Choose another dataset</a>
         </div>
+
         <table class="table table-sm mt-4 result-table" id="calculation-table">
         </table>
 
@@ -60,15 +63,18 @@
         </form>
 
         <canvas id="chart-canvas" width="400" height="200"></canvas>
+
         <table class="table table-sm mt-4 result-table" id="spectrum-table">
         </table>
       </div>
     </main>
+
     <footer class="footer fixed-bottom">
       <div class="container">
         <div id="table-actions"></div>
       </div>
     </footer>
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
