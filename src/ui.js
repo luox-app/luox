@@ -152,6 +152,9 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
   const normalisedRows = mapSamples(rows, (wavelength, sample, sampleIndex) => {
     return sample / maxValues[sampleIndex]
   })
+  const log10Rows = mapSamples(rows, (wavelength, sample) => {
+    return Math.log10(sample)
+  })
 
   createCalculationTable(calculationTable, interpolatedRows, sampleCount)
 
@@ -165,6 +168,9 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
     } else if (event.target.value === 'normalised') {
       yAxisLabel = 'Normalised spectral irradiance (relative to max.)'
       data = normalisedRows
+    } else if (event.target.value === 'log10') {
+      yAxisLabel = 'Log10'
+      data = log10Rows
     }
     chart.options.scales.yAxes[0].scaleLabel.labelString = yAxisLabel
     chart.data.datasets.forEach((dataset, index) => {
