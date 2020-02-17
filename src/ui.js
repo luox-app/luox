@@ -185,15 +185,7 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
   createDownloadButtons(footerButtons, calculationTable, spectrumTable)
 }
 
-export const createErrorTable = (errors, fileUploadedSection) => {
-  const header = document.createElement('p')
-  const textNode = document.createTextNode('We had some problems understanding that file:')
-  header.appendChild(textNode)
-  fileUploadedSection.appendChild(header)
-  const table = document.createElement('table')
-  table.setAttribute('class', 'errors')
-  table.setAttribute('class', 'table')
-
+export const createErrorTable = (errors, errorsTable) => {
   for (const error of errors) {
     const row = document.createElement('tr')
 
@@ -208,7 +200,6 @@ export const createErrorTable = (errors, fileUploadedSection) => {
     row.appendChild(rowNum)
     row.appendChild(message)
 
-    table.appendChild(row)
+    errorsTable.appendChild(row)
   }
-  fileUploadedSection.appendChild(table)
 }

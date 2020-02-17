@@ -31,7 +31,8 @@ const handleSubmit = async (event) => {
       createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons, chartCanvas)
       resultsSection.style.display = 'block';
     } else {
-      createErrorTable(errors, fileUploadedSection)
+      const [errorsTable] = errorsSection.getElementsByClassName('errors')
+      createErrorTable(errors, errorsTable)
       errorsSection.style.display = 'block';
     }
     fileUploadSection.style.display = 'none';
