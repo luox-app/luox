@@ -1,77 +1,77 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link rel="stylesheet" href="lightbox.css">
-<title>Lightbox</title>
-</head>
-<body>
-<main>
-<div class="container">
-  <h1>Lightbox</h1>
-  <div id="file-upload">
-    <form id="upload-form">
-    <div class="form-inline">
-      <p> Upload a dataset* with wavelength in nm and irradiances in
-      <select class="form-control" id="power-units">
-        <option value="1000000"> µW</option>
-        <option value="1000" >mW</option>
-        <option value="1" selected>W</option>
-      </select>
-      per
-      <select class="form-control" id="area-units">
-        <option value="1000000">mm²</option>
-        <option value="10000">cm²</option>
-        <option value="1" selected>m²</option>
-      </select>
-      </p>
-    </div>
-    <div class="form-group">
-      <input type="file" class="form-control-file" id="file-input">
-    </div>
-    <div class="form-group">
-      <button type="submit" disabled id="upload-form-submit" class="btn btn-primary">Upload</button>
-    </div>
-    </form>
-    <p class="text-muted small">* dataset should be a CSV-format text file with one row per nm wavelength. Each row should contain a column for wavelength and a number of samples. Download an <a href="sample.csv">example dataset containing samples at 1nm intervals</a> or an <a href="sample-10nm.csv">example dataset containing samples at 10nm intervals</a>.</p>
-  </div>
-  <div id="file-uploaded">
-    <a href=".">Choose another dataset</a>
-  </div>
-  <table class="table table-sm mt-4 result-table" id="calculation-table">
-  </table>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="lightbox.css">
+    <title>Lightbox</title>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <h1>Lightbox</h1>
+        <div id="file-upload">
+          <form id="upload-form">
+            <div class="form-inline">
+              <p> Upload a dataset* with wavelength in nm and irradiances in
+                <select class="form-control" id="power-units">
+                  <option value="1000000"> µW</option>
+                  <option value="1000" >mW</option>
+                  <option value="1" selected>W</option>
+                </select>
+                per
+                <select class="form-control" id="area-units">
+                  <option value="1000000">mm²</option>
+                  <option value="10000">cm²</option>
+                  <option value="1" selected>m²</option>
+                </select>
+              </p>
+            </div>
+            <div class="form-group">
+              <input type="file" class="form-control-file" id="file-input">
+            </div>
+            <div class="form-group">
+              <button type="submit" disabled id="upload-form-submit" class="btn btn-primary">Upload</button>
+            </div>
+          </form>
+          <p class="text-muted small">* dataset should be a CSV-format text file with one row per nm wavelength. Each row should contain a column for wavelength and a number of samples. Download an <a href="sample.csv">example dataset containing samples at 1nm intervals</a> or an <a href="sample-10nm.csv">example dataset containing samples at 10nm intervals</a>.</p>
+        </div>
+        <div id="file-uploaded">
+          <a href=".">Choose another dataset</a>
+        </div>
+        <table class="table table-sm mt-4 result-table" id="calculation-table">
+        </table>
 
-  <form id="chart-data-source">
-    <hr>
-    <div class="form-check-inline">
-      <input class="form-check-input" type="radio" name="chart-data" value="raw" id="chart-data-raw">
-      <label class="form-check-label" for="chart-data-raw">Raw data</label>
-    </div>
-    <div class="form-check-inline">
-      <input class="form-check-input" type="radio" name="chart-data" value="normalised" id="chart-data-normalised">
-      <label class="form-check-label" for="chart-data-normalised">Normalised data</label>
-    </div>
-    <div class="form-check-inline">
-      <input class="form-check-input" type="radio" name="chart-data" value="log10" id="chart-data-log10">
-      <label class="form-check-label" for="chart-data-log10">Log10</label>
-    </div>
-  </form>
+        <form id="chart-data-source">
+          <hr>
+          <div class="form-check-inline">
+            <input class="form-check-input" type="radio" name="chart-data" value="raw" id="chart-data-raw">
+            <label class="form-check-label" for="chart-data-raw">Raw data</label>
+          </div>
+          <div class="form-check-inline">
+            <input class="form-check-input" type="radio" name="chart-data" value="normalised" id="chart-data-normalised">
+            <label class="form-check-label" for="chart-data-normalised">Normalised data</label>
+          </div>
+          <div class="form-check-inline">
+            <input class="form-check-input" type="radio" name="chart-data" value="log10" id="chart-data-log10">
+            <label class="form-check-label" for="chart-data-log10">Log10</label>
+          </div>
+        </form>
 
-  <canvas id="chart-canvas" width="400" height="200"></canvas>
-  <table class="table table-sm mt-4 result-table" id="spectrum-table">
-  </table>
-</div>
-</main>
-<footer class="footer fixed-bottom">
-  <div class="container">
-    <div id="table-actions"></div>
-  </div>
-</footer>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="main.js"></script>
-</body>
+        <canvas id="chart-canvas" width="400" height="200"></canvas>
+        <table class="table table-sm mt-4 result-table" id="spectrum-table">
+        </table>
+      </div>
+    </main>
+    <footer class="footer fixed-bottom">
+      <div class="container">
+        <div id="table-actions"></div>
+      </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+  </body>
 </html>
