@@ -1,6 +1,7 @@
 import VL1924 from './vl1924.json'
 import CIES026 from './cies026.json'
 import CIEXYZ31 from './ciexyz31.json'
+import CIEXYZ64 from './ciexyz64.json'
 import {sprague} from './sprague.js'
 
 export const mapSamples = (rows, func) => {
@@ -62,6 +63,10 @@ const calculateChromaticity = (rows, sampleCount, data) => {
 
 export const calculateChromaticity31 = (rows, sampleCount) => {
   return calculateChromaticity(rows, sampleCount, CIEXYZ31)
+}
+
+export const calculateChromaticity64 = (rows, sampleCount) => {
+  return calculateChromaticity(rows, sampleCount, CIEXYZ64)
 }
 
 export const calculateIrradiance = (rows, sampleCount, key) => {
