@@ -1,9 +1,7 @@
 import {mapSamples, calculateLuminance, calculateIrradiance, calculateChromaticity31, calculateChromaticity64, interpolateData} from './rows.js'
 import {downloadCSVButton} from './csvExport.js'
+import {asExponential, asDecimal} from './helpers.js'
 import Chart from 'chart.js'
-
-const asExponential = (number) => number.toExponential(2)
-const asDecimal = (number) => number.toFixed(2)
 
 const conversionFunction = (areaSelect, powerSelect) => {
   const areaScale = parseFloat(areaSelect.options[areaSelect.selectedIndex].value)
