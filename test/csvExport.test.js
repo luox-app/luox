@@ -22,4 +22,21 @@ describe('tableToCSV', function() {
     const expected = 'Heading 1,Heading 2\nValue 1,Value 2'
     assert.equal(expected, csvExport.tableToCSV(table));
   });
+
+  it('should escape commas in data', function() {
+    const html = `
+    <table id="spectrum">
+      <tr>
+        <td>foo</td>
+        <td>(0.20, 0.10)</td>
+        <td>bar</td>
+      </tr>
+    </table>
+    `
+    const jsdom = new JSDOM(html)
+    const table = jsdom.window.document.getElementById('spectrum')
+
+    const expected = 'foo,"(0.20, 0.10)",bar'
+    assert.equal(expected, csvExport.tableToCSV(table));
+  });
 });

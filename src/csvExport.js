@@ -1,8 +1,16 @@
+const quoteIfNecessary = (string) => {
+  if (string.includes(',')) {
+    return '"' + string + '"'
+  }
+
+  return string
+}
+
 export const tableToCSV = (table) => {
   const rows = Array.from(table.querySelectorAll('tr'))
   return rows.reduce((acc, row) => {
       const cells = Array.from(row.querySelectorAll('td, th'))
-      const csv = cells.map((item) => item.textContent).join(',')
+      const csv = cells.map((item) => quoteIfNecessary(item.textContent)).join(',')
       return acc.concat(csv)
   }, []).join('\n')
 }
