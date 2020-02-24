@@ -1,5 +1,6 @@
 import VL1924 from './vl1924.json'
 import CIES026 from './cies026.json'
+import CIEXYZ31 from './ciexyz31.json'
 import {sprague} from './sprague.js'
 
 export const mapSamples = (rows, func) => {
@@ -37,6 +38,27 @@ export const calculateLuminance = (rows, sampleCount) => {
   const key = 'vl1924'
   const samplesInWatts = integrateWithWeights(rows, sampleCount, VL1924, key)
   return samplesInWatts.map((sample) => sample * 683)
+}
+
+export const calculateChromaticity = (rows, sampleCount) => {
+  const X = integrateWithWeights(rows, sampleCount, CIEXYZ31, 'X')
+  const Y = integrateWithWeights(rows, sampleCount, CIEXYZ31, 'Y')
+  const Z = integrateWithWeights(rows, sampleCount, CIEXYZ31, 'Z')
+
+  const output = new Array(sampleCount)
+
+  for (let i = 0; i < output.length; i +=1) {
+    const x = X[i] / (X[i] + Y[i] + Z[i])
+    const y = Y[i] / (X[i] + Y[i] + Z[i])
+
+    output[i] = {
+      'Y': Y[i] * 683,
+      x,
+      y
+    }
+  }
+
+  return output
 }
 
 export const calculateIrradiance = (rows, sampleCount, key) => {

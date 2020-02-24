@@ -1,9 +1,12 @@
-import {mapSamples, calculateLuminance, calculateIrradiance, interpolateData} from './rows.js'
+import {mapSamples, calculateLuminance, calculateIrradiance, calculateChromaticity, interpolateData} from './rows.js'
 import {downloadCSVButton} from './csvExport.js'
 import Chart from 'chart.js'
 
 const asExponential = (number) => number.toExponential(2)
 const asDecimal = (number) => number.toFixed(2)
+const asChromaticityString = (object) => {
+  return '(' + object.x.toFixed(2) + ', ' + object.y.toFixed(2) + ', ' + object.Y.toFixed(2) + ')'
+}
 
 const conversionFunction = (areaSelect, powerSelect) => {
   const areaScale = parseFloat(areaSelect.options[areaSelect.selectedIndex].value)
@@ -50,12 +53,14 @@ const createCalculationTable = (table, rows, sampleCount) => {
   createTableHeader(table, sampleCount)
 
   const luminanceTotals = calculateLuminance(rows, sampleCount)
+  const chromaticity  = calculateChromaticity(rows, sampleCount)
   const sConeTotals = calculateIrradiance(rows, sampleCount, 'sCone')
   const mConeTotals = calculateIrradiance(rows, sampleCount, 'mCone')
   const lConeTotals = calculateIrradiance(rows, sampleCount, 'lCone')
   const rodTotals = calculateIrradiance(rows, sampleCount, 'rod')
   const melTotals = calculateIrradiance(rows, sampleCount, 'mel')
   createTableRow(table, "Illuminance [lux]", luminanceTotals, asDecimal)
+  createTableRow(table, "CIE 1931 Chromaticity", chromaticity, asChromaticityString)
   createTableRow(table, "S-cone-opic irradiance (mW/m²)", sConeTotals, asExponential)
   createTableRow(table, "M-cone-opic irradiance (mW/m²)", mConeTotals, asExponential)
   createTableRow(table, "L-cone-opic irradiance (mW/m²)", lConeTotals, asExponential)
