@@ -52,7 +52,6 @@ export const calculateChromaticity = (rows, sampleCount) => {
     const y = Y[i] / (X[i] + Y[i] + Z[i])
 
     output[i] = {
-      'Y': Y[i] * 683,
       x,
       y
     }
