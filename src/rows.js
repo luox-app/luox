@@ -40,10 +40,10 @@ export const calculateLuminance = (rows, sampleCount) => {
   return samplesInWatts.map((sample) => sample * 683)
 }
 
-export const calculateChromaticity = (rows, sampleCount) => {
-  const X = integrateWithWeights(rows, sampleCount, CIEXYZ31, 'X')
-  const Y = integrateWithWeights(rows, sampleCount, CIEXYZ31, 'Y')
-  const Z = integrateWithWeights(rows, sampleCount, CIEXYZ31, 'Z')
+const calculateChromaticity = (rows, sampleCount, data) => {
+  const X = integrateWithWeights(rows, sampleCount, data, 'X')
+  const Y = integrateWithWeights(rows, sampleCount, data, 'Y')
+  const Z = integrateWithWeights(rows, sampleCount, data, 'Z')
 
   const output = new Array(sampleCount)
 
@@ -58,6 +58,10 @@ export const calculateChromaticity = (rows, sampleCount) => {
   }
 
   return output
+}
+
+export const calculateChromaticity31 = (rows, sampleCount) => {
+  return calculateChromaticity(rows, sampleCount, CIEXYZ31)
 }
 
 export const calculateIrradiance = (rows, sampleCount, key) => {

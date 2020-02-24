@@ -1,4 +1,4 @@
-import {mapSamples, calculateLuminance, calculateIrradiance, calculateChromaticity, interpolateData} from './rows.js'
+import {mapSamples, calculateLuminance, calculateIrradiance, calculateChromaticity31, interpolateData} from './rows.js'
 import {downloadCSVButton} from './csvExport.js'
 import Chart from 'chart.js'
 
@@ -50,17 +50,17 @@ const createCalculationTable = (table, rows, sampleCount) => {
   createTableHeader(table, sampleCount)
 
   const luminanceTotals = calculateLuminance(rows, sampleCount)
-  const chromaticity  = calculateChromaticity(rows, sampleCount)
-  const chromaticityXValues = chromaticity.map((c) => c.x)
-  const chromaticityYValues = chromaticity.map((c) => c.y)
+  const chromaticity31  = calculateChromaticity31(rows, sampleCount)
+  const chromaticity31XValues = chromaticity31.map((c) => c.x)
+  const chromaticity31YValues = chromaticity31.map((c) => c.y)
   const sConeTotals = calculateIrradiance(rows, sampleCount, 'sCone')
   const mConeTotals = calculateIrradiance(rows, sampleCount, 'mCone')
   const lConeTotals = calculateIrradiance(rows, sampleCount, 'lCone')
   const rodTotals = calculateIrradiance(rows, sampleCount, 'rod')
   const melTotals = calculateIrradiance(rows, sampleCount, 'mel')
   createTableRow(table, "Illuminance [lux]", luminanceTotals, asDecimal)
-  createTableRow(table, "CIE 1931 xy chromaticity (x)", chromaticityXValues, asDecimal)
-  createTableRow(table, "CIE 1931 xy chromaticity (y)", chromaticityYValues, asDecimal)
+  createTableRow(table, "CIE 1931 xy chromaticity (x)", chromaticity31XValues, asDecimal)
+  createTableRow(table, "CIE 1931 xy chromaticity (y)", chromaticity31YValues, asDecimal)
   createTableRow(table, "S-cone-opic irradiance (mW/m²)", sConeTotals, asExponential)
   createTableRow(table, "M-cone-opic irradiance (mW/m²)", mConeTotals, asExponential)
   createTableRow(table, "L-cone-opic irradiance (mW/m²)", lConeTotals, asExponential)
