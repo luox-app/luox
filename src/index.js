@@ -22,13 +22,15 @@ const handleSubmit = async (event) => {
   for (const file of fileList) {
     const [errors, rawRows, sampleCount] = await parseCSV(file)
     if (errors.length === 0) {
+      const simplifiedReport = document.location.pathname === '/upload-csv.html'
+
       const spectrumTable = document.getElementById('spectrum-table')
       const calculationTable = document.getElementById('calculation-table')
       const areaUnitSelect = document.getElementById('area-units')
       const powerUnitSelect = document.getElementById('power-units')
       const footerButtons = document.getElementById('table-actions')
       const chartCanvas = document.getElementById('chart-canvas')
-      createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons, chartCanvas)
+      createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons, chartCanvas, simplifiedReport)
       resultsSection.style.display = 'block';
     } else {
       const [errorsTable] = errorsSection.getElementsByClassName('errors')

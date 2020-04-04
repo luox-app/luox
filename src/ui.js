@@ -44,7 +44,7 @@ const createTableRow = (table, wavelength, samples, formatter) => {
   appendCells(table, "td", [wavelength, ...formattedSamples])
 }
 
-const createCalculationTable = (table, rows, sampleCount) => {
+const createCalculationTable = (table, rows, sampleCount, simplifiedReport) => {
   createTableHeader(table, sampleCount)
 
   const luminanceTotals = calculateLuminance(rows, sampleCount)
@@ -60,10 +60,12 @@ const createCalculationTable = (table, rows, sampleCount) => {
   const rodTotals = calculateIrradiance(rows, sampleCount, 'rod')
   const melTotals = calculateIrradiance(rows, sampleCount, 'mel')
   createTableRow(table, "Illuminance [lux]", luminanceTotals, asDecimal)
-  createTableRow(table, "CIE 1931 xy chromaticity (x)", chromaticity31XValues, asDecimal)
-  createTableRow(table, "CIE 1931 xy chromaticity (y)", chromaticity31YValues, asDecimal)
-  createTableRow(table, "CIE 1964 x₁₀y₁₀ chromaticity (x₁₀)", chromaticity64XValues, asDecimal)
-  createTableRow(table, "CIE 1964 x₁₀y₁₀ chromaticity (y₁₀)", chromaticity64YValues, asDecimal)
+  if (!simplifiedReport) {
+    createTableRow(table, "CIE 1931 xy chromaticity (x)", chromaticity31XValues, asDecimal)
+    createTableRow(table, "CIE 1931 xy chromaticity (y)", chromaticity31YValues, asDecimal)
+    createTableRow(table, "CIE 1964 x₁₀y₁₀ chromaticity (x₁₀)", chromaticity64XValues, asDecimal)
+    createTableRow(table, "CIE 1964 x₁₀y₁₀ chromaticity (y₁₀)", chromaticity64YValues, asDecimal)
+  }
   createTableRow(table, "S-cone-opic irradiance (mW/m²)", sConeTotals, asExponential)
   createTableRow(table, "M-cone-opic irradiance (mW/m²)", mConeTotals, asExponential)
   createTableRow(table, "L-cone-opic irradiance (mW/m²)", lConeTotals, asExponential)
@@ -147,7 +149,7 @@ const createChart = (chartCanvas, rows, sampleCount) => {
 }
 /* eslint-enable max-lines-per-function */
 
-export const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons, chartCanvas) => {
+export const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons, chartCanvas, simplifiedReport) => {
   const unitConversion = conversionFunction(areaUnitSelect, powerUnitSelect)
   const rows = mapSamples(rawRows, unitConversion)
   const interpolatedRows = interpolateData(rows, sampleCount)
@@ -164,30 +166,32 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
     return Math.log10(sample)
   })
 
-  createCalculationTable(calculationTable, interpolatedRows, sampleCount)
+  createCalculationTable(calculationTable, interpolatedRows, sampleCount, simplifiedReport)
 
-  const chart = createChart(chartCanvas, rows, sampleCount)
-  $('#chart-data-source input[name="chart-data"]').click((event) => {
-    let data = []
-    let yAxisLabel = ''
-    if (event.target.value === 'raw') {
-      yAxisLabel = 'Spectral irradiance [W/(m² nm)]'
-      data = rows
-    } else if (event.target.value === 'normalised') {
-      yAxisLabel = 'Normalised spectral irradiance (relative to max.)'
-      data = normalisedRows
-    } else if (event.target.value === 'log10') {
-      yAxisLabel = 'Log₁₀ spectral irradiance [log₁₀ W/(m² nm)]'
-      data = log10Rows
-    }
-    chart.options.scales.yAxes[0].scaleLabel.labelString = yAxisLabel
-    chart.data.datasets.forEach((dataset, index) => {
-      dataset.data = data.map((row) => row[index + 1])
+  if (!simplifiedReport) {
+    const chart = createChart(chartCanvas, rows, sampleCount)
+    $('#chart-data-source input[name="chart-data"]').click((event) => {
+      let data = []
+      let yAxisLabel = ''
+      if (event.target.value === 'raw') {
+        yAxisLabel = 'Spectral irradiance [W/(m² nm)]'
+        data = rows
+      } else if (event.target.value === 'normalised') {
+        yAxisLabel = 'Normalised spectral irradiance (relative to max.)'
+        data = normalisedRows
+      } else if (event.target.value === 'log10') {
+        yAxisLabel = 'Log₁₀ spectral irradiance [log₁₀ W/(m² nm)]'
+        data = log10Rows
+      }
+      chart.options.scales.yAxes[0].scaleLabel.labelString = yAxisLabel
+      chart.data.datasets.forEach((dataset, index) => {
+        dataset.data = data.map((row) => row[index + 1])
+      })
+      chart.update()
     })
-    chart.update()
-  })
-  $('#chart-data-source input#chart-data-raw').prop('checked', true)
-  $('#chart-data-source').show()
+    $('#chart-data-source input#chart-data-raw').prop('checked', true)
+    $('#chart-data-source').show()
+  }
 
   createSpectrumTable(spectrumTable, rows, sampleCount)
   createDownloadButtons(footerButtons, calculationTable, spectrumTable)
