@@ -22,7 +22,7 @@ const handleSubmit = async (event) => {
   for (const file of fileList) {
     const [errors, rawRows, sampleCount] = await parseCSV(file)
     if (errors.length === 0) {
-      const simplifiedReport = document.location.pathname === '/upload-csv.html'
+      const simplifiedReport = document.location.pathname.endsWith('/upload-csv.html')
 
       const spectrumTable = document.getElementById('spectrum-table')
       const calculationTable = document.getElementById('calculation-table')
