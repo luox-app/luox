@@ -60,17 +60,19 @@ const createCalculationTable = (table, rows, sampleCount, simplifiedReport) => {
   const rodTotals = calculateIrradiance(rows, sampleCount, 'rod')
   const melTotals = calculateIrradiance(rows, sampleCount, 'mel')
   createTableRow(table, "Illuminance [lux]", luminanceTotals, asDecimal)
+  let displayFormat = asDecimal
   if (!simplifiedReport) {
+    displayFormat = asExponential
     createTableRow(table, "CIE 1931 xy chromaticity (x)", chromaticity31XValues, asDecimal)
     createTableRow(table, "CIE 1931 xy chromaticity (y)", chromaticity31YValues, asDecimal)
     createTableRow(table, "CIE 1964 x₁₀y₁₀ chromaticity (x₁₀)", chromaticity64XValues, asDecimal)
     createTableRow(table, "CIE 1964 x₁₀y₁₀ chromaticity (y₁₀)", chromaticity64YValues, asDecimal)
   }
-  createTableRow(table, "S-cone-opic irradiance (mW/m²)", sConeTotals, asExponential)
-  createTableRow(table, "M-cone-opic irradiance (mW/m²)", mConeTotals, asExponential)
-  createTableRow(table, "L-cone-opic irradiance (mW/m²)", lConeTotals, asExponential)
-  createTableRow(table, "Rhodopic irradiance (mW/m²)", rodTotals, asExponential)
-  createTableRow(table, "Melanopic irradiance (mW/m²)", melTotals, asExponential)
+  createTableRow(table, "S-cone-opic irradiance (mW/m²)", sConeTotals, displayFormat)
+  createTableRow(table, "M-cone-opic irradiance (mW/m²)", mConeTotals, displayFormat)
+  createTableRow(table, "L-cone-opic irradiance (mW/m²)", lConeTotals, displayFormat)
+  createTableRow(table, "Rhodopic irradiance (mW/m²)", rodTotals, displayFormat)
+  createTableRow(table, "Melanopic irradiance (mW/m²)", melTotals, displayFormat)
 }
 
 const createSpectrumTable = (table, rows, sampleCount) => {
