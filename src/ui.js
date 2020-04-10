@@ -3,9 +3,7 @@ import {downloadCSVButton} from './csvExport.js'
 import {asExponential, asDecimal} from './helpers.js'
 import Chart from 'chart.js'
 
-const conversionFunction = (areaSelect, powerSelect) => {
-  const areaScale = parseFloat(areaSelect.options[areaSelect.selectedIndex].value)
-  const powerScale = parseFloat(powerSelect.options[powerSelect.selectedIndex].value)
+const conversionFunction = (areaScale, powerScale) => {
   return (wavelength, sample) =>  sample / powerScale * areaScale
 }
 
@@ -151,8 +149,8 @@ const createChart = (chartCanvas, rows, sampleCount) => {
 }
 /* eslint-enable max-lines-per-function */
 
-export const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons, chartCanvas, simplifiedReport) => {
-  const unitConversion = conversionFunction(areaUnitSelect, powerUnitSelect)
+export const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, simplifiedReport) => {
+  const unitConversion = conversionFunction(areaScale, powerScale)
   const rows = mapSamples(rawRows, unitConversion)
   const interpolatedRows = interpolateData(rows, sampleCount)
 

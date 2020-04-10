@@ -28,9 +28,11 @@ const handleSubmit = async (event) => {
       const calculationTable = document.getElementById('calculation-table')
       const areaUnitSelect = document.getElementById('area-units')
       const powerUnitSelect = document.getElementById('power-units')
+      const areaScale = parseFloat(areaUnitSelect.options[areaUnitSelect.selectedIndex].value)
+      const powerScale = parseFloat(powerUnitSelect.options[powerUnitSelect.selectedIndex].value)
       const footerButtons = document.getElementById('table-actions')
       const chartCanvas = document.getElementById('chart-canvas')
-      createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaUnitSelect, powerUnitSelect, footerButtons, chartCanvas, simplifiedReport)
+      createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, simplifiedReport)
       resultsSection.style.display = 'block';
     } else {
       const [errorsTable] = errorsSection.getElementsByClassName('errors')
