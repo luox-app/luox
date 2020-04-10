@@ -1,8 +1,16 @@
 import Papa from 'papaparse'
 
-export const parseCSV = async (file) => {
+export const readCSV = async (file) => {
   const fileContents = await file.text()
-  const result = Papa.parse(fileContents,
+  return fileContents
+}
+
+export const encodeCSV = (csv) => {
+  return btoa(encodeURIComponent(csv))
+}
+
+export const parseCSV = (csv) => {
+  const result = Papa.parse(csv,
     {"dynamicTyping": true,
     "header": false})
   const {data, errors} = result;
