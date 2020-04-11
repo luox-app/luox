@@ -90,9 +90,28 @@ const createDownloadButtonsInFooter = (element, calculationTable, spectrumTable)
 
 const createDownloadButtonsForTables = (calculationTable, spectrumTable) => {
   const calcCSVButton = downloadCSVButton(calculationTable, "btn btn-outline-secondary", "download-calc", "Download table as CSV")
-  document.getElementById('calculation-table-heading').appendChild(calcCSVButton)
+  const calcToggle = document.createElement('a')
+  calcToggle.className = 'btn btn-outline-secondary ml-1'
+  calcToggle.href = '#calculation-table'
+  calcToggle.dataset.toggle = 'collapse'
+  calcToggle.innerText = 'Toggle table'
+  calcToggle.setAttribute('role', 'button')
+  calcToggle.setAttribute('aria-expanded', 'true')
+  calcToggle.setAttribute('aria-controls', 'calculation-table')
+  document.getElementById('calculation-table-actions').appendChild(calcCSVButton)
+  document.getElementById('calculation-table-actions').appendChild(calcToggle)
+
   const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-outline-secondary", "download-spectrum", "Download table as CSV")
-  document.getElementById('spectra-table-heading').appendChild(spectrumCSVButton)
+  const spectraToggle = document.createElement('a')
+  spectraToggle.className = 'btn btn-outline-secondary ml-1'
+  spectraToggle.href = '#spectrum-table'
+  spectraToggle.dataset.toggle = 'collapse'
+  spectraToggle.innerText = 'Toggle table'
+  spectraToggle.setAttribute('role', 'button')
+  spectraToggle.setAttribute('aria-expanded', 'false')
+  spectraToggle.setAttribute('aria-controls', 'spectrum-table')
+  document.getElementById('spectra-table-actions').appendChild(spectrumCSVButton)
+  document.getElementById('spectra-table-actions').appendChild(spectraToggle)
 }
 
 const generateHues = (sampleCount) => {
