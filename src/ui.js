@@ -107,12 +107,12 @@ const createActionsForChart = () => {
 
 const createActionsForTables = (calculationTable, spectrumTable) => {
   const calcCSVButton = downloadCSVButton(calculationTable, "btn btn-outline-secondary", "download-calc", "Download table as CSV")
-  const calcToggle = createToggleButton('calculation-table', 'true', 'Toggle table')
+  const calcToggle = createToggleButton('calculation-table-container', 'true', 'Toggle table')
   document.getElementById('calculation-table-actions').appendChild(calcCSVButton)
   document.getElementById('calculation-table-actions').appendChild(calcToggle)
 
   const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-outline-secondary", "download-spectrum", "Download table as CSV")
-  const spectraToggle = createToggleButton('spectrum-table', 'false', 'Toggle table')
+  const spectraToggle = createToggleButton('spectra-table-container', 'false', 'Toggle table')
   document.getElementById('spectra-table-actions').appendChild(spectrumCSVButton)
   document.getElementById('spectra-table-actions').appendChild(spectraToggle)
 }
