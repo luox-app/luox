@@ -88,26 +88,31 @@ const createDownloadButtonsInFooter = (element, calculationTable, spectrumTable)
   element.appendChild(spectrumCSVButton);
 }
 
-const createToggleButton = (target, expanded) => {
+const createToggleButton = (target, expanded, text) => {
   const toggle = document.createElement('a')
   toggle.className = 'btn btn-outline-secondary ml-1'
   toggle.href = '#' + target
   toggle.dataset.toggle = 'collapse'
-  toggle.innerText = 'Toggle table'
+  toggle.innerText = text
   toggle.setAttribute('role', 'button')
   toggle.setAttribute('aria-expanded', expanded)
   toggle.setAttribute('aria-controls', target)
   return toggle
 }
 
+const createActionsForChart = () => {
+  const chartToggle = createToggleButton('spectra-chart-and-controls', 'false', 'Toggle chart')
+  document.getElementById('spectra-chart-actions').appendChild(chartToggle)
+}
+
 const createActionsForTables = (calculationTable, spectrumTable) => {
   const calcCSVButton = downloadCSVButton(calculationTable, "btn btn-outline-secondary", "download-calc", "Download table as CSV")
-  const calcToggle = createToggleButton('calculation-table', 'true')
+  const calcToggle = createToggleButton('calculation-table', 'true', 'Toggle table')
   document.getElementById('calculation-table-actions').appendChild(calcCSVButton)
   document.getElementById('calculation-table-actions').appendChild(calcToggle)
 
   const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-outline-secondary", "download-spectrum", "Download table as CSV")
-  const spectraToggle = createToggleButton('spectrum-table', 'false')
+  const spectraToggle = createToggleButton('spectrum-table', 'false', 'Toggle table')
   document.getElementById('spectra-table-actions').appendChild(spectrumCSVButton)
   document.getElementById('spectra-table-actions').appendChild(spectraToggle)
 }
@@ -193,35 +198,34 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
 
   createCalculationTable(calculationTable, interpolatedRows, sampleCount, simplifiedReport)
 
-  if (!simplifiedReport) {
-    const chart = createChart(chartCanvas, rows, sampleCount)
-    $('#chart-data-source input[name="chart-data"]').click((event) => {
-      let data = []
-      let yAxisLabel = ''
-      if (event.target.value === 'raw') {
-        yAxisLabel = 'Spectral irradiance [W/(m² nm)]'
-        data = rows
-      } else if (event.target.value === 'normalised') {
-        yAxisLabel = 'Normalised spectral irradiance (relative to max.)'
-        data = normalisedRows
-      } else if (event.target.value === 'log10') {
-        yAxisLabel = 'Log₁₀ spectral irradiance [log₁₀ W/(m² nm)]'
-        data = log10Rows
-      }
-      chart.options.scales.yAxes[0].scaleLabel.labelString = yAxisLabel
-      chart.data.datasets.forEach((dataset, index) => {
-        dataset.data = data.map((row) => row[index + 1])
-      })
-      chart.update()
+  const chart = createChart(chartCanvas, rows, sampleCount)
+  $('#chart-data-source input[name="chart-data"]').click((event) => {
+    let data = []
+    let yAxisLabel = ''
+    if (event.target.value === 'raw') {
+      yAxisLabel = 'Spectral irradiance [W/(m² nm)]'
+      data = rows
+    } else if (event.target.value === 'normalised') {
+      yAxisLabel = 'Normalised spectral irradiance (relative to max.)'
+      data = normalisedRows
+    } else if (event.target.value === 'log10') {
+      yAxisLabel = 'Log₁₀ spectral irradiance [log₁₀ W/(m² nm)]'
+      data = log10Rows
+    }
+    chart.options.scales.yAxes[0].scaleLabel.labelString = yAxisLabel
+    chart.data.datasets.forEach((dataset, index) => {
+      dataset.data = data.map((row) => row[index + 1])
     })
-    $('#chart-data-source input#chart-data-raw').prop('checked', true)
-    $('#chart-data-source').show()
-  }
+    chart.update()
+  })
+  $('#chart-data-source input#chart-data-raw').prop('checked', true)
+  $('#chart-data-source').show()
 
   createSpectrumTable(spectrumTable, rows, sampleCount)
 
   if (simplifiedReport) {
     createActionsForTables(calculationTable, spectrumTable)
+    createActionsForChart()
   } else {
     createDownloadButtonsInFooter(footerButtons, calculationTable, spectrumTable)
   }

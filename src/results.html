@@ -51,6 +51,29 @@
             <table class="collapse show table table-sm mt-3 result-table" id="calculation-table">
             </table>
 
+            <div class="mt-3 d-flex justify-content-between">
+              <h3>Spectra chart</h3>
+              <div id="spectra-chart-actions"></div>
+            </div>
+            <div class="collapse mt-3" id="spectra-chart-and-controls">
+              <form id="chart-data-source">
+                <div class="form-check-inline">
+                  <input class="form-check-input" type="radio" name="chart-data" value="raw" id="chart-data-raw">
+                  <label class="form-check-label" for="chart-data-raw">Raw data</label>
+                </div>
+                <div class="form-check-inline">
+                  <input class="form-check-input" type="radio" name="chart-data" value="normalised" id="chart-data-normalised">
+                  <label class="form-check-label" for="chart-data-normalised">Normalised data</label>
+                </div>
+                <div class="form-check-inline">
+                  <input class="form-check-input" type="radio" name="chart-data" value="log10" id="chart-data-log10">
+                  <label class="form-check-label" for="chart-data-log10">Log10</label>
+                </div>
+              </form>
+
+              <canvas id="chart-canvas" width="400" height="200"></canvas>
+            </div>
+
             <div id="spectra-table-heading" class="mt-5 d-flex justify-content-between">
               <h3>Spectra</h3>
               <div id="spectra-table-actions"></div>
