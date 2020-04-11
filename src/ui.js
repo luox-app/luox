@@ -88,28 +88,26 @@ const createDownloadButtonsInFooter = (element, calculationTable, spectrumTable)
   element.appendChild(spectrumCSVButton);
 }
 
+const createToggleButton = (target, expanded) => {
+  const toggle = document.createElement('a')
+  toggle.className = 'btn btn-outline-secondary ml-1'
+  toggle.href = '#' + target
+  toggle.dataset.toggle = 'collapse'
+  toggle.innerText = 'Toggle table'
+  toggle.setAttribute('role', 'button')
+  toggle.setAttribute('aria-expanded', expanded)
+  toggle.setAttribute('aria-controls', target)
+  return toggle
+}
+
 const createActionsForTables = (calculationTable, spectrumTable) => {
   const calcCSVButton = downloadCSVButton(calculationTable, "btn btn-outline-secondary", "download-calc", "Download table as CSV")
-  const calcToggle = document.createElement('a')
-  calcToggle.className = 'btn btn-outline-secondary ml-1'
-  calcToggle.href = '#calculation-table'
-  calcToggle.dataset.toggle = 'collapse'
-  calcToggle.innerText = 'Toggle table'
-  calcToggle.setAttribute('role', 'button')
-  calcToggle.setAttribute('aria-expanded', 'true')
-  calcToggle.setAttribute('aria-controls', 'calculation-table')
+  const calcToggle = createToggleButton('calculation-table', 'true')
   document.getElementById('calculation-table-actions').appendChild(calcCSVButton)
   document.getElementById('calculation-table-actions').appendChild(calcToggle)
 
   const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-outline-secondary", "download-spectrum", "Download table as CSV")
-  const spectraToggle = document.createElement('a')
-  spectraToggle.className = 'btn btn-outline-secondary ml-1'
-  spectraToggle.href = '#spectrum-table'
-  spectraToggle.dataset.toggle = 'collapse'
-  spectraToggle.innerText = 'Toggle table'
-  spectraToggle.setAttribute('role', 'button')
-  spectraToggle.setAttribute('aria-expanded', 'false')
-  spectraToggle.setAttribute('aria-controls', 'spectrum-table')
+  const spectraToggle = createToggleButton('spectrum-table', 'false')
   document.getElementById('spectra-table-actions').appendChild(spectrumCSVButton)
   document.getElementById('spectra-table-actions').appendChild(spectraToggle)
 }
