@@ -88,7 +88,7 @@ const createDownloadButtonsInFooter = (element, calculationTable, spectrumTable)
   element.appendChild(spectrumCSVButton);
 }
 
-const createDownloadButtonsForTables = (calculationTable, spectrumTable) => {
+const createActionsForTables = (calculationTable, spectrumTable) => {
   const calcCSVButton = downloadCSVButton(calculationTable, "btn btn-outline-secondary", "download-calc", "Download table as CSV")
   const calcToggle = document.createElement('a')
   calcToggle.className = 'btn btn-outline-secondary ml-1'
@@ -223,7 +223,7 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
   createSpectrumTable(spectrumTable, rows, sampleCount)
 
   if (simplifiedReport) {
-    createDownloadButtonsForTables(calculationTable, spectrumTable)
+    createActionsForTables(calculationTable, spectrumTable)
   } else {
     createDownloadButtonsInFooter(footerButtons, calculationTable, spectrumTable)
   }
