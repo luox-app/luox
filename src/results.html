@@ -16,16 +16,20 @@
 
     <main class="container">
       <div class="row">
-        <div class="col-lg-8">
-          <h1 class="my-5">
+        <div class="col-lg-12">
+          <h1 class="mt-5">
             Reporting Light Exposure
           </h1>
 
-          <p class="lead my-5">
-            Download the summary and raw data tables as CSV and include them in your report.
+          <p class="lead mt-5">
+            Download the stimulus specification tables in CSV format and include them in your report.
           </p>
 
-          <div id="file-uploaded">
+          <p class="mt-5">
+            Where a journal does not offer the capability of making Supplementary Material available, files can be made available on <a href="https://figshare.com/">Figshare</a>, the <a href="https://osf.io/">Open Science Framework</a> or <a href="https://github.com/">GitHub</a>. Some institutions also offer repositories for research data.
+          </p>
+
+          <div class="mt-5" id="file-uploaded">
             <a href="/upload-csv.html">Choose another dataset</a>
           </div>
 
@@ -35,22 +39,26 @@
             </table>
           </div>
 
-          <div id="results">
-            <table class="table table-sm mt-4 result-table" id="calculation-table">
+          <div class="mt-5" id="results">
+            <div style="display: none" class="mt-4" id="table-actions"></div>
+
+            <h2>Stimulus specification</h2>
+
+            <div id="calculation-table-heading" class="mt-3 d-flex justify-content-between">
+              <h3>Illuminance and α-opic irradiances</h3>
+            </div>
+            <table class="table table-sm mt-3 result-table" id="calculation-table">
             </table>
 
-            <table class="table table-sm mt-4 result-table" id="spectrum-table">
+            <div id="spectra-table-heading" class="mt-5 d-flex justify-content-between">
+              <h3>Spectra</h3>
+            </div>
+            <table class="table table-sm mt-3 result-table" id="spectrum-table">
             </table>
           </div>
         </div>
       </div>
     </main>
-
-    <footer class="footer fixed-bottom">
-      <div class="container">
-        <div id="table-actions"></div>
-      </div>
-    </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

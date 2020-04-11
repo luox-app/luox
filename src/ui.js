@@ -81,11 +81,18 @@ const createSpectrumTable = (table, rows, sampleCount) => {
   }
 }
 
-const createDownloadButtons = (element, calculationTable, spectrumTable) => {
+const createDownloadButtonsInFooter = (element, calculationTable, spectrumTable) => {
   const calcCSVButton = downloadCSVButton(calculationTable, "btn btn-primary", "download-calc", "Download calculation CSV")
   element.appendChild(calcCSVButton);
   const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-primary", "download-spectrum", "Download spectrum CSV")
   element.appendChild(spectrumCSVButton);
+}
+
+const createDownloadButtonsForTables = (calculationTable, spectrumTable) => {
+  const calcCSVButton = downloadCSVButton(calculationTable, "btn btn-outline-secondary", "download-calc", "Download table as CSV")
+  document.getElementById('calculation-table-heading').appendChild(calcCSVButton)
+  const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-outline-secondary", "download-spectrum", "Download table as CSV")
+  document.getElementById('spectra-table-heading').appendChild(spectrumCSVButton)
 }
 
 const generateHues = (sampleCount) => {
@@ -149,6 +156,7 @@ const createChart = (chartCanvas, rows, sampleCount) => {
 }
 /* eslint-enable max-lines-per-function */
 
+/* eslint-disable max-lines-per-function */
 export const createTables = (rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, simplifiedReport) => {
   const unitConversion = conversionFunction(areaScale, powerScale)
   const rows = mapSamples(rawRows, unitConversion)
@@ -194,8 +202,14 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
   }
 
   createSpectrumTable(spectrumTable, rows, sampleCount)
-  createDownloadButtons(footerButtons, calculationTable, spectrumTable)
+
+  if (simplifiedReport) {
+    createDownloadButtonsForTables(calculationTable, spectrumTable)
+  } else {
+    createDownloadButtonsInFooter(footerButtons, calculationTable, spectrumTable)
+  }
 }
+/* eslint-enable max-lines-per-function */
 
 export const createErrorTable = (errors, errorsTable) => {
   for (const error of errors) {
