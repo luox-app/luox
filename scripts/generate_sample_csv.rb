@@ -17,7 +17,7 @@ File.open('data/example-spectrum.csv') do |file|
   end
 end
 
-File.open('src/sample.csv', 'w') do |file|
+File.open('src/examples/sample.csv', 'w') do |file|
   file.puts("wavelength,S1,S2")
   data.each do |d|
     file.puts(d.to_csv)

@@ -17,7 +17,7 @@ File.open('data/example-spectrum.csv') do |file|
   end
 end
 
-File.open('src/big-sample.csv', 'w') do |file|
+File.open('src/examples/big-sample.csv', 'w') do |file|
   sampleHeaders = (1..NUM_SAMPLES).map { |s| "S#{s}" }
   file.puts((["wavelength"] + sampleHeaders).to_csv)
   data.each do |d|
