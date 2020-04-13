@@ -1,84 +1,12 @@
-import {mapSamples, calculateLuminance, calculateIrradiance, calculateChromaticity31, calculateChromaticity64, interpolateData} from './rows.js'
+import {mapSamples, interpolateData} from './rows.js'
+import {createCalculationTable} from './calculationTable.js'
+import {createSpectraTable} from './spectraTable.js'
+import {sampleTitles} from './helpers.js'
 import {downloadCSVButton} from './csvExport.js'
-import {asExponential, asDecimal} from './helpers.js'
 import Chart from 'chart.js'
 
 const conversionFunction = (areaScale, powerScale) => {
   return (wavelength, sample) =>  sample / powerScale * areaScale
-}
-
-const appendCells = (table, cellType, cells) => {
-  const row = document.createElement("tr")
-  const domCells = cells.map((cellText) =>  {
-    const cell = document.createElement(cellType)
-    const text = document.createTextNode(cellText)
-    cell.appendChild(text)
-    return cell
-  })
-  for (const cell of domCells) {
-    row.appendChild(cell)
-  }
-  table.appendChild(row)
-  return domCells
-}
-
-const createSpectraTableHeader = (table, sampleCount) => {
-  const titles = ["Wavelength [nm]", "Spectral irradiance [W/(m² nm)]"]
-  const cells = appendCells(table, "th", titles)
-  cells[1].setAttribute("colspan", sampleCount)
-}
-
-const sampleTitles = (sampleCount) => {
-  return new Array(sampleCount).fill("").map((_, index) => "S"+index)
-}
-
-const createCalculationTableHeader = (table, sampleCount) => {
-  const titles = ["Condition", ...sampleTitles(sampleCount)]
-  appendCells(table, "th", titles)
-}
-
-const createTableRow = (table, wavelength, samples, formatter) => {
-  const formattedSamples = samples.map(formatter)
-  appendCells(table, "td", [wavelength, ...formattedSamples])
-}
-
-const createCalculationTable = (table, rows, sampleCount, simplifiedReport) => {
-  createCalculationTableHeader(table, sampleCount)
-
-  const luminanceTotals = calculateLuminance(rows, sampleCount)
-  const chromaticity31  = calculateChromaticity31(rows, sampleCount)
-  const chromaticity31XValues = chromaticity31.map((c) => c.x)
-  const chromaticity31YValues = chromaticity31.map((c) => c.y)
-  const chromaticity64  = calculateChromaticity64(rows, sampleCount)
-  const chromaticity64XValues = chromaticity64.map((c) => c.x)
-  const chromaticity64YValues = chromaticity64.map((c) => c.y)
-  const sConeTotals = calculateIrradiance(rows, sampleCount, 'sCone')
-  const mConeTotals = calculateIrradiance(rows, sampleCount, 'mCone')
-  const lConeTotals = calculateIrradiance(rows, sampleCount, 'lCone')
-  const rodTotals = calculateIrradiance(rows, sampleCount, 'rod')
-  const melTotals = calculateIrradiance(rows, sampleCount, 'mel')
-  createTableRow(table, "Illuminance [lux]", luminanceTotals, asDecimal)
-  let displayFormat = asDecimal
-  if (!simplifiedReport) {
-    displayFormat = asExponential
-    createTableRow(table, "CIE 1931 xy chromaticity (x)", chromaticity31XValues, asDecimal)
-    createTableRow(table, "CIE 1931 xy chromaticity (y)", chromaticity31YValues, asDecimal)
-    createTableRow(table, "CIE 1964 x₁₀y₁₀ chromaticity (x₁₀)", chromaticity64XValues, asDecimal)
-    createTableRow(table, "CIE 1964 x₁₀y₁₀ chromaticity (y₁₀)", chromaticity64YValues, asDecimal)
-  }
-  createTableRow(table, "S-cone-opic irradiance (mW/m²)", sConeTotals, displayFormat)
-  createTableRow(table, "M-cone-opic irradiance (mW/m²)", mConeTotals, displayFormat)
-  createTableRow(table, "L-cone-opic irradiance (mW/m²)", lConeTotals, displayFormat)
-  createTableRow(table, "Rhodopic irradiance (mW/m²)", rodTotals, displayFormat)
-  createTableRow(table, "Melanopic irradiance (mW/m²)", melTotals, displayFormat)
-}
-
-const createSpectraTable = (table, rows, sampleCount) => {
-  createSpectraTableHeader(table, sampleCount)
-  for (const row of rows) {
-    const [wavelength, ...samples] = row
-    createTableRow(table, wavelength, samples, asExponential)
-  }
 }
 
 const createDownloadButtonsInFooter = (element, calculationTable, spectrumTable) => {

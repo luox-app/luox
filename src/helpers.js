@@ -6,3 +6,7 @@ export const asExponential = (number) => {
 /* eslint-enable prefer-named-capture-group */
 
 export const asDecimal = (number) => number.toFixed(2)
+
+export const sampleTitles = (sampleCount) => {
+  return new Array(sampleCount).fill("").map((_, index) => "S"+index)
+}
