@@ -1,4 +1,4 @@
-var { asExponential } = require('./../src/helpers.js')
+var { asExponential } = require('./../src/javascript/helpers.js')
 var assert = require('assert');
 
 describe('asExponential', function() {

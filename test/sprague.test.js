@@ -1,4 +1,4 @@
-var { sprague } = require('./../src/sprague.js')
+var { sprague } = require('./../src/javascript/sprague.js')
 var assert = require('assert');
 
 describe('sprague', function() {

@@ -1,4 +1,4 @@
-var csvExport = require('./../src/csvExport.js')
+var csvExport = require('./../src/javascript/csvExport.js')
 var assert = require('assert');
 const { JSDOM } = require('jsdom');
 
