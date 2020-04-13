@@ -1,5 +1,5 @@
 import {readCSV, encodeCSV, parseCSV} from './csvParser.js'
-import {createTables, createErrorTable} from './ui.js'
+import {createResults, createErrorTable} from './ui.js'
 
 const fileInput = document.getElementById('file-input')
 const uploadForm = document.getElementById('upload-form')
@@ -39,7 +39,7 @@ const handleSubmit = async (event) => {
         const calculationTable = document.getElementById('calculation-table')
         const footerButtons = document.getElementById('table-actions')
         const chartCanvas = document.getElementById('chart-canvas')
-        createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, false)
+        createResults(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, false)
         resultsSection.style.display = 'block';
       } else {
         const [errorsTable] = errorsSection.getElementsByClassName('errors')
@@ -75,7 +75,7 @@ if (document.location.pathname.endsWith('/results.html')) {
     const calculationTable = document.getElementById('calculation-table')
     const footerButtons = document.getElementById('table-actions')
     const chartCanvas = document.getElementById('chart-canvas')
-    createTables(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, true)
+    createResults(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, true)
     resultsSection.style.display = 'block';
     fileUploadedSection.style.display = 'block';
   } else {
