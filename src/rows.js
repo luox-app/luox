@@ -1,7 +1,7 @@
-import VL1924 from './vl1924.json'
-import CIES026 from './cies026.json'
-import CIEXYZ31 from './ciexyz31.json'
-import CIEXYZ64 from './ciexyz64.json'
+import VL1924 from './data/vl1924.json'
+import CIES026 from './data/cies026.json'
+import CIEXYZ31 from './data/ciexyz31.json'
+import CIEXYZ64 from './data/ciexyz64.json'
 import {sprague} from './sprague.js'
 
 export const mapSamples = (rows, func) => {
