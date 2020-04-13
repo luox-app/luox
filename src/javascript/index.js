@@ -26,28 +26,29 @@ const handleSubmit = async (event) => {
   const fileList = fileInput.files
   for (const file of fileList) {
     const data = await readCSV(file)
-    if (document.location.pathname.endsWith('/upload-csv.html')) {
-      const encodedCSV = encodeCSV(data)
-      window.sessionStorage.setItem('csv', encodedCSV)
-      window.sessionStorage.setItem('areaScale', areaScale)
-      window.sessionStorage.setItem('powerScale', powerScale)
-      document.location.assign('results.html')
-    } else {
-      const [errors, rawRows, sampleCount] = parseCSV(data)
-      if (errors.length === 0) {
+    const [errors, rawRows, sampleCount] = parseCSV(data)
+
+    if (errors.length === 0) {
+      if (document.location.pathname.endsWith('/upload-csv.html')) {
+        const encodedCSV = encodeCSV(data)
+        window.sessionStorage.setItem('csv', encodedCSV)
+        window.sessionStorage.setItem('areaScale', areaScale)
+        window.sessionStorage.setItem('powerScale', powerScale)
+        document.location.assign('results.html')
+      } else {
         const spectrumTable = document.getElementById('spectrum-table')
         const calculationTable = document.getElementById('calculation-table')
         const footerButtons = document.getElementById('table-actions')
         const chartCanvas = document.getElementById('chart-canvas')
         createResults(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, false)
         resultsSection.style.display = 'block';
-      } else {
-        const [errorsTable] = errorsSection.getElementsByClassName('errors')
-        createErrorTable(errors, errorsTable)
-        errorsSection.style.display = 'block';
+        fileUploadSection.style.display = 'none';
+        fileUploadedSection.style.display = 'block';
       }
-      fileUploadSection.style.display = 'none';
-      fileUploadedSection.style.display = 'block';
+    } else {
+      const [errorsTable] = errorsSection.getElementsByClassName('errors')
+      createErrorTable(errors, errorsTable)
+      errorsSection.style.display = 'block';
     }
   }
 }
@@ -67,20 +68,14 @@ if (document.location.pathname.endsWith('/results.html')) {
 
   const fileUploadedSection =  document.getElementById('file-uploaded')
   const resultsSection = document.getElementById('results')
-  const errorsSection = document.getElementById('errors')
 
+  // eslint-disable-next-line no-unused-vars
   const [errors, rawRows, sampleCount] = parseCSV(csv)
-  if (errors.length === 0) {
-    const spectrumTable = document.getElementById('spectrum-table')
-    const calculationTable = document.getElementById('calculation-table')
-    const footerButtons = document.getElementById('table-actions')
-    const chartCanvas = document.getElementById('chart-canvas')
-    createResults(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, true)
-    resultsSection.style.display = 'block';
-    fileUploadedSection.style.display = 'block';
-  } else {
-    const [errorsTable] = errorsSection.getElementsByClassName('errors')
-    createErrorTable(errors, errorsTable)
-    errorsSection.style.display = 'block';
-  }
+  const spectrumTable = document.getElementById('spectrum-table')
+  const calculationTable = document.getElementById('calculation-table')
+  const footerButtons = document.getElementById('table-actions')
+  const chartCanvas = document.getElementById('chart-canvas')
+  createResults(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, true)
+  resultsSection.style.display = 'block';
+  fileUploadedSection.style.display = 'block';
 }
