@@ -56,50 +56,14 @@
           <p class="text-muted small">* dataset should be a CSV-format text file with one row per nm wavelength. Each row should contain a column for wavelength and a number of samples. Download an <a href="./examples/sample.csv">example dataset containing samples at 1nm intervals</a> or an <a href="./examples/sample-10nm.csv">example dataset containing samples at 10nm intervals</a>.</p>
         </div>
 
-        <div class="mt-5" id="file-uploaded">
-          <a href=".">Choose another dataset</a>
-        </div>
-
         <div id="errors">
           <h2 class="mt-5">Error parsing CSV</h2>
           <p>We had some problems understanding that file:</p>
           <table class="table errors">
           </table>
         </div>
-
-        <div id="results">
-          <table class="table table-sm mt-4 result-table" id="calculation-table">
-          </table>
-
-          <form id="chart-data-source">
-            <hr>
-            <div class="form-check-inline">
-              <input class="form-check-input" type="radio" name="chart-data" value="raw" id="chart-data-raw">
-              <label class="form-check-label" for="chart-data-raw">Raw data</label>
-            </div>
-            <div class="form-check-inline">
-              <input class="form-check-input" type="radio" name="chart-data" value="normalised" id="chart-data-normalised">
-              <label class="form-check-label" for="chart-data-normalised">Normalised data</label>
-            </div>
-            <div class="form-check-inline">
-              <input class="form-check-input" type="radio" name="chart-data" value="log10" id="chart-data-log10">
-              <label class="form-check-label" for="chart-data-log10">Log10</label>
-            </div>
-          </form>
-
-          <canvas id="chart-canvas" width="400" height="200"></canvas>
-
-          <table class="table table-sm mt-4 result-table" id="spectrum-table">
-          </table>
-        </div>
       </div>
     </main>
-
-    <footer class="footer fixed-bottom">
-      <div class="container">
-        <div id="table-actions"></div>
-      </div>
-    </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
