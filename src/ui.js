@@ -2,7 +2,7 @@ import {mapSamples, interpolateData} from './rows.js'
 import {createCalculationTable} from './calculationTable.js'
 import {createSpectraTable} from './spectraTable.js'
 import {downloadCSVButton} from './csvExport.js'
-import {addDataSourcesToChart, createChart} from './chart.js'
+import {createChart} from './chart.js'
 
 const conversionFunction = (areaScale, powerScale) => {
   return (wavelength, sample) =>  sample / powerScale * areaScale
@@ -51,8 +51,7 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
 
   createCalculationTable(calculationTable, interpolatedRows, sampleCount, simplifiedReport)
 
-  const chart = createChart(chartCanvas, rows, sampleCount)
-  addDataSourcesToChart(chart, rows, sampleCount)
+  createChart(chartCanvas, rows, sampleCount)
 
   createSpectraTable(spectrumTable, rows, sampleCount)
 

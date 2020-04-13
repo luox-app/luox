@@ -11,59 +11,7 @@ const generateHues = (sampleCount) => {
   return hues
 }
 
-/* eslint-disable max-lines-per-function */
-export const createChart = (chartCanvas, rows, sampleCount) => {
-  const datasets = []
-  const hues = generateHues(sampleCount)
-  const labels = sampleTitles(sampleCount)
-
-  for (let sampleIdx = 0; sampleIdx < sampleCount; sampleIdx += 1) {
-    const lineColor = 'hsl(' + hues[sampleIdx] + ',100%,50%)'
-    datasets[sampleIdx] = {
-      'backgroundColor': lineColor,
-      'borderColor': lineColor,
-      'data': rows.map((row) => row[sampleIdx + 1]),
-      'fill': false,
-      'label': labels[sampleIdx],
-      'pointRadius': 1
-    }
-  }
-  const waveLengths = rows.map((row) => row[0]);
-
-  return new Chart(chartCanvas, { // eslint-disable-line no-new
-    'data': {
-      datasets,
-      'labels': waveLengths
-    },
-    'options': {
-      'scales': {
-        'xAxes': [
-          {
-            'scaleLabel': {
-              'display': true,
-              'labelString': 'Wavelength [nm]'
-            },
-            'ticks': {
-              'maxTicksLimit': 20
-            }
-          }
-        ],
-        'yAxes': [
-          {
-            'scaleLabel': {
-              'display': true,
-              'labelString': 'Spectral irradiance [W/(m² nm)]'
-            }
-          }
-        ]
-      }
-    },
-    'type': 'line'
-  });
-}
-/* eslint-enable max-lines-per-function */
-
-export const addDataSourcesToChart = (chart, rows, sampleCount) => {
+const addDataSourcesToChart = (chart, rows, sampleCount) => {
   const maxValues = []
   for (let sampleIdx = 0; sampleIdx < sampleCount; sampleIdx += 1) {
     const spectrum = rows.map((row) => row[sampleIdx + 1])
@@ -99,3 +47,57 @@ export const addDataSourcesToChart = (chart, rows, sampleCount) => {
   $('#chart-data-source input#chart-data-raw').prop('checked', true)
   $('#chart-data-source').show()
 }
+
+/* eslint-disable max-lines-per-function */
+export const createChart = (chartCanvas, rows, sampleCount) => {
+  const datasets = []
+  const hues = generateHues(sampleCount)
+  const labels = sampleTitles(sampleCount)
+
+  for (let sampleIdx = 0; sampleIdx < sampleCount; sampleIdx += 1) {
+    const lineColor = 'hsl(' + hues[sampleIdx] + ',100%,50%)'
+    datasets[sampleIdx] = {
+      'backgroundColor': lineColor,
+      'borderColor': lineColor,
+      'data': rows.map((row) => row[sampleIdx + 1]),
+      'fill': false,
+      'label': labels[sampleIdx],
+      'pointRadius': 1
+    }
+  }
+  const waveLengths = rows.map((row) => row[0]);
+
+  const chart = new Chart(chartCanvas, { // eslint-disable-line no-new
+    'data': {
+      datasets,
+      'labels': waveLengths
+    },
+    'options': {
+      'scales': {
+        'xAxes': [
+          {
+            'scaleLabel': {
+              'display': true,
+              'labelString': 'Wavelength [nm]'
+            },
+            'ticks': {
+              'maxTicksLimit': 20
+            }
+          }
+        ],
+        'yAxes': [
+          {
+            'scaleLabel': {
+              'display': true,
+              'labelString': 'Spectral irradiance [W/(m² nm)]'
+            }
+          }
+        ]
+      }
+    },
+    'type': 'line'
+  });
+
+  addDataSourcesToChart(chart, rows, sampleCount)
+}
+/* eslint-enable max-lines-per-function */
