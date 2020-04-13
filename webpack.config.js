@@ -13,12 +13,24 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
 
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      }
+    ]
+  },
+
   "plugins": [
     new CopyPlugin([
       {
         "from": '**/*',
         "context": 'src/',
-        "ignore": ['*.js', '*.json']
+        "ignore": ['*.js', '*.json', '*.css']
       }
     ])
   ]

@@ -1,3 +1,4 @@
+import '../stylesheets/upload.css'
 import {readCSV, encodeCSV, parseCSV} from './csvParser.js'
 import {createErrorTable} from './ui.js'
 

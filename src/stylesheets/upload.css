@@ -1,0 +1,12 @@
+table.errors {
+  table-layout: fixed;
+}
+
+#errors {
+  display: none;
+}
+
+#file-upload {
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
