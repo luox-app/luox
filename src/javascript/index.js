@@ -13,9 +13,6 @@ const handleFileSelect = () => {
 const handleSubmit = async (event) => {
   event.preventDefault();
 
-  const fileUploadedSection =  document.getElementById('file-uploaded')
-  const fileUploadSection = document.getElementById('file-upload')
-  const resultsSection = document.getElementById('results')
   const errorsSection = document.getElementById('errors')
 
   const areaUnitSelect = document.getElementById('area-units')
@@ -26,24 +23,18 @@ const handleSubmit = async (event) => {
   const fileList = fileInput.files
   for (const file of fileList) {
     const data = await readCSV(file)
+    // eslint-disable-next-line no-unused-vars
     const [errors, rawRows, sampleCount] = parseCSV(data)
 
     if (errors.length === 0) {
+      const encodedCSV = encodeCSV(data)
+      window.sessionStorage.setItem('csv', encodedCSV)
+      window.sessionStorage.setItem('areaScale', areaScale)
+      window.sessionStorage.setItem('powerScale', powerScale)
       if (document.location.pathname.endsWith('/upload-csv.html')) {
-        const encodedCSV = encodeCSV(data)
-        window.sessionStorage.setItem('csv', encodedCSV)
-        window.sessionStorage.setItem('areaScale', areaScale)
-        window.sessionStorage.setItem('powerScale', powerScale)
         document.location.assign('results.html')
       } else {
-        const spectrumTable = document.getElementById('spectrum-table')
-        const calculationTable = document.getElementById('calculation-table')
-        const footerButtons = document.getElementById('table-actions')
-        const chartCanvas = document.getElementById('chart-canvas')
-        createResults(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, false)
-        resultsSection.style.display = 'block';
-        fileUploadSection.style.display = 'none';
-        fileUploadedSection.style.display = 'block';
+        document.location.assign('explore-results.html')
       }
     } else {
       const [errorsTable] = errorsSection.getElementsByClassName('errors')
@@ -60,7 +51,7 @@ if (uploadForm) {
   uploadForm.addEventListener("submit", handleSubmit, false);
 }
 
-if (document.location.pathname.endsWith('/results.html')) {
+if (document.location.pathname.endsWith('results.html')) {
   const encodedCSV = window.sessionStorage.getItem('csv')
   const csv = decodeURIComponent(atob(encodedCSV))
   const areaScale = parseFloat(window.sessionStorage.getItem('areaScale'))
@@ -69,13 +60,18 @@ if (document.location.pathname.endsWith('/results.html')) {
   const fileUploadedSection =  document.getElementById('file-uploaded')
   const resultsSection = document.getElementById('results')
 
+  let simplifiedReport = true
+  if (document.location.pathname.endsWith('explore-results.html')) {
+    simplifiedReport = false
+  }
+
   // eslint-disable-next-line no-unused-vars
   const [errors, rawRows, sampleCount] = parseCSV(csv)
   const spectrumTable = document.getElementById('spectrum-table')
   const calculationTable = document.getElementById('calculation-table')
   const footerButtons = document.getElementById('table-actions')
   const chartCanvas = document.getElementById('chart-canvas')
-  createResults(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, true)
+  createResults(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, simplifiedReport)
   resultsSection.style.display = 'block';
   fileUploadedSection.style.display = 'block';
 }

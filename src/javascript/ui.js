@@ -8,13 +8,6 @@ const conversionFunction = (areaScale, powerScale) => {
   return (wavelength, sample) =>  sample / powerScale * areaScale
 }
 
-const createDownloadButtonsInFooter = (element, calculationTable, spectrumTable) => {
-  const calcCSVButton = downloadCSVButton(calculationTable, "btn btn-primary", "download-calc", "Download calculation CSV")
-  element.appendChild(calcCSVButton);
-  const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-primary", "download-spectrum", "Download spectrum CSV")
-  element.appendChild(spectrumCSVButton);
-}
-
 const createToggleButton = (target, expanded, text) => {
   const toggle = document.createElement('a')
   toggle.className = 'btn btn-outline-secondary ml-1'
@@ -55,12 +48,8 @@ export const createResults = (rawRows, sampleCount, spectrumTable, calculationTa
 
   createSpectraTable(spectrumTable, rows, sampleCount)
 
-  if (simplifiedReport) {
-    createActionsForTables(calculationTable, spectrumTable)
-    createActionsForChart()
-  } else {
-    createDownloadButtonsInFooter(footerButtons, calculationTable, spectrumTable)
-  }
+  createActionsForTables(calculationTable, spectrumTable)
+  createActionsForChart()
 }
 
 export const createErrorTable = (errors, errorsTable) => {
