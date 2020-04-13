@@ -26,6 +26,7 @@
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.5.2",
     "eslint": "^6.7.2",
+    "html-webpack-plugin": "^4.2.0",
     "jsdom": "^15.2.1",
     "mocha": "^6.2.2",
     "style-loader": "^1.1.3",
