@@ -22,7 +22,7 @@ const appendCells = (table, cellType, cells) => {
   return domCells
 }
 
-const createSampleTableHeader = (table, sampleCount) => {
+const createSpectraTableHeader = (table, sampleCount) => {
   const titles = ["Wavelength [nm]", "Spectral irradiance [W/(m² nm)]"]
   const cells = appendCells(table, "th", titles)
   cells[1].setAttribute("colspan", sampleCount)
@@ -32,7 +32,7 @@ const sampleTitles = (sampleCount) => {
   return new Array(sampleCount).fill("").map((_, index) => "S"+index)
 }
 
-const createTableHeader = (table, sampleCount) => {
+const createCalculationTableHeader = (table, sampleCount) => {
   const titles = ["Condition", ...sampleTitles(sampleCount)]
   appendCells(table, "th", titles)
 }
@@ -43,7 +43,7 @@ const createTableRow = (table, wavelength, samples, formatter) => {
 }
 
 const createCalculationTable = (table, rows, sampleCount, simplifiedReport) => {
-  createTableHeader(table, sampleCount)
+  createCalculationTableHeader(table, sampleCount)
 
   const luminanceTotals = calculateLuminance(rows, sampleCount)
   const chromaticity31  = calculateChromaticity31(rows, sampleCount)
@@ -73,8 +73,8 @@ const createCalculationTable = (table, rows, sampleCount, simplifiedReport) => {
   createTableRow(table, "Melanopic irradiance (mW/m²)", melTotals, displayFormat)
 }
 
-const createSpectrumTable = (table, rows, sampleCount) => {
-  createSampleTableHeader(table, sampleCount)
+const createSpectraTable = (table, rows, sampleCount) => {
+  createSpectraTableHeader(table, sampleCount)
   for (const row of rows) {
     const [wavelength, ...samples] = row
     createTableRow(table, wavelength, samples, asExponential)
@@ -221,7 +221,7 @@ export const createTables = (rawRows, sampleCount, spectrumTable, calculationTab
   $('#chart-data-source input#chart-data-raw').prop('checked', true)
   $('#chart-data-source').show()
 
-  createSpectrumTable(spectrumTable, rows, sampleCount)
+  createSpectraTable(spectrumTable, rows, sampleCount)
 
   if (simplifiedReport) {
     createActionsForTables(calculationTable, spectrumTable)
