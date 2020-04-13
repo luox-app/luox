@@ -44,9 +44,5 @@ const handleSubmit = async (event) => {
   }
 }
 
-if (fileInput) {
-  fileInput.addEventListener("change", handleFileSelect, false);
-}
-if (uploadForm) {
-  uploadForm.addEventListener("submit", handleSubmit, false);
-}
+fileInput.addEventListener("change", handleFileSelect, false);
+uploadForm.addEventListener("submit", handleSubmit, false);
