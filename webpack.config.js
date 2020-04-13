@@ -10,7 +10,7 @@ module.exports = {
     results: './src/javascript/results.js',
   },
   output: {
-    filename: '[name].js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist')
   },
 
