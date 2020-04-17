@@ -18,6 +18,11 @@ export const createTableHeader = (table, titles) => {
 }
 
 export const createTableRow = (table, rowLabel, samples, formatter) => {
-  const formattedSamples = samples.map(formatter)
-  appendCells(table, "td", [rowLabel, ...formattedSamples])
+  const formattedSamples = samples.map((sample) => formatter(sample))
+  const cells = appendCells(table, "td", [rowLabel, ...formattedSamples])
+  cells.forEach((cell, index) => {
+    if (index > 0) {
+      cell.dataset.notationToggleable = true
+    }
+  })
 }

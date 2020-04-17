@@ -3,6 +3,7 @@ import {createCalculationTable} from './calculationTable.js'
 import {createSpectraTable} from './spectraTable.js'
 import {downloadCSVButton} from './csvExport.js'
 import {createChart} from './chart.js'
+import {asDecimal, asExponential} from './helpers.js'
 
 const conversionFunction = (areaScale, powerScale) => {
   return (wavelength, sample) =>  sample / powerScale * areaScale
@@ -23,6 +24,38 @@ const createToggleButton = (target, expanded, text) => {
 const createActionsForChart = () => {
   const chartToggle = createToggleButton('spectra-chart-and-controls', 'false', 'Toggle chart')
   document.getElementById('spectra-chart-actions').appendChild(chartToggle)
+}
+
+const createNotationToggle = (table, actionsId, defaultNotation, decimalPrecision) => {
+  const notationToggle = document.createElement('a')
+  notationToggle.className = 'btn btn-outline-secondary ml-1'
+  notationToggle.href = '#'
+  notationToggle.innerText = 'Toggle notation'
+  notationToggle.setAttribute('role', 'button')
+  notationToggle.dataset.notation = defaultNotation
+
+  const toggleNotation = (event) => {
+    event.preventDefault()
+    const button = event.target
+    if (button.dataset.notation === 'decimal') {
+      button.dataset.notation = 'scientific'
+      table.querySelectorAll('td[data-notation-toggleable=true]').forEach((element) => {
+        if (!isNaN(element.innerText)) {
+          element.innerText = asExponential(Number(element.innerText))
+        }
+      })
+    } else {
+      button.dataset.notation = 'decimal'
+      table.querySelectorAll('td[data-notation-toggleable=true]').forEach((element) => {
+        if (!isNaN(element.innerText)) {
+          element.innerText = asDecimal(Number(element.innerText), decimalPrecision)
+        }
+      })
+    }
+  }
+
+  notationToggle.addEventListener('click', toggleNotation, false);
+  document.getElementById(actionsId).appendChild(notationToggle)
 }
 
 const createActionsForTables = (calculationTable, spectrumTable) => {
@@ -50,6 +83,8 @@ export const createResults = (rawRows, sampleCount, spectrumTable, calculationTa
 
   createActionsForTables(calculationTable, spectrumTable)
   createActionsForChart()
+  createNotationToggle(calculationTable, 'calculation-table-actions', 'decimal', 2)
+  createNotationToggle(spectrumTable, 'spectra-table-actions', 'scientific', 10)
 }
 
 export const createErrorTable = (errors, errorsTable) => {
