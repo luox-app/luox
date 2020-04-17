@@ -1,10 +1,10 @@
 import {calculateLuminance, calculateIrradiance, calculateChromaticity31, calculateChromaticity64} from './rows.js'
-import {appendCells, createTableRow} from './table.js'
+import {createTableHeader, createTableRow} from './table.js'
 import {asDecimal, sampleTitles} from './helpers.js'
 
 const createCalculationTableHeader = (table, sampleCount) => {
   const titles = ["Condition", ...sampleTitles(sampleCount)]
-  appendCells(table, "th", titles)
+  createTableHeader(table, titles)
 }
 
 export const createCalculationTable = (table, rows, sampleCount, simplifiedReport) => {

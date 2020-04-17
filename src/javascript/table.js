@@ -1,4 +1,4 @@
-export const appendCells = (table, cellType, cells) => {
+const appendCells = (table, cellType, cells) => {
   const row = document.createElement("tr")
   const domCells = cells.map((cellText) =>  {
     const cell = document.createElement(cellType)
@@ -11,6 +11,10 @@ export const appendCells = (table, cellType, cells) => {
   }
   table.appendChild(row)
   return domCells
+}
+
+export const createTableHeader = (table, titles) => {
+  return appendCells(table, "th", titles)
 }
 
 export const createTableRow = (table, wavelength, samples, formatter) => {
