@@ -17,7 +17,7 @@ export const createTableHeader = (table, titles) => {
   return appendCells(table, "th", titles)
 }
 
-export const createTableRow = (table, wavelength, samples, formatter) => {
+export const createTableRow = (table, rowLabel, samples, formatter) => {
   const formattedSamples = samples.map(formatter)
-  appendCells(table, "td", [wavelength, ...formattedSamples])
+  appendCells(table, "td", [rowLabel, ...formattedSamples])
 }
