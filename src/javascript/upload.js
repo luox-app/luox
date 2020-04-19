@@ -1,6 +1,5 @@
 import '../stylesheets/upload.css'
 import {readCSV, encodeCSV, parseCSV} from './csvParser.js'
-import {createErrorTable} from './ui.js'
 
 const fileInput = document.getElementById('file-input')
 const uploadForm = document.getElementById('upload-form')
@@ -9,6 +8,25 @@ const handleFileSelect = () => {
   const fileList = fileInput.files
   const fileButton = document.getElementById('upload-form-submit')
   fileButton.disabled = fileList.length === 0
+}
+
+const createErrorTable = (errors, errorsTable) => {
+  for (const error of errors) {
+    const row = document.createElement('tr')
+
+    const rowNum = document.createElement('td')
+    const rowNumText = document.createTextNode(`line ${error.row}`)
+    rowNum.appendChild(rowNumText)
+
+    const message = document.createElement('td')
+    const messageText = document.createTextNode(error.message)
+    message.appendChild(messageText)
+
+    row.appendChild(rowNum)
+    row.appendChild(message)
+
+    errorsTable.appendChild(row)
+  }
 }
 
 const handleSubmit = async (event) => {

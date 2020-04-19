@@ -86,22 +86,3 @@ export const createResults = (rawRows, sampleCount, spectrumTable, calculationTa
   createNotationToggle(calculationTable, 'calculation-table-actions', 'decimal', 2)
   createNotationToggle(spectrumTable, 'spectra-table-actions', 'scientific', 10)
 }
-
-export const createErrorTable = (errors, errorsTable) => {
-  for (const error of errors) {
-    const row = document.createElement('tr')
-
-    const rowNum = document.createElement('td')
-    const rowNumText = document.createTextNode(`line ${error.row}`)
-    rowNum.appendChild(rowNumText)
-
-    const message = document.createElement('td')
-    const messageText = document.createTextNode(error.message)
-    message.appendChild(messageText)
-
-    row.appendChild(rowNum)
-    row.appendChild(message)
-
-    errorsTable.appendChild(row)
-  }
-}
