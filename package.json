@@ -6,7 +6,7 @@
   "scripts": {
     "test": "eslint ./src/ && mocha --require @babel/register",
     "build": "mkdir -p dist && webpack --config webpack.prod.js",
-    "start": "mkdir -p dist && webpack-dev-server --content-base ./dist --open --config webpack.dev.js"
+    "start": "mkdir -p dist && webpack-dev-server --open --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
