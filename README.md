@@ -2,6 +2,8 @@
 
 ## Development
 
+The app is made up of HTML, CSS and JavaScript. We're using ES2015 modules and we use [webpack](https://webpack.js.org) to bundle the application.
+
 ### Install nvm and node
 
 ```
@@ -26,6 +28,8 @@ $ npm install
 ```
 
 ### Running tests
+
+The tests are written using [Mocha](https://mochajs.org/). The versions of Node/Mocha we're using don't support ES2015 modules so we have to require `@babel/register` to transpile them on the fly.
 
 ```
 $ npm test
