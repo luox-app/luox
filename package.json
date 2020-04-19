@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "test": "eslint ./src/ && mocha --require @babel/register",
-    "build": "mkdir -p dist && webpack",
-    "start": "mkdir -p dist && webpack-dev-server --content-base ./dist --open"
+    "build": "mkdir -p dist && webpack --config webpack.prod.js",
+    "start": "mkdir -p dist && webpack-dev-server --content-base ./dist --open --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,8 @@
     "style-loader": "^1.1.4",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "chart.js": "^2.9.3",
