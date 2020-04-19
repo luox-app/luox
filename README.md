@@ -7,7 +7,11 @@
 ```
 $ brew install nvm
 $ # Follow instructions to configure your bash config
+```
 
+### Install node
+
+```
 $ cd /path/to/lightbox
 $ nvm install
 $ nvm use
