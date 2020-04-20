@@ -11,7 +11,37 @@ const generateHues = (sampleCount) => {
   return hues
 }
 
-const addDataSourcesToChart = (chart, rows, sampleCount) => {
+const createDataSourceInput = (value, id, text) => {
+  const container = document.createElement('div')
+  container.className = 'form-check-inline'
+  const input = document.createElement('input')
+  input.className = 'form-check-input'
+  input.type = 'radio'
+  input.name = 'chart-data'
+  input.value = value
+  input.id = id
+  const label = document.createElement('label')
+  label.className = 'form-check-label'
+  label.setAttribute('for', id)
+  const textNode = document.createTextNode(text)
+  label.appendChild(textNode)
+  container.appendChild(input)
+  container.appendChild(label)
+  return container
+}
+
+const createDataSourceForm = () => {
+  const form = document.createElement('form')
+  const rawDataInput = createDataSourceInput('raw', 'chart-data-raw', 'Raw data')
+  const normalisedDataInput = createDataSourceInput('normalised', 'chart-data-normalised', 'Normalised data')
+  const log10Input = createDataSourceInput('log10', 'chart-data-log10', 'Log10')
+  form.appendChild(rawDataInput)
+  form.appendChild(normalisedDataInput)
+  form.appendChild(log10Input)
+  return form
+}
+
+const addDataSourcesToChart = (chartCanvas, chart, rows, sampleCount) => {
   const maxValues = []
   for (let sampleIdx = 0; sampleIdx < sampleCount; sampleIdx += 1) {
     const spectrum = rows.map((row) => row[sampleIdx + 1])
@@ -24,6 +54,9 @@ const addDataSourcesToChart = (chart, rows, sampleCount) => {
   const log10Rows = mapSamples(rows, (wavelength, sample) => {
     return Math.log10(sample)
   })
+
+  const chartForm = createDataSourceForm()
+  chartCanvas.parentNode.insertBefore(chartForm, chartCanvas)
 
   const toggleDataSource = (event) => {
     let data = []
@@ -44,11 +77,12 @@ const addDataSourcesToChart = (chart, rows, sampleCount) => {
     })
     chart.update()
   }
-  document.querySelectorAll('#chart-data-source input[name="chart-data"]').forEach((input) => {
+
+  chartForm.querySelectorAll('input[name="chart-data"]').forEach((input) => {
     input.addEventListener('click', toggleDataSource, false)
   })
+
   document.getElementById('chart-data-raw').checked = true
-  document.getElementById('chart-data-source').hidden = false
 }
 
 /* eslint-disable max-lines-per-function */
@@ -101,6 +135,6 @@ export const createChart = (chartCanvas, rows, sampleCount) => {
     'type': 'line'
   });
 
-  addDataSourcesToChart(chart, rows, sampleCount)
+  addDataSourcesToChart(chartCanvas, chart, rows, sampleCount)
 }
 /* eslint-enable max-lines-per-function */
