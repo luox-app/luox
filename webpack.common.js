@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
+    common: './src/javascript/common.js',
     upload: './src/javascript/upload.js',
     results: './src/javascript/results.js',
   },
@@ -36,32 +37,32 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
-      inject: false
+      chunks: ['common']
     }),
     new HtmlWebpackPlugin({
       template: './src/generate-csv.html',
       filename: 'generate-csv.html',
-      inject: false
+      chunks: ['common']
     }),
     new HtmlWebpackPlugin({
       template: './src/upload-csv.html',
       filename: 'upload-csv.html',
-      chunks: ['upload']
+      chunks: ['common', 'upload']
     }),
     new HtmlWebpackPlugin({
       template: './src/results.html',
       filename: 'results.html',
-      chunks: ['results']
+      chunks: ['common', 'results']
     }),
     new HtmlWebpackPlugin({
       template: './src/explore.html',
       filename: 'explore.html',
-      chunks: ['upload']
+      chunks: ['common', 'upload']
     }),
     new HtmlWebpackPlugin({
       template: './src/explore-results.html',
       filename: 'explore-results.html',
-      chunks: ['results']
+      chunks: ['common', 'results']
     })
   ]
 };
