@@ -25,7 +25,7 @@ const addDataSourcesToChart = (chart, rows, sampleCount) => {
     return Math.log10(sample)
   })
 
-  $('#chart-data-source input[name="chart-data"]').click((event) => {
+  const toggleDataSource = (event) => {
     let data = []
     let yAxisLabel = ''
     if (event.target.value === 'raw') {
@@ -43,7 +43,8 @@ const addDataSourcesToChart = (chart, rows, sampleCount) => {
       dataset.data = data.map((row) => row[index + 1])
     })
     chart.update()
-  })
+  }
+  $('#chart-data-source input[name="chart-data"]').click(toggleDataSource)
   $('#chart-data-source input#chart-data-raw').prop('checked', true)
   $('#chart-data-source').show()
 }
