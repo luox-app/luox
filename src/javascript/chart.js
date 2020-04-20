@@ -44,9 +44,11 @@ const addDataSourcesToChart = (chart, rows, sampleCount) => {
     })
     chart.update()
   }
-  $('#chart-data-source input[name="chart-data"]').click(toggleDataSource)
-  $('#chart-data-source input#chart-data-raw').prop('checked', true)
-  $('#chart-data-source').show()
+  document.querySelectorAll('#chart-data-source input[name="chart-data"]').forEach((input) => {
+    input.addEventListener('click', toggleDataSource, false)
+  })
+  document.getElementById('chart-data-raw').checked = true
+  document.getElementById('chart-data-source').hidden = false
 }
 
 /* eslint-disable max-lines-per-function */
