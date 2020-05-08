@@ -1,7 +1,3 @@
-table.errors {
-  table-layout: fixed;
-}
-
 .result-table td:not(:first-child),
 .result-table th:not(:first-child) {
   width: 7rem;
@@ -16,14 +12,4 @@ table.errors {
 }
 .result-table td {
   font-variant-numeric: tabular-nums;
-}
-main>.container {
-  padding-bottom: 80px;
-}
-#errors {
-  display: none;
-}
-#file-upload {
-  border: 1px solid #ddd;
-  padding: 1rem;
 }
