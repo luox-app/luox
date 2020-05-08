@@ -15,13 +15,13 @@ export const tableToCSV = (table) => {
   }, []).join('\n')
 }
 
-export const downloadCSVButton = (table, className, filename, title) => {
+export const downloadCSVButton = (table, filename) => {
   const csv = tableToCSV(table)
   const csvFile = new Blob([csv], {"type": 'text/csv'})
   const downloadLink =  document.createElement('a')
   downloadLink.download = `${filename}.csv`
   downloadLink.href = window.URL.createObjectURL(csvFile)
-  downloadLink.className = className
-  downloadLink.innerText = title
+  downloadLink.className = 'btn btn-outline-secondary'
+  downloadLink.innerText = 'Download table as CSV'
   return downloadLink
 }

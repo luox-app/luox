@@ -69,7 +69,7 @@ export const createResults = (rawRows, sampleCount, areaScale, powerScale, simpl
   const calculationTable = document.getElementById('calculation-table')
   createCalculationTable(calculationTable, interpolatedRows, sampleCount, simplifiedReport)
   document.getElementById('calculation-table-actions').appendChild(
-    downloadCSVButton(calculationTable, "btn btn-outline-secondary", "download-calc", "Download table as CSV")
+    downloadCSVButton(calculationTable, "download-calc")
   )
   document.getElementById('calculation-table-actions').appendChild(
     createToggleButton('calculation-table', 'true', 'Toggle table')
@@ -87,7 +87,7 @@ export const createResults = (rawRows, sampleCount, areaScale, powerScale, simpl
   createSpectraTable(spectrumTable, rows, sampleCount)
   spectrumTable.style.display = 'none'
   document.getElementById('spectra-table-actions').appendChild(
-    downloadCSVButton(spectrumTable, "btn btn-outline-secondary", "download-spectrum", "Download table as CSV")
+    downloadCSVButton(spectrumTable, "download-spectrum")
   )
   document.getElementById('spectra-table-actions').appendChild(
     createToggleButton('spectrum-table', 'false', 'Toggle table')
