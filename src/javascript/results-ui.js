@@ -53,11 +53,12 @@ const createNotationToggle = (table, actionsId, defaultNotation, decimalPrecisio
   document.getElementById(actionsId).appendChild(notationToggle)
 }
 
-export const createResults = (rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, chartCanvas, simplifiedReport) => {
+export const createResults = (rawRows, sampleCount, areaScale, powerScale, simplifiedReport) => {
   const unitConversion = conversionFunction(areaScale, powerScale)
   const rows = mapSamples(rawRows, unitConversion)
   const interpolatedRows = interpolateData(rows, sampleCount)
 
+  const calculationTable = document.getElementById('calculation-table')
   createCalculationTable(calculationTable, interpolatedRows, sampleCount, simplifiedReport)
   document.getElementById('calculation-table-actions').appendChild(
     downloadCSVButton(calculationTable, "btn btn-outline-secondary", "download-calc", "Download table as CSV")
@@ -67,11 +68,13 @@ export const createResults = (rawRows, sampleCount, spectrumTable, calculationTa
   )
   createNotationToggle(calculationTable, 'calculation-table-actions', 'decimal', 2)
 
+  const chartCanvas = document.getElementById('chart-canvas')
   createChart(chartCanvas, rows, sampleCount)
   document.getElementById('spectra-chart-actions').appendChild(
     createToggleButton('spectra-chart-and-controls', 'false', 'Toggle chart')
   )
 
+  const spectrumTable = document.getElementById('spectrum-table')
   createSpectraTable(spectrumTable, rows, sampleCount)
   document.getElementById('spectra-table-actions').appendChild(
     downloadCSVButton(spectrumTable, "btn btn-outline-secondary", "download-spectrum", "Download table as CSV")

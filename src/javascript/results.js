@@ -14,7 +14,4 @@ if (document.location.pathname.endsWith('explore-results.html')) {
 
 // eslint-disable-next-line no-unused-vars
 const [errors, rawRows, sampleCount] = parseCSV(csv)
-const spectrumTable = document.getElementById('spectrum-table')
-const calculationTable = document.getElementById('calculation-table')
-const chartCanvas = document.getElementById('chart-canvas')
-createResults(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, chartCanvas, simplifiedReport)
+createResults(rawRows, sampleCount, areaScale, powerScale, simplifiedReport)
