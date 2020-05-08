@@ -7,8 +7,6 @@ const csv = decodeURIComponent(atob(encodedCSV))
 const areaScale = parseFloat(window.sessionStorage.getItem('areaScale'))
 const powerScale = parseFloat(window.sessionStorage.getItem('powerScale'))
 
-const resultsSection = document.getElementById('results')
-
 let simplifiedReport = true
 if (document.location.pathname.endsWith('explore-results.html')) {
   simplifiedReport = false
@@ -20,4 +18,3 @@ const spectrumTable = document.getElementById('spectrum-table')
 const calculationTable = document.getElementById('calculation-table')
 const chartCanvas = document.getElementById('chart-canvas')
 createResults(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, chartCanvas, simplifiedReport)
-resultsSection.style.display = 'block';

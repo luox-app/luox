@@ -25,7 +25,7 @@ footer {
   padding: 15px;
   text-align: right;
 }
-#results, #errors {
+#errors {
   display: none;
 }
 #file-upload {
