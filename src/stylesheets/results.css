@@ -20,11 +20,6 @@ table.errors {
 main>.container {
   padding-bottom: 80px;
 }
-footer {
-  background-color: #eee;
-  padding: 15px;
-  text-align: right;
-}
 #errors {
   display: none;
 }
