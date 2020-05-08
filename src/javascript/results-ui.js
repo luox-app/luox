@@ -99,7 +99,7 @@ const renderSpectra = (rows, sampleCount) => {
   container.getElementsByClassName('heading-and-actions')[0].append(actions)
 }
 
-export const createResults = (rawRows, sampleCount, areaScale, powerScale, simplifiedReport) => {
+export const renderResults = (rawRows, sampleCount, areaScale, powerScale, simplifiedReport) => {
   const unitConversion = conversionFunction(areaScale, powerScale)
   const rows = mapSamples(rawRows, unitConversion)
   const interpolatedRows = interpolateData(rows, sampleCount)

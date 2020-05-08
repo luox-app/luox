@@ -1,6 +1,6 @@
 import '../stylesheets/results.css'
 import {parseCSV} from './csvParser.js'
-import {createResults} from './results-ui.js'
+import {renderResults} from './results-ui.js'
 
 const encodedCSV = window.sessionStorage.getItem('csv')
 const csv = decodeURIComponent(atob(encodedCSV))
@@ -14,4 +14,4 @@ if (document.location.pathname.endsWith('explore-results.html')) {
 
 // eslint-disable-next-line no-unused-vars
 const [errors, rawRows, sampleCount] = parseCSV(csv)
-createResults(rawRows, sampleCount, areaScale, powerScale, simplifiedReport)
+renderResults(rawRows, sampleCount, areaScale, powerScale, simplifiedReport)
