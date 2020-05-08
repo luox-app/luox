@@ -58,7 +58,7 @@ const createNotationToggle = (table, actionsId, defaultNotation, decimalPrecisio
   }
 
   notationToggle.addEventListener('click', toggleNotation, false);
-  document.getElementById(actionsId).appendChild(notationToggle)
+  return notationToggle;
 }
 
 export const createResults = (rawRows, sampleCount, areaScale, powerScale, simplifiedReport) => {
@@ -68,29 +68,25 @@ export const createResults = (rawRows, sampleCount, areaScale, powerScale, simpl
 
   const calculationTable = document.getElementById('calculation-table')
   createCalculationTable(calculationTable, interpolatedRows, sampleCount, simplifiedReport)
-  document.getElementById('calculation-table-actions').appendChild(
-    downloadCSVButton(calculationTable, "download-calc")
+  document.getElementById('calculation-table-actions').append(
+    downloadCSVButton(calculationTable, "download-calc"),
+    createToggleButton('calculation-table', 'true', 'Toggle table'),
+    createNotationToggle(calculationTable, 'calculation-table-actions', 'decimal', 2)
   )
-  document.getElementById('calculation-table-actions').appendChild(
-    createToggleButton('calculation-table', 'true', 'Toggle table')
-  )
-  createNotationToggle(calculationTable, 'calculation-table-actions', 'decimal', 2)
 
   const chartCanvas = document.getElementById('chart-canvas')
   createChart(chartCanvas, rows, sampleCount)
   document.getElementById('spectra-chart-and-controls').style.display = 'none'
-  document.getElementById('spectra-chart-actions').appendChild(
+  document.getElementById('spectra-chart-actions').append(
     createToggleButton('spectra-chart-and-controls', 'false', 'Toggle chart')
   )
 
   const spectrumTable = document.getElementById('spectrum-table')
   createSpectraTable(spectrumTable, rows, sampleCount)
   spectrumTable.style.display = 'none'
-  document.getElementById('spectra-table-actions').appendChild(
-    downloadCSVButton(spectrumTable, "download-spectrum")
+  document.getElementById('spectra-table-actions').append(
+    downloadCSVButton(spectrumTable, "download-spectrum"),
+    createToggleButton('spectrum-table', 'false', 'Toggle table'),
+    createNotationToggle(spectrumTable, 'spectra-table-actions', 'scientific', 10)
   )
-  document.getElementById('spectra-table-actions').appendChild(
-    createToggleButton('spectrum-table', 'false', 'Toggle table')
-  )
-  createNotationToggle(spectrumTable, 'spectra-table-actions', 'scientific', 10)
 }
