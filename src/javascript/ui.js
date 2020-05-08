@@ -70,7 +70,7 @@ const createActionsForTables = (calculationTable, spectrumTable) => {
   document.getElementById('spectra-table-actions').appendChild(spectraToggle)
 }
 
-export const createResults = (rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, simplifiedReport) => {
+export const createResults = (rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, chartCanvas, simplifiedReport) => {
   const unitConversion = conversionFunction(areaScale, powerScale)
   const rows = mapSamples(rawRows, unitConversion)
   const interpolatedRows = interpolateData(rows, sampleCount)

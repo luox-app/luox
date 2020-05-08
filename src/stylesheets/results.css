@@ -25,9 +25,6 @@ footer {
   padding: 15px;
   text-align: right;
 }
-footer #table-actions a {
-  margin-left: 20px;
-}
 #file-uploaded, #results, #errors {
   display: none;
 }

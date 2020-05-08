@@ -19,8 +19,7 @@ if (document.location.pathname.endsWith('explore-results.html')) {
 const [errors, rawRows, sampleCount] = parseCSV(csv)
 const spectrumTable = document.getElementById('spectrum-table')
 const calculationTable = document.getElementById('calculation-table')
-const footerButtons = document.getElementById('table-actions')
 const chartCanvas = document.getElementById('chart-canvas')
-createResults(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, footerButtons, chartCanvas, simplifiedReport)
+createResults(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, chartCanvas, simplifiedReport)
 resultsSection.style.display = 'block';
 fileUploadedSection.style.display = 'block';
