@@ -54,7 +54,8 @@ const createNotationToggle = (table, defaultNotation, decimalPrecision) => {
   return notationToggle;
 }
 
-const renderCalculations = (container, radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport) => {
+const renderCalculations = (radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport) => {
+  const container = document.createElement('section')
   const headingAndActions = document.createElement('div')
   const heading = document.createElement('h3')
   const actions = document.createElement('div')
@@ -73,9 +74,11 @@ const renderCalculations = (container, radianceOrIrradiance, interpolatedRows, s
 
   createCalculationTable(table, radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport)
   container.append(headingAndActions, table)
+  return container
 }
 
-const renderChart = (container, radianceOrIrradiance, rows, sampleCount) => {
+const renderChart = (radianceOrIrradiance, rows, sampleCount) => {
+  const container = document.createElement('section')
   const headingAndActions = document.createElement('div')
   const heading = document.createElement('h3')
   const actions = document.createElement('div')
@@ -97,9 +100,11 @@ const renderChart = (container, radianceOrIrradiance, rows, sampleCount) => {
   chartAndControls.append(canvas)
   container.append(headingAndActions, chartAndControls)
   createChart(canvas, radianceOrIrradiance, rows, sampleCount)
+  return container
 }
 
-const renderSpectra = (container, radianceOrIrradiance, rows, sampleCount) => {
+const renderSpectra = (radianceOrIrradiance, rows, sampleCount) => {
+  const container = document.createElement('section')
   const headingAndActions = document.createElement('div')
   const heading = document.createElement('h3')
   const actions = document.createElement('div')
@@ -119,16 +124,13 @@ const renderSpectra = (container, radianceOrIrradiance, rows, sampleCount) => {
 
   createSpectraTable(table, radianceOrIrradiance, rows, sampleCount)
   container.append(headingAndActions, table)
+  return container
 }
 
-export const renderResults = (radianceOrIrradiance, rows, interpolatedRows, sampleCount, simplifiedReport) => {
-  renderCalculations(
-    document.getElementById('calculations'), radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport
-  )
-  renderChart(
-    document.getElementById('chart'), radianceOrIrradiance, rows, sampleCount
-  )
-  renderSpectra(
-    document.getElementById('spectra'), radianceOrIrradiance, rows, sampleCount
+export const renderResults = (container, radianceOrIrradiance, rows, interpolatedRows, sampleCount, simplifiedReport) => {
+  container.append(
+    renderCalculations(radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport),
+    renderChart(radianceOrIrradiance, rows, sampleCount),
+    renderSpectra(radianceOrIrradiance, rows, sampleCount)
   )
 }

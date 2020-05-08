@@ -19,4 +19,5 @@ const [errors, rawRows, sampleCount] = parseCSV(csv)
 const rows = mapSamples(rawRows, (wavelength, sample) => sample / areaScale * powerScale)
 const interpolatedRows = interpolateData(rows, sampleCount)
 
-renderResults(radianceOrIrradiance, rows, interpolatedRows, sampleCount, simplifiedReport)
+const container = document.getElementById('results')
+renderResults(container, radianceOrIrradiance, rows, interpolatedRows, sampleCount, simplifiedReport)
