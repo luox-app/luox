@@ -21,11 +21,6 @@ const createToggleButton = (target, expanded, text) => {
   return toggle
 }
 
-const createActionsForChart = () => {
-  const chartToggle = createToggleButton('spectra-chart-and-controls', 'false', 'Toggle chart')
-  document.getElementById('spectra-chart-actions').appendChild(chartToggle)
-}
-
 const createNotationToggle = (table, actionsId, defaultNotation, decimalPrecision) => {
   const notationToggle = document.createElement('a')
   notationToggle.className = 'btn btn-outline-secondary ml-1'
@@ -58,31 +53,31 @@ const createNotationToggle = (table, actionsId, defaultNotation, decimalPrecisio
   document.getElementById(actionsId).appendChild(notationToggle)
 }
 
-const createActionsForTables = (calculationTable, spectrumTable) => {
-  const calcCSVButton = downloadCSVButton(calculationTable, "btn btn-outline-secondary", "download-calc", "Download table as CSV")
-  const calcToggle = createToggleButton('calculation-table-container', 'true', 'Toggle table')
-  document.getElementById('calculation-table-actions').appendChild(calcCSVButton)
-  document.getElementById('calculation-table-actions').appendChild(calcToggle)
-
-  const spectrumCSVButton = downloadCSVButton(spectrumTable, "btn btn-outline-secondary", "download-spectrum", "Download table as CSV")
-  const spectraToggle = createToggleButton('spectra-table-container', 'false', 'Toggle table')
-  document.getElementById('spectra-table-actions').appendChild(spectrumCSVButton)
-  document.getElementById('spectra-table-actions').appendChild(spectraToggle)
-}
-
 export const createResults = (rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, chartCanvas, simplifiedReport) => {
   const unitConversion = conversionFunction(areaScale, powerScale)
   const rows = mapSamples(rawRows, unitConversion)
   const interpolatedRows = interpolateData(rows, sampleCount)
 
   createCalculationTable(calculationTable, interpolatedRows, sampleCount, simplifiedReport)
+  document.getElementById('calculation-table-actions').appendChild(
+    downloadCSVButton(calculationTable, "btn btn-outline-secondary", "download-calc", "Download table as CSV")
+  )
+  document.getElementById('calculation-table-actions').appendChild(
+    createToggleButton('calculation-table-container', 'true', 'Toggle table')
+  )
+  createNotationToggle(calculationTable, 'calculation-table-actions', 'decimal', 2)
 
   createChart(chartCanvas, rows, sampleCount)
+  document.getElementById('spectra-chart-actions').appendChild(
+    createToggleButton('spectra-chart-and-controls', 'false', 'Toggle chart')
+  )
 
   createSpectraTable(spectrumTable, rows, sampleCount)
-
-  createActionsForTables(calculationTable, spectrumTable)
-  createActionsForChart()
-  createNotationToggle(calculationTable, 'calculation-table-actions', 'decimal', 2)
+  document.getElementById('spectra-table-actions').appendChild(
+    downloadCSVButton(spectrumTable, "btn btn-outline-secondary", "download-spectrum", "Download table as CSV")
+  )
+  document.getElementById('spectra-table-actions').appendChild(
+    createToggleButton('spectra-table-container', 'false', 'Toggle table')
+  )
   createNotationToggle(spectrumTable, 'spectra-table-actions', 'scientific', 10)
 }
