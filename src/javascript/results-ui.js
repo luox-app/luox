@@ -60,43 +60,43 @@ const createNotationToggle = (table, defaultNotation, decimalPrecision) => {
 }
 
 const renderCalculations = (interpolatedRows, sampleCount, simplifiedReport) => {
-  const calculations = document.getElementById('calculations')
-  const calculationTable = document.getElementById('calculation-table')
-  createCalculationTable(calculationTable, interpolatedRows, sampleCount, simplifiedReport)
-  const calculationActions = document.createElement('div')
-  calculationActions.append(
-    downloadCSVButton(calculationTable, "download-calc"),
-    createToggleButton(calculationTable, 'true', 'Toggle table'),
-    createNotationToggle(calculationTable, 'decimal', 2)
+  const container = document.getElementById('calculations')
+  const table = document.getElementById('calculation-table')
+  createCalculationTable(table, interpolatedRows, sampleCount, simplifiedReport)
+  const actions = document.createElement('div')
+  actions.append(
+    downloadCSVButton(table, "download-calc"),
+    createToggleButton(table, 'true', 'Toggle table'),
+    createNotationToggle(table, 'decimal', 2)
   )
-  calculations.getElementsByClassName('heading-and-actions')[0].append(calculationActions)
+  container.getElementsByClassName('heading-and-actions')[0].append(actions)
 }
 
 const renderChart = (rows, sampleCount) => {
-  const chart = document.getElementById('chart')
-  const chartCanvas = document.getElementById('chart-canvas')
-  createChart(chartCanvas, rows, sampleCount)
+  const container = document.getElementById('chart')
+  const canvas = document.getElementById('chart-canvas')
+  createChart(canvas, rows, sampleCount)
   const chartAndControls = document.getElementById('spectra-chart-and-controls')
   chartAndControls.style.display = 'none'
-  const chartActions = document.createElement('div')
-  chartActions.append(
+  const actions = document.createElement('div')
+  actions.append(
     createToggleButton(chartAndControls, 'false', 'Toggle chart')
   )
-  chart.getElementsByClassName('heading-and-actions')[0].append(chartActions)
+  container.getElementsByClassName('heading-and-actions')[0].append(actions)
 }
 
 const renderSpectra = (rows, sampleCount) => {
-  const spectra = document.getElementById('spectra')
-  const spectrumTable = document.getElementById('spectrum-table')
-  createSpectraTable(spectrumTable, rows, sampleCount)
-  spectrumTable.style.display = 'none'
-  const spectraActions = document.createElement('div')
-  spectraActions.append(
-    downloadCSVButton(spectrumTable, "download-spectrum"),
-    createToggleButton(spectrumTable, 'false', 'Toggle table'),
-    createNotationToggle(spectrumTable, 'scientific', 10)
+  const container = document.getElementById('spectra')
+  const table = document.getElementById('spectrum-table')
+  createSpectraTable(table, rows, sampleCount)
+  table.style.display = 'none'
+  const actions = document.createElement('div')
+  actions.append(
+    downloadCSVButton(table, "download-spectrum"),
+    createToggleButton(table, 'false', 'Toggle table'),
+    createNotationToggle(table, 'scientific', 10)
   )
-  spectra.getElementsByClassName('heading-and-actions')[0].append(spectraActions)
+  container.getElementsByClassName('heading-and-actions')[0].append(actions)
 }
 
 export const createResults = (rawRows, sampleCount, areaScale, powerScale, simplifiedReport) => {
