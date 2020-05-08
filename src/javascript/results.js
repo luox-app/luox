@@ -7,7 +7,6 @@ const csv = decodeURIComponent(atob(encodedCSV))
 const areaScale = parseFloat(window.sessionStorage.getItem('areaScale'))
 const powerScale = parseFloat(window.sessionStorage.getItem('powerScale'))
 
-const fileUploadedSection =  document.getElementById('file-uploaded')
 const resultsSection = document.getElementById('results')
 
 let simplifiedReport = true
@@ -22,4 +21,3 @@ const calculationTable = document.getElementById('calculation-table')
 const chartCanvas = document.getElementById('chart-canvas')
 createResults(rawRows, sampleCount, spectrumTable, calculationTable, areaScale, powerScale, chartCanvas, simplifiedReport)
 resultsSection.style.display = 'block';
-fileUploadedSection.style.display = 'block';
