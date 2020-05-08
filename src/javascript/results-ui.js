@@ -56,8 +56,8 @@ const createNotationToggle = (table, defaultNotation, decimalPrecision) => {
 
 const renderCalculations = (interpolatedRows, sampleCount, simplifiedReport) => {
   const container = document.getElementById('calculations')
-  // eslint-disable-next-line prefer-destructuring
-  const table = container.getElementsByTagName('table')[0]
+  const table = document.createElement('table')
+  table.className = 'table table-sm mt-3 result-table'
   createCalculationTable(table, interpolatedRows, sampleCount, simplifiedReport)
   const heading = document.createElement('h3')
   heading.append('Illuminance and α-opic irradiances')
@@ -68,6 +68,7 @@ const renderCalculations = (interpolatedRows, sampleCount, simplifiedReport) => 
     createNotationToggle(table, 'decimal', 2)
   )
   container.getElementsByClassName('heading-and-actions')[0].append(heading, actions)
+  container.append(table)
 }
 
 const renderChart = (rows, sampleCount) => {
@@ -88,8 +89,8 @@ const renderChart = (rows, sampleCount) => {
 
 const renderSpectra = (rows, sampleCount) => {
   const container = document.getElementById('spectra')
-  // eslint-disable-next-line prefer-destructuring
-  const table = container.getElementsByTagName('table')[0]
+  const table = document.createElement('table')
+  table.className = 'table table-sm mt-3 result-table'
   createSpectraTable(table, rows, sampleCount)
   table.style.display = 'none'
   const heading = document.createElement('h3')
@@ -101,6 +102,7 @@ const renderSpectra = (rows, sampleCount) => {
     createNotationToggle(table, 'scientific', 10)
   )
   container.getElementsByClassName('heading-and-actions')[0].append(heading, actions)
+  container.append(table)
 }
 
 export const renderResults = (rows, interpolatedRows, sampleCount, simplifiedReport) => {
