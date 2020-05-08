@@ -73,11 +73,13 @@ const renderCalculations = (interpolatedRows, sampleCount, simplifiedReport) => 
 
 const renderChart = (rows, sampleCount) => {
   const container = document.getElementById('chart')
-  // eslint-disable-next-line prefer-destructuring
-  const canvas = container.getElementsByTagName('canvas')[0]
-  createChart(canvas, rows, sampleCount)
+  const canvas = document.createElement('canvas')
+  canvas.setAttribute('width', '400')
+  canvas.setAttribute('height', '200')
   const chartAndControls = document.getElementById('spectra-chart-and-controls')
+  chartAndControls.append(canvas)
   chartAndControls.style.display = 'none'
+  createChart(canvas, rows, sampleCount)
   const heading = document.createElement('h3')
   heading.append('Spectra chart')
   const actions = document.createElement('div')
