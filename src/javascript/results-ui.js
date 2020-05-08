@@ -59,13 +59,15 @@ const renderCalculations = (interpolatedRows, sampleCount, simplifiedReport) => 
   // eslint-disable-next-line prefer-destructuring
   const table = container.getElementsByTagName('table')[0]
   createCalculationTable(table, interpolatedRows, sampleCount, simplifiedReport)
+  const heading = document.createElement('h3')
+  heading.append('Illuminance and α-opic irradiances')
   const actions = document.createElement('div')
   actions.append(
     downloadCSVButton(table, "download-calc"),
     createToggleButton(table, 'true', 'Toggle table'),
     createNotationToggle(table, 'decimal', 2)
   )
-  container.getElementsByClassName('heading-and-actions')[0].append(actions)
+  container.getElementsByClassName('heading-and-actions')[0].append(heading, actions)
 }
 
 const renderChart = (rows, sampleCount) => {
@@ -75,11 +77,13 @@ const renderChart = (rows, sampleCount) => {
   createChart(canvas, rows, sampleCount)
   const chartAndControls = document.getElementById('spectra-chart-and-controls')
   chartAndControls.style.display = 'none'
+  const heading = document.createElement('h3')
+  heading.append('Spectra chart')
   const actions = document.createElement('div')
   actions.append(
     createToggleButton(chartAndControls, 'false', 'Toggle chart')
   )
-  container.getElementsByClassName('heading-and-actions')[0].append(actions)
+  container.getElementsByClassName('heading-and-actions')[0].append(heading, actions)
 }
 
 const renderSpectra = (rows, sampleCount) => {
@@ -88,13 +92,15 @@ const renderSpectra = (rows, sampleCount) => {
   const table = container.getElementsByTagName('table')[0]
   createSpectraTable(table, rows, sampleCount)
   table.style.display = 'none'
+  const heading = document.createElement('h3')
+  heading.append('Spectra')
   const actions = document.createElement('div')
   actions.append(
     downloadCSVButton(table, "download-spectrum"),
     createToggleButton(table, 'false', 'Toggle table'),
     createNotationToggle(table, 'scientific', 10)
   )
-  container.getElementsByClassName('heading-and-actions')[0].append(actions)
+  container.getElementsByClassName('heading-and-actions')[0].append(heading, actions)
 }
 
 export const renderResults = (rows, interpolatedRows, sampleCount, simplifiedReport) => {
