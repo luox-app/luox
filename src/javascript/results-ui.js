@@ -75,7 +75,7 @@ const renderCalculations = (container, interpolatedRows, sampleCount, simplified
 const renderChart = (container, rows, sampleCount) => {
   const heading = document.createElement('h3')
   const actions = document.createElement('div')
-  const chartAndControls = document.getElementById('spectra-chart-and-controls')
+  const chartAndControls = document.createElement('div')
   const canvas = document.createElement('canvas')
 
   heading.append('Spectra chart')
@@ -84,11 +84,13 @@ const renderChart = (container, rows, sampleCount) => {
   )
   container.getElementsByClassName('heading-and-actions')[0].append(heading, actions)
 
+  chartAndControls.className = 'mt-3'
   chartAndControls.append(canvas)
   chartAndControls.style.display = 'none'
 
   canvas.setAttribute('width', '400')
   canvas.setAttribute('height', '200')
+  container.append(chartAndControls)
   createChart(canvas, rows, sampleCount)
 }
 
