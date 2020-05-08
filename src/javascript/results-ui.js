@@ -66,27 +66,36 @@ export const createResults = (rawRows, sampleCount, areaScale, powerScale, simpl
   const rows = mapSamples(rawRows, unitConversion)
   const interpolatedRows = interpolateData(rows, sampleCount)
 
+  const calculations = document.getElementById('calculations')
   const calculationTable = document.getElementById('calculation-table')
   createCalculationTable(calculationTable, interpolatedRows, sampleCount, simplifiedReport)
-  document.getElementById('calculation-table-actions').append(
+  const calculationActions = document.createElement('div')
+  calculationActions.append(
     downloadCSVButton(calculationTable, "download-calc"),
     createToggleButton('calculation-table', 'true', 'Toggle table'),
     createNotationToggle(calculationTable, 'calculation-table-actions', 'decimal', 2)
   )
+  calculations.getElementsByClassName('heading-and-actions')[0].append(calculationActions)
 
+  const chart = document.getElementById('chart')
   const chartCanvas = document.getElementById('chart-canvas')
   createChart(chartCanvas, rows, sampleCount)
   document.getElementById('spectra-chart-and-controls').style.display = 'none'
-  document.getElementById('spectra-chart-actions').append(
+  const chartActions = document.createElement('div')
+  chartActions.append(
     createToggleButton('spectra-chart-and-controls', 'false', 'Toggle chart')
   )
+  chart.getElementsByClassName('heading-and-actions')[0].append(chartActions)
 
+  const spectra = document.getElementById('spectra')
   const spectrumTable = document.getElementById('spectrum-table')
   createSpectraTable(spectrumTable, rows, sampleCount)
   spectrumTable.style.display = 'none'
-  document.getElementById('spectra-table-actions').append(
+  const spectraActions = document.createElement('div')
+  spectraActions.append(
     downloadCSVButton(spectrumTable, "download-spectrum"),
     createToggleButton('spectrum-table', 'false', 'Toggle table'),
     createNotationToggle(spectrumTable, 'spectra-table-actions', 'scientific', 10)
   )
+  spectra.getElementsByClassName('heading-and-actions')[0].append(spectraActions)
 }
