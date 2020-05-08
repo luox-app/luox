@@ -29,7 +29,7 @@ const createToggleButton = (target, expanded, text) => {
   return toggle
 }
 
-const createNotationToggle = (table, actionsId, defaultNotation, decimalPrecision) => {
+const createNotationToggle = (table, defaultNotation, decimalPrecision) => {
   const notationToggle = document.createElement('a')
   notationToggle.className = 'btn btn-outline-secondary ml-1'
   notationToggle.href = '#'
@@ -73,7 +73,7 @@ export const createResults = (rawRows, sampleCount, areaScale, powerScale, simpl
   calculationActions.append(
     downloadCSVButton(calculationTable, "download-calc"),
     createToggleButton('calculation-table', 'true', 'Toggle table'),
-    createNotationToggle(calculationTable, 'calculation-table-actions', 'decimal', 2)
+    createNotationToggle(calculationTable, 'decimal', 2)
   )
   calculations.getElementsByClassName('heading-and-actions')[0].append(calculationActions)
 
@@ -95,7 +95,7 @@ export const createResults = (rawRows, sampleCount, areaScale, powerScale, simpl
   spectraActions.append(
     downloadCSVButton(spectrumTable, "download-spectrum"),
     createToggleButton('spectrum-table', 'false', 'Toggle table'),
-    createNotationToggle(spectrumTable, 'spectra-table-actions', 'scientific', 10)
+    createNotationToggle(spectrumTable, 'scientific', 10)
   )
   spectra.getElementsByClassName('heading-and-actions')[0].append(spectraActions)
 }
