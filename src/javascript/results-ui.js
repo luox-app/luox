@@ -55,9 +55,12 @@ const createNotationToggle = (table, defaultNotation, decimalPrecision) => {
 }
 
 const renderCalculations = (container, interpolatedRows, sampleCount, simplifiedReport) => {
+  const headingAndActions = document.createElement('div')
   const heading = document.createElement('h3')
   const actions = document.createElement('div')
   const table = document.createElement('table')
+
+  headingAndActions.className = 'mt-3 d-flex justify-content-between'
 
   heading.append('Illuminance and α-opic irradiances')
   actions.append(
@@ -65,24 +68,27 @@ const renderCalculations = (container, interpolatedRows, sampleCount, simplified
     createToggleButton(table, 'true', 'Toggle table'),
     createNotationToggle(table, 'decimal', 2)
   )
-  container.getElementsByClassName('heading-and-actions')[0].append(heading, actions)
+  headingAndActions.append(heading, actions)
 
   table.className = 'table table-sm mt-3 result-table'
   createCalculationTable(table, interpolatedRows, sampleCount, simplifiedReport)
-  container.append(table)
+  container.append(headingAndActions, table)
 }
 
 const renderChart = (container, rows, sampleCount) => {
+  const headingAndActions = document.createElement('div')
   const heading = document.createElement('h3')
   const actions = document.createElement('div')
   const chartAndControls = document.createElement('div')
   const canvas = document.createElement('canvas')
 
+  headingAndActions.className = 'mt-5 d-flex justify-content-between'
+
   heading.append('Spectra chart')
   actions.append(
     createToggleButton(chartAndControls, 'false', 'Toggle chart')
   )
-  container.getElementsByClassName('heading-and-actions')[0].append(heading, actions)
+  headingAndActions.append(heading, actions)
 
   chartAndControls.className = 'mt-3'
   chartAndControls.append(canvas)
@@ -90,14 +96,17 @@ const renderChart = (container, rows, sampleCount) => {
 
   canvas.setAttribute('width', '400')
   canvas.setAttribute('height', '200')
-  container.append(chartAndControls)
+  container.append(headingAndActions, chartAndControls)
   createChart(canvas, rows, sampleCount)
 }
 
 const renderSpectra = (container, rows, sampleCount) => {
+  const headingAndActions = document.createElement('div')
   const heading = document.createElement('h3')
   const actions = document.createElement('div')
   const table = document.createElement('table')
+
+  headingAndActions.className = 'mt-5 d-flex justify-content-between'
 
   heading.append('Spectra')
   actions.append(
@@ -105,12 +114,12 @@ const renderSpectra = (container, rows, sampleCount) => {
     createToggleButton(table, 'false', 'Toggle table'),
     createNotationToggle(table, 'scientific', 10)
   )
-  container.getElementsByClassName('heading-and-actions')[0].append(heading, actions)
+  headingAndActions.append(heading, actions)
 
   table.className = 'table table-sm mt-3 result-table'
   table.style.display = 'none'
   createSpectraTable(table, rows, sampleCount)
-  container.append(table)
+  container.append(headingAndActions, table)
 }
 
 export const renderResults = (rows, interpolatedRows, sampleCount, simplifiedReport) => {
