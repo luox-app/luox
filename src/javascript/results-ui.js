@@ -1,13 +1,8 @@
-import {mapSamples, interpolateData} from './rows.js'
 import {createCalculationTable} from './calculationTable.js'
 import {createSpectraTable} from './spectraTable.js'
 import {downloadCSVButton} from './csvExport.js'
 import {createChart} from './chart.js'
 import {asDecimal, asExponential} from './helpers.js'
-
-const conversionFunction = (areaScale, powerScale) => {
-  return (wavelength, sample) =>  sample / powerScale * areaScale
-}
 
 const createToggleButton = (target, expanded, text) => {
   const toggle = document.createElement('a')
@@ -99,11 +94,7 @@ const renderSpectra = (rows, sampleCount) => {
   container.getElementsByClassName('heading-and-actions')[0].append(actions)
 }
 
-export const renderResults = (rawRows, sampleCount, areaScale, powerScale, simplifiedReport) => {
-  const unitConversion = conversionFunction(areaScale, powerScale)
-  const rows = mapSamples(rawRows, unitConversion)
-  const interpolatedRows = interpolateData(rows, sampleCount)
-
+export const renderResults = (rows, interpolatedRows, sampleCount, simplifiedReport) => {
   renderCalculations(interpolatedRows, sampleCount, simplifiedReport)
   renderChart(rows, sampleCount)
   renderSpectra(rows, sampleCount)
