@@ -56,7 +56,8 @@ const createNotationToggle = (table, defaultNotation, decimalPrecision) => {
 
 const renderCalculations = (interpolatedRows, sampleCount, simplifiedReport) => {
   const container = document.getElementById('calculations')
-  const table = document.getElementById('calculation-table')
+  // eslint-disable-next-line prefer-destructuring
+  const table = container.getElementsByTagName('table')[0]
   createCalculationTable(table, interpolatedRows, sampleCount, simplifiedReport)
   const actions = document.createElement('div')
   actions.append(
@@ -69,7 +70,8 @@ const renderCalculations = (interpolatedRows, sampleCount, simplifiedReport) => 
 
 const renderChart = (rows, sampleCount) => {
   const container = document.getElementById('chart')
-  const canvas = document.getElementById('chart-canvas')
+  // eslint-disable-next-line prefer-destructuring
+  const canvas = container.getElementsByTagName('canvas')[0]
   createChart(canvas, rows, sampleCount)
   const chartAndControls = document.getElementById('spectra-chart-and-controls')
   chartAndControls.style.display = 'none'
@@ -82,7 +84,8 @@ const renderChart = (rows, sampleCount) => {
 
 const renderSpectra = (rows, sampleCount) => {
   const container = document.getElementById('spectra')
-  const table = document.getElementById('spectrum-table')
+  // eslint-disable-next-line prefer-destructuring
+  const table = container.getElementsByTagName('table')[0]
   createSpectraTable(table, rows, sampleCount)
   table.style.display = 'none'
   const actions = document.createElement('div')
