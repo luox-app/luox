@@ -13,11 +13,19 @@ const createToggleButton = (target, expanded, text) => {
   const toggle = document.createElement('a')
   toggle.className = 'btn btn-outline-secondary ml-1'
   toggle.href = '#' + target
-  toggle.dataset.toggle = 'collapse'
   toggle.innerText = text
   toggle.setAttribute('role', 'button')
   toggle.setAttribute('aria-expanded', expanded)
   toggle.setAttribute('aria-controls', target)
+  toggle.addEventListener('click', (event) => {
+    event.preventDefault();
+    const element = document.getElementById(target)
+    if (element.style.display === 'none') {
+      element.style.display = ''
+    } else {
+      element.style.display = 'none'
+    }
+  }, false)
   return toggle
 }
 
@@ -64,23 +72,25 @@ export const createResults = (rawRows, sampleCount, areaScale, powerScale, simpl
     downloadCSVButton(calculationTable, "btn btn-outline-secondary", "download-calc", "Download table as CSV")
   )
   document.getElementById('calculation-table-actions').appendChild(
-    createToggleButton('calculation-table-container', 'true', 'Toggle table')
+    createToggleButton('calculation-table', 'true', 'Toggle table')
   )
   createNotationToggle(calculationTable, 'calculation-table-actions', 'decimal', 2)
 
   const chartCanvas = document.getElementById('chart-canvas')
   createChart(chartCanvas, rows, sampleCount)
+  document.getElementById('spectra-chart-and-controls').style.display = 'none'
   document.getElementById('spectra-chart-actions').appendChild(
     createToggleButton('spectra-chart-and-controls', 'false', 'Toggle chart')
   )
 
   const spectrumTable = document.getElementById('spectrum-table')
   createSpectraTable(spectrumTable, rows, sampleCount)
+  spectrumTable.style.display = 'none'
   document.getElementById('spectra-table-actions').appendChild(
     downloadCSVButton(spectrumTable, "btn btn-outline-secondary", "download-spectrum", "Download table as CSV")
   )
   document.getElementById('spectra-table-actions').appendChild(
-    createToggleButton('spectra-table-container', 'false', 'Toggle table')
+    createToggleButton('spectrum-table', 'false', 'Toggle table')
   )
   createNotationToggle(spectrumTable, 'spectra-table-actions', 'scientific', 10)
 }
