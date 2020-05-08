@@ -1,6 +1,6 @@
 import '../stylesheets/results.css'
 import {parseCSV} from './csvParser.js'
-import {createResults} from './ui.js'
+import {createResults} from './results-ui.js'
 
 const encodedCSV = window.sessionStorage.getItem('csv')
 const csv = decodeURIComponent(atob(encodedCSV))
