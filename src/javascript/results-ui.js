@@ -12,18 +12,16 @@ const conversionFunction = (areaScale, powerScale) => {
 const createToggleButton = (target, expanded, text) => {
   const toggle = document.createElement('a')
   toggle.className = 'btn btn-outline-secondary ml-1'
-  toggle.href = '#' + target
+  toggle.href = '#'
   toggle.innerText = text
   toggle.setAttribute('role', 'button')
   toggle.setAttribute('aria-expanded', expanded)
-  toggle.setAttribute('aria-controls', target)
   toggle.addEventListener('click', (event) => {
     event.preventDefault();
-    const element = document.getElementById(target)
-    if (element.style.display === 'none') {
-      element.style.display = ''
+    if (target.style.display === 'none') {
+      target.style.display = ''
     } else {
-      element.style.display = 'none'
+      target.style.display = 'none'
     }
   }, false)
   return toggle
@@ -72,7 +70,7 @@ export const createResults = (rawRows, sampleCount, areaScale, powerScale, simpl
   const calculationActions = document.createElement('div')
   calculationActions.append(
     downloadCSVButton(calculationTable, "download-calc"),
-    createToggleButton('calculation-table', 'true', 'Toggle table'),
+    createToggleButton(calculationTable, 'true', 'Toggle table'),
     createNotationToggle(calculationTable, 'decimal', 2)
   )
   calculations.getElementsByClassName('heading-and-actions')[0].append(calculationActions)
@@ -80,10 +78,11 @@ export const createResults = (rawRows, sampleCount, areaScale, powerScale, simpl
   const chart = document.getElementById('chart')
   const chartCanvas = document.getElementById('chart-canvas')
   createChart(chartCanvas, rows, sampleCount)
-  document.getElementById('spectra-chart-and-controls').style.display = 'none'
+  const chartAndControls = document.getElementById('spectra-chart-and-controls')
+  chartAndControls.style.display = 'none'
   const chartActions = document.createElement('div')
   chartActions.append(
-    createToggleButton('spectra-chart-and-controls', 'false', 'Toggle chart')
+    createToggleButton(chartAndControls, 'false', 'Toggle chart')
   )
   chart.getElementsByClassName('heading-and-actions')[0].append(chartActions)
 
@@ -94,7 +93,7 @@ export const createResults = (rawRows, sampleCount, areaScale, powerScale, simpl
   const spectraActions = document.createElement('div')
   spectraActions.append(
     downloadCSVButton(spectrumTable, "download-spectrum"),
-    createToggleButton('spectrum-table', 'false', 'Toggle table'),
+    createToggleButton(spectrumTable, 'false', 'Toggle table'),
     createNotationToggle(spectrumTable, 'scientific', 10)
   )
   spectra.getElementsByClassName('heading-and-actions')[0].append(spectraActions)
