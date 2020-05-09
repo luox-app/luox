@@ -129,8 +129,8 @@ const renderSpectra = (radianceOrIrradiance, rows, sampleCount) => {
 
 export const renderResults = (container, radianceOrIrradiance, rows, interpolatedRows, sampleCount, simplifiedReport) => {
   container.append(
-    renderCalculations(radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport),
     renderChart(radianceOrIrradiance, rows, sampleCount),
+    renderCalculations(radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport),
     renderSpectra(radianceOrIrradiance, rows, sampleCount)
   )
 }
