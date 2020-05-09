@@ -17,17 +17,13 @@ const createErrorTable = (errors, errorsTable) => {
     const row = document.createElement('tr')
 
     const rowNum = document.createElement('td')
-    const rowNumText = document.createTextNode(`line ${error.row}`)
-    rowNum.appendChild(rowNumText)
+    rowNum.append(`line ${error.row}`)
 
     const message = document.createElement('td')
-    const messageText = document.createTextNode(error.message)
-    message.appendChild(messageText)
+    message.append(error.message)
 
-    row.appendChild(rowNum)
-    row.appendChild(message)
-
-    errorsTable.appendChild(row)
+    row.append(rowNum, message)
+    errorsTable.append(row)
   }
 }
 

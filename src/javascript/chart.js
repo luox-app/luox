@@ -23,10 +23,8 @@ const createDataSourceInput = (value, id, text) => {
   const label = document.createElement('label')
   label.className = 'form-check-label'
   label.setAttribute('for', id)
-  const textNode = document.createTextNode(text)
-  label.appendChild(textNode)
-  container.appendChild(input)
-  container.appendChild(label)
+  label.append(text)
+  container.append(input, label)
   return container
 }
 
@@ -35,9 +33,7 @@ const createDataSourceForm = () => {
   const rawDataInput = createDataSourceInput('raw', 'chart-data-raw', 'Raw data')
   const normalisedDataInput = createDataSourceInput('normalised', 'chart-data-normalised', 'Normalised data')
   const log10Input = createDataSourceInput('log10', 'chart-data-log10', 'Log10')
-  form.appendChild(rawDataInput)
-  form.appendChild(normalisedDataInput)
-  form.appendChild(log10Input)
+  form.append(rawDataInput, normalisedDataInput, log10Input)
   return form
 }
 

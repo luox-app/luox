@@ -2,14 +2,13 @@ const appendCells = (table, cellType, cells) => {
   const row = document.createElement("tr")
   const domCells = cells.map((cellText) =>  {
     const cell = document.createElement(cellType)
-    const text = document.createTextNode(cellText)
-    cell.appendChild(text)
+    cell.append(cellText)
     return cell
   })
   for (const cell of domCells) {
-    row.appendChild(cell)
+    row.append(cell)
   }
-  table.appendChild(row)
+  table.append(row)
   return domCells
 }
 
