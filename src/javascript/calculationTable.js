@@ -7,8 +7,15 @@ const createCalculationTableHeader = (table, sampleCount) => {
   createTableHeader(table, titles)
 }
 
-export const createCalculationTable = (table, rows, sampleCount, simplifiedReport) => {
+export const createCalculationTable = (table, radianceOrIrradiance, rows, sampleCount, simplifiedReport) => {
   createCalculationTableHeader(table, sampleCount)
+
+  let units = ''
+  if (radianceOrIrradiance === 'radiance') {
+    units = 'mW/(m²/sr)'
+  } else {
+    units = 'mW/m²'
+  }
 
   const luminanceTotals = calculateLuminance(rows, sampleCount)
   const chromaticity31  = calculateChromaticity31(rows, sampleCount)
@@ -29,9 +36,9 @@ export const createCalculationTable = (table, rows, sampleCount, simplifiedRepor
     createTableRow(table, "CIE 1964 x₁₀y₁₀ chromaticity (x₁₀)", chromaticity64XValues, asDecimal)
     createTableRow(table, "CIE 1964 x₁₀y₁₀ chromaticity (y₁₀)", chromaticity64YValues, asDecimal)
   }
-  createTableRow(table, "S-cone-opic irradiance (mW/m²)", sConeTotals, asDecimal)
-  createTableRow(table, "M-cone-opic irradiance (mW/m²)", mConeTotals, asDecimal)
-  createTableRow(table, "L-cone-opic irradiance (mW/m²)", lConeTotals, asDecimal)
-  createTableRow(table, "Rhodopic irradiance (mW/m²)", rodTotals, asDecimal)
-  createTableRow(table, "Melanopic irradiance (mW/m²)", melTotals, asDecimal)
+  createTableRow(table, `S-cone-opic ${radianceOrIrradiance} (${units})`, sConeTotals, asDecimal)
+  createTableRow(table, `M-cone-opic ${radianceOrIrradiance} (${units})`, mConeTotals, asDecimal)
+  createTableRow(table, `L-cone-opic ${radianceOrIrradiance} (${units})`, lConeTotals, asDecimal)
+  createTableRow(table, `Rhodopic ${radianceOrIrradiance} (${units})`, rodTotals, asDecimal)
+  createTableRow(table, `Melanopic ${radianceOrIrradiance} (${units})`, melTotals, asDecimal)
 }

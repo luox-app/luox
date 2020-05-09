@@ -10,3 +10,13 @@ export const asDecimal = (number, precision = 2) => number.toFixed(precision)
 export const sampleTitles = (sampleCount) => {
   return new Array(sampleCount).fill("").map((_, index) => "S"+index)
 }
+
+export const radianceOrIrradianceSIUnit = (radianceOrIrradiance) => {
+  let units = ''
+  if (radianceOrIrradiance === 'radiance') {
+    units = 'W/(m² nm sr)'
+  } else if (radianceOrIrradiance === 'irradiance') {
+    units = 'W/(m² nm)'
+  }
+  return units
+}

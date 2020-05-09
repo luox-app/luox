@@ -3,6 +3,8 @@ import {readCSV, encodeCSV, parseCSV} from './csvParser.js'
 
 const fileInput = document.getElementById('file-input')
 const uploadForm = document.getElementById('upload-form')
+const radianceOrIrradianceInput = document.getElementById('radiance-or-irradiance')
+const perSrSuffix = document.getElementById('per-sr')
 
 const handleFileSelect = () => {
   const fileList = fileInput.files
@@ -34,8 +36,10 @@ const handleSubmit = async (event) => {
 
   const errorsSection = document.getElementById('errors')
 
+  const radianceOrIrradianceSelect = document.getElementById('radiance-or-irradiance')
   const areaUnitSelect = document.getElementById('area-units')
   const powerUnitSelect = document.getElementById('power-units')
+  const radianceOrIrradiance = radianceOrIrradianceSelect.options[radianceOrIrradianceSelect.selectedIndex].value
   const areaScale = parseFloat(areaUnitSelect.options[areaUnitSelect.selectedIndex].value)
   const powerScale = parseFloat(powerUnitSelect.options[powerUnitSelect.selectedIndex].value)
 
@@ -48,6 +52,7 @@ const handleSubmit = async (event) => {
     if (errors.length === 0) {
       const encodedCSV = encodeCSV(data)
       window.sessionStorage.setItem('csv', encodedCSV)
+      window.sessionStorage.setItem('radianceOrIrradiance', radianceOrIrradiance)
       window.sessionStorage.setItem('areaScale', areaScale)
       window.sessionStorage.setItem('powerScale', powerScale)
       if (document.location.pathname.endsWith('/upload-csv.html')) {
@@ -63,5 +68,14 @@ const handleSubmit = async (event) => {
   }
 }
 
+radianceOrIrradianceInput.addEventListener('change', (event) => {
+  if (event.target.options[event.target.selectedIndex].value === 'radiance') {
+    perSrSuffix.style.display = ''
+  } else {
+    perSrSuffix.style.display = 'none'
+  }
+}, false)
+
+perSrSuffix.style.display = 'none'
 fileInput.addEventListener("change", handleFileSelect, false);
 uploadForm.addEventListener("submit", handleSubmit, false);

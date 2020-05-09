@@ -40,7 +40,12 @@
           <div id="file-upload">
             <form id="upload-form">
               <div class="form-inline">
-                <p>Upload a CSV with wavelength in nm and irradiances in
+                <p>Upload a CSV with wavelength in nm and
+                  <select class="form-control" id="radiance-or-irradiance">
+                    <option value="irradiance">irradiances</option>
+                    <option value="radiance">radiances</option>
+                  </select>
+                  in
                   <select class="form-control" id="power-units">
                     <option value="1000000">µW</option>
                     <option value="1000">mW</option>
@@ -52,6 +57,7 @@
                     <option value="10000">cm²</option>
                     <option value="1" selected>m²</option>
                   </select>
+                  <span id="per-sr"> per sr</span>
                 </p>
               </div>
               <div class="form-group">

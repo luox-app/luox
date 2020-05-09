@@ -5,6 +5,7 @@ import {renderResults} from './results-ui.js'
 
 const encodedCSV = window.sessionStorage.getItem('csv')
 const csv = decodeURIComponent(atob(encodedCSV))
+const radianceOrIrradiance = window.sessionStorage.getItem('radianceOrIrradiance')
 const areaScale = parseFloat(window.sessionStorage.getItem('areaScale'))
 const powerScale = parseFloat(window.sessionStorage.getItem('powerScale'))
 
@@ -18,4 +19,4 @@ const [errors, rawRows, sampleCount] = parseCSV(csv)
 const rows = mapSamples(rawRows, (wavelength, sample) => sample / areaScale * powerScale)
 const interpolatedRows = interpolateData(rows, sampleCount)
 
-renderResults(rows, interpolatedRows, sampleCount, simplifiedReport)
+renderResults(radianceOrIrradiance, rows, interpolatedRows, sampleCount, simplifiedReport)

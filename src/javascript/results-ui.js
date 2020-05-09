@@ -54,7 +54,7 @@ const createNotationToggle = (table, defaultNotation, decimalPrecision) => {
   return notationToggle;
 }
 
-const renderCalculations = (container, interpolatedRows, sampleCount, simplifiedReport) => {
+const renderCalculations = (container, radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport) => {
   const headingAndActions = document.createElement('div')
   const heading = document.createElement('h3')
   const actions = document.createElement('div')
@@ -63,7 +63,7 @@ const renderCalculations = (container, interpolatedRows, sampleCount, simplified
   headingAndActions.className = 'mt-3 d-flex justify-content-between'
   table.className = 'table table-sm mt-3 result-table'
 
-  heading.append('Illuminance and α-opic irradiances')
+  heading.append(`Illuminance and α-opic ${radianceOrIrradiance}s`)
   actions.append(
     downloadCSVButton(table, "download-calc"),
     createToggleButton(table, 'true', 'Toggle table'),
@@ -71,11 +71,11 @@ const renderCalculations = (container, interpolatedRows, sampleCount, simplified
   )
   headingAndActions.append(heading, actions)
 
-  createCalculationTable(table, interpolatedRows, sampleCount, simplifiedReport)
+  createCalculationTable(table, radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport)
   container.append(headingAndActions, table)
 }
 
-const renderChart = (container, rows, sampleCount) => {
+const renderChart = (container, radianceOrIrradiance, rows, sampleCount) => {
   const headingAndActions = document.createElement('div')
   const heading = document.createElement('h3')
   const actions = document.createElement('div')
@@ -96,10 +96,10 @@ const renderChart = (container, rows, sampleCount) => {
 
   chartAndControls.append(canvas)
   container.append(headingAndActions, chartAndControls)
-  createChart(canvas, rows, sampleCount)
+  createChart(canvas, radianceOrIrradiance, rows, sampleCount)
 }
 
-const renderSpectra = (container, rows, sampleCount) => {
+const renderSpectra = (container, radianceOrIrradiance, rows, sampleCount) => {
   const headingAndActions = document.createElement('div')
   const heading = document.createElement('h3')
   const actions = document.createElement('div')
@@ -117,12 +117,18 @@ const renderSpectra = (container, rows, sampleCount) => {
   )
   headingAndActions.append(heading, actions)
 
-  createSpectraTable(table, rows, sampleCount)
+  createSpectraTable(table, radianceOrIrradiance, rows, sampleCount)
   container.append(headingAndActions, table)
 }
 
-export const renderResults = (rows, interpolatedRows, sampleCount, simplifiedReport) => {
-  renderCalculations(document.getElementById('calculations'), interpolatedRows, sampleCount, simplifiedReport)
-  renderChart(document.getElementById('chart'), rows, sampleCount)
-  renderSpectra(document.getElementById('spectra'), rows, sampleCount)
+export const renderResults = (radianceOrIrradiance, rows, interpolatedRows, sampleCount, simplifiedReport) => {
+  renderCalculations(
+    document.getElementById('calculations'), radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport
+  )
+  renderChart(
+    document.getElementById('chart'), radianceOrIrradiance, rows, sampleCount
+  )
+  renderSpectra(
+    document.getElementById('spectra'), radianceOrIrradiance, rows, sampleCount
+  )
 }

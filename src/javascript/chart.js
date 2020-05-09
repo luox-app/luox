@@ -1,5 +1,5 @@
 import {mapSamples} from './rows.js'
-import {sampleTitles} from './helpers.js'
+import {sampleTitles, radianceOrIrradianceSIUnit} from './helpers.js'
 import Chart from 'chart.js'
 
 const generateHues = (sampleCount) => {
@@ -41,7 +41,7 @@ const createDataSourceForm = () => {
   return form
 }
 
-const addDataSourcesToChart = (chartCanvas, chart, rows, sampleCount) => {
+const addDataSourcesToChart = (chartCanvas, chart, radianceOrIrradiance, rows, sampleCount) => {
   const maxValues = []
   for (let sampleIdx = 0; sampleIdx < sampleCount; sampleIdx += 1) {
     const spectrum = rows.map((row) => row[sampleIdx + 1])
@@ -62,13 +62,13 @@ const addDataSourcesToChart = (chartCanvas, chart, rows, sampleCount) => {
     let data = []
     let yAxisLabel = ''
     if (event.target.value === 'raw') {
-      yAxisLabel = 'Spectral irradiance [W/(m² nm)]'
+      yAxisLabel = `Spectral ${radianceOrIrradiance} [${radianceOrIrradianceSIUnit(radianceOrIrradiance)}]`
       data = rows
     } else if (event.target.value === 'normalised') {
-      yAxisLabel = 'Normalised spectral irradiance (relative to max.)'
+      yAxisLabel = `Normalised spectral ${radianceOrIrradiance} (relative to max.)`
       data = normalisedRows
     } else if (event.target.value === 'log10') {
-      yAxisLabel = 'Log₁₀ spectral irradiance [log₁₀ W/(m² nm)]'
+      yAxisLabel = `Log₁₀ spectral ${radianceOrIrradiance} [log₁₀ ${radianceOrIrradianceSIUnit(radianceOrIrradiance)}]`
       data = log10Rows
     }
     chart.options.scales.yAxes[0].scaleLabel.labelString = yAxisLabel
@@ -86,7 +86,7 @@ const addDataSourcesToChart = (chartCanvas, chart, rows, sampleCount) => {
 }
 
 /* eslint-disable max-lines-per-function */
-export const createChart = (chartCanvas, rows, sampleCount) => {
+export const createChart = (chartCanvas, radianceOrIrradiance, rows, sampleCount) => {
   const datasets = []
   const hues = generateHues(sampleCount)
   const labels = sampleTitles(sampleCount)
@@ -126,7 +126,7 @@ export const createChart = (chartCanvas, rows, sampleCount) => {
           {
             'scaleLabel': {
               'display': true,
-              'labelString': 'Spectral irradiance [W/(m² nm)]'
+              'labelString': `Spectral ${radianceOrIrradiance} [${radianceOrIrradianceSIUnit(radianceOrIrradiance)}]`
             }
           }
         ]
@@ -135,6 +135,6 @@ export const createChart = (chartCanvas, rows, sampleCount) => {
     'type': 'line'
   });
 
-  addDataSourcesToChart(chartCanvas, chart, rows, sampleCount)
+  addDataSourcesToChart(chartCanvas, chart, radianceOrIrradiance, rows, sampleCount)
 }
 /* eslint-enable max-lines-per-function */
