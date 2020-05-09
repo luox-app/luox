@@ -55,52 +55,59 @@ const createNotationToggle = (table, defaultNotation, decimalPrecision) => {
 }
 
 const renderCalculations = (container, interpolatedRows, sampleCount, simplifiedReport) => {
-  const table = document.createElement('table')
-  table.className = 'table table-sm mt-3 result-table'
-  createCalculationTable(table, interpolatedRows, sampleCount, simplifiedReport)
   const heading = document.createElement('h3')
-  heading.append('Illuminance and α-opic irradiances')
   const actions = document.createElement('div')
+  const table = document.createElement('table')
+
+  heading.append('Illuminance and α-opic irradiances')
   actions.append(
     downloadCSVButton(table, "download-calc"),
     createToggleButton(table, 'true', 'Toggle table'),
     createNotationToggle(table, 'decimal', 2)
   )
   container.getElementsByClassName('heading-and-actions')[0].append(heading, actions)
+
+  table.className = 'table table-sm mt-3 result-table'
+  createCalculationTable(table, interpolatedRows, sampleCount, simplifiedReport)
   container.append(table)
 }
 
 const renderChart = (container, rows, sampleCount) => {
-  const canvas = document.createElement('canvas')
-  canvas.setAttribute('width', '400')
-  canvas.setAttribute('height', '200')
-  const chartAndControls = document.getElementById('spectra-chart-and-controls')
-  chartAndControls.append(canvas)
-  chartAndControls.style.display = 'none'
-  createChart(canvas, rows, sampleCount)
   const heading = document.createElement('h3')
-  heading.append('Spectra chart')
   const actions = document.createElement('div')
+  const chartAndControls = document.getElementById('spectra-chart-and-controls')
+  const canvas = document.createElement('canvas')
+
+  heading.append('Spectra chart')
   actions.append(
     createToggleButton(chartAndControls, 'false', 'Toggle chart')
   )
   container.getElementsByClassName('heading-and-actions')[0].append(heading, actions)
+
+  chartAndControls.append(canvas)
+  chartAndControls.style.display = 'none'
+
+  canvas.setAttribute('width', '400')
+  canvas.setAttribute('height', '200')
+  createChart(canvas, rows, sampleCount)
 }
 
 const renderSpectra = (container, rows, sampleCount) => {
-  const table = document.createElement('table')
-  table.className = 'table table-sm mt-3 result-table'
-  createSpectraTable(table, rows, sampleCount)
-  table.style.display = 'none'
   const heading = document.createElement('h3')
-  heading.append('Spectra')
   const actions = document.createElement('div')
+  const table = document.createElement('table')
+
+  heading.append('Spectra')
   actions.append(
     downloadCSVButton(table, "download-spectrum"),
     createToggleButton(table, 'false', 'Toggle table'),
     createNotationToggle(table, 'scientific', 10)
   )
   container.getElementsByClassName('heading-and-actions')[0].append(heading, actions)
+
+  table.className = 'table table-sm mt-3 result-table'
+  table.style.display = 'none'
+  createSpectraTable(table, rows, sampleCount)
   container.append(table)
 }
 
