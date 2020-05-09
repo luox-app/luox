@@ -1,7 +1,13 @@
 import Papa from 'papaparse'
 
 export const readCSV = async (file) => {
-  const fileContents = await file.text()
+  const fileContents = await new Promise((resolve) => {
+    const reader = new FileReader()
+    reader.addEventListener('load', (event) => {
+      resolve(event.target.result)
+    }, false)
+    reader.readAsText(file)
+  })
   return fileContents
 }
 
