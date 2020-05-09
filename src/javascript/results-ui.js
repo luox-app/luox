@@ -54,8 +54,7 @@ const createNotationToggle = (table, defaultNotation, decimalPrecision) => {
   return notationToggle;
 }
 
-const renderCalculations = (interpolatedRows, sampleCount, simplifiedReport) => {
-  const container = document.getElementById('calculations')
+const renderCalculations = (container, interpolatedRows, sampleCount, simplifiedReport) => {
   const table = document.createElement('table')
   table.className = 'table table-sm mt-3 result-table'
   createCalculationTable(table, interpolatedRows, sampleCount, simplifiedReport)
@@ -71,8 +70,7 @@ const renderCalculations = (interpolatedRows, sampleCount, simplifiedReport) => 
   container.append(table)
 }
 
-const renderChart = (rows, sampleCount) => {
-  const container = document.getElementById('chart')
+const renderChart = (container, rows, sampleCount) => {
   const canvas = document.createElement('canvas')
   canvas.setAttribute('width', '400')
   canvas.setAttribute('height', '200')
@@ -89,8 +87,7 @@ const renderChart = (rows, sampleCount) => {
   container.getElementsByClassName('heading-and-actions')[0].append(heading, actions)
 }
 
-const renderSpectra = (rows, sampleCount) => {
-  const container = document.getElementById('spectra')
+const renderSpectra = (container, rows, sampleCount) => {
   const table = document.createElement('table')
   table.className = 'table table-sm mt-3 result-table'
   createSpectraTable(table, rows, sampleCount)
@@ -108,7 +105,7 @@ const renderSpectra = (rows, sampleCount) => {
 }
 
 export const renderResults = (rows, interpolatedRows, sampleCount, simplifiedReport) => {
-  renderCalculations(interpolatedRows, sampleCount, simplifiedReport)
-  renderChart(rows, sampleCount)
-  renderSpectra(rows, sampleCount)
+  renderCalculations(document.getElementById('calculations'), interpolatedRows, sampleCount, simplifiedReport)
+  renderChart(document.getElementById('chart'), rows, sampleCount)
+  renderSpectra(document.getElementById('spectra'), rows, sampleCount)
 }
