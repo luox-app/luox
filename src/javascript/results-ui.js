@@ -61,6 +61,7 @@ const renderCalculations = (container, interpolatedRows, sampleCount, simplified
   const table = document.createElement('table')
 
   headingAndActions.className = 'mt-3 d-flex justify-content-between'
+  table.className = 'table table-sm mt-3 result-table'
 
   heading.append('Illuminance and α-opic irradiances')
   actions.append(
@@ -70,7 +71,6 @@ const renderCalculations = (container, interpolatedRows, sampleCount, simplified
   )
   headingAndActions.append(heading, actions)
 
-  table.className = 'table table-sm mt-3 result-table'
   createCalculationTable(table, interpolatedRows, sampleCount, simplifiedReport)
   container.append(headingAndActions, table)
 }
@@ -83,6 +83,10 @@ const renderChart = (container, rows, sampleCount) => {
   const canvas = document.createElement('canvas')
 
   headingAndActions.className = 'mt-5 d-flex justify-content-between'
+  chartAndControls.className = 'mt-3'
+  chartAndControls.style.display = 'none'
+  canvas.setAttribute('width', '400')
+  canvas.setAttribute('height', '200')
 
   heading.append('Spectra chart')
   actions.append(
@@ -90,12 +94,7 @@ const renderChart = (container, rows, sampleCount) => {
   )
   headingAndActions.append(heading, actions)
 
-  chartAndControls.className = 'mt-3'
   chartAndControls.append(canvas)
-  chartAndControls.style.display = 'none'
-
-  canvas.setAttribute('width', '400')
-  canvas.setAttribute('height', '200')
   container.append(headingAndActions, chartAndControls)
   createChart(canvas, rows, sampleCount)
 }
@@ -107,6 +106,8 @@ const renderSpectra = (container, rows, sampleCount) => {
   const table = document.createElement('table')
 
   headingAndActions.className = 'mt-5 d-flex justify-content-between'
+  table.className = 'table table-sm mt-3 result-table'
+  table.style.display = 'none'
 
   heading.append('Spectra')
   actions.append(
@@ -116,8 +117,6 @@ const renderSpectra = (container, rows, sampleCount) => {
   )
   headingAndActions.append(heading, actions)
 
-  table.className = 'table table-sm mt-3 result-table'
-  table.style.display = 'none'
   createSpectraTable(table, rows, sampleCount)
   container.append(headingAndActions, table)
 }
