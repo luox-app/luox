@@ -30,10 +30,11 @@ const createDataSourceInput = (value, id, text) => {
 
 const createDataSourceForm = () => {
   const form = document.createElement('form')
-  const rawDataInput = createDataSourceInput('raw', 'chart-data-raw', 'Raw data')
-  const normalisedDataInput = createDataSourceInput('normalised', 'chart-data-normalised', 'Normalised data')
-  const log10Input = createDataSourceInput('log10', 'chart-data-log10', 'Log10')
-  form.append(rawDataInput, normalisedDataInput, log10Input)
+  form.append(
+    createDataSourceInput('raw', 'chart-data-raw', 'Raw data'),
+    createDataSourceInput('normalised', 'chart-data-normalised', 'Normalised data'),
+    createDataSourceInput('log10', 'chart-data-log10', 'Log10')
+  )
   return form
 }
 
