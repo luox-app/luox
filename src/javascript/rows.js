@@ -69,7 +69,7 @@ export const calculateChromaticity64 = (rows, sampleCount) => {
   return calculateChromaticity(rows, sampleCount, CIEXYZ64)
 }
 
-export const calculateIrradiance = (rows, sampleCount, key) => {
+export const calculateAlphaOpic = (rows, sampleCount, key) => {
   const samplesInWatts = integrateWithWeights(rows, sampleCount, CIES026, key)
   return samplesInWatts.map((sample) => sample * 1000)
 }

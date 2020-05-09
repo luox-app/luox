@@ -1,4 +1,4 @@
-import {calculateLuminance, calculateIrradiance, calculateChromaticity31, calculateChromaticity64} from './rows.js'
+import {calculateLuminance, calculateAlphaOpic, calculateChromaticity31, calculateChromaticity64} from './rows.js'
 import {createTableHeader, createTableRow} from './table.js'
 import {asDecimal, sampleTitles} from './helpers.js'
 
@@ -24,11 +24,11 @@ export const createCalculationTable = (table, radianceOrIrradiance, rows, sample
   const chromaticity64  = calculateChromaticity64(rows, sampleCount)
   const chromaticity64XValues = chromaticity64.map((c) => c.x)
   const chromaticity64YValues = chromaticity64.map((c) => c.y)
-  const sConeTotals = calculateIrradiance(rows, sampleCount, 'sCone')
-  const mConeTotals = calculateIrradiance(rows, sampleCount, 'mCone')
-  const lConeTotals = calculateIrradiance(rows, sampleCount, 'lCone')
-  const rodTotals = calculateIrradiance(rows, sampleCount, 'rod')
-  const melTotals = calculateIrradiance(rows, sampleCount, 'mel')
+  const sConeTotals = calculateAlphaOpic(rows, sampleCount, 'sCone')
+  const mConeTotals = calculateAlphaOpic(rows, sampleCount, 'mCone')
+  const lConeTotals = calculateAlphaOpic(rows, sampleCount, 'lCone')
+  const rodTotals = calculateAlphaOpic(rows, sampleCount, 'rod')
+  const melTotals = calculateAlphaOpic(rows, sampleCount, 'mel')
   createTableRow(table, "Illuminance [lux]", luminanceTotals, asDecimal)
   if (!simplifiedReport) {
     createTableRow(table, "CIE 1931 xy chromaticity (x)", chromaticity31XValues, asDecimal)
