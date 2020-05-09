@@ -64,6 +64,8 @@ const renderCalculations = (radianceOrIrradiance, interpolatedRows, sampleCount,
   headingAndActions.className = 'mt-3 d-flex justify-content-between'
   table.className = 'table table-sm mt-3 result-table'
 
+  createCalculationTable(table, radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport)
+
   heading.append(`Illuminance and α-opic ${radianceOrIrradiance}s`)
   actions.append(
     downloadCSVButton(table, "download-calc"),
@@ -71,8 +73,6 @@ const renderCalculations = (radianceOrIrradiance, interpolatedRows, sampleCount,
     createNotationToggle(table, 'decimal', 2)
   )
   headingAndActions.append(heading, actions)
-
-  createCalculationTable(table, radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport)
   container.append(headingAndActions, table)
   return container
 }
@@ -114,6 +114,8 @@ const renderSpectra = (radianceOrIrradiance, rows, sampleCount) => {
   table.className = 'table table-sm mt-3 result-table'
   table.style.display = 'none'
 
+  createSpectraTable(table, radianceOrIrradiance, rows, sampleCount)
+
   heading.append('Spectra')
   actions.append(
     downloadCSVButton(table, "download-spectrum"),
@@ -121,8 +123,6 @@ const renderSpectra = (radianceOrIrradiance, rows, sampleCount) => {
     createNotationToggle(table, 'scientific', 10)
   )
   headingAndActions.append(heading, actions)
-
-  createSpectraTable(table, radianceOrIrradiance, rows, sampleCount)
   container.append(headingAndActions, table)
   return container
 }
