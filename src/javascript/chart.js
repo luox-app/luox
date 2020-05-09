@@ -11,7 +11,7 @@ const generateHues = (sampleCount) => {
   return hues
 }
 
-const createDataSourceInput = (value, id, text) => {
+const createDataSourceInput = (value, id, text, checked) => {
   const container = document.createElement('div')
   container.className = 'form-check-inline'
   const input = document.createElement('input')
@@ -20,6 +20,7 @@ const createDataSourceInput = (value, id, text) => {
   input.name = 'chart-data'
   input.value = value
   input.id = id
+  input.checked = checked
   const label = document.createElement('label')
   label.className = 'form-check-label'
   label.setAttribute('for', id)
@@ -31,9 +32,9 @@ const createDataSourceInput = (value, id, text) => {
 const createDataSourceForm = () => {
   const form = document.createElement('form')
   form.append(
-    createDataSourceInput('raw', 'chart-data-raw', 'Raw data'),
-    createDataSourceInput('normalised', 'chart-data-normalised', 'Normalised data'),
-    createDataSourceInput('log10', 'chart-data-log10', 'Log10')
+    createDataSourceInput('raw', 'chart-data-raw', 'Raw data', true),
+    createDataSourceInput('normalised', 'chart-data-normalised', 'Normalised data', false),
+    createDataSourceInput('log10', 'chart-data-log10', 'Log10', false)
   )
   return form
 }
@@ -78,8 +79,6 @@ const addDataSourcesToChart = (chartCanvas, chart, radianceOrIrradiance, rows, s
   chartForm.querySelectorAll('input[name="chart-data"]').forEach((input) => {
     input.addEventListener('click', toggleDataSource, false)
   })
-
-  document.getElementById('chart-data-raw').checked = true
 }
 
 /* eslint-disable max-lines-per-function */
