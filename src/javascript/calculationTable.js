@@ -29,7 +29,11 @@ export const createCalculationTable = (table, radianceOrIrradiance, rows, sample
   const lConeTotals = calculateAlphaOpic(rows, sampleCount, 'lCone')
   const rodTotals = calculateAlphaOpic(rows, sampleCount, 'rod')
   const melTotals = calculateAlphaOpic(rows, sampleCount, 'mel')
-  createTableRow(table, "Illuminance [lux]", luminanceTotals, asDecimal)
+  if (radianceOrIrradiance === 'radiance') {
+    createTableRow(table, "Luminance [cd/m²]", luminanceTotals, asDecimal)
+  } else {
+    createTableRow(table, "Illuminance [lux]", luminanceTotals, asDecimal)
+  }
   if (!simplifiedReport) {
     createTableRow(table, "CIE 1931 xy chromaticity (x)", chromaticity31XValues, asDecimal)
     createTableRow(table, "CIE 1931 xy chromaticity (y)", chromaticity31YValues, asDecimal)

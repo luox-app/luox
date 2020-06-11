@@ -66,7 +66,12 @@ const renderCalculations = (radianceOrIrradiance, interpolatedRows, sampleCount,
 
   createCalculationTable(table, radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport)
 
-  heading.append(`Illuminance and α-opic ${radianceOrIrradiance}s`)
+  if (radianceOrIrradiance === 'radiance') {
+    heading.append('Luminance and α-opic radiances')
+  } else {
+    heading.append('Illuminance and α-opic irradiances')
+  }
+
   actions.append(
     downloadCSVButton(table, "download-calc"),
     createToggleButton(table, 'true', 'Toggle table'),
