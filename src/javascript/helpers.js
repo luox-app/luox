@@ -14,9 +14,9 @@ export const sampleTitles = (sampleCount) => {
 export const radianceOrIrradianceSIUnit = (radianceOrIrradiance) => {
   let units = ''
   if (radianceOrIrradiance === 'radiance') {
-    units = 'W/(m² nm sr)'
+    units = 'W ⋅ m⁻² ⋅ sr⁻¹ ⋅ nm⁻¹'
   } else if (radianceOrIrradiance === 'irradiance') {
-    units = 'W/(m² nm)'
+    units = 'W ⋅ m⁻² ⋅ nm⁻¹)'
   }
   return units
 }
