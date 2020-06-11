@@ -16,7 +16,7 @@ export const radianceOrIrradianceSIUnit = (radianceOrIrradiance) => {
   if (radianceOrIrradiance === 'radiance') {
     units = 'W ⋅ m⁻² ⋅ sr⁻¹ ⋅ nm⁻¹'
   } else if (radianceOrIrradiance === 'irradiance') {
-    units = 'W ⋅ m⁻² ⋅ nm⁻¹)'
+    units = 'W ⋅ m⁻² ⋅ nm⁻¹'
   }
   return units
 }
