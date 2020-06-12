@@ -12,9 +12,9 @@ export const createCalculationTable = (table, radianceOrIrradiance, rows, sample
 
   let units = ''
   if (radianceOrIrradiance === 'radiance') {
-    units = 'mW/(m²/sr)'
+    units = 'mW ⋅ m⁻² ⋅ sr'
   } else {
-    units = 'mW/m²'
+    units = 'mW ⋅ m⁻²'
   }
 
   const luminanceTotals = calculateLuminance(rows, sampleCount)
