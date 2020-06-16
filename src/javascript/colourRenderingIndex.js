@@ -36,3 +36,20 @@ const blackBodyspectralRadiance = (lambda, t) => {
 export const blackBodyReferenceSpectra = (lambda, T) => {
   return blackBodyspectralRadiance(lambda, T) / blackBodyspectralRadiance(560e-9, T)
 }
+
+// Cite:: CIE 015:2018 equations 4.7, 4.8, 4.9
+export const daylightIlluminantChromaticity = (T) => {
+  let x = 0
+  if (T <= 7000) {
+    x = (-4.6070e9 / (T ** 3)) + (2.9678e6 / (T ** 2)) + (0.09911e3 / T) + 0.244063
+  } else {
+    x = (-2.0064e9 / (T ** 3)) + (1.9018e6 / (T ** 2)) + (0.24748e3 / T) + 0.237040
+  }
+
+  const y = (-3 * (x ** 2)) + (2.870 * x) -0.275
+
+  return {
+    x,
+    y
+  }
+}
