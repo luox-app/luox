@@ -1,4 +1,4 @@
-var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity } = require('./../src/javascript/colourRenderingIndex.js')
+var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity, daylightReferenceSpectra } = require('./../src/javascript/colourRenderingIndex.js')
 var assert = require('assert')
 
 describe('cie1960UCS', function() {
@@ -39,4 +39,17 @@ describe('daylightIlluminantChromaticity', function() {
     assert.equal(0.3587, daylightIlluminantChromaticity(5000).y.toFixed(4))
     assert.equal(0.3092, daylightIlluminantChromaticity(8000).y.toFixed(4))
   });
+});
+
+describe('daylightReferenceSpectra', function() {
+  it('returns the daylight reference spectra at the given wavelength and temperature', function() {
+    // Test data from CIE 015:2018 (§4.1.2 Note 6 and Table 5)
+    const t_d50 = 5000 * (1.4388 / 1.4380)
+    assert.equal(27.179, daylightReferenceSpectra(385, t_d50).toFixed(3));
+    assert.equal(100.755, daylightReferenceSpectra(540, t_d50).toFixed(3));
+
+    const t_d75 = 7500 * (1.4388 / 1.4380)
+    assert.equal(68.333, daylightReferenceSpectra(385, t_d75).toFixed(3));
+    assert.equal(106.289, daylightReferenceSpectra(540, t_d75).toFixed(3));
+  })
 });

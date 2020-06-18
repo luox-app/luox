@@ -1,3 +1,5 @@
+import D_ILLUMINANT_S from '../data/d_illuminant.json'
+
 export const cie1960UCS = (x, y) => {
   const u = (4 * x) / ((-2 * x) + (12 * y) + 3)
   const v = (6 * y) / ((-2 * x) + (12 * y) + 3)
@@ -52,4 +54,17 @@ export const daylightIlluminantChromaticity = (T) => {
     x,
     y
   }
+}
+
+// Cite:: CIE 015:2018 equations 4.10, 4.11
+export const daylightReferenceSpectra = (lambda, T) => {
+  const chromaticity = daylightIlluminantChromaticity(T);
+  const m1 = (-1.3515 - (1.7703 * chromaticity.x) + (5.9114 * chromaticity.y)) / (0.0241 + (0.2562 * chromaticity.x) - (0.7341 * chromaticity.y));
+  const m2 = (0.0300 - (31.4424 * chromaticity.x) + (30.0717 * chromaticity.y)) / (0.0241 + (0.2562 * chromaticity.x) - (0.7341 * chromaticity.y));
+
+  const s0 = D_ILLUMINANT_S[lambda].S0;
+  const s1 = D_ILLUMINANT_S[lambda].S1;
+  const s2 = D_ILLUMINANT_S[lambda].S2;
+
+  return s0 + (m1.toFixed(3) * s1) + (m2.toFixed(3) * s2)
 }
