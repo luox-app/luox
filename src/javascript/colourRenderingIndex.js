@@ -1,4 +1,5 @@
 import D_ILLUMINANT_S from '../data/d_illuminant.json'
+import ROBERTSON from '../data/robertson.json'
 
 export const cie1960UCS = (x, y) => {
   const u = (4 * x) / ((-2 * x) + (12 * y) + 3)
@@ -15,6 +16,68 @@ export const correlatedColourTemperature = (x, y) => {
   const cct = (-449*(n**3)) + (3525*(n**2)) - (6823.3*n) + 5520.33
   return cct
 }
+
+/* eslint-disable max-lines-per-function */
+export const uvToCorrelatedColourTemperatureRobertson = (u, v) => {
+  let lastdt = 0
+  let lastdv = 0
+  let lastdu = 0
+  let T = 0
+
+  for (let i = 1; i <= 31; i += 1) {
+    const wrRuvt = ROBERTSON[i]
+    const wrRuvtPrevious = ROBERTSON[i - 1]
+
+    let du = 1
+    let dv = wrRuvt.t
+    let length = Math.sqrt((1**2) + (dv**2))
+
+    du /= length
+    dv /= length
+
+    let uu = u - wrRuvt.u
+    let vv = v - wrRuvt.v
+
+    let dt = (-uu * dv) + (vv * du)
+
+    if (dt <= 0 || i === 30) {
+      if (dt > 0) {
+        dt = 0
+      }
+
+      dt = -dt
+
+      let f = 0
+      if (i === 1) {
+        f = 0
+      } else {
+        f = dt / (lastdt + dt)
+      }
+
+      T = 1.0e6 / ((wrRuvtPrevious.r * f) + (wrRuvt.r * (1 - f)))
+
+      uu = u - ((wrRuvtPrevious.u * f) + (wrRuvt.u * (1 - f)))
+      vv = v - ((wrRuvtPrevious.v * f) + (wrRuvt.v * (1 - f)))
+
+      du = (du * (1 - f)) + (lastdu * f)
+      dv = (dv * (1 - f)) + (lastdv * f)
+
+      length = Math.sqrt((du**2) + (dv**2))
+
+      du /= length
+      dv /= length
+
+      break
+    }
+
+    lastdt = dt
+    lastdu = du
+    lastdv = dv
+  }
+
+  return T
+}
+/* eslint-enable max-lines-per-function */
 
 // Cite: CIE 015:2018 Annex E
 const blackBodyspectralRadiance = (lambda, t) => {

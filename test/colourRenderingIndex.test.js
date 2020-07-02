@@ -1,4 +1,4 @@
-var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity, daylightReferenceSpectra } = require('./../src/javascript/colourRenderingIndex.js')
+var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity, daylightReferenceSpectra, uvToCorrelatedColourTemperatureRobertson } = require('./../src/javascript/colourRenderingIndex.js')
 var assert = require('assert')
 
 describe('cie1960UCS', function() {
@@ -17,6 +17,13 @@ describe('correlatedColourTemperature', function() {
   it('calculates CCT using the McCarmy approximation', function() {
     const cct = correlatedColourTemperature(0.3721, 0.3751)
     assert.equal(cct.toFixed(1), 4228.8)
+  });
+});
+
+describe('uvToCorrelatedColourTemperatureRobertson', function() {
+  it('calculates CCT from u,v using the Robertson method', function() {
+    const cct = uvToCorrelatedColourTemperatureRobertson(0.193741375998230, 0.315221043940594)
+    assert.equal(cct.toFixed(3), 6500.016)
   });
 });
 
