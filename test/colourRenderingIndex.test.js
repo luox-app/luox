@@ -1,4 +1,4 @@
-var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity, daylightReferenceSpectra, uvToCorrelatedColourTemperatureRobertson } = require('./../src/javascript/colourRenderingIndex.js')
+var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity, daylightReferenceSpectra, uvToCorrelatedColourTemperatureRobertson, testColourColorimetry } = require('./../src/javascript/colourRenderingIndex.js')
 var assert = require('assert')
 
 describe('cie1960UCS', function() {
@@ -59,4 +59,22 @@ describe('daylightReferenceSpectra', function() {
     assert.equal(68.333, daylightReferenceSpectra(385, t_d75).toFixed(3));
     assert.equal(106.289, daylightReferenceSpectra(540, t_d75).toFixed(3));
   })
+});
+
+describe('testColourColorimetry', function() {
+  it('returns the chromaticity for each of the test colours', function() {
+    let referenceSpectra = []
+    let lambda;
+    for (lambda = 380; lambda <= 780; lambda += 5) {
+      referenceSpectra.push([lambda, blackBodyReferenceSpectra(lambda * 1e-9, 4224.4)]);
+    }
+
+    let testColour1 = testColourColorimetry(referenceSpectra)[0];
+    assert.equal(0.4395, testColour1.x.toFixed(4));
+    assert.equal(0.3725, testColour1.y.toFixed(4));
+
+    let testColour8 = testColourColorimetry(referenceSpectra)[7];
+    assert.equal(0.3992, testColour8.x.toFixed(4));
+    assert.equal(0.3177, testColour8.y.toFixed(4));
+  });
 });

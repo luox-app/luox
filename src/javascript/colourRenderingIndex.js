@@ -1,5 +1,7 @@
 import D_ILLUMINANT_S from '../data/d_illuminant.json'
 import ROBERTSON from '../data/robertson.json'
+import TEST_COLOURS from '../data/cri_test_colours.json'
+import {calculateChromaticity31} from './rows.js'
 
 export const cie1960UCS = (x, y) => {
   const u = (4 * x) / ((-2 * x) + (12 * y) + 3)
@@ -130,4 +132,17 @@ export const daylightReferenceSpectra = (lambda, T) => {
   const s2 = D_ILLUMINANT_S[lambda].S2;
 
   return s0 + (m1.toFixed(3) * s1) + (m2.toFixed(3) * s2)
+}
+
+export const testColourColorimetry = (spectra) => {
+  const spectraUnderTestColours = spectra.map((row) => {
+    const [wavelength, sample] = row
+
+    const sampleUnderTestColours = TEST_COLOURS[wavelength].map((testColour) => {
+      return sample * testColour
+    })
+    return [wavelength, sampleUnderTestColours].flat()
+  })
+
+  return calculateChromaticity31(spectraUnderTestColours, 8)
 }
