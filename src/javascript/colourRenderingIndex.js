@@ -146,3 +146,37 @@ export const testColourColorimetry = (spectra) => {
 
   return calculateChromaticity31(spectraUnderTestColours, 8)
 }
+
+export const adaptiveColourShift = (referenceSpectra, testSpectra) => {
+  const c = (u, v) => {
+    return (1 / v) * (4 - u - (10*v))
+  }
+
+  const d = (u, v) => {
+    return (1 / v) * ((1.708*v) + 0.404 - (1.481*u))
+  }
+
+  const [{'x': xk, 'y': yk}] = calculateChromaticity31(testSpectra, 1);
+  const {'u': uk, 'v': vk} = cie1960UCS(xk, yk);
+  const ck = c(uk, vk);
+  const dk = d(uk, vk);
+
+  const [{'x': xr, 'y': yr}] = calculateChromaticity31(referenceSpectra, 1);
+  const {'u': ur, 'v': vr} = cie1960UCS(xr, yr);
+  const cr = c(ur, vr);
+  const dr = d(ur, vr);
+
+  return testColourColorimetry(testSpectra).map((xkiyki) => {
+    const {'u': uki, 'v': vki} = cie1960UCS(xkiyki.x, xkiyki.y);
+    const cki = c(uki, vki);
+    const dki = d(uki, vki);
+
+    const uPrimeki = (10.872 + (0.404 * (cr / ck) * cki) - (4 * (dr/dk) * dki)) / (16.518 + (1.481 * (cr / ck) * cki) - ((dr / dk) * dki));
+    const vPrimeki = 5.520 / (16.518 + (1.481 * (cr / ck) * cki) - ((dr / dk) * dki));
+
+    return {
+      'uPrime': uPrimeki,
+      'vPrime': vPrimeki
+    }
+  })
+}
