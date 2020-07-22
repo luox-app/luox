@@ -42,17 +42,19 @@ export const calculateLuminance = (rows, sampleCount) => {
 }
 
 const calculateChromaticity = (rows, sampleCount, data) => {
-  const X = integrateWithWeights(rows, sampleCount, data, 'X')
-  const Y = integrateWithWeights(rows, sampleCount, data, 'Y')
-  const Z = integrateWithWeights(rows, sampleCount, data, 'Z')
+  const allX = integrateWithWeights(rows, sampleCount, data, 'X')
+  const allY = integrateWithWeights(rows, sampleCount, data, 'Y')
+  const allZ = integrateWithWeights(rows, sampleCount, data, 'Z')
 
   const output = new Array(sampleCount)
 
   for (let i = 0; i < output.length; i +=1) {
-    const x = X[i] / (X[i] + Y[i] + Z[i])
-    const y = Y[i] / (X[i] + Y[i] + Z[i])
+    const x = allX[i] / (allX[i] + allY[i] + allZ[i])
+    const y = allY[i] / (allX[i] + allY[i] + allZ[i])
+    const Y = allY[i]
 
     output[i] = {
+      Y,
       x,
       y
     }
