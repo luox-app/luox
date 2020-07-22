@@ -180,3 +180,17 @@ export const adaptiveColourShift = (referenceSpectra, testSpectra) => {
     }
   })
 }
+
+export const normalizeSpectra = (spectra, sampleCount) => {
+  const chromaticity = calculateChromaticity31(spectra, sampleCount)
+  return spectra.map((row) => {
+    const normalized = new Array(sampleCount)
+
+    for (let i=0; i < sampleCount; i += 1) {
+      const factor = 100 / chromaticity[i].Y
+      normalized[i] = row[i+1] * factor
+    }
+
+    return [row[0], normalized].flat()
+  })
+}

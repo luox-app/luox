@@ -1,5 +1,6 @@
-var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity, daylightReferenceSpectra, uvToCorrelatedColourTemperatureRobertson, testColourColorimetry, adaptiveColourShift } = require('./../src/javascript/colourRenderingIndex.js')
-var assert = require('assert')
+var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity, daylightReferenceSpectra, uvToCorrelatedColourTemperatureRobertson, testColourColorimetry, adaptiveColourShift, normalizeSpectra } = require('./../src/javascript/colourRenderingIndex.js')
+import {calculateChromaticity31} from './../src/javascript/rows.js'
+var assert = require('chai').assert
 
 describe('cie1960UCS', function() {
   it('calculates u from the chromaticity', function() {
@@ -118,5 +119,23 @@ describe('adaptiveColourShift', function() {
     let adaptiveShift8 = adaptiveColourShift(referenceSpectra, testSpectra)[7];
     assert.equal(0.2487, adaptiveShift8.uPrime.toFixed(4));
     assert.equal(0.3134, adaptiveShift8.vPrime.toFixed(4));
+  });
+});
+
+describe('normalizeSpectra', function() {
+  it('ensures that the tristimulus Y value is 100 for each input spectrum', function() {
+    let inputSpectra = []
+    let lambda;
+    for (lambda = 380; lambda <= 780; lambda += 5) {
+      inputSpectra.push([
+        lambda,
+        blackBodyReferenceSpectra(lambda * 1e-9, 4000),
+        blackBodyReferenceSpectra(lambda * 1e-9, 4100)
+      ]);
+    }
+    const normalizedSpectra = normalizeSpectra(inputSpectra, 2);
+
+    assert.closeTo(100, calculateChromaticity31(normalizedSpectra, 2)[0].Y, 0.0001)
+    assert.closeTo(100, calculateChromaticity31(normalizedSpectra, 2)[1].Y, 0.0001)
   });
 });
