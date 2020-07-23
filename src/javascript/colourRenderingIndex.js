@@ -175,8 +175,8 @@ export const adaptiveColourShift = (referenceSpectra, testSpectra) => {
     const vPrimeki = 5.520 / (16.518 + (1.481 * (cr / ck) * cki) - ((dr / dk) * dki));
 
     return {
-      'uPrime': uPrimeki,
-      'vPrime': vPrimeki
+      uPrimeki,
+      vPrimeki
     }
   })
 }

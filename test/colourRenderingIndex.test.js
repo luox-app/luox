@@ -113,12 +113,12 @@ describe('adaptiveColourShift', function() {
     }
 
     let adaptiveShift1 = adaptiveColourShift(referenceSpectra, testSpectra)[0];
-    assert.equal(0.2547, adaptiveShift1.uPrime.toFixed(4));
-    assert.equal(0.3401, adaptiveShift1.vPrime.toFixed(4));
+    assert.equal(0.2547, adaptiveShift1.uPrimeki.toFixed(4));
+    assert.equal(0.3401, adaptiveShift1.vPrimeki.toFixed(4));
 
     let adaptiveShift8 = adaptiveColourShift(referenceSpectra, testSpectra)[7];
-    assert.equal(0.2487, adaptiveShift8.uPrime.toFixed(4));
-    assert.equal(0.3134, adaptiveShift8.vPrime.toFixed(4));
+    assert.equal(0.2487, adaptiveShift8.uPrimeki.toFixed(4));
+    assert.equal(0.3134, adaptiveShift8.vPrimeki.toFixed(4));
   });
 });
 
