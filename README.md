@@ -43,4 +43,4 @@ $ npm start
 
 ## Production
 
-The app is deployed to GitHub Pages using the configuration in .github/workflows/main.yml.
+The app is [deployed to Netlify](https://luox.netlify.app/).
