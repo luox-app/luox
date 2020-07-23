@@ -194,3 +194,38 @@ export const normalizeSpectra = (spectra, sampleCount) => {
     return [row[0], normalized].flat()
   })
 }
+
+export const uniformSpace = (testSpectra, referenceSpectra) => {
+  const normalizedTestSpectra = normalizeSpectra(testSpectra, 1)
+  const normalizedReferenceSpectra = normalizeSpectra(referenceSpectra, 1)
+  const testColourColorimetryTestSpectra = testColourColorimetry(normalizedTestSpectra)
+  const testColourColorimetryReferenceSpectra = testColourColorimetry(normalizedReferenceSpectra)
+
+  const xr =  calculateChromaticity31(referenceSpectra, 1)[0].x
+  const yr =  calculateChromaticity31(referenceSpectra, 1)[0].y
+  const ur = cie1960UCS(xr, yr).u
+  const vr = cie1960UCS(xr, yr).v
+
+  const output = new Array(testColourColorimetryTestSpectra.length)
+
+  for (let i = 0; i < output.length; i += 1) {
+    const xri = testColourColorimetryReferenceSpectra[i].x
+    const yri = testColourColorimetryReferenceSpectra[i].y
+    const Yri = testColourColorimetryReferenceSpectra[i].Y
+
+    const uri = cie1960UCS(xri, yri).u
+    const vri = cie1960UCS(xri, yri).v
+
+    const Wri = (25 * (Yri ** (1/3))) - 17
+    const Uri = 13 * Wri * (uri - ur)
+    const Vri = 13 * Wri * (vri - vr)
+
+    output[i] = {
+      Uri,
+      Vri,
+      Wri
+    }
+  }
+
+  return output
+}

@@ -1,4 +1,4 @@
-var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity, daylightReferenceSpectra, uvToCorrelatedColourTemperatureRobertson, testColourColorimetry, adaptiveColourShift, normalizeSpectra } = require('./../src/javascript/colourRenderingIndex.js')
+var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity, daylightReferenceSpectra, uvToCorrelatedColourTemperatureRobertson, testColourColorimetry, adaptiveColourShift, normalizeSpectra, uniformSpace } = require('./../src/javascript/colourRenderingIndex.js')
 import {calculateChromaticity31} from './../src/javascript/rows.js'
 var assert = require('chai').assert
 
@@ -137,5 +137,25 @@ describe('normalizeSpectra', function() {
 
     assert.closeTo(100, calculateChromaticity31(normalizedSpectra, 2)[0].Y, 0.0001)
     assert.closeTo(100, calculateChromaticity31(normalizedSpectra, 2)[1].Y, 0.0001)
+  });
+});
+
+describe('uniformSpace', function() {
+  it('calculates U*V*W* of the test and reference spectra for each test colour', function() {
+    let referenceSpectra = []
+    let lambda;
+    for (lambda = 380; lambda <= 780; lambda += 5) {
+      referenceSpectra.push([lambda, blackBodyReferenceSpectra(lambda * 1e-9, 4224.09)]);
+    }
+
+    const output = uniformSpace(referenceSpectra, referenceSpectra);
+
+    assert.closeTo(61.5897, output[0].Wri, 0.01)
+    assert.closeTo(36.3399, output[0].Uri, 0.01)
+    assert.closeTo(5.9600, output[0].Vri, 0.01)
+
+    assert.closeTo(62.6029, output[7].Wri, 0.01)
+    assert.closeTo(35.9323, output[7].Uri, 0.01)
+    assert.closeTo(-11.9559, output[7].Vri, 0.01)
   });
 });
