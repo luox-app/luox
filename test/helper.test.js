@@ -1,5 +1,5 @@
 var { asExponential } = require('./../src/javascript/helpers.js')
-var assert = require('assert');
+var assert = require('chai').assert;
 
 describe('asExponential', function() {
   it('should return a number larger than 1 in scientific notation', function() {

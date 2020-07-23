@@ -1,5 +1,5 @@
 var { sprague } = require('./../src/javascript/sprague.js')
-var assert = require('assert');
+var assert = require('chai').assert;
 
 describe('sprague', function() {
   it('should return unmodified input when interpolation factor is 1', function() {

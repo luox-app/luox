@@ -1,5 +1,5 @@
 var csvExport = require('./../src/javascript/csvExport.js')
-var assert = require('assert');
+var assert = require('chai').assert;
 const { JSDOM } = require('jsdom');
 
 describe('tableToCSV', function() {
