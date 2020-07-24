@@ -1,4 +1,4 @@
-var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity, daylightReferenceSpectra, uvToCorrelatedColourTemperatureRobertson, testColourColorimetry, adaptiveColourShift, normalizeSpectra, uniformSpace } = require('./../src/javascript/colourRenderingIndex.js')
+var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity, daylightReferenceSpectra, uvToCorrelatedColourTemperatureRobertson, testColourColorimetry, adaptiveColourShift, normalizeSpectra, uniformSpace, specialColourRenderingIndicies } = require('./../src/javascript/colourRenderingIndex.js')
 import {calculateChromaticity31} from './../src/javascript/rows.js'
 var assert = require('chai').assert
 
@@ -189,3 +189,20 @@ describe('uniformSpace', function() {
     // assert.closeTo(-14.5084, output[7].Vki, 0.01)
   });
 });
+
+describe('specialColourRenderingIndicies', function() {
+  it('calculates the special colour rendering index from the test/reference uniform colour spaces', function() {
+    const input = [{
+      'Wri': 61.5897,
+      'Uri': 36.3399,
+      'Vri': 5.960,
+      'Wki': 61.6915,
+      'Uki': 26.7916,
+      'Vki': 6.7389
+    }]
+
+    const output = specialColourRenderingIndicies(input)
+    assert.equal(9.58, output[0].DeltaEi.toFixed(2))
+    assert.equal(55.93, output[0].Ri.toFixed(2))
+  })
+})

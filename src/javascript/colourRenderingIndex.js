@@ -244,3 +244,20 @@ export const uniformSpace = (testSpectra, referenceSpectra) => {
 
   return output
 }
+
+export const specialColourRenderingIndicies = (input) => {
+  const output = new Array(input.length)
+
+  for (let i = 0; i < output.length; i += 1) {
+    const DeltaEi = Math.sqrt(((input[i].Uri - input[i].Uki) ** 2) + ((input[i].Vri - input[i].Vki) ** 2) + ((input[i].Wri - input[i].Wki) ** 2))
+
+    const Ri = 100 - (4.6 * DeltaEi)
+
+    output[i] = {
+      DeltaEi,
+      Ri
+    }
+  }
+
+  return output
+}
