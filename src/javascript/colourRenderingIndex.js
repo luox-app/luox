@@ -206,6 +206,10 @@ export const uniformSpace = (testSpectra, referenceSpectra) => {
   const ur = cie1960UCS(xr, yr).u
   const vr = cie1960UCS(xr, yr).v
 
+  const uPrimek = ur
+  const vPrimek = vr
+  const uvPrimeki = adaptiveColourShift(referenceSpectra, testSpectra)
+
   const output = new Array(testColourColorimetryTestSpectra.length)
 
   for (let i = 0; i < output.length; i += 1) {
@@ -216,13 +220,24 @@ export const uniformSpace = (testSpectra, referenceSpectra) => {
     const uri = cie1960UCS(xri, yri).u
     const vri = cie1960UCS(xri, yri).v
 
+    const {uPrimeki, vPrimeki} = uvPrimeki[i]
+
+    const Yki = testColourColorimetryTestSpectra[i].Y
+
     const Wri = (25 * (Yri ** (1/3))) - 17
     const Uri = 13 * Wri * (uri - ur)
     const Vri = 13 * Wri * (vri - vr)
 
+    const Wki = (25 * (Yki ** (1/3))) - 17
+    const Uki = 13 * Wki * (uPrimeki - uPrimek)
+    const Vki = 13 * Wri * (vPrimeki - vPrimek)
+
     output[i] = {
+      Uki,
       Uri,
+      Vki,
       Vri,
+      Wki,
       Wri
     }
   }
