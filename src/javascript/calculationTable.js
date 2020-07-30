@@ -1,4 +1,4 @@
-import {calculateLuminance, calculateAlphaOpic, calculateChromaticity31, calculateChromaticity64} from './rows.js'
+import {calculateLuminance, calculateAlphaOpic, calculateChromaticity31, calculateChromaticity64, calculateEquivalentDaylightAlphaOpic} from './rows.js'
 import {createTableHeader, createTableRow} from './table.js'
 import {asDecimal, sampleTitles} from './helpers.js'
 
@@ -7,6 +7,7 @@ const createCalculationTableHeader = (table, sampleCount) => {
   createTableHeader(table, titles)
 }
 
+/* eslint-disable max-lines-per-function */
 export const createCalculationTable = (table, radianceOrIrradiance, rows, sampleCount, simplifiedReport) => {
   createCalculationTableHeader(table, sampleCount)
 
@@ -29,6 +30,8 @@ export const createCalculationTable = (table, radianceOrIrradiance, rows, sample
   const lConeTotals = calculateAlphaOpic(rows, sampleCount, 'lCone')
   const rodTotals = calculateAlphaOpic(rows, sampleCount, 'rod')
   const melTotals = calculateAlphaOpic(rows, sampleCount, 'mel')
+  const equivalentDaylightAlphaOpic = calculateEquivalentDaylightAlphaOpic(sConeTotals, mConeTotals, lConeTotals, rodTotals, melTotals)
+
   if (radianceOrIrradiance === 'radiance') {
     createTableRow(table, "Luminance [cd/m²]", luminanceTotals, asDecimal)
   } else {
@@ -45,4 +48,18 @@ export const createCalculationTable = (table, radianceOrIrradiance, rows, sample
   createTableRow(table, `L-cone-opic ${radianceOrIrradiance} (${units})`, lConeTotals, asDecimal)
   createTableRow(table, `Rhodopic ${radianceOrIrradiance} (${units})`, rodTotals, asDecimal)
   createTableRow(table, `Melanopic ${radianceOrIrradiance} (${units})`, melTotals, asDecimal)
+
+  let equivalentDaylightUnit = ''
+  if (radianceOrIrradiance === 'radiance') {
+    equivalentDaylightUnit = "EDL [cd/m²]"
+  } else {
+    equivalentDaylightUnit = "EDI [lux]"
+  }
+
+  createTableRow(table, `S-cone-opic ${equivalentDaylightUnit}`, equivalentDaylightAlphaOpic.sc, asDecimal)
+  createTableRow(table, `M-cone-opic ${equivalentDaylightUnit}`, equivalentDaylightAlphaOpic.mc, asDecimal)
+  createTableRow(table, `L-cone-opic ${equivalentDaylightUnit}`, equivalentDaylightAlphaOpic.lc, asDecimal)
+  createTableRow(table, `Rhodopic ${equivalentDaylightUnit}`, equivalentDaylightAlphaOpic.rh, asDecimal)
+  createTableRow(table, `Melanopic ${equivalentDaylightUnit}`, equivalentDaylightAlphaOpic.mel, asDecimal)
 }
+/* eslint-enable max-lines-per-function */

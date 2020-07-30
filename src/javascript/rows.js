@@ -74,6 +74,16 @@ export const calculateAlphaOpic = (rows, sampleCount, key) => {
   return samplesInWatts.map((sample) => sample * 1000)
 }
 
+export const calculateEquivalentDaylightAlphaOpic = (sConeTotals, mConeTotals, lConeTotals, rodTotals, melTotals) => {
+  return {
+    'lc': lConeTotals.map((s) => s / 1.6289),
+    'mc': mConeTotals.map((s) => s / 1.4558),
+    'mel': melTotals.map((s) => s / 1.3262),
+    'rh': rodTotals.map((s) => s / 1.4497),
+    'sc': sConeTotals.map((s) => s / 0.8173)
+  }
+}
+
 export const interpolateData = (rows, sampleCount) => {
   const shortestWavelength = rows[0][0] // eslint-disable-line prefer-destructuring
   const longestWavelength = rows[rows.length - 1][0] // eslint-disable-line prefer-destructuring
