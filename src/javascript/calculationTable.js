@@ -1,4 +1,4 @@
-import {calculateLuminance, calculateAlphaOpic, calculateChromaticity31, calculateChromaticity64, calculateEquivalentDaylightAlphaOpic} from './rows.js'
+import {calculateLuminance, calculateAlphaOpic, calculateChromaticity31, calculateChromaticity64, calculateEquivalentDaylightAlphaOpic, calculateAlphaOpicEfficiency} from './rows.js'
 import {createTableHeader, createTableRow} from './table.js'
 import {asDecimal, sampleTitles} from './helpers.js'
 
@@ -31,6 +31,7 @@ export const createCalculationTable = (table, radianceOrIrradiance, rows, sample
   const rodTotals = calculateAlphaOpic(rows, sampleCount, 'rod')
   const melTotals = calculateAlphaOpic(rows, sampleCount, 'mel')
   const equivalentDaylightAlphaOpic = calculateEquivalentDaylightAlphaOpic(sConeTotals, mConeTotals, lConeTotals, rodTotals, melTotals)
+  const alphaOpicEfficiency = calculateAlphaOpicEfficiency(sConeTotals, mConeTotals, lConeTotals, rodTotals, melTotals, luminanceTotals)
 
   if (radianceOrIrradiance === 'radiance') {
     createTableRow(table, "Luminance [cd/m²]", luminanceTotals, asDecimal)
@@ -61,5 +62,13 @@ export const createCalculationTable = (table, radianceOrIrradiance, rows, sample
   createTableRow(table, `L-cone-opic ${equivalentDaylightUnit}`, equivalentDaylightAlphaOpic.lc, asDecimal)
   createTableRow(table, `Rhodopic ${equivalentDaylightUnit}`, equivalentDaylightAlphaOpic.rh, asDecimal)
   createTableRow(table, `Melanopic ${equivalentDaylightUnit}`, equivalentDaylightAlphaOpic.mel, asDecimal)
+
+  const alphaOpicEfficiencyUnit = 'ELR'
+
+  createTableRow(table, `S-cone-opic ${alphaOpicEfficiencyUnit}`, alphaOpicEfficiency.sc, asDecimal)
+  createTableRow(table, `M-cone-opic ${alphaOpicEfficiencyUnit}`, alphaOpicEfficiency.mc, asDecimal)
+  createTableRow(table, `L-cone-opic ${alphaOpicEfficiencyUnit}`, alphaOpicEfficiency.lc, asDecimal)
+  createTableRow(table, `Rhodopic ${alphaOpicEfficiencyUnit}`, alphaOpicEfficiency.rh, asDecimal)
+  createTableRow(table, `Melanopic ${alphaOpicEfficiencyUnit}`, alphaOpicEfficiency.mel, asDecimal)
 }
 /* eslint-enable max-lines-per-function */

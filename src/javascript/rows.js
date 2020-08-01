@@ -84,6 +84,16 @@ export const calculateEquivalentDaylightAlphaOpic = (sConeTotals, mConeTotals, l
   }
 }
 
+export const calculateAlphaOpicEfficiency = (sConeTotals, mConeTotals, lConeTotals, rodTotals, melTotals, luminanceTotals) => {
+  return {
+    'lc': lConeTotals.map((s, idx) => s / luminanceTotals[idx]),
+    'mc': mConeTotals.map((s, idx) => s / luminanceTotals[idx]),
+    'mel': melTotals.map((s, idx) => s / luminanceTotals[idx]),
+    'rh': rodTotals.map((s, idx) => s / luminanceTotals[idx]),
+    'sc': sConeTotals.map((s, idx) => s / luminanceTotals[idx])
+  }
+}
+
 export const interpolateData = (rows, sampleCount) => {
   const shortestWavelength = rows[0][0] // eslint-disable-line prefer-destructuring
   const longestWavelength = rows[rows.length - 1][0] // eslint-disable-line prefer-destructuring
