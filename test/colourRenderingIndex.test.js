@@ -1,4 +1,4 @@
-var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity, daylightReferenceSpectra, uvToCorrelatedColourTemperatureRobertson, testColourColorimetry, adaptiveColourShift, normalizeSpectra, uniformSpace, specialColourRenderingIndicies } = require('./../src/javascript/colourRenderingIndex.js')
+var { cie1960UCS, correlatedColourTemperature, blackBodyReferenceSpectra, daylightIlluminantChromaticity, daylightReferenceSpectra, uvToCorrelatedColourTemperatureRobertson, testColourColorimetry, adaptiveColourShift, normalizeSpectra, uniformSpace, specialColourRenderingIndicies, generalColourRenderingIndex } = require('./../src/javascript/colourRenderingIndex.js')
 import {calculateChromaticity31} from './../src/javascript/rows.js'
 var assert = require('chai').assert
 
@@ -204,5 +204,23 @@ describe('specialColourRenderingIndicies', function() {
     const output = specialColourRenderingIndicies(input)
     assert.equal(9.58, output[0].DeltaEi.toFixed(2))
     assert.equal(55.93, output[0].Ri.toFixed(2))
+  })
+})
+
+describe('generalColourRenderingIndex', function() {
+  it('calculates the general colour rendering index from the special colour rendering index', function() {
+    const input = [
+      { DeltaEi: 9.58, Ri: 55.93 },
+      { DeltaEi: 5.07, Ri: 76.69 },
+      { DeltaEi: 2.11, Ri: 90.29 },
+      { DeltaEi: 9.35, Ri: 56.97 },
+      { DeltaEi: 8.92, Ri: 58.95 },
+      { DeltaEi: 7.14, Ri: 67.17 },
+      { DeltaEi: 5.63, Ri: 74.09 },
+      { DeltaEi: 14.53, Ri: 33.16 }
+    ]
+
+    const output = generalColourRenderingIndex(input)
+    assert.equal(64.16, output.toFixed(2))
   })
 })

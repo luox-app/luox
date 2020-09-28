@@ -261,3 +261,6 @@ export const specialColourRenderingIndicies = (input) => {
 
   return output
 }
+
+export const generalColourRenderingIndex = (input) =>
+  input.reduce((sum, {Ri}) => sum + Ri, 0) / input.length
