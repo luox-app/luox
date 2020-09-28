@@ -264,3 +264,21 @@ export const specialColourRenderingIndicies = (input) => {
 
 export const generalColourRenderingIndex = (input) =>
   input.reduce((sum, {Ri}) => sum + Ri, 0) / input.length
+
+export const calculateColourRenderingIndex = (spectra) => {
+  const [{x, y}] = calculateChromaticity31(spectra, 1);
+  const {u, v} = cie1960UCS(x, y);
+  const T = uvToCorrelatedColourTemperatureRobertson(u, v);
+
+  const referenceSpectra = []
+  for (let lambda = 380; lambda <= 780; lambda += 5) {
+    if (T < 5000) {
+      referenceSpectra.push([lambda, blackBodyReferenceSpectra(lambda * 1e-9, T)]);
+    } else {
+      referenceSpectra.push([lambda, daylightReferenceSpectra(lambda * 1e-9, T)]);
+    }
+  }
+
+  const colourDifferences = uniformSpace(spectra, referenceSpectra);
+  return generalColourRenderingIndex(specialColourRenderingIndicies(colourDifferences))
+}
