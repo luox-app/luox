@@ -1,4 +1,4 @@
-var { calculateEquivalentDaylightAlphaOpic, calculateAlphaOpicEfficiency } = require('./../src/javascript/rows.js')
+var { calculateEquivalentDaylightAlphaOpic, calculateAlphaOpicEfficiency, scaleSamples } = require('./../src/javascript/rows.js')
 var assert = require('chai').assert;
 
 describe('calculateEquivalentDaylightAlphaOpic', function() {
@@ -35,3 +35,19 @@ describe('calculateEquivalentDaylightAlphaOpic', function() {
     assert.equal(0.30, output.mel[0].toFixed(2))
   });
 });
+
+describe('scaleSamples', function() {
+  it('scales the input samples by the powerScale', function() {
+    const rows = [[380, 1]]
+    const areaScale = 1
+    const powerScale = 1000
+    assert.deepEqual([[380, 0.001]], scaleSamples(rows, areaScale, powerScale))
+  })
+
+  it('scales the input samples by the areaScale', function() {
+    const rows = [[380, 1]]
+    const areaScale = 10000
+    const powerScale = 1
+    assert.deepEqual([[380, 0.0001]], scaleSamples(rows, areaScale, powerScale))
+  })
+})

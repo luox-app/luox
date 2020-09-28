@@ -111,3 +111,6 @@ export const interpolateData = (rows, sampleCount) => {
   }
   return interpolatedRows
 }
+
+export const scaleSamples = (rows, areaScale, powerScale) =>
+  mapSamples(rows, (wavelength, sample) => sample / areaScale / powerScale)

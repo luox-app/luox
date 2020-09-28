@@ -1,6 +1,6 @@
 import '../stylesheets/results.css'
 import {parseCSV} from './csvParser.js'
-import {mapSamples, interpolateData} from './rows.js'
+import {scaleSamples, interpolateData} from './rows.js'
 import {renderResults} from './results-ui.js'
 
 const encodedCSV = window.sessionStorage.getItem('csv')
@@ -16,7 +16,7 @@ if (document.location.pathname.endsWith('explore-results.html')) {
 
 // eslint-disable-next-line no-unused-vars
 const [errors, rawRows, sampleCount] = parseCSV(csv)
-const rows = mapSamples(rawRows, (wavelength, sample) => sample / areaScale * powerScale)
+const rows = scaleSamples(rawRows, areaScale, powerScale)
 const interpolatedRows = interpolateData(rows, sampleCount)
 
 const container = document.getElementById('results')
