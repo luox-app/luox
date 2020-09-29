@@ -11,7 +11,8 @@ import {
   uniformSpace,
   specialColourRenderingIndicies,
   generalColourRenderingIndex,
-  calculateColourRenderingIndex
+  calculateColourRenderingIndex,
+  interpolateLinearly
 } from './../src/javascript/colourRenderingIndex.js'
 import {calculateChromaticity31} from './../src/javascript/rows.js'
 import {assert} from 'chai'
@@ -200,5 +201,28 @@ describe('calculateColourRenderingIndex', () => {
 
   it('calculates the correct CRI given the input spectrum for CIE illuminant FL2', () => {
     assert.equal(calculateColourRenderingIndex(fl2), 64)
+  })
+})
+
+describe('interpolateLinearly', () => {
+  it('linearly interpolates the given dataset at an interval of 1', () => {
+    const input = [[380, 100], [385, 105], [390, 110]]
+
+    assert.deepEqual(
+      interpolateLinearly(input),
+      [
+        [380, 100],
+        [381, 101],
+        [382, 102],
+        [383, 103],
+        [384, 104],
+        [385, 105],
+        [386, 106],
+        [387, 107],
+        [388, 108],
+        [389, 109],
+        [390, 110]
+      ]
+    )
   })
 })

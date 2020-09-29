@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import D_ILLUMINANT_S from '../data/d_illuminant.json'
 import ROBERTSON from '../data/robertson.json'
 import TEST_COLOURS from '../data/cri_test_colours.json'
@@ -281,4 +282,26 @@ export const calculateColourRenderingIndex = (spectra) => {
 
   const colourDifferences = uniformSpace(spectra, referenceSpectra);
   return generalColourRenderingIndex(specialColourRenderingIndicies(colourDifferences))
+}
+
+export const interpolateLinearly = (spectra) => {
+  const interpolatedSpectra = [];
+
+  for (let i = 1; i < spectra.length; i += 1) {
+    const [x1, y1] = spectra[i - 1]
+    const [x2, y2] = spectra[i]
+    const deltaX = x2 - x1;
+    const deltaY = y2 - y1;
+    const m = deltaY / deltaX;
+
+    for (let j = 0; j < deltaX; j += 1) {
+      const newX = (j * m) + y1;
+
+      interpolatedSpectra.push([x1 + j, newX]);
+    }
+  }
+
+  interpolatedSpectra.push([spectra[spectra.length - 1][0], spectra[spectra.length - 1][1]])
+
+  return interpolatedSpectra;
 }
