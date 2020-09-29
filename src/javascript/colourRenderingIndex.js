@@ -275,7 +275,7 @@ export const calculateColourRenderingIndex = (spectra) => {
     if (T < 5000) {
       referenceSpectra.push([lambda, blackBodyReferenceSpectra(lambda * 1e-9, T)]);
     } else {
-      referenceSpectra.push([lambda, daylightReferenceSpectra(lambda * 1e-9, T)]);
+      referenceSpectra.push([lambda, daylightReferenceSpectra(lambda, T)]);
     }
   }
 

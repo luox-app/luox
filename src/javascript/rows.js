@@ -3,6 +3,8 @@ import CIES026 from '../data/cies026.json'
 import CIEXYZ31 from '../data/ciexyz31.json'
 import CIEXYZ64 from '../data/ciexyz64.json'
 import {sprague} from './sprague.js'
+import {calculateColourRenderingIndex} from './colourRenderingIndex.js'
+import SpectralPowerDistribution from './SpectralPowerDistribution.js'
 
 export const mapSamples = (rows, func) => {
   return rows.map((row) => {
@@ -116,3 +118,17 @@ export const interpolateData = (rows, sampleCount) => {
 
 export const scaleSamples = (rows, areaScale, powerScale) =>
   mapSamples(rows, (wavelength, sample) => sample / areaScale / powerScale)
+
+export const calculateColourRenderingIndices = (rows) => {
+  const distribution = new SpectralPowerDistribution(rows)
+  try {
+    if (distribution.interval !== 5) {
+      return []
+    }
+
+
+    return distribution.measurements.map((spectra) => calculateColourRenderingIndex(spectra))
+  } catch (error) {
+    return []
+  }
+}
