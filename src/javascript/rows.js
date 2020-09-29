@@ -3,6 +3,8 @@ import CIES026 from '../data/cies026.json'
 import CIEXYZ31 from '../data/ciexyz31.json'
 import CIEXYZ64 from '../data/ciexyz64.json'
 import {sprague} from './sprague.js'
+import {calculateColourRenderingIndex} from './colourRenderingIndex.js'
+import SpectralPowerDistribution from './SpectralPowerDistribution.js'
 
 export const mapSamples = (rows, func) => {
   return rows.map((row) => {
@@ -42,17 +44,19 @@ export const calculateLuminance = (rows, sampleCount) => {
 }
 
 const calculateChromaticity = (rows, sampleCount, data) => {
-  const X = integrateWithWeights(rows, sampleCount, data, 'X')
-  const Y = integrateWithWeights(rows, sampleCount, data, 'Y')
-  const Z = integrateWithWeights(rows, sampleCount, data, 'Z')
+  const allX = integrateWithWeights(rows, sampleCount, data, 'X')
+  const allY = integrateWithWeights(rows, sampleCount, data, 'Y')
+  const allZ = integrateWithWeights(rows, sampleCount, data, 'Z')
 
   const output = new Array(sampleCount)
 
   for (let i = 0; i < output.length; i +=1) {
-    const x = X[i] / (X[i] + Y[i] + Z[i])
-    const y = Y[i] / (X[i] + Y[i] + Z[i])
+    const x = allX[i] / (allX[i] + allY[i] + allZ[i])
+    const y = allY[i] / (allX[i] + allY[i] + allZ[i])
+    const Y = allY[i]
 
     output[i] = {
+      Y,
       x,
       y
     }
@@ -114,3 +118,17 @@ export const interpolateData = (rows, sampleCount) => {
 
 export const scaleSamples = (rows, areaScale, powerScale) =>
   mapSamples(rows, (wavelength, sample) => sample / areaScale / powerScale)
+
+export const calculateColourRenderingIndices = (rows) => {
+  const distribution = new SpectralPowerDistribution(rows)
+  try {
+    if (distribution.interval !== 5) {
+      return []
+    }
+
+
+    return distribution.measurements.map((spectra) => calculateColourRenderingIndex(spectra))
+  } catch (error) {
+    return []
+  }
+}

@@ -1,8 +1,14 @@
-var { calculateEquivalentDaylightAlphaOpic, calculateAlphaOpicEfficiency, scaleSamples } = require('./../src/javascript/rows.js')
-var assert = require('chai').assert;
+import {
+  calculateEquivalentDaylightAlphaOpic,
+  calculateAlphaOpicEfficiency,
+  scaleSamples,
+  calculateColourRenderingIndices
+} from './../src/javascript/rows.js'
+import _ from 'lodash'
+import {assert} from 'chai'
 
-describe('calculateEquivalentDaylightAlphaOpic', function() {
-  it('calculates the EDI/EDL', function() {
+describe('calculateEquivalentDaylightAlphaOpic', () => {
+  it('calculates the EDI/EDL', () => {
     const sConeTotals = [1.6257]
     const mConeTotals = [133.0005]
     const lConeTotals = [314.7398]
@@ -18,8 +24,8 @@ describe('calculateEquivalentDaylightAlphaOpic', function() {
   });
 });
 
-describe('calculateEquivalentDaylightAlphaOpic', function() {
-  it('calculates the EDI/EDL', function() {
+describe('calculateEquivalentDaylightAlphaOpic', () => {
+  it('calculates the EDI/EDL', () => {
     const sConeTotals = [1.6257]
     const mConeTotals = [133.0005]
     const lConeTotals = [314.7398]
@@ -36,18 +42,43 @@ describe('calculateEquivalentDaylightAlphaOpic', function() {
   });
 });
 
-describe('scaleSamples', function() {
-  it('scales the input samples by the powerScale', function() {
+describe('scaleSamples', () => {
+  it('scales the input samples by the powerScale', () => {
     const rows = [[380, 1]]
     const areaScale = 1
     const powerScale = 1000
     assert.deepEqual([[380, 0.001]], scaleSamples(rows, areaScale, powerScale))
   })
 
-  it('scales the input samples by the areaScale', function() {
+  it('scales the input samples by the areaScale', () => {
     const rows = [[380, 1]]
     const areaScale = 10000
     const powerScale = 1
     assert.deepEqual([[380, 0.0001]], scaleSamples(rows, areaScale, powerScale))
   })
 })
+
+describe('calculateColourRenderingIndices', () => {
+  it('returns an empty array if given samples not at 5nm intervals', () => {
+    const rows = _.range(380, 781, 1).map((wavelength) => [wavelength, 1])
+
+    assert.isEmpty(calculateColourRenderingIndices(rows))
+  })
+
+  it('returns an empty array if given samples at irregular intervals', () => {
+    const rows = [
+      [380, 1],
+      [383, 1],
+      [384, 1],
+      [400, 1]
+    ]
+
+    assert.isEmpty(calculateColourRenderingIndices(rows))
+  });
+
+  it('returns the colour rendering indices for each sample', () => {
+    const rows = _.range(380, 781, 5).map((wavelength) => [wavelength, 0.1, 0.2, 0.3])
+
+    assert.deepEqual(calculateColourRenderingIndices(rows), [95, 95, 95])
+  })
+});

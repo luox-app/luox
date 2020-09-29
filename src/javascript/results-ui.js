@@ -54,7 +54,7 @@ const createNotationToggle = (table, defaultNotation, decimalPrecision) => {
   return notationToggle;
 }
 
-const renderCalculations = (radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport) => {
+const renderCalculations = (radianceOrIrradiance, rows, interpolatedRows, sampleCount, simplifiedReport) => {
   const container = document.createElement('section')
   const headingAndActions = document.createElement('div')
   const heading = document.createElement('h3')
@@ -64,7 +64,7 @@ const renderCalculations = (radianceOrIrradiance, interpolatedRows, sampleCount,
   headingAndActions.className = 'mt-3 d-flex justify-content-between'
   table.className = 'table table-sm mt-3 result-table'
 
-  createCalculationTable(table, radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport)
+  createCalculationTable(table, radianceOrIrradiance, rows, interpolatedRows, sampleCount, simplifiedReport)
 
   if (radianceOrIrradiance === 'radiance') {
     heading.append('Luminance and α-opic radiances')
@@ -135,7 +135,7 @@ const renderSpectra = (radianceOrIrradiance, rows, sampleCount) => {
 export const renderResults = (container, radianceOrIrradiance, rows, interpolatedRows, sampleCount, simplifiedReport) => {
   container.append(
     renderChart(radianceOrIrradiance, rows, sampleCount),
-    renderCalculations(radianceOrIrradiance, interpolatedRows, sampleCount, simplifiedReport),
+    renderCalculations(radianceOrIrradiance, rows, interpolatedRows, sampleCount, simplifiedReport),
     renderSpectra(radianceOrIrradiance, rows, sampleCount)
   )
 }
