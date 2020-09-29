@@ -8,7 +8,7 @@ import {
   calculateColourRenderingIndices
 } from './rows.js'
 import {createTableHeader, createTableRow} from './table.js'
-import {asDecimal, sampleTitles} from './helpers.js'
+import {asDecimal, asInteger, sampleTitles} from './helpers.js'
 
 const createCalculationTableHeader = (table, sampleCount) => {
   const titles = ["Condition", ...sampleTitles(sampleCount)]
@@ -54,7 +54,7 @@ export const createCalculationTable = (table, radianceOrIrradiance, rows, interp
     createTableRow(table, "CIE 1964 x₁₀y₁₀ chromaticity (y₁₀)", chromaticity64YValues, asDecimal)
 
     if (colourRenderingIndices.length > 0) {
-      createTableRow(table, "Colour rendering index (CIE Ra)", colourRenderingIndices, asDecimal)
+      createTableRow(table, "Colour rendering index (CIE Ra)", colourRenderingIndices, asInteger)
     }
   }
   createTableRow(table, `S-cone-opic ${radianceOrIrradiance} (${units})`, sConeTotals, asDecimal)

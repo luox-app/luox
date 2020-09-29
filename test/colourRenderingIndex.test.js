@@ -1,4 +1,4 @@
-var {
+import {
   cie1960UCS,
   correlatedColourTemperature,
   blackBodyReferenceSpectra,
@@ -12,38 +12,38 @@ var {
   specialColourRenderingIndicies,
   generalColourRenderingIndex,
   calculateColourRenderingIndex
-} = require('./../src/javascript/colourRenderingIndex.js')
+} from './../src/javascript/colourRenderingIndex.js'
 import {calculateChromaticity31} from './../src/javascript/rows.js'
-var assert = require('chai').assert
+import {assert} from 'chai'
 
-describe('cie1960UCS', function() {
-  it('calculates u from the chromaticity', function() {
+describe('cie1960UCS', () => {
+  it('calculates u from the chromaticity', () => {
     const ucs = cie1960UCS(0.3721, 0.3751)
     assert.equal(ucs.u.toFixed(3), 0.220)
   });
 
-  it('calculates v from the chromaticity', function() {
+  it('calculates v from the chromaticity', () => {
     const ucs = cie1960UCS(0.3721, 0.3751)
     assert.equal(ucs.v.toFixed(3), 0.333)
   });
 });
 
-describe('correlatedColourTemperature', function() {
-  it('calculates CCT using the McCarmy approximation', function() {
+describe('correlatedColourTemperature', () => {
+  it('calculates CCT using the McCarmy approximation', () => {
     const cct = correlatedColourTemperature(0.3721, 0.3751)
     assert.equal(cct.toFixed(1), 4228.8)
   });
 });
 
-describe('uvToCorrelatedColourTemperatureRobertson', function() {
-  it('calculates CCT from u,v using the Robertson method', function() {
+describe('uvToCorrelatedColourTemperatureRobertson', () => {
+  it('calculates CCT from u,v using the Robertson method', () => {
     const cct = uvToCorrelatedColourTemperatureRobertson(0.193741375998230, 0.315221043940594)
     assert.equal(cct.toFixed(3), 6500.016)
   });
 });
 
-describe('blackBodyReferenceSpectra', function() {
-  it('calculates the blackbody reference spectra at temperature T', function() {
+describe('blackBodyReferenceSpectra', () => {
+  it('calculates the blackbody reference spectra at temperature T', () => {
     const temperature = 4224.4;
     // Test data from Hunt and Pointer (2011), Appendix 7
     assert.equal(1.112, blackBodyReferenceSpectra(700e-9, temperature).toFixed(3))
@@ -52,19 +52,19 @@ describe('blackBodyReferenceSpectra', function() {
   });
 });
 
-describe('daylightIlluminantChromaticity', function() {
-  it('calculates the x chromaticity of the daylight illuminant', function() {
+describe('daylightIlluminantChromaticity', () => {
+  it('calculates the x chromaticity of the daylight illuminant', () => {
     assert.equal(0.3457, daylightIlluminantChromaticity(5000).x.toFixed(4))
     assert.equal(0.2938, daylightIlluminantChromaticity(8000).x.toFixed(4))
   });
-  it('calculates the y chromaticity of the daylight illuminant', function() {
+  it('calculates the y chromaticity of the daylight illuminant', () => {
     assert.equal(0.3587, daylightIlluminantChromaticity(5000).y.toFixed(4))
     assert.equal(0.3092, daylightIlluminantChromaticity(8000).y.toFixed(4))
   });
 });
 
-describe('daylightReferenceSpectra', function() {
-  it('returns the daylight reference spectra at the given wavelength and temperature', function() {
+describe('daylightReferenceSpectra', () => {
+  it('returns the daylight reference spectra at the given wavelength and temperature', () => {
     // Test data from CIE 015:2018 (§4.1.2 Note 6 and Table 5)
     const t_d50 = 5000 * (1.4388 / 1.4380)
     assert.equal(27.179, daylightReferenceSpectra(385, t_d50).toFixed(3));
@@ -76,8 +76,8 @@ describe('daylightReferenceSpectra', function() {
   })
 });
 
-describe('testColourColorimetry', function() {
-  it('returns the chromaticity for each of the test colours', function() {
+describe('testColourColorimetry', () => {
+  it('returns the chromaticity for each of the test colours', () => {
     let referenceSpectra = []
     let lambda;
     for (lambda = 380; lambda <= 780; lambda += 5) {
@@ -94,8 +94,8 @@ describe('testColourColorimetry', function() {
   });
 });
 
-describe('adaptiveColourShift', function() {
-  it('returns uPrime and vPrime calculated for each test colour', function() {
+describe('adaptiveColourShift', () => {
+  it('returns uPrime and vPrime calculated for each test colour', () => {
     let testSpectra = [
       [380, 1.18], [385, 1.48], [390, 1.84], [395, 2.15],
       [400, 3.44], [405, 15.69], [410, 3.85], [415, 3.74],
@@ -136,8 +136,8 @@ describe('adaptiveColourShift', function() {
   });
 });
 
-describe('normalizeSpectra', function() {
-  it('ensures that the tristimulus Y value is 100 for each input spectrum', function() {
+describe('normalizeSpectra', () => {
+  it('ensures that the tristimulus Y value is 100 for each input spectrum', () => {
     let inputSpectra = []
     let lambda;
     for (lambda = 380; lambda <= 780; lambda += 5) {
@@ -154,8 +154,8 @@ describe('normalizeSpectra', function() {
   });
 });
 
-describe('uniformSpace', function() {
-  it('calculates U*V*W* of the test and reference spectra for each test colour', function() {
+describe('uniformSpace', () => {
+  it('calculates U*V*W* of the test and reference spectra for each test colour', () => {
     let testSpectra = [
       [380, 1.18], [385, 1.48], [390, 1.84], [395, 2.15],
       [400, 3.44], [405, 15.69], [410, 3.85], [415, 3.74],
@@ -204,8 +204,8 @@ describe('uniformSpace', function() {
   });
 });
 
-describe('specialColourRenderingIndicies', function() {
-  it('calculates the special colour rendering index from the test/reference uniform colour spaces', function() {
+describe('specialColourRenderingIndicies', () => {
+  it('calculates the special colour rendering index from the test/reference uniform colour spaces', () => {
     const input = [{
       'Wri': 61.5897,
       'Uri': 36.3399,
@@ -217,30 +217,30 @@ describe('specialColourRenderingIndicies', function() {
 
     const output = specialColourRenderingIndicies(input)
     assert.equal(9.58, output[0].DeltaEi.toFixed(2))
-    assert.equal(55.93, output[0].Ri.toFixed(2))
+    assert.equal(56, output[0].Ri)
   })
 })
 
-describe('generalColourRenderingIndex', function() {
-  it('calculates the general colour rendering index from the special colour rendering index', function() {
+describe('generalColourRenderingIndex', () => {
+  it('calculates the general colour rendering index from the special colour rendering index', () => {
     const input = [
-      { DeltaEi: 9.58, Ri: 55.93 },
-      { DeltaEi: 5.07, Ri: 76.69 },
-      { DeltaEi: 2.11, Ri: 90.29 },
-      { DeltaEi: 9.35, Ri: 56.97 },
-      { DeltaEi: 8.92, Ri: 58.95 },
-      { DeltaEi: 7.14, Ri: 67.17 },
-      { DeltaEi: 5.63, Ri: 74.09 },
-      { DeltaEi: 14.53, Ri: 33.16 }
+      { DeltaEi: 9.58, Ri: 56 },
+      { DeltaEi: 5.07, Ri: 77 },
+      { DeltaEi: 2.11, Ri: 90 },
+      { DeltaEi: 9.35, Ri: 57 },
+      { DeltaEi: 8.92, Ri: 59 },
+      { DeltaEi: 7.14, Ri: 67 },
+      { DeltaEi: 5.63, Ri: 74 },
+      { DeltaEi: 14.53, Ri: 33 }
     ]
 
     const output = generalColourRenderingIndex(input)
-    assert.equal(64.16, output.toFixed(2))
+    assert.equal(64, output)
   })
 })
 
-describe('calculateColourRenderingIndex', function() {
-  it('calculates CRI given the input spectrum', function() {
+describe('calculateColourRenderingIndex', () => {
+  it('calculates CRI given the input spectrum', () => {
     let testSpectra = [
       [380, 1.18], [385, 1.48], [390, 1.84], [395, 2.15],
       [400, 3.44], [405, 15.69], [410, 3.85], [415, 3.74],
@@ -266,6 +266,6 @@ describe('calculateColourRenderingIndex', function() {
     ];
 
     const output = calculateColourRenderingIndex(testSpectra)
-    assert.closeTo(64.16, output, 0.1)
+    assert.equal(64, output)
   })
 })

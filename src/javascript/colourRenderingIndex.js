@@ -251,7 +251,7 @@ export const specialColourRenderingIndicies = (input) => {
   for (let i = 0; i < output.length; i += 1) {
     const DeltaEi = Math.sqrt(((input[i].Uri - input[i].Uki) ** 2) + ((input[i].Vri - input[i].Vki) ** 2) + ((input[i].Wri - input[i].Wki) ** 2))
 
-    const Ri = 100 - (4.6 * DeltaEi)
+    const Ri = Math.round(100 - (4.6 * DeltaEi))
 
     output[i] = {
       DeltaEi,
@@ -263,7 +263,7 @@ export const specialColourRenderingIndicies = (input) => {
 }
 
 export const generalColourRenderingIndex = (input) =>
-  input.reduce((sum, {Ri}) => sum + Ri, 0) / input.length
+  Math.round(input.reduce((sum, {Ri}) => sum + Ri, 0) / input.length)
 
 export const calculateColourRenderingIndex = (spectra) => {
   const [{x, y}] = calculateChromaticity31(spectra, 1);

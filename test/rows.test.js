@@ -79,6 +79,6 @@ describe('calculateColourRenderingIndices', () => {
   it('returns the colour rendering indices for each sample', () => {
     const rows = _.range(380, 781, 5).map((wavelength) => [wavelength, 0.1, 0.2, 0.3])
 
-    assert.deepEqual(calculateColourRenderingIndices(rows), [95.28417222077219, 95.28417222077219, 95.28417222077225])
+    assert.deepEqual(calculateColourRenderingIndices(rows), [95, 95, 95])
   })
 });
