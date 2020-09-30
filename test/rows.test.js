@@ -59,17 +59,6 @@ describe('scaleSamples', () => {
 })
 
 describe('calculateColourRenderingIndices', () => {
-  it('returns an empty array if given samples at irregular intervals', () => {
-    const rows = [
-      [380, 1],
-      [383, 1],
-      [384, 1],
-      [400, 1]
-    ]
-
-    assert.isEmpty(calculateColourRenderingIndices(rows))
-  });
-
   it('returns the colour rendering indices for each sample when input is at 5nm intervals', () => {
     const rows = _.range(380, 781, 5).map((wavelength) => [wavelength, 0.1, 0.2, 0.3])
 
