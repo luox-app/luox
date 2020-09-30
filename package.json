@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "eslint ./src/ && mocha --require @babel/register",
+    "test": "eslint ./src/ && mocha",
     "build": "mkdir -p dist && webpack --config webpack.prod.js",
     "start": "mkdir -p dist && webpack-dev-server --open --config webpack.dev.js"
   },
