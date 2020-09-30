@@ -1,16 +1,16 @@
-const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    common: './src/javascript/common.js',
-    upload: './src/javascript/upload.js',
-    results: './src/javascript/results.js',
+    common: "./src/javascript/common.js",
+    upload: "./src/javascript/upload.js",
+    results: "./src/javascript/results.js",
   },
   output: {
-    filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "[name].[contenthash].js",
+    path: path.resolve(__dirname, "dist"),
   },
 
   module: {
@@ -19,66 +19,63 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-transform-runtime']
-          }
-        }
+            presets: ["@babel/preset-env"],
+            plugins: ["@babel/plugin-transform-runtime"],
+          },
+        },
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'eslint-loader'
+        loader: "eslint-loader",
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
 
   plugins: [
     new CopyPlugin([
       {
-        from: '**/*',
-        context: 'src/',
-        ignore: ['*.js', '*.json', '*.css', '*.html']
-      }
+        from: "**/*",
+        context: "src/",
+        ignore: ["*.js", "*.json", "*.css", "*.html"],
+      },
     ]),
 
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
-      chunks: ['common']
+      template: "./src/index.html",
+      filename: "index.html",
+      chunks: ["common"],
     }),
     new HtmlWebpackPlugin({
-      template: './src/generate-csv.html',
-      filename: 'generate-csv.html',
-      chunks: ['common']
+      template: "./src/generate-csv.html",
+      filename: "generate-csv.html",
+      chunks: ["common"],
     }),
     new HtmlWebpackPlugin({
-      template: './src/upload-csv.html',
-      filename: 'upload-csv.html',
-      chunks: ['common', 'upload']
+      template: "./src/upload-csv.html",
+      filename: "upload-csv.html",
+      chunks: ["common", "upload"],
     }),
     new HtmlWebpackPlugin({
-      template: './src/results.html',
-      filename: 'results.html',
-      chunks: ['common', 'results']
+      template: "./src/results.html",
+      filename: "results.html",
+      chunks: ["common", "results"],
     }),
     new HtmlWebpackPlugin({
-      template: './src/explore.html',
-      filename: 'explore.html',
-      chunks: ['common', 'upload']
+      template: "./src/explore.html",
+      filename: "explore.html",
+      chunks: ["common", "upload"],
     }),
     new HtmlWebpackPlugin({
-      template: './src/explore-results.html',
-      filename: 'explore-results.html',
-      chunks: ['common', 'results']
-    })
-  ]
+      template: "./src/explore-results.html",
+      filename: "explore-results.html",
+      chunks: ["common", "results"],
+    }),
+  ],
 };

@@ -1,9 +1,9 @@
-var csvExport = require('./../src/javascript/csvExport.js')
-var assert = require('chai').assert;
-const { JSDOM } = require('jsdom');
+var csvExport = require("./../src/javascript/csvExport.js");
+var assert = require("chai").assert;
+const { JSDOM } = require("jsdom");
 
-describe('tableToCSV', function() {
-  it('should convert HTML table to CSV', function() {
+describe("tableToCSV", function () {
+  it("should convert HTML table to CSV", function () {
     const html = `
     <table id="spectrum">
       <tr>
@@ -15,15 +15,15 @@ describe('tableToCSV', function() {
         <td>Value 2</td>
       </tr>
     </table>
-    `
-    const jsdom = new JSDOM(html)
-    const table = jsdom.window.document.getElementById('spectrum')
+    `;
+    const jsdom = new JSDOM(html);
+    const table = jsdom.window.document.getElementById("spectrum");
 
-    const expected = 'Heading 1,Heading 2\nValue 1,Value 2'
+    const expected = "Heading 1,Heading 2\nValue 1,Value 2";
     assert.equal(expected, csvExport.tableToCSV(table));
   });
 
-  it('should escape commas in data', function() {
+  it("should escape commas in data", function () {
     const html = `
     <table id="spectrum">
       <tr>
@@ -32,11 +32,11 @@ describe('tableToCSV', function() {
         <td>bar</td>
       </tr>
     </table>
-    `
-    const jsdom = new JSDOM(html)
-    const table = jsdom.window.document.getElementById('spectrum')
+    `;
+    const jsdom = new JSDOM(html);
+    const table = jsdom.window.document.getElementById("spectrum");
 
-    const expected = 'foo,"(0.20, 0.10)",bar'
+    const expected = 'foo,"(0.20, 0.10)",bar';
     assert.equal(expected, csvExport.tableToCSV(table));
   });
 });
