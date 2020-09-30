@@ -195,12 +195,20 @@ describe('generalColourRenderingIndex', () => {
 })
 
 describe('calculateColourRenderingIndex', () => {
-  it('calculates the correct CRI given the input spectrum for CIE illuminant FL1', () => {
+  it('calculates the correct CRI given the input spectrum for CIE illuminant FL1 in 5nm spacing', () => {
     assert.equal(calculateColourRenderingIndex(fl1), 76)
   })
 
-  it('calculates the correct CRI given the input spectrum for CIE illuminant FL2', () => {
+  it('calculates the correct CRI given the input spectrum for CIE illuminant FL1 in 1nm spacing', () => {
+    assert.equal(calculateColourRenderingIndex(interpolateLinearly(fl1)), 76)
+  })
+
+  it('calculates the correct CRI given the input spectrum for CIE illuminant FL2 in 5nm spacing', () => {
     assert.equal(calculateColourRenderingIndex(fl2), 64)
+  })
+
+  it('calculates the correct CRI given the input spectrum for CIE illuminant FL2 in 1nm spacing', () => {
+    assert.equal(calculateColourRenderingIndex(interpolateLinearly(fl2)), 64)
   })
 })
 

@@ -266,24 +266,6 @@ export const specialColourRenderingIndicies = (input) => {
 export const generalColourRenderingIndex = (input) =>
   Math.round(input.reduce((sum, {Ri}) => sum + Ri, 0) / input.length)
 
-export const calculateColourRenderingIndex = (spectra) => {
-  const [{x, y}] = calculateChromaticity31(spectra, 1);
-  const {u, v} = cie1960UCS(x, y);
-  const T = uvToCorrelatedColourTemperatureRobertson(u, v);
-
-  const referenceSpectra = []
-  for (let lambda = 380; lambda <= 780; lambda += 5) {
-    if (T < 5000) {
-      referenceSpectra.push([lambda, blackBodyReferenceSpectra(lambda * 1e-9, T)]);
-    } else {
-      referenceSpectra.push([lambda, daylightReferenceSpectra(lambda, T)]);
-    }
-  }
-
-  const colourDifferences = uniformSpace(spectra, referenceSpectra);
-  return generalColourRenderingIndex(specialColourRenderingIndicies(colourDifferences))
-}
-
 export const interpolateLinearly = (spectra) => {
   const interpolatedSpectra = [];
 
@@ -304,4 +286,24 @@ export const interpolateLinearly = (spectra) => {
   interpolatedSpectra.push([spectra[spectra.length - 1][0], spectra[spectra.length - 1][1]])
 
   return interpolatedSpectra;
+}
+
+export const calculateColourRenderingIndex = (spectra) => {
+  const [{x, y}] = calculateChromaticity31(spectra, 1);
+  const {u, v} = cie1960UCS(x, y);
+  const T = uvToCorrelatedColourTemperatureRobertson(u, v);
+
+  let referenceSpectra = [];
+
+  if (T < 5000) {
+    referenceSpectra = spectra.map(([wavelength]) => [wavelength, blackBodyReferenceSpectra(wavelength * 1e-9, T)])
+  } else {
+    for (let lambda = 380; lambda <= 780; lambda += 5) {
+      referenceSpectra.push([lambda, daylightReferenceSpectra(lambda, T)]);
+    }
+    referenceSpectra = interpolateLinearly(referenceSpectra)
+  }
+
+  const colourDifferences = uniformSpace(spectra, referenceSpectra);
+  return generalColourRenderingIndex(specialColourRenderingIndicies(colourDifferences))
 }

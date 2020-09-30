@@ -122,11 +122,6 @@ export const scaleSamples = (rows, areaScale, powerScale) =>
 export const calculateColourRenderingIndices = (rows) => {
   const distribution = new SpectralPowerDistribution(rows)
   try {
-    if (distribution.interval !== 5) {
-      return []
-    }
-
-
     return distribution.measurements.map((spectra) => calculateColourRenderingIndex(spectra))
   } catch (error) {
     return []

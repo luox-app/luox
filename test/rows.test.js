@@ -59,12 +59,6 @@ describe('scaleSamples', () => {
 })
 
 describe('calculateColourRenderingIndices', () => {
-  it('returns an empty array if given samples not at 5nm intervals', () => {
-    const rows = _.range(380, 781, 1).map((wavelength) => [wavelength, 1])
-
-    assert.isEmpty(calculateColourRenderingIndices(rows))
-  })
-
   it('returns an empty array if given samples at irregular intervals', () => {
     const rows = [
       [380, 1],
@@ -76,8 +70,14 @@ describe('calculateColourRenderingIndices', () => {
     assert.isEmpty(calculateColourRenderingIndices(rows))
   });
 
-  it('returns the colour rendering indices for each sample', () => {
+  it('returns the colour rendering indices for each sample when input is at 5nm intervals', () => {
     const rows = _.range(380, 781, 5).map((wavelength) => [wavelength, 0.1, 0.2, 0.3])
+
+    assert.deepEqual(calculateColourRenderingIndices(rows), [95, 95, 95])
+  })
+
+  it('returns the colour rendering indices for each sample when input is at 1nm intervals', () => {
+    const rows = _.range(380, 781, 1).map((wavelength) => [wavelength, 0.1, 0.2, 0.3])
 
     assert.deepEqual(calculateColourRenderingIndices(rows), [95, 95, 95])
   })
