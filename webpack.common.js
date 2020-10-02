@@ -3,7 +3,11 @@ const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/javascript/upload.jsx",
+  entry: {
+    menu: "./src/javascript/menu.js",
+    upload: "./src/javascript/upload.jsx",
+  },
+
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
@@ -36,22 +40,25 @@ module.exports = {
   plugins: [
     new CopyPlugin([
       {
-        from: "index.html",
-        context: "src/",
-      },
-      {
-        from: "generate-csv.html",
-        context: "src/",
-      },
-      {
         from: "examples/*",
         context: "src/",
       },
     ]),
 
     new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      filename: "index.html",
+      chunks: ["menu"],
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/generate-csv.html",
+      filename: "generate-csv.html",
+      chunks: ["menu"],
+    }),
+    new HtmlWebpackPlugin({
       template: "./src/upload-csv.html",
       filename: "upload-csv.html",
+      chunks: ["menu", "upload"],
     }),
   ],
 };
