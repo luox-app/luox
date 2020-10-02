@@ -1,0 +1,7 @@
+dist
+
+*.html
+*.yml
+*.yaml
+*.json
+*.css
