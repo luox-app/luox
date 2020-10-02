@@ -42,9 +42,9 @@ const Results = ({ rows, sampleCount, radianceOrIrradiance }) => {
           Where a journal does not offer the capability of making Supplementary
           Material available, files can be made available on{" "}
           <a href="https://figshare.com/">Figshare</a>, the{" "}
-          <a href="https://osf.io/">Open Science Framework</a>
-          or <a href="https://github.com/">GitHub</a>. Some institutions also
-          offer repositories for research data.
+          <a href="https://osf.io/">Open Science Framework</a> or{" "}
+          <a href="https://github.com/">GitHub</a>. Some institutions also offer
+          repositories for research data.
         </p>
 
         <SpectraTable
