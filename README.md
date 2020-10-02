@@ -2,7 +2,9 @@
 
 ## Development
 
-The app is made up of HTML, CSS and JavaScript. We're using ES2015 modules and we use [webpack](https://webpack.js.org) to bundle the application.
+The app is made up of HTML, CSS and JavaScript. We're using ES2015 modules and we use [webpack](https://webpack.js.org) to bundle the application. The core of the application is pure JavaScript and the user interface uses [React](https://reactjs.org).
+
+We use [Prettier](https://prettier.io) to ensure consistent code formatting and [ESLint](https://eslint.org) with [Airbnb's JavaScript style guide](https://github.com/airbnb/javascript) to automatically find and fix problems as well as enforcing a particular code style in our JavaScript.
 
 ### Install nvm and node
 
@@ -29,7 +31,7 @@ $ npm install
 
 ### Running tests
 
-The tests are written using [Mocha](https://mochajs.org/). The versions of Node/Mocha we're using don't support ES2015 modules so we have to require `@babel/register` to transpile them on the fly.
+The tests are written using [Jest](https://jestjs.io).
 
 ```
 $ npm test
