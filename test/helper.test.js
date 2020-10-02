@@ -1,4 +1,4 @@
-import {asExponential, asInteger} from './../src/javascript/helpers.js'
+import {asExponential} from './../src/javascript/helpers.js'
 import {assert} from 'chai'
 
 describe('asExponential', () => {
@@ -12,15 +12,5 @@ describe('asExponential', () => {
 
   it('should not have a leading zero in the exponent for larger numbers', () => {
     assert.equal('1.36e+10', asExponential(13600000000))
-  })
-})
-
-describe('asInteger', () => {
-  it('returns an integer as-is', () => {
-    assert.equal(asInteger(42), '42')
-  })
-
-  it('returns a decimal number as an integer', () => {
-    assert.equal(asInteger(3.141), '3')
   })
 })

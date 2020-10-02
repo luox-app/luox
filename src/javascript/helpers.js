@@ -20,5 +20,3 @@ export const radianceOrIrradianceSIUnit = (radianceOrIrradiance) => {
   }
   return units
 }
-
-export const asInteger = (number) => number.toFixed(0)

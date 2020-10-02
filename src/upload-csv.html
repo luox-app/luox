@@ -18,65 +18,11 @@
             <li class="nav-item active">
               <a class="nav-link" href="./">Report light exposure <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./explore.html">Explore light</a>
-            </li>
           </ul>
         </div>
       </nav>
     </header>
 
-    <main class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          <h1 class="my-5">
-            Reporting Light Exposure
-          </h1>
-
-          <p class="lead my-5">
-            Upload your spectral power distribution to generate the data required for your report.
-          </p>
-
-          <div id="file-upload">
-            <form id="upload-form">
-              <div class="form-inline">
-                <p>Upload a CSV with wavelength in nm and
-                  <select class="form-control" id="radiance-or-irradiance">
-                    <option value="irradiance">irradiances</option>
-                    <option value="radiance">radiances</option>
-                  </select>
-                  in
-                  <select class="form-control" id="power-units">
-                    <option value="1000000">µW</option>
-                    <option value="1000">mW</option>
-                    <option value="1" selected>W</option>
-                  </select>
-                  per
-                  <select class="form-control" id="area-units">
-                    <option value="1000000">mm²</option>
-                    <option value="10000">cm²</option>
-                    <option value="1" selected>m²</option>
-                  </select>
-                  <span id="per-sr"> per sr</span>
-                </p>
-              </div>
-              <div class="form-group">
-                <input type="file" class="form-control-file" id="file-input">
-              </div>
-              <div class="form-group">
-                <button type="submit" disabled id="upload-form-submit" class="btn btn-primary">Upload</button>
-              </div>
-            </form>
-          </div>
-
-          <div id="errors">
-            <h2 class="mt-5">Error parsing CSV</h2>
-            <p>We had some problems understanding that file:</p>
-            <table class="table errors">
-            </table>
-          </div>
-        </div>
-      </div>
-    </main>
+    <main class="container" id="app"></main>
   </body>
 </html>

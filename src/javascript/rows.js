@@ -127,3 +127,27 @@ const rowsToSpectra = (rows) => {
 export const calculateColourRenderingIndices = (rows) => {
   return rowsToSpectra(rows).map((spectra) => calculateColourRenderingIndex(spectra))
 }
+
+export const calculate = (rows, sampleCount) => {
+  const interpolatedRows = interpolateData(rows, sampleCount);
+  const luminanceTotals = calculateLuminance(interpolatedRows, sampleCount);
+  const sConeTotals = calculateAlphaOpic(interpolatedRows, sampleCount, 'sCone');
+  const mConeTotals = calculateAlphaOpic(interpolatedRows, sampleCount, 'mCone');
+  const lConeTotals = calculateAlphaOpic(interpolatedRows, sampleCount, 'lCone');
+  const rodTotals = calculateAlphaOpic(interpolatedRows, sampleCount, 'rod');
+  const melTotals = calculateAlphaOpic(interpolatedRows, sampleCount, 'mel');
+
+  return {
+    'alphaOpicEfficiency': calculateAlphaOpicEfficiency(sConeTotals, mConeTotals, lConeTotals, rodTotals, melTotals, luminanceTotals),
+    'chromaticity31': calculateChromaticity31(interpolatedRows, sampleCount),
+    'chromaticity64': calculateChromaticity64(interpolatedRows, sampleCount),
+    'colourRenderingIndices': calculateColourRenderingIndices(rows),
+    'equivalentDaylightAlphaOpic': calculateEquivalentDaylightAlphaOpic(sConeTotals, mConeTotals, lConeTotals, rodTotals, melTotals),
+    lConeTotals,
+    luminanceTotals,
+    mConeTotals,
+    melTotals,
+    rodTotals,
+    sConeTotals
+  };
+}

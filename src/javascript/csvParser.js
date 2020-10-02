@@ -11,10 +11,6 @@ export const readCSV = async (file) => {
   return fileContents
 }
 
-export const encodeCSV = (csv) => {
-  return btoa(encodeURIComponent(csv))
-}
-
 export const parseCSV = (csv) => {
   const result = Papa.parse(csv,
     {"dynamicTyping": true,

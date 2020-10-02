@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "eslint ./src/ && mocha --require @babel/register",
+    "test": "eslint src test && mocha",
     "build": "mkdir -p dist && webpack --config webpack.prod.js",
     "start": "mkdir -p dist && webpack-dev-server --open --config webpack.dev.js"
   },
@@ -33,9 +33,8 @@
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.5.3",
     "eslint": "^6.8.0",
-    "eslint-loader": "^4.0.2",
+    "eslint-plugin-react": "^7.21.2",
     "html-webpack-plugin": "^4.3.0",
-    "jsdom": "^16.2.2",
     "lodash": "^4.17.20",
     "mocha": "^7.2.0",
     "style-loader": "^1.2.1",
@@ -45,11 +44,14 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.10.4",
     "@babel/runtime": "^7.10.2",
     "bootstrap": "^4.5.0",
     "chart.js": "^2.9.3",
     "jquery": "3.4.1",
     "papaparse": "^5.2.0",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }
