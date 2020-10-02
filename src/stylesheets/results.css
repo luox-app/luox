@@ -1,13 +1,7 @@
-.result-table td:not(:first-child),
-.result-table th:not(:first-child) {
-  width: 7rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-.result-table th:not(:first-child) {
+.result-table th:not(:first-child), .result-table td:not(:first-child) {
   text-align: center;
 }
-.result-table td:not(:first-child) {
+.result-table th:last-child, .result-table td:last-child {
   text-align: right;
 }
 .result-table td {
