@@ -1,11 +1,10 @@
-import { assert } from "chai";
 import sprague from "../src/javascript/sprague";
 
 describe("sprague", () => {
   it("should return unmodified input when interpolation factor is 1", () => {
     const input = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-    const actual = sprague(input, 1);
-    assert.deepStrictEqual(actual, input);
+
+    expect(sprague(input, 1)).toEqual(input);
   });
 
   it("should generate intermediate values when interpolation factor is 2", () => {
@@ -43,8 +42,8 @@ describe("sprague", () => {
       15.5,
       16,
     ];
-    const actual = sprague(input, 2);
-    assert.deepStrictEqual(actual, expected);
+
+    expect(sprague(input, 2)).toEqual(expected);
   });
 
   it("should generate intermediate values when interpolation factor is 3", () => {
@@ -98,8 +97,8 @@ describe("sprague", () => {
       16.0,
     ];
     const actual = sprague(input, 3);
-    assert.deepStrictEqual(
-      actual.map((n) => n.toFixed(4)),
+
+    expect(actual.map((n) => n.toFixed(4))).toEqual(
       expected.map((n) => n.toFixed(4))
     );
   });
@@ -132,8 +131,8 @@ describe("sprague", () => {
     ];
 
     const actual = sprague(input, 10).slice(0, 5);
-    assert.deepStrictEqual(
-      actual.map((n) => n.toFixed(10)),
+
+    expect(actual.map((n) => n.toFixed(10))).toEqual(
       expected.map((n) => n.toFixed(10))
     );
   });

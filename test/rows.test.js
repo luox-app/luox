@@ -1,4 +1,3 @@
-import { assert } from "chai";
 import { scaleSamples } from "../src/javascript/rows";
 
 describe("scaleSamples", () => {
@@ -6,16 +5,13 @@ describe("scaleSamples", () => {
     const rows = [[380, 1]];
     const areaScale = 1;
     const powerScale = 1000;
-    assert.deepEqual([[380, 0.001]], scaleSamples(rows, areaScale, powerScale));
+    expect(scaleSamples(rows, areaScale, powerScale)).toEqual([[380, 0.001]]);
   });
 
   it("scales the input samples by the areaScale", () => {
     const rows = [[380, 1]];
     const areaScale = 10000;
     const powerScale = 1;
-    assert.deepEqual(
-      [[380, 0.0001]],
-      scaleSamples(rows, areaScale, powerScale)
-    );
+    expect(scaleSamples(rows, areaScale, powerScale)).toEqual([[380, 0.0001]]);
   });
 });

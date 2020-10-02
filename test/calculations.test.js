@@ -1,5 +1,4 @@
 import _ from "lodash";
-import { assert } from "chai";
 import {
   calculateEquivalentDaylightAlphaOpic,
   calculateAlphaOpicEfficiency,
@@ -21,15 +20,15 @@ describe("calculateEquivalentDaylightAlphaOpic", () => {
       melTotals
     );
 
-    assert.equal(1.99, output.sc[0].toFixed(2));
-    assert.equal(91.36, output.mc[0].toFixed(2));
-    assert.equal(193.22, output.lc[0].toFixed(2));
-    assert.equal(54.7, output.rh[0].toFixed(2));
-    assert.equal(39.51, output.mel[0].toFixed(2));
+    expect(output.sc[0].toFixed(2)).toEqual("1.99");
+    expect(output.mc[0].toFixed(2)).toEqual("91.36");
+    expect(output.lc[0].toFixed(2)).toEqual("193.22");
+    expect(output.rh[0].toFixed(2)).toEqual("54.70");
+    expect(output.mel[0].toFixed(2)).toEqual("39.51");
   });
 });
 
-describe("calculateEquivalentDaylightAlphaOpic", () => {
+describe("calculateAlphaOpicEfficiency", () => {
   it("calculates the EDI/EDL", () => {
     const sConeTotals = [1.6257];
     const mConeTotals = [133.0005];
@@ -46,11 +45,11 @@ describe("calculateEquivalentDaylightAlphaOpic", () => {
       luminanceTotals
     );
 
-    assert.equal(0.01, output.sc[0].toFixed(2));
-    assert.equal(0.76, output.mc[0].toFixed(2));
-    assert.equal(1.81, output.lc[0].toFixed(2));
-    assert.equal(0.46, output.rh[0].toFixed(2));
-    assert.equal(0.3, output.mel[0].toFixed(2));
+    expect(output.sc[0].toFixed(2)).toEqual("0.01");
+    expect(output.mc[0].toFixed(2)).toEqual("0.76");
+    expect(output.lc[0].toFixed(2)).toEqual("1.81");
+    expect(output.rh[0].toFixed(2)).toEqual("0.46");
+    expect(output.mel[0].toFixed(2)).toEqual("0.30");
   });
 });
 
@@ -63,7 +62,7 @@ describe("calculateColourRenderingIndices", () => {
       0.3,
     ]);
 
-    assert.deepEqual(calculateColourRenderingIndices(rows), [95, 95, 95]);
+    expect(calculateColourRenderingIndices(rows)).toEqual([95, 95, 95]);
   });
 
   it("returns the colour rendering indices for each sample when input is at 1nm intervals", () => {
@@ -74,6 +73,6 @@ describe("calculateColourRenderingIndices", () => {
       0.3,
     ]);
 
-    assert.deepEqual(calculateColourRenderingIndices(rows), [95, 95, 95]);
+    expect(calculateColourRenderingIndices(rows)).toEqual([95, 95, 95]);
   });
 });
