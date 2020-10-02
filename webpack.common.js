@@ -1,12 +1,12 @@
-const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/javascript/upload.js',
+  entry: "./src/javascript/upload.jsx",
   output: {
-    filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "[name].[contenthash].js",
+    path: path.resolve(__dirname, "dist"),
   },
 
   module: {
@@ -15,46 +15,43 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-transform-runtime']
-          }
-        }
+            presets: ["@babel/preset-env"],
+            plugins: ["@babel/plugin-transform-runtime"],
+          },
+        },
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
 
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [".js", ".jsx"],
   },
 
   plugins: [
     new CopyPlugin([
       {
-        from: 'index.html',
-        context: 'src/',
+        from: "index.html",
+        context: "src/",
       },
       {
-        from: 'generate-csv.html',
-        context: 'src/',
+        from: "generate-csv.html",
+        context: "src/",
       },
       {
-        from: 'examples/*',
-        context: 'src/',
-      }
+        from: "examples/*",
+        context: "src/",
+      },
     ]),
 
     new HtmlWebpackPlugin({
-      template: './src/upload-csv.html',
-      filename: 'upload-csv.html'
-    })
-  ]
+      template: "./src/upload-csv.html",
+      filename: "upload-csv.html",
+    }),
+  ],
 };

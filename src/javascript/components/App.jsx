@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
-import Results from './Results';
-import UploadForm from './UploadForm';
+import React, { useState } from "react";
+import Results from "./Results";
+import UploadForm from "./UploadForm";
 
 const App = () => {
-  const [radianceOrIrradiance, setRadianceOrIrradiance] = useState('irradiance');
-  const [rows, setRows] = useState(null);
-  const [sampleCount, setSampleCount] = useState(null);
+  const [radianceOrIrradiance, setRadianceOrIrradiance] = useState(
+    "irradiance"
+  );
+  const [rows, setRows] = useState([]);
+  const [sampleCount, setSampleCount] = useState(0);
 
   return (
     <>
       <div className="row">
         <div className="col">
-          <h1 className="mt-5">
-            Reporting Light Exposure
-          </h1>
+          <h1 className="mt-5">Reporting Light Exposure</h1>
         </div>
       </div>
       <UploadForm
