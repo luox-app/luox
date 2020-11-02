@@ -3,11 +3,14 @@ import PropTypes from "prop-types";
 import CalculationTable from "./CalculationTable";
 import SpectraTable from "./SpectraTable";
 import Chart from "./Chart";
+import { rowsToURL } from "../sharing";
 
 const Results = ({ rows, sampleCount, radianceOrIrradiance }) => {
   if (rows.length === 0) {
     return null;
   }
+
+  const sharingID = rowsToURL(rows, radianceOrIrradiance);
 
   return (
     <div className="row">
@@ -52,6 +55,16 @@ const Results = ({ rows, sampleCount, radianceOrIrradiance }) => {
           sampleCount={sampleCount}
           radianceOrIrradiance={radianceOrIrradiance}
         />
+
+        <h2 className="my-3">
+          Step 5. Share an online version of this report.
+        </h2>
+
+        <p>
+          <a href={`/u/${sharingID}`} className="btn btn-outline-secondary">
+            Share this report with others
+          </a>
+        </p>
       </div>
     </div>
   );
