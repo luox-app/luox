@@ -11,6 +11,7 @@ module.exports = {
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
   },
 
   module: {
@@ -43,21 +44,14 @@ module.exports = {
         from: "examples/*",
         context: "src/",
       },
+      {
+        from: "_redirects",
+      },
     ]),
 
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       filename: "index.html",
-      chunks: ["menu"],
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/generate-csv.html",
-      filename: "generate-csv.html",
-      chunks: ["menu"],
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/upload-csv.html",
-      filename: "upload-csv.html",
       chunks: ["menu", "upload"],
     }),
   ],

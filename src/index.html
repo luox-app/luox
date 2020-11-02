@@ -9,68 +9,20 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="./">luox</a>
+        <a class="navbar-brand" href="/">luox</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="./">Report light exposure <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/">Report light exposure <span class="sr-only">(current)</span></a>
             </li>
           </ul>
         </div>
       </nav>
     </header>
 
-    <main class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          <h1 class="my-5">
-            Reporting Light Exposure
-          </h1>
-
-          <p class="lead mb-5">
-            Use this tool to meet the <a href="https://doi.org/10.3390/clockssleep1030024">minimum reporting guidelines</a> for reporting the stimulus conditions involving light as an intervention in chronobiology, sleep research and environmental psychology experiments.
-          </p>
-
-          <p>
-            The minimum reporting guidelines are:
-          </p>
-
-          <ul>
-            <li>
-              Measure and report the spectral power distribution of the acute stimulus from the observer’s point of view at a known and specified angle and distance from the source
-            </li>
-            <li>
-              Measure and report the spectral power distribution of the background light environment from the observer’s point of view at a known and specified angle and distance from the source
-            </li>
-            <li>
-              Make spectra available in tabulated form
-            </li>
-            <li>
-              Report α-opic (ir)radiances and illuminance
-            </li>
-            <li>
-              Describe the timing properties of stimulus (clock time, duration and pattern)
-            </li>
-            <li>
-              Describe the spatial properties of stimulus (spatial arrangement and extent)
-            </li>
-            <li>
-              Report measurement conditions and equipment
-            </li>
-          </ul>
-
-          <p class="my-5">
-            You'll need a CSV file containing the spectral power distribution of the acute stimulus and background light environment from the observer's point of view.
-          </p>
-
-          <p>
-            <a class="btn btn-primary" href="./generate-csv.html">Start now</a>
-          </p>
-        </div>
-      </div>
-    </main>
+    <main class="container" id="app"></main>
   </body>
 </html>
