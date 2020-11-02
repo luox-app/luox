@@ -5,5 +5,6 @@ module.exports = merge(common, {
   mode: "development",
   devServer: {
     contentBase: "./dist",
+    historyApiFallback: true,
   },
 });
