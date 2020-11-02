@@ -53,61 +53,72 @@ const UploadForm = ({
   }, [setRows, setSampleCount, csv, powerScale, areaScale]);
 
   return (
-    <div className="row">
-      <div className="col">
-        <h2 className="my-3">
-          Step 1. Upload your spectral power distribution.
-        </h2>
+    <>
+      <div className="row">
+        <div className="col">
+          <h2 className="my-3">
+            Step 1. Upload your spectral power distribution data.
+          </h2>
 
-        <form>
-          <div className="form-inline">
-            <p>
-              {"Upload a CSV with wavelength in nm and "}
-              <select
-                value={radianceOrIrradiance}
-                onChange={handleRadianceOrIrradiance}
-                className="form-control"
-              >
-                <option value="irradiance">irradiances</option>
-                <option value="radiance">radiances</option>
-              </select>
-              {" in "}
-              <select
-                value={powerScale}
-                onChange={handlePowerScale}
-                className="form-control"
-              >
-                <option value="1000000">µW</option>
-                <option value="1000">mW</option>
-                <option value="1">W</option>
-              </select>
-              {" per "}
-              <select
-                value={areaScale}
-                onChange={handleAreaScale}
-                className="form-control"
-              >
-                <option value="1000000">mm²</option>
-                <option value="10000">cm²</option>
-                <option value="1">m²</option>
-              </select>
-              {radianceOrIrradiance === "radiance" && " per sr"}
-            </p>
-          </div>
-          <div className="form-group">
-            <input
-              type="file"
-              ref={fileInput}
-              onChange={handleFileInput}
-              className="form-control-file"
-              id="file-input"
-            />
-          </div>
-        </form>
+          <form>
+            <div className="form-group">
+              <input
+                type="file"
+                ref={fileInput}
+                onChange={handleFileInput}
+                className="form-control-file"
+                id="file-input"
+              />
+            </div>
+          </form>
 
-        <ErrorTable errors={errors} />
+          <ErrorTable errors={errors} />
+        </div>
       </div>
-    </div>
+      {csv.length > 0 && (
+        <div className="row">
+          <div className="col">
+            <h2 className="my-3">Step 2. Tell us more about your data.</h2>
+            <form>
+              <div className="form-inline">
+                <p>
+                  {"My data contains spectra with wavelength in nm and "}
+                  <select
+                    value={radianceOrIrradiance}
+                    onChange={handleRadianceOrIrradiance}
+                    className="form-control"
+                  >
+                    <option value="irradiance">irradiances</option>
+                    <option value="radiance">radiances</option>
+                  </select>
+                  {" in "}
+                  <select
+                    value={powerScale}
+                    onChange={handlePowerScale}
+                    className="form-control"
+                  >
+                    <option value="1000000">µW</option>
+                    <option value="1000">mW</option>
+                    <option value="1">W</option>
+                  </select>
+                  {" per "}
+                  <select
+                    value={areaScale}
+                    onChange={handleAreaScale}
+                    className="form-control"
+                  >
+                    <option value="1000000">mm²</option>
+                    <option value="10000">cm²</option>
+                    <option value="1">m²</option>
+                  </select>
+                  {radianceOrIrradiance === "radiance" && " per sr"}
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
