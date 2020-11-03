@@ -20,9 +20,11 @@ const reduceSamples = (rows, sampleCount, func) => {
 };
 
 export const integrateWithWeights = (rows, sampleCount, data, key) => {
+  const deltaLambda = rows[1][0] - rows[0][0];
+
   const weighted = mapSamples(rows, (wavelength, sample) => {
     const weight = data[wavelength][key];
-    return sample * weight;
+    return sample * weight * deltaLambda;
   });
 
   return reduceSamples(

@@ -1,9 +1,12 @@
 import _ from "lodash";
 import {
+  calculateLuminance,
   calculateEquivalentDaylightAlphaOpic,
   calculateAlphaOpicEfficiency,
   calculateColourRenderingIndices,
 } from "../src/javascript/calculations";
+import spdD651nm100lx from "./fixtures/spd_d65_1nm_100lx.json";
+import spdD652nm100lx from "./fixtures/spd_d65_2nm_100lx.json";
 
 describe("calculateEquivalentDaylightAlphaOpic", () => {
   it("calculates the EDI/EDL", () => {
@@ -74,5 +77,17 @@ describe("calculateColourRenderingIndices", () => {
     ]);
 
     expect(calculateColourRenderingIndices(rows)).toEqual([95, 95, 95]);
+  });
+});
+
+describe("calculateLuminance", () => {
+  it("returns 100 lux for our reference D65 spectra spaced every 1nm", () => {
+    const [luminance] = calculateLuminance(spdD651nm100lx, 1);
+    expect(luminance).toBeCloseTo(100);
+  });
+
+  it("returns 100 lux for our reference D65 spectra spaced every 2nm", () => {
+    const [luminance] = calculateLuminance(spdD652nm100lx, 1);
+    expect(luminance).toBeCloseTo(100);
   });
 });
