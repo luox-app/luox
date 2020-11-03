@@ -12,6 +12,11 @@ const Results = ({ rows, sampleCount, radianceOrIrradiance }) => {
 
   const sharingID = rowsToURL(rows, radianceOrIrradiance);
 
+  const copySharingURL = ({ target }) => {
+    target.setSelectionRange(0, target.value.length);
+    document.execCommand("copy");
+  };
+
   return (
     <div className="row">
       <div className="col">
@@ -60,11 +65,18 @@ const Results = ({ rows, sampleCount, radianceOrIrradiance }) => {
           Step 5. Share an online version of this report.
         </h2>
 
-        <p>
-          <a href={`/u/${sharingID}`} className="btn btn-outline-secondary">
-            Share this report with others
-          </a>
-        </p>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            value={`${window.location.origin}/u/${sharingID}`}
+            onClick={copySharingURL}
+            readOnly
+          />
+          <small className="form-text text-muted">
+            Click above to copy the URL to your clipboard
+          </small>
+        </div>
       </div>
     </div>
   );
