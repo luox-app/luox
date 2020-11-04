@@ -1,6 +1,11 @@
 import VL1924 from "../data/vl1924.json";
 import CIES026 from "../data/cies026.json";
-import { integrateWithWeights, rowsToSpectra, interpolateData } from "./rows";
+import {
+  integrateWithWeights,
+  rowsToSpectra,
+  interpolateData,
+  mapSamples,
+} from "./rows";
 import { calculateColourRenderingIndex } from "./colourRenderingIndex";
 import {
   calculateChromaticity31,
@@ -11,6 +16,16 @@ export const calculateLuminance = (rows, sampleCount) => {
   const key = "vl1924";
   const samplesInWatts = integrateWithWeights(rows, sampleCount, VL1924, key);
   return samplesInWatts.map((sample) => sample * 683);
+};
+
+export const relativeToAbsolute = (rows, sampleCount, relativePowers) => {
+  const powers = calculateLuminance(rows, sampleCount);
+
+  return mapSamples(
+    rows,
+    (wavelength, sample, index) =>
+      sample * ((relativePowers[index] || 1) / powers[index])
+  );
 };
 
 export const calculateAlphaOpic = (rows, sampleCount, key) => {

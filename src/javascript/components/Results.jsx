@@ -21,7 +21,7 @@ const Results = ({ rows, sampleCount, radianceOrIrradiance }) => {
     <div className="row">
       <div className="col">
         <h2 className="my-3">
-          Step 2. Check we have understood your input correctly.
+          Step 3. Check we have understood your input correctly.
         </h2>
 
         <Chart
@@ -31,7 +31,7 @@ const Results = ({ rows, sampleCount, radianceOrIrradiance }) => {
         />
 
         <h2 className="my-3">
-          Step 3. Download the stimulus specification tables and include them in
+          Step 4. Download the stimulus specification tables and include them in
           your report.
         </h2>
 
@@ -42,7 +42,7 @@ const Results = ({ rows, sampleCount, radianceOrIrradiance }) => {
         />
 
         <h2 className="my-3">
-          Step 4. Include the full spectral power distribution in your
+          Step 5. Include the full spectral power distribution in your
           supplementary material.
         </h2>
 
@@ -62,7 +62,7 @@ const Results = ({ rows, sampleCount, radianceOrIrradiance }) => {
         />
 
         <h2 className="my-3">
-          Step 5. Share an online version of this report.
+          Step 6. Share an online version of this report.
         </h2>
 
         <div className="form-group">
