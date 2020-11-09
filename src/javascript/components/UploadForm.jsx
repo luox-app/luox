@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import parseCSV from "../csvParser";
+import validateInput from "../inputValidator";
 import { scaleSamples } from "../rows";
 import ErrorTable from "./ErrorTable";
 import { relativeToAbsolute } from "../calculations";
@@ -57,12 +58,22 @@ const UploadForm = ({
         } else {
           const [header, ...body] = data;
 
-          setErrors([]);
-          setCSVHeader(header);
-          setCSV(body);
-          setRelativePowers(
-            Object.fromEntries(new Array(header.length - 1).fill("1").entries())
-          );
+          const validationErrors = validateInput(header, body);
+          if (validationErrors.length > 0) {
+            setErrors(validationErrors);
+            setCSV([]);
+            setCSVHeader([]);
+            setRelativePowers({});
+          } else {
+            setErrors([]);
+            setCSVHeader(header);
+            setCSV(body);
+            setRelativePowers(
+              Object.fromEntries(
+                new Array(header.length - 1).fill("1").entries()
+              )
+            );
+          }
         }
       });
     }
