@@ -5,6 +5,7 @@ const parseCSV = async (file) => {
     Papa.parse(file, {
       dynamicTyping: true,
       header: false,
+      skipEmptyLines: true,
       error: (error) => reject(error),
       complete: (results) => resolve(results),
     });

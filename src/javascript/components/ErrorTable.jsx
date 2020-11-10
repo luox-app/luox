@@ -12,10 +12,7 @@ const ErrorTableRow = ({ row, message }) => {
 
   return (
     <tr>
-      <td>
-        Line
-        {row}
-      </td>
+      <td>Line {row}</td>
       <td>{message}</td>
     </tr>
   );

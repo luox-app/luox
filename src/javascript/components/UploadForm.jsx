@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import parseCSV from "../csvParser";
+import validateInput from "../inputValidator";
 import { scaleSamples } from "../rows";
 import ErrorTable from "./ErrorTable";
 import { relativeToAbsolute } from "../calculations";
@@ -57,12 +58,22 @@ const UploadForm = ({
         } else {
           const [header, ...body] = data;
 
-          setErrors([]);
-          setCSVHeader(header);
-          setCSV(body);
-          setRelativePowers(
-            Object.fromEntries(new Array(header.length - 1).fill("1").entries())
-          );
+          const validationErrors = validateInput(header, body);
+          if (validationErrors.length > 0) {
+            setErrors(validationErrors);
+            setCSV([]);
+            setCSVHeader([]);
+            setRelativePowers({});
+          } else {
+            setErrors([]);
+            setCSVHeader(header);
+            setCSV(body);
+            setRelativePowers(
+              Object.fromEntries(
+                new Array(header.length - 1).fill("1").entries()
+              )
+            );
+          }
         }
       });
     }
@@ -71,12 +82,9 @@ const UploadForm = ({
   useEffect(() => {
     if (csv.length > 0) {
       const sampleCount = csv[0].length - 1;
-      const visibleWavelengths = csv.filter(
-        ([wavelength]) => wavelength >= 380 && wavelength <= 780
-      );
 
       if (absoluteOrRelative === "absolute") {
-        setRows(scaleSamples(visibleWavelengths, areaScale, powerScale));
+        setRows(scaleSamples(csv, areaScale, powerScale));
       } else {
         const powers = Object.fromEntries(
           Object.entries(relativePowers)
@@ -84,7 +92,7 @@ const UploadForm = ({
             .filter(([, v]) => !Number.isNaN(v))
         );
 
-        setRows(relativeToAbsolute(visibleWavelengths, sampleCount, powers));
+        setRows(relativeToAbsolute(csv, sampleCount, powers));
       }
 
       setSampleCount(sampleCount);
