@@ -323,7 +323,7 @@ export const calculateColourRenderingIndex = (spectra) => {
       blackBodyReferenceSpectra(wavelength * 1e-9, T),
     ]);
   } else {
-    for (let lambda = 380; lambda <= 780; lambda += 5) {
+    for (let lambda = 380; lambda <= 740; lambda += 5) {
       referenceSpectra.push([lambda, daylightReferenceSpectra(lambda, T)]);
     }
     referenceSpectra = interpolateLinearly(referenceSpectra);
