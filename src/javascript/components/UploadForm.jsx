@@ -150,7 +150,7 @@ const UploadForm = ({
                   <option value="absolute">absolute</option>
                   <option value="relative">relative</option>
                 </select>
-                {" spectra with wavelength in nm "}
+                {" spectra with wavelength in nm. "}
                 {absoluteOrRelative === "absolute" && (
                   <AbsoluteUnits
                     radianceOrIrradiance={radianceOrIrradiance}
@@ -198,7 +198,7 @@ const AbsoluteUnits = ({
 }) => {
   return (
     <>
-      {" and "}
+      {"Each measurement column contains "}
       <select
         value={radianceOrIrradiance}
         onChange={handleRadianceOrIrradiance}
@@ -227,7 +227,7 @@ const AbsoluteUnits = ({
         <option value="10000">cm²</option>
         <option value="1">m²</option>
       </select>
-      {radianceOrIrradiance === "radiance" && " per sr"}
+      {radianceOrIrradiance === "radiance" && " per sr"}.
     </>
   );
 };
@@ -261,7 +261,7 @@ const RelativeUnits = ({
 
   return (
     <>
-      {" and a measured "}
+      {"I have separately measured "}
       <select
         value={luminanceOrIlluminance}
         onChange={handleLuminanceOrIlluminance}
@@ -281,6 +281,7 @@ const RelativeUnits = ({
           <Separator index={index} length={observationTitles.length} />
         </React.Fragment>
       ))}
+      .
     </>
   );
 };
@@ -297,7 +298,7 @@ const ObservationTitle = ({ title, onChange, value, units }) => {
   return (
     <>
       {" "}
-      for observation {title} of{" "}
+      for <span className="font-italic">{title}</span> at{" "}
       <input
         type="number"
         className="form-control form-control-sm"
