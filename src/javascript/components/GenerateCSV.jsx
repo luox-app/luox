@@ -15,15 +15,16 @@ const GenerateCSV = () => {
         <h2 className="mb-3">Specification</h2>
 
         <p className="mb-3">
-          The first field contains the wavelength in nanometers. The subsequent
-          fields contain the spectral (ir)radiance for each of the measurements
-          taken during the experiment:
+          The first column contains the wavelength in nanometers. The subsequent
+          columns contain the spectral (ir)radiance for each of the measurements
+          taken during the experiment. Your data can contain up to 5
+          measurements:
         </p>
 
         <table className="table mb-5">
           <thead>
             <tr>
-              <th>Field</th>
+              <th>Column</th>
               <th>Required?</th>
               <th>Description</th>
             </tr>
@@ -32,7 +33,11 @@ const GenerateCSV = () => {
             <tr>
               <td>1</td>
               <td>Yes</td>
-              <td>Wavelength in nanometers</td>
+              <td>
+                Wavelength in nanometers. This should be restricted to the
+                visible light range (380-740nm) and contain only integer
+                wavelengths (e.g. 380, 385, 390 ...).
+              </td>
             </tr>
             <tr>
               <td>2</td>
@@ -65,12 +70,13 @@ const GenerateCSV = () => {
 
         <pre>
           <code>
-            {`Wavelength,Measurement 1,Measurement 2,Measurement n
-380,0.00E+00,9.73E-05,0.00E+00
-385,0.00E+00,1.67E-06,0.00E+00
+            {`Wavelength,Measurement 1,Measurement 2,Measurement 3
+380,1.87,1.18,0.82
+385,2.36,1.48,1.02
 ...
-775,2.30E-06,3.46E-05,2.72E-06
-780,8.15E-06,5.00E-05,6.12E-06`}
+735,0.75,0.54,0.46
+740,0.73,0.51,0.43
+`}
           </code>
         </pre>
 
