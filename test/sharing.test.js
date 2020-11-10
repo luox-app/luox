@@ -2,7 +2,9 @@ import { rowsToURL, urlToRows } from "../src/javascript/sharing";
 
 describe("rowsToURL", () => {
   it("returns an empty string if there aren't enough rows", () => {
-    expect(rowsToURL([[380, 1]], "irradiance")).toEqual("");
+    expect(rowsToURL([[380, 1]], "irradiance", ["wavelength", "S1"])).toEqual(
+      ""
+    );
   });
 
   it("returns a single SPDURL if there is only one set of samples", () => {
@@ -12,9 +14,10 @@ describe("rowsToURL", () => {
           [380, 1],
           [385, 2],
         ],
-        "irradiance"
+        "irradiance",
+        ["wavelength", "S1"]
       )
-    ).toEqual("spd1,380,5,wi,5,pf6r");
+    ).toEqual("spd1,380,5,wi,5,pf6r,nS1");
   });
 
   it("returns a SPDURL with the wr unit for radiances", () => {
@@ -24,9 +27,10 @@ describe("rowsToURL", () => {
           [380, 1],
           [385, 2],
         ],
-        "radiance"
+        "radiance",
+        ["wavelength", "S1"]
       )
-    ).toEqual("spd1,380,5,wr,5,pf6r");
+    ).toEqual("spd1,380,5,wr,5,pf6r,nS1");
   });
 
   it("returns two SPDURLs joined with a pipe if there are multiple sets of samples", () => {
@@ -36,9 +40,10 @@ describe("rowsToURL", () => {
           [380, 1, 3],
           [385, 2, 4],
         ],
-        "irradiance"
+        "irradiance",
+        ["wavelength", "S1", "S2"]
       )
-    ).toEqual("spd1,380,5,wi,5,pf6r|spd1,380,5,wi,9,y06r");
+    ).toEqual("spd1,380,5,wi,5,pf6r,nS1|spd1,380,5,wi,9,y06r,nS2");
   });
 
   it("calculates the base from the first row", () => {
@@ -48,9 +53,10 @@ describe("rowsToURL", () => {
           [390, 1],
           [400, 2],
         ],
-        "irradiance"
+        "irradiance",
+        ["wavelength", "S1"]
       )
-    ).toEqual("spd1,390,10,wi,5,pf6r");
+    ).toEqual("spd1,390,10,wi,5,pf6r,nS1");
   });
 
   it("calculates the delta from the first two rows", () => {
@@ -60,9 +66,10 @@ describe("rowsToURL", () => {
           [390, 1],
           [410, 2],
         ],
-        "irradiance"
+        "irradiance",
+        ["wavelength", "S1"]
       )
-    ).toEqual("spd1,390,20,wi,5,pf6r");
+    ).toEqual("spd1,390,20,wi,5,pf6r,nS1");
   });
 });
 
@@ -110,5 +117,19 @@ describe("urlToRows", () => {
     const [rows] = urlToRows("spd1,380,5,uwi,5,pf6r");
 
     expect(rows).toEqual([]);
+  });
+
+  it("returns the data header for a single SPDURL", () => {
+    const [, , csvHeader] = urlToRows("spd1,380,5,wi,5,pf6r,nS0");
+
+    expect(csvHeader).toEqual(["wavelength", "S0"]);
+  });
+
+  it("returns the data header for multiple SPDURLs", () => {
+    const [, , csvHeader] = urlToRows(
+      "spd1,380,5,wi,5,pf6r,nS0|spd1,380,5,wi,9,y06r,nS1"
+    );
+
+    expect(csvHeader).toEqual(["wavelength", "S0", "S1"]);
   });
 });
