@@ -2,7 +2,7 @@ import { rowsToURL, urlToRows } from "../src/javascript/sharing";
 
 describe("rowsToURL", () => {
   it("returns an empty string if there aren't enough rows", () => {
-    expect(rowsToURL([[380, 1]], "irradiance", ["wavelength", "S1"])).toEqual(
+    expect(rowsToURL([[380, 1]], "irradiance", ["Wavelength", "S1"])).toEqual(
       ""
     );
   });
@@ -15,7 +15,7 @@ describe("rowsToURL", () => {
           [385, 2],
         ],
         "irradiance",
-        ["wavelength", "S1"]
+        ["Wavelength", "S1"]
       )
     ).toEqual("spd1,380,5,wi,5,pf6r,nS1");
   });
@@ -28,7 +28,7 @@ describe("rowsToURL", () => {
           [385, 2],
         ],
         "radiance",
-        ["wavelength", "S1"]
+        ["Wavelength", "S1"]
       )
     ).toEqual("spd1,380,5,wr,5,pf6r,nS1");
   });
@@ -41,7 +41,7 @@ describe("rowsToURL", () => {
           [385, 2, 4],
         ],
         "irradiance",
-        ["wavelength", "S1", "S2"]
+        ["Wavelength", "S1", "S2"]
       )
     ).toEqual("spd1,380,5,wi,5,pf6r,nS1|spd1,380,5,wi,9,y06r,nS2");
   });
@@ -54,7 +54,7 @@ describe("rowsToURL", () => {
           [400, 2],
         ],
         "irradiance",
-        ["wavelength", "S1"]
+        ["Wavelength", "S1"]
       )
     ).toEqual("spd1,390,10,wi,5,pf6r,nS1");
   });
@@ -67,7 +67,7 @@ describe("rowsToURL", () => {
           [410, 2],
         ],
         "irradiance",
-        ["wavelength", "S1"]
+        ["Wavelength", "S1"]
       )
     ).toEqual("spd1,390,20,wi,5,pf6r,nS1");
   });
@@ -122,7 +122,7 @@ describe("urlToRows", () => {
   it("returns the data header for a single SPDURL", () => {
     const [, , csvHeader] = urlToRows("spd1,380,5,wi,5,pf6r,nS0");
 
-    expect(csvHeader).toEqual(["wavelength", "S0"]);
+    expect(csvHeader).toEqual(["Wavelength", "S0"]);
   });
 
   it("returns the data header for multiple SPDURLs", () => {
@@ -130,6 +130,6 @@ describe("urlToRows", () => {
       "spd1,380,5,wi,5,pf6r,nS0|spd1,380,5,wi,9,y06r,nS1"
     );
 
-    expect(csvHeader).toEqual(["wavelength", "S0", "S1"]);
+    expect(csvHeader).toEqual(["Wavelength", "S0", "S1"]);
   });
 });

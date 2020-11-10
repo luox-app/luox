@@ -32,7 +32,7 @@ export const urlToRows = (url) => {
   try {
     const wavelengths = new Map();
     let radianceOrIrradiance;
-    const csvHeader = ["wavelength"];
+    const csvHeader = ["Wavelength"];
 
     url.split("|").forEach((enc) => {
       const { base, delta, unit, data, name } = decodeSPD(enc);
