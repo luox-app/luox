@@ -1,6 +1,6 @@
 import Chart from "chart.js";
 import { mapSamples } from "./rows";
-import { sampleTitles, radianceOrIrradianceSIUnit } from "./helpers";
+import { radianceOrIrradianceSIUnit } from "./helpers";
 
 const generateHues = (sampleCount) => {
   const hues = [];
@@ -16,11 +16,12 @@ const createChart = (
   radianceOrIrradiance,
   rows,
   sampleCount,
+  csvHeader,
   yAxisScaling
 ) => {
   const datasets = [];
   const hues = generateHues(sampleCount);
-  const labels = sampleTitles(sampleCount);
+  const [, ...labels] = csvHeader;
   let data = rows;
   let yAxisLabel = `Spectral ${radianceOrIrradiance} [${radianceOrIrradianceSIUnit(
     radianceOrIrradiance

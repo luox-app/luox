@@ -8,6 +8,7 @@ const Upload = () => {
   );
   const [rows, setRows] = useState([]);
   const [sampleCount, setSampleCount] = useState(0);
+  const [csvHeader, setCSVHeader] = useState([]);
 
   return (
     <>
@@ -18,14 +19,17 @@ const Upload = () => {
       </div>
       <UploadForm
         radianceOrIrradiance={radianceOrIrradiance}
+        csvHeader={csvHeader}
         setRadianceOrIrradiance={setRadianceOrIrradiance}
         setRows={setRows}
         setSampleCount={setSampleCount}
+        setCSVHeader={setCSVHeader}
       />
       <Results
         rows={rows}
         sampleCount={sampleCount}
         radianceOrIrradiance={radianceOrIrradiance}
+        csvHeader={csvHeader}
       />
     </>
   );

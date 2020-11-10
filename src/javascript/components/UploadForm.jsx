@@ -7,16 +7,17 @@ import ErrorTable from "./ErrorTable";
 import { relativeToAbsolute } from "../calculations";
 
 const UploadForm = ({
+  csvHeader,
   radianceOrIrradiance,
   setRadianceOrIrradiance,
   setRows,
   setSampleCount,
+  setCSVHeader,
 }) => {
   const [powerScale, setPowerScale] = useState(1);
   const [areaScale, setAreaScale] = useState(1);
   const [errors, setErrors] = useState([]);
   const [csv, setCSV] = useState([]);
-  const [csvHeader, setCSVHeader] = useState([]);
   const [absoluteOrRelative, setAbsoluteOrRelative] = useState("absolute");
   const [relativePowers, setRelativePowers] = useState({});
 
@@ -180,9 +181,11 @@ const UploadForm = ({
 
 UploadForm.propTypes = {
   radianceOrIrradiance: PropTypes.string.isRequired,
+  csvHeader: PropTypes.arrayOf(PropTypes.string).isRequired,
   setRadianceOrIrradiance: PropTypes.func.isRequired,
   setRows: PropTypes.func.isRequired,
   setSampleCount: PropTypes.func.isRequired,
+  setCSVHeader: PropTypes.func.isRequired,
 };
 
 const AbsoluteUnits = ({

@@ -2,10 +2,11 @@ import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import { calculate } from "../calculations";
 import CalculationTableCSV from "./CalculationTableCSV";
-import { asDecimal, asExponential, sampleTitles } from "../helpers";
+import { asDecimal, asExponential } from "../helpers";
 
-const CalculationTableHeader = ({ sampleCount }) => {
-  const titles = ["Condition", ...sampleTitles(sampleCount)];
+const CalculationTableHeader = ({ csvHeader }) => {
+  const [, ...labels] = csvHeader;
+  const titles = ["Condition", ...labels];
 
   return (
     <thead>
@@ -19,7 +20,7 @@ const CalculationTableHeader = ({ sampleCount }) => {
 };
 
 CalculationTableHeader.propTypes = {
-  sampleCount: PropTypes.number.isRequired,
+  csvHeader: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const CalculationTableRow = ({ heading, samples, exponentialNotation }) => {
@@ -47,7 +48,12 @@ CalculationTableRow.propTypes = {
   samples: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
-const CalculationTable = ({ radianceOrIrradiance, rows, sampleCount }) => {
+const CalculationTable = ({
+  radianceOrIrradiance,
+  rows,
+  sampleCount,
+  csvHeader,
+}) => {
   const calculation = useMemo(() => calculate(rows, sampleCount), [
     rows,
     sampleCount,
@@ -56,10 +62,10 @@ const CalculationTable = ({ radianceOrIrradiance, rows, sampleCount }) => {
     () =>
       CalculationTableCSV({
         radianceOrIrradiance,
-        sampleCount,
+        csvHeader,
         ...calculation,
       }),
-    [radianceOrIrradiance, sampleCount, calculation]
+    [radianceOrIrradiance, csvHeader, calculation]
   );
 
   const {
@@ -129,7 +135,7 @@ const CalculationTable = ({ radianceOrIrradiance, rows, sampleCount }) => {
         </div>
       </div>
       <table className="table table-sm mt-3 result-table">
-        <CalculationTableHeader sampleCount={sampleCount} />
+        <CalculationTableHeader csvHeader={csvHeader} />
         <tbody>
           <CalculationTableRow
             heading={
@@ -261,6 +267,7 @@ CalculationTable.propTypes = {
   rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   sampleCount: PropTypes.number.isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
+  csvHeader: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default CalculationTable;
