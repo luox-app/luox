@@ -54,7 +54,7 @@ const validateWavelengthColumnContainsIntegerWavelengths = (body) => {
 
   const isIntegerAndVisible = (array) => {
     return array.every(function visibleIntegerWavelengthsIncludes(element) {
-      return range(380, 740, 1).includes(element);
+      return range(380, 780, 1).includes(element);
     });
   };
 
@@ -62,7 +62,7 @@ const validateWavelengthColumnContainsIntegerWavelengths = (body) => {
     return {
       row: null,
       message:
-        "Every element in the first (wavelength) column should be an integer and in the range of visible light (e.g. 380, 381, ... 740)",
+        "Every element in the first (wavelength) column should be an integer and in the range of visible light (e.g. 380, 381, ... 780)",
     };
   }
 
@@ -78,7 +78,7 @@ const validateWavelengthColumnHasConsistentDelta = (body) => {
     return {
       row: null,
       message:
-        "The first (wavelength) column should have consistent spacing (e.g. 380, 385, 390 ... 740)",
+        "The first (wavelength) column should have consistent spacing (e.g. 380, 385, 390 ... 780)",
     };
   }
 

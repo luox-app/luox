@@ -35,7 +35,7 @@ const GenerateCSV = () => {
               <td>Yes</td>
               <td>
                 Wavelength in nanometers. This should be restricted to the
-                visible light range (380-740nm) and contain only integer
+                visible light range (380-780nm) and contain only integer
                 wavelengths (e.g. 380, 385, 390 ...).
               </td>
             </tr>
@@ -74,8 +74,8 @@ const GenerateCSV = () => {
 380,1.87,1.18,0.82
 385,2.36,1.48,1.02
 ...
-735,0.75,0.54,0.46
-740,0.73,0.51,0.43
+775,0.52,0.33,0.28
+780,0.43,0.27,0.21
 `}
           </code>
         </pre>

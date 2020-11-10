@@ -59,13 +59,13 @@ describe("inputValidator", () => {
 
   it("should return a validation error if the frequency column contains non-integer values", () => {
     expect(validateInput(["lambda"], [[380], [380.5]])).toHaveMessage(
-      "Every element in the first (wavelength) column should be an integer and in the range of visible light (e.g. 380, 381, ... 740)"
+      "Every element in the first (wavelength) column should be an integer and in the range of visible light (e.g. 380, 381, ... 780)"
     );
   });
 
   it("should return a validation error if the frequency column has inconsistent spacing", () => {
     expect(validateInput(["lambda"], [[380], [381], [383]])).toHaveMessage(
-      "The first (wavelength) column should have consistent spacing (e.g. 380, 385, 390 ... 740)"
+      "The first (wavelength) column should have consistent spacing (e.g. 380, 385, 390 ... 780)"
     );
   });
 });
