@@ -82,12 +82,9 @@ const UploadForm = ({
   useEffect(() => {
     if (csv.length > 0) {
       const sampleCount = csv[0].length - 1;
-      const visibleWavelengths = csv.filter(
-        ([wavelength]) => wavelength >= 380 && wavelength <= 780
-      );
 
       if (absoluteOrRelative === "absolute") {
-        setRows(scaleSamples(visibleWavelengths, areaScale, powerScale));
+        setRows(scaleSamples(csv, areaScale, powerScale));
       } else {
         const powers = Object.fromEntries(
           Object.entries(relativePowers)
@@ -95,7 +92,7 @@ const UploadForm = ({
             .filter(([, v]) => !Number.isNaN(v))
         );
 
-        setRows(relativeToAbsolute(visibleWavelengths, sampleCount, powers));
+        setRows(relativeToAbsolute(csv, sampleCount, powers));
       }
 
       setSampleCount(sampleCount);
