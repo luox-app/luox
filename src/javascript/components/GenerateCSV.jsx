@@ -88,6 +88,12 @@ const GenerateCSV = () => {
           </li>
         </ul>
 
+        <p>
+          Please note that the accuracy of calculations implemented here depends
+          on the uncertainties present in the uploaded data. For more
+          information, please see <a href="/about">the about page</a>.
+        </p>
+
         <p className="my-5">
           <Link to="/upload" className="btn btn-primary">
             Next

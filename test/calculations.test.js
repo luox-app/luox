@@ -65,7 +65,9 @@ describe("calculateColourRenderingIndices", () => {
       0.3,
     ]);
 
-    expect(calculateColourRenderingIndices(rows)).toEqual([95, 95, 95]);
+    expect(
+      calculateColourRenderingIndices(rows).map((e) => e.toFixed(0))
+    ).toEqual(["95", "95", "95"]);
   });
 
   it("returns the colour rendering indices for each sample when input is at 1nm intervals", () => {
@@ -76,7 +78,9 @@ describe("calculateColourRenderingIndices", () => {
       0.3,
     ]);
 
-    expect(calculateColourRenderingIndices(rows)).toEqual([95, 95, 95]);
+    expect(
+      calculateColourRenderingIndices(rows).map((e) => e.toFixed(0))
+    ).toEqual(["95", "95", "95"]);
   });
 });
 

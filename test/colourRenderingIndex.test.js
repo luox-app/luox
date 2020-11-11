@@ -213,25 +213,29 @@ describe("generalColourRenderingIndex", () => {
     ];
 
     const output = generalColourRenderingIndex(input);
-    expect(output).toEqual(64);
+    expect(output.toFixed(0)).toEqual("64");
   });
 });
 
 describe("calculateColourRenderingIndex", () => {
   it("calculates the correct CRI given the input spectrum for CIE illuminant FL1 in 5nm spacing", () => {
-    expect(calculateColourRenderingIndex(fl1)).toEqual(76);
+    expect(calculateColourRenderingIndex(fl1).toFixed(0)).toEqual("76");
   });
 
   it("calculates the correct CRI given the input spectrum for CIE illuminant FL1 in 1nm spacing", () => {
-    expect(calculateColourRenderingIndex(interpolateLinearly(fl1))).toEqual(76);
+    expect(
+      calculateColourRenderingIndex(interpolateLinearly(fl1)).toFixed(0)
+    ).toEqual("76");
   });
 
   it("calculates the correct CRI given the input spectrum for CIE illuminant FL2 in 5nm spacing", () => {
-    expect(calculateColourRenderingIndex(fl2)).toEqual(64);
+    expect(calculateColourRenderingIndex(fl2).toFixed(0)).toEqual("64");
   });
 
   it("calculates the correct CRI given the input spectrum for CIE illuminant FL2 in 1nm spacing", () => {
-    expect(calculateColourRenderingIndex(interpolateLinearly(fl2))).toEqual(64);
+    expect(
+      calculateColourRenderingIndex(interpolateLinearly(fl2)).toFixed(0)
+    ).toEqual("64");
   });
 });
 
