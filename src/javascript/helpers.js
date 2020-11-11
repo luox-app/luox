@@ -3,7 +3,7 @@ export const asExponential = (number) => {
   return parts[0] + parts[1] + parts[2].padStart(2, "0");
 };
 
-export const asDecimal = (number, precision = 2) => number.toFixed(precision);
+export const asDecimal = (number, precision = 4) => number.toFixed(precision);
 
 export const radianceOrIrradianceSIUnit = (radianceOrIrradiance) => {
   let units = "";
