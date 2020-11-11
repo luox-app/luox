@@ -271,7 +271,7 @@ const RelativeUnits = ({
       </select>
       {measurementLabels.map((title, index) => (
         <React.Fragment key={title}>
-          <ObservationTitle
+          <RelativePower
             title={title}
             onChange={handleRelativePowers(index)}
             value={relativePowers[index]}
@@ -293,7 +293,7 @@ RelativeUnits.propTypes = {
   relativePowers: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-const ObservationTitle = ({ title, onChange, value, units }) => {
+const RelativePower = ({ title, onChange, value, units }) => {
   return (
     <>
       {" "}
@@ -309,7 +309,7 @@ const ObservationTitle = ({ title, onChange, value, units }) => {
   );
 };
 
-ObservationTitle.propTypes = {
+RelativePower.propTypes = {
   title: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
