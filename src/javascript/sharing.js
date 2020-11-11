@@ -7,7 +7,6 @@ export const rowsToURL = (rows, radianceOrIrradiance, csvHeader) => {
 
   const url = [];
   const unit = radianceOrIrradiance === "radiance" ? "wr" : "wi";
-  const [, ...labels] = csvHeader;
 
   for (let i = 1; i < rows[0].length; i += 1) {
     const spd = SPD();
@@ -17,7 +16,7 @@ export const rowsToURL = (rows, radianceOrIrradiance, csvHeader) => {
     spd.delta = secondWavelength - baseWavelength;
     spd.unit = unit;
     spd.data = rows.map((row) => row[i]);
-    spd.name = labels[i - 1];
+    spd.name = csvHeader[i - 1];
     url.push(encodeSPD(spd));
   }
 
@@ -32,7 +31,7 @@ export const urlToRows = (url) => {
   try {
     const wavelengths = new Map();
     let radianceOrIrradiance;
-    const csvHeader = ["Wavelength"];
+    const csvHeader = [];
 
     url.split("|").forEach((enc) => {
       const { base, delta, unit, data, name } = decodeSPD(enc);

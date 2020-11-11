@@ -19,10 +19,9 @@ const CalculationTableCSV = ({
     radianceOrIrradiance === "radiance" ? "mW ⋅ m⁻² ⋅ sr" : "mW ⋅ m⁻²";
   const equivalentDaylightUnit =
     radianceOrIrradiance === "radiance" ? "EDL [cd/m²]" : "EDI [lux]";
-  const [, ...labels] = csvHeader;
 
   const csv = Papa.unparse([
-    ["Condition", ...labels],
+    ["Condition", ...csvHeader],
     [
       radianceOrIrradiance === "radiance"
         ? "Luminance [cd/m²]"

@@ -67,7 +67,8 @@ const UploadForm = ({
             setRelativePowers({});
           } else {
             setErrors([]);
-            setCSVHeader(header);
+            const [, ...measurementLabels] = header;
+            setCSVHeader(measurementLabels);
             setCSV(body);
             setRelativePowers(
               Object.fromEntries(
@@ -248,8 +249,6 @@ const RelativeUnits = ({
   handleRelativePowers,
   relativePowers,
 }) => {
-  const [, ...observationTitles] = csvHeader;
-
   const luminanceOrIlluminance =
     radianceOrIrradiance === "radiance" ? "luminance" : "illuminance";
 
@@ -270,7 +269,7 @@ const RelativeUnits = ({
         <option value="luminance">luminance</option>
         <option value="illuminance">illuminance</option>
       </select>
-      {observationTitles.map((title, index) => (
+      {csvHeader.map((title, index) => (
         <React.Fragment key={title}>
           <ObservationTitle
             title={title}
@@ -278,7 +277,7 @@ const RelativeUnits = ({
             value={relativePowers[index]}
             units={units}
           />
-          <Separator index={index} length={observationTitles.length} />
+          <Separator index={index} length={csvHeader.length} />
         </React.Fragment>
       ))}
       .

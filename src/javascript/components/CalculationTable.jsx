@@ -5,8 +5,7 @@ import CalculationTableCSV from "./CalculationTableCSV";
 import { asDecimal, asExponential } from "../helpers";
 
 const CalculationTableHeader = ({ csvHeader }) => {
-  const [, ...labels] = csvHeader;
-  const titles = ["Condition", ...labels];
+  const titles = ["Condition", ...csvHeader];
 
   return (
     <thead>

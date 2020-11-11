@@ -21,7 +21,6 @@ const createChart = (
 ) => {
   const datasets = [];
   const hues = generateHues(sampleCount);
-  const [, ...labels] = csvHeader;
   let data = rows;
   let yAxisLabel = `Spectral ${radianceOrIrradiance} [${radianceOrIrradianceSIUnit(
     radianceOrIrradiance
@@ -53,7 +52,7 @@ const createChart = (
       borderColor: lineColor,
       data: data.map((row) => row[sampleIdx + 1]),
       fill: false,
-      label: labels[sampleIdx],
+      label: csvHeader[sampleIdx],
       pointRadius: 1,
     };
   }
