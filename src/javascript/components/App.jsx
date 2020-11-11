@@ -4,6 +4,7 @@ import Intro from "./Intro";
 import GenerateCSV from "./GenerateCSV";
 import Upload from "./Upload";
 import Report from "./Report";
+import About from "./About";
 
 const App = () => {
   return (
@@ -17,6 +18,9 @@ const App = () => {
         </Route>
         <Route path="/generate-csv">
           <GenerateCSV />
+        </Route>
+        <Route path="/about">
+          <About />
         </Route>
         <Route path="/">
           <Intro />
