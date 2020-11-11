@@ -8,7 +8,7 @@ const Upload = () => {
   );
   const [rows, setRows] = useState([]);
   const [sampleCount, setSampleCount] = useState(0);
-  const [measurementLabels, setMeasurementLabels] = useState([]);
+  const [measurementLabels, setMeasurementLabels] = useState({});
 
   return (
     <>

@@ -21,7 +21,7 @@ const CalculationTableCSV = ({
     radianceOrIrradiance === "radiance" ? "EDL [cd/m²]" : "EDI [lux]";
 
   const csv = Papa.unparse([
-    ["Condition", ...measurementLabels],
+    ["Condition", ...Object.values(measurementLabels)],
     [
       radianceOrIrradiance === "radiance"
         ? "Luminance [cd/m²]"

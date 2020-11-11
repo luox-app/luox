@@ -54,7 +54,7 @@ const UploadForm = ({
         if (csvErrors.length > 0) {
           setErrors(csvErrors);
           setCSV([]);
-          setMeasurementLabels([]);
+          setMeasurementLabels({});
           setRelativePowers({});
         } else {
           const [header, ...body] = data;
@@ -63,12 +63,12 @@ const UploadForm = ({
           if (validationErrors.length > 0) {
             setErrors(validationErrors);
             setCSV([]);
-            setMeasurementLabels([]);
+            setMeasurementLabels({});
             setRelativePowers({});
           } else {
             setErrors([]);
             const [, ...labels] = header;
-            setMeasurementLabels(labels);
+            setMeasurementLabels({ ...labels });
             setCSV(body);
             setRelativePowers(
               Object.fromEntries(
@@ -182,7 +182,7 @@ const UploadForm = ({
 
 UploadForm.propTypes = {
   radianceOrIrradiance: PropTypes.string.isRequired,
-  measurementLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   setRadianceOrIrradiance: PropTypes.func.isRequired,
   setRows: PropTypes.func.isRequired,
   setSampleCount: PropTypes.func.isRequired,
@@ -269,15 +269,18 @@ const RelativeUnits = ({
         <option value="luminance">luminance</option>
         <option value="illuminance">illuminance</option>
       </select>
-      {measurementLabels.map((title, index) => (
-        <React.Fragment key={title}>
+      {Object.entries(measurementLabels).map(([key, title], index) => (
+        <React.Fragment key={key}>
           <RelativePower
             title={title}
             onChange={handleRelativePowers(index)}
             value={relativePowers[index]}
             units={units}
           />
-          <Separator index={index} length={measurementLabels.length} />
+          <Separator
+            index={index}
+            length={Object.keys(measurementLabels).length}
+          />
         </React.Fragment>
       ))}
       .
@@ -288,7 +291,7 @@ const RelativeUnits = ({
 RelativeUnits.propTypes = {
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
   setRadianceOrIrradiance: PropTypes.func.isRequired,
-  measurementLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   handleRelativePowers: PropTypes.func.isRequired,
   relativePowers: PropTypes.objectOf(PropTypes.string).isRequired,
 };

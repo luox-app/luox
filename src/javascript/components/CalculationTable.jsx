@@ -5,13 +5,12 @@ import CalculationTableCSV from "./CalculationTableCSV";
 import { asDecimal, asExponential } from "../helpers";
 
 const CalculationTableHeader = ({ measurementLabels }) => {
-  const titles = ["Condition", ...measurementLabels];
-
   return (
     <thead>
       <tr>
-        {titles.map((title) => (
-          <th key={title}>{title}</th>
+        <th key="condition">Condition</th>
+        {Object.entries(measurementLabels).map(([key, value]) => (
+          <th key={key}>{value}</th>
         ))}
       </tr>
     </thead>
@@ -19,7 +18,7 @@ const CalculationTableHeader = ({ measurementLabels }) => {
 };
 
 CalculationTableHeader.propTypes = {
-  measurementLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 const CalculationTableRow = ({ heading, samples, exponentialNotation }) => {
@@ -266,7 +265,7 @@ CalculationTable.propTypes = {
   rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   sampleCount: PropTypes.number.isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
-  measurementLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default CalculationTable;
