@@ -14,8 +14,8 @@ const UploadForm = ({
   setSampleCount,
   setMeasurementLabels,
 }) => {
-  const [powerScale, setPowerScale] = useState(1);
-  const [areaScale, setAreaScale] = useState(1);
+  const [powerScale, setPowerScale] = useState("watt");
+  const [areaScale, setAreaScale] = useState("metresq");
   const [errors, setErrors] = useState([]);
   const [csv, setCSV] = useState([]);
   const [absoluteOrRelative, setAbsoluteOrRelative] = useState("absolute");
@@ -32,11 +32,11 @@ const UploadForm = ({
   };
 
   const handlePowerScale = ({ target: { value } }) => {
-    setPowerScale(parseFloat(value));
+    setPowerScale(value);
   };
 
   const handleAreaScale = ({ target: { value } }) => {
-    setAreaScale(parseFloat(value));
+    setAreaScale(value);
   };
 
   const handleRelativePowers = (index) => ({ target: { value } }) => {
@@ -226,9 +226,9 @@ const AbsoluteUnits = ({
         onChange={handlePowerScale}
         className="form-control form-control-sm"
       >
-        <option value="1000000">µW</option>
-        <option value="1000">mW</option>
-        <option value="1">W</option>
+        <option value="microwatt">µW</option>
+        <option value="milliwatt">mW</option>
+        <option value="watt">W</option>
       </select>
       {" per "}
       <select
@@ -236,9 +236,9 @@ const AbsoluteUnits = ({
         onChange={handleAreaScale}
         className="form-control form-control-sm"
       >
-        <option value="1000000">mm²</option>
-        <option value="10000">cm²</option>
-        <option value="1">m²</option>
+        <option value="millimetresq">mm²</option>
+        <option value="centimetresq">cm²</option>
+        <option value="metresq">m²</option>
       </select>
       {radianceOrIrradiance === "radiance" && " per sr"}.
     </>
@@ -248,9 +248,9 @@ const AbsoluteUnits = ({
 AbsoluteUnits.propTypes = {
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
   handleRadianceOrIrradiance: PropTypes.func.isRequired,
-  powerScale: PropTypes.number.isRequired,
+  powerScale: PropTypes.string.isRequired,
   handlePowerScale: PropTypes.func.isRequired,
-  areaScale: PropTypes.number.isRequired,
+  areaScale: PropTypes.string.isRequired,
   handleAreaScale: PropTypes.func.isRequired,
 };
 

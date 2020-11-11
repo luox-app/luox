@@ -64,8 +64,19 @@ export const interpolateData = (rows, sampleCount) => {
   return interpolatedRows;
 };
 
-export const scaleSamples = (rows, areaScale, powerScale) =>
-  mapSamples(rows, (wavelength, sample) => sample / areaScale / powerScale);
+export const scaleSamples = (rows, areaUnit, powerUnit) => {
+  const powerScale = { microwatt: 1000000, milliwatt: 1000, watt: 1 }[
+    powerUnit
+  ];
+  const areaScale = { millimetresq: 1000000, centimetresq: 10000, metresq: 1 }[
+    areaUnit
+  ];
+
+  return mapSamples(
+    rows,
+    (wavelength, sample) => (sample * areaScale) / powerScale
+  );
+};
 
 export const rowsToSpectra = (rows) => {
   const sampleCount = rows[0].length - 1;
