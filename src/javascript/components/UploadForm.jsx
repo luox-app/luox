@@ -46,6 +46,13 @@ const UploadForm = ({
     }));
   };
 
+  const handleMeasurementLabel = (index) => ({ target: { value } }) => {
+    setMeasurementLabels((labels) => ({
+      ...labels,
+      [index]: value,
+    }));
+  };
+
   const handleFileInput = () => {
     if (fileInput.current.files.length > 0) {
       const [file] = fileInput.current.files;
@@ -105,6 +112,7 @@ const UploadForm = ({
   }, [
     setRows,
     setSampleCount,
+    measurementLabels,
     csv,
     powerScale,
     areaScale,
@@ -152,6 +160,10 @@ const UploadForm = ({
                   <option value="relative">relative</option>
                 </select>
                 {" spectra with wavelength in nm. "}
+                <MeasurementLabels
+                  measurementLabels={measurementLabels}
+                  onChange={handleMeasurementLabel}
+                />
                 {absoluteOrRelative === "absolute" && (
                   <AbsoluteUnits
                     radianceOrIrradiance={radianceOrIrradiance}
@@ -317,6 +329,33 @@ RelativePower.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
   units: PropTypes.string.isRequired,
+};
+
+const MeasurementLabels = ({ measurementLabels, onChange }) => {
+  return (
+    <>
+      {"My measurements are labelled "}
+      {Object.entries(measurementLabels).map(([key, label], index) => (
+        <React.Fragment key={key}>
+          <input
+            className="form-control form-control-sm"
+            value={label}
+            onChange={onChange(key)}
+          />
+          <Separator
+            index={index}
+            length={Object.keys(measurementLabels).length}
+          />
+        </React.Fragment>
+      ))}
+      {". "}
+    </>
+  );
+};
+
+MeasurementLabels.propTypes = {
+  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 const Separator = ({ index, length }) => {
