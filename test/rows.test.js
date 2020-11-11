@@ -1,17 +1,17 @@
 import { scaleSamples } from "../src/javascript/rows";
 
 describe("scaleSamples", () => {
-  it("scales the input samples by the powerScale", () => {
+  it("scales the input samples by the powerUnit", () => {
     const rows = [[380, 1]];
-    const areaScale = 1;
-    const powerScale = 1000;
-    expect(scaleSamples(rows, areaScale, powerScale)).toEqual([[380, 0.001]]);
+    const areaUnit = "metresq";
+    const powerUnit = "milliwatt";
+    expect(scaleSamples(rows, areaUnit, powerUnit)).toEqual([[380, 0.001]]);
   });
 
   it("scales the input samples by the areaScale", () => {
     const rows = [[380, 1]];
-    const areaScale = 10000;
-    const powerScale = 1;
-    expect(scaleSamples(rows, areaScale, powerScale)).toEqual([[380, 0.0001]]);
+    const areaUnit = "centimetresq";
+    const powerUnit = "watt";
+    expect(scaleSamples(rows, areaUnit, powerUnit)).toEqual([[380, 0.0001]]);
   });
 });
