@@ -283,7 +283,7 @@ export const specialColourRenderingIndicies = (input) => {
 };
 
 export const generalColourRenderingIndex = (input) =>
-  Math.round(input.reduce((sum, { Ri }) => sum + Ri, 0) / input.length);
+  input.reduce((sum, { Ri }) => sum + Ri, 0) / input.length;
 
 export const interpolateLinearly = (spectra) => {
   const interpolatedSpectra = [];

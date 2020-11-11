@@ -168,14 +168,11 @@ const CalculationTable = ({
               />
             </>
           )}
-          {colourRenderingIndices.length > 0 && (
-            <tr>
-              <th>Colour rendering index (CIE Ra)</th>
-              {colourRenderingIndices.map((sample, index) => (
-                <td key={index}>{sample}</td>
-              ))}
-            </tr>
-          )}
+          <CalculationTableRow
+            heading="Colour rendering index (CIE Ra)"
+            samples={colourRenderingIndices}
+            exponentialNotation={exponentialNotation}
+          />
           <CalculationTableRow
             heading={`S-cone-opic ${radianceOrIrradiance} (${units})`}
             samples={sConeTotals}
