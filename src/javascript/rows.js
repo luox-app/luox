@@ -74,7 +74,7 @@ export const scaleSamples = (rows, areaUnit, powerUnit) => {
 
   return mapSamples(
     rows,
-    (wavelength, sample) => sample / areaScale / powerScale
+    (wavelength, sample) => (sample * areaScale) / powerScale
   );
 };
 
