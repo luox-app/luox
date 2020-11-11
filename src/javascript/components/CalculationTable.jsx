@@ -4,8 +4,8 @@ import { calculate } from "../calculations";
 import CalculationTableCSV from "./CalculationTableCSV";
 import { asDecimal, asExponential } from "../helpers";
 
-const CalculationTableHeader = ({ csvHeader }) => {
-  const titles = ["Condition", ...csvHeader];
+const CalculationTableHeader = ({ measurementLabels }) => {
+  const titles = ["Condition", ...measurementLabels];
 
   return (
     <thead>
@@ -19,7 +19,7 @@ const CalculationTableHeader = ({ csvHeader }) => {
 };
 
 CalculationTableHeader.propTypes = {
-  csvHeader: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const CalculationTableRow = ({ heading, samples, exponentialNotation }) => {
@@ -51,7 +51,7 @@ const CalculationTable = ({
   radianceOrIrradiance,
   rows,
   sampleCount,
-  csvHeader,
+  measurementLabels,
 }) => {
   const calculation = useMemo(() => calculate(rows, sampleCount), [
     rows,
@@ -61,10 +61,10 @@ const CalculationTable = ({
     () =>
       CalculationTableCSV({
         radianceOrIrradiance,
-        csvHeader,
+        measurementLabels,
         ...calculation,
       }),
-    [radianceOrIrradiance, csvHeader, calculation]
+    [radianceOrIrradiance, measurementLabels, calculation]
   );
 
   const {
@@ -134,7 +134,7 @@ const CalculationTable = ({
         </div>
       </div>
       <table className="table table-sm mt-3 result-table">
-        <CalculationTableHeader csvHeader={csvHeader} />
+        <CalculationTableHeader measurementLabels={measurementLabels} />
         <tbody>
           <CalculationTableRow
             heading={
@@ -266,7 +266,7 @@ CalculationTable.propTypes = {
   rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   sampleCount: PropTypes.number.isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
-  csvHeader: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default CalculationTable;

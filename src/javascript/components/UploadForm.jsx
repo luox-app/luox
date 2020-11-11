@@ -7,12 +7,12 @@ import ErrorTable from "./ErrorTable";
 import { relativeToAbsolute } from "../calculations";
 
 const UploadForm = ({
-  csvHeader,
+  measurementLabels,
   radianceOrIrradiance,
   setRadianceOrIrradiance,
   setRows,
   setSampleCount,
-  setCSVHeader,
+  setMeasurementLabels,
 }) => {
   const [powerScale, setPowerScale] = useState(1);
   const [areaScale, setAreaScale] = useState(1);
@@ -54,7 +54,7 @@ const UploadForm = ({
         if (csvErrors.length > 0) {
           setErrors(csvErrors);
           setCSV([]);
-          setCSVHeader([]);
+          setMeasurementLabels([]);
           setRelativePowers({});
         } else {
           const [header, ...body] = data;
@@ -63,12 +63,12 @@ const UploadForm = ({
           if (validationErrors.length > 0) {
             setErrors(validationErrors);
             setCSV([]);
-            setCSVHeader([]);
+            setMeasurementLabels([]);
             setRelativePowers({});
           } else {
             setErrors([]);
-            const [, ...measurementLabels] = header;
-            setCSVHeader(measurementLabels);
+            const [, ...labels] = header;
+            setMeasurementLabels(labels);
             setCSV(body);
             setRelativePowers(
               Object.fromEntries(
@@ -166,7 +166,7 @@ const UploadForm = ({
                   <RelativeUnits
                     radianceOrIrradiance={radianceOrIrradiance}
                     setRadianceOrIrradiance={setRadianceOrIrradiance}
-                    csvHeader={csvHeader}
+                    measurementLabels={measurementLabels}
                     handleRelativePowers={handleRelativePowers}
                     relativePowers={relativePowers}
                   />
@@ -182,11 +182,11 @@ const UploadForm = ({
 
 UploadForm.propTypes = {
   radianceOrIrradiance: PropTypes.string.isRequired,
-  csvHeader: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
   setRadianceOrIrradiance: PropTypes.func.isRequired,
   setRows: PropTypes.func.isRequired,
   setSampleCount: PropTypes.func.isRequired,
-  setCSVHeader: PropTypes.func.isRequired,
+  setMeasurementLabels: PropTypes.func.isRequired,
 };
 
 const AbsoluteUnits = ({
@@ -245,7 +245,7 @@ AbsoluteUnits.propTypes = {
 const RelativeUnits = ({
   radianceOrIrradiance,
   setRadianceOrIrradiance,
-  csvHeader,
+  measurementLabels,
   handleRelativePowers,
   relativePowers,
 }) => {
@@ -269,7 +269,7 @@ const RelativeUnits = ({
         <option value="luminance">luminance</option>
         <option value="illuminance">illuminance</option>
       </select>
-      {csvHeader.map((title, index) => (
+      {measurementLabels.map((title, index) => (
         <React.Fragment key={title}>
           <ObservationTitle
             title={title}
@@ -277,7 +277,7 @@ const RelativeUnits = ({
             value={relativePowers[index]}
             units={units}
           />
-          <Separator index={index} length={csvHeader.length} />
+          <Separator index={index} length={measurementLabels.length} />
         </React.Fragment>
       ))}
       .
@@ -288,7 +288,7 @@ const RelativeUnits = ({
 RelativeUnits.propTypes = {
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
   setRadianceOrIrradiance: PropTypes.func.isRequired,
-  csvHeader: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleRelativePowers: PropTypes.func.isRequired,
   relativePowers: PropTypes.objectOf(PropTypes.string).isRequired,
 };

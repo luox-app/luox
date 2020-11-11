@@ -5,12 +5,17 @@ import SpectraTable from "./SpectraTable";
 import Chart from "./Chart";
 import { rowsToURL } from "../sharing";
 
-const Results = ({ rows, sampleCount, radianceOrIrradiance, csvHeader }) => {
+const Results = ({
+  rows,
+  sampleCount,
+  radianceOrIrradiance,
+  measurementLabels,
+}) => {
   if (rows.length === 0) {
     return null;
   }
 
-  const sharingID = rowsToURL(rows, radianceOrIrradiance, csvHeader);
+  const sharingID = rowsToURL(rows, radianceOrIrradiance, measurementLabels);
 
   const copySharingURL = ({ target }) => {
     target.setSelectionRange(0, target.value.length);
@@ -28,7 +33,7 @@ const Results = ({ rows, sampleCount, radianceOrIrradiance, csvHeader }) => {
           radianceOrIrradiance={radianceOrIrradiance}
           rows={rows}
           sampleCount={sampleCount}
-          csvHeader={csvHeader}
+          measurementLabels={measurementLabels}
         />
 
         <h2 className="my-3">
@@ -40,7 +45,7 @@ const Results = ({ rows, sampleCount, radianceOrIrradiance, csvHeader }) => {
           rows={rows}
           sampleCount={sampleCount}
           radianceOrIrradiance={radianceOrIrradiance}
-          csvHeader={csvHeader}
+          measurementLabels={measurementLabels}
         />
 
         <h2 className="my-3">
@@ -61,7 +66,7 @@ const Results = ({ rows, sampleCount, radianceOrIrradiance, csvHeader }) => {
           rows={rows}
           sampleCount={sampleCount}
           radianceOrIrradiance={radianceOrIrradiance}
-          csvHeader={csvHeader}
+          measurementLabels={measurementLabels}
         />
 
         <h2 className="my-3">
@@ -89,7 +94,7 @@ Results.propTypes = {
   rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   sampleCount: PropTypes.number.isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
-  csvHeader: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Results;

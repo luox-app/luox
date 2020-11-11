@@ -2,7 +2,7 @@ import Papa from "papaparse";
 
 const CalculationTableCSV = ({
   radianceOrIrradiance,
-  csvHeader,
+  measurementLabels,
   luminanceTotals,
   chromaticity31,
   chromaticity64,
@@ -21,7 +21,7 @@ const CalculationTableCSV = ({
     radianceOrIrradiance === "radiance" ? "EDL [cd/m²]" : "EDI [lux]";
 
   const csv = Papa.unparse([
-    ["Condition", ...csvHeader],
+    ["Condition", ...measurementLabels],
     [
       radianceOrIrradiance === "radiance"
         ? "Luminance [cd/m²]"

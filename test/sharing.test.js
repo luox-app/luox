@@ -118,16 +118,16 @@ describe("urlToRows", () => {
   });
 
   it("returns the measurement labels for a single SPDURL", () => {
-    const [, , csvHeader] = urlToRows("spd1,380,5,wi,5,pf6r,nS0");
+    const [, , measurementLabels] = urlToRows("spd1,380,5,wi,5,pf6r,nS0");
 
-    expect(csvHeader).toEqual(["S0"]);
+    expect(measurementLabels).toEqual(["S0"]);
   });
 
   it("returns the measurement labels for multiple SPDURLs", () => {
-    const [, , csvHeader] = urlToRows(
+    const [, , measurementLabels] = urlToRows(
       "spd1,380,5,wi,5,pf6r,nS0|spd1,380,5,wi,9,y06r,nS1"
     );
 
-    expect(csvHeader).toEqual(["S0", "S1"]);
+    expect(measurementLabels).toEqual(["S0", "S1"]);
   });
 });

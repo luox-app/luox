@@ -16,7 +16,7 @@ const createChart = (
   radianceOrIrradiance,
   rows,
   sampleCount,
-  csvHeader,
+  measurementLabels,
   yAxisScaling
 ) => {
   const datasets = [];
@@ -52,7 +52,7 @@ const createChart = (
       borderColor: lineColor,
       data: data.map((row) => row[sampleIdx + 1]),
       fill: false,
-      label: csvHeader[sampleIdx],
+      label: measurementLabels[sampleIdx],
       pointRadius: 1,
     };
   }

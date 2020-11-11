@@ -1,6 +1,6 @@
 import { SPD, encodeSPD, decodeSPD } from "spdurl";
 
-export const rowsToURL = (rows, radianceOrIrradiance, csvHeader) => {
+export const rowsToURL = (rows, radianceOrIrradiance, measurementLabels) => {
   if (rows.length < 2) {
     return "";
   }
@@ -16,7 +16,7 @@ export const rowsToURL = (rows, radianceOrIrradiance, csvHeader) => {
     spd.delta = secondWavelength - baseWavelength;
     spd.unit = unit;
     spd.data = rows.map((row) => row[i]);
-    spd.name = csvHeader[i - 1];
+    spd.name = measurementLabels[i - 1];
     url.push(encodeSPD(spd));
   }
 
@@ -31,7 +31,7 @@ export const urlToRows = (url) => {
   try {
     const wavelengths = new Map();
     let radianceOrIrradiance;
-    const csvHeader = [];
+    const measurementLabels = [];
 
     url.split("|").forEach((enc) => {
       const { base, delta, unit, data, name } = decodeSPD(enc);
@@ -47,7 +47,7 @@ export const urlToRows = (url) => {
           throw new Error("only SPDURLs in W/m^2 or W/m^2/sr are supported");
       }
 
-      csvHeader.push(name);
+      measurementLabels.push(name);
 
       data.forEach((sample, i) => {
         const wavelength = base + delta * i;
@@ -65,7 +65,7 @@ export const urlToRows = (url) => {
       ...samples,
     ]);
 
-    return [rows, radianceOrIrradiance, csvHeader];
+    return [rows, radianceOrIrradiance, measurementLabels];
   } catch (error) {
     return [[]];
   }
