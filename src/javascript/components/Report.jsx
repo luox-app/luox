@@ -8,7 +8,7 @@ import { urlToRows } from "../sharing";
 const Report = () => {
   const { id } = useParams();
 
-  const [rows, radianceOrIrradiance, csvHeader] = urlToRows(id);
+  const [rows, radianceOrIrradiance, measurementLabels] = urlToRows(id);
   const sampleCount = rows[0].length - 1;
 
   return (
@@ -30,7 +30,7 @@ const Report = () => {
           radianceOrIrradiance={radianceOrIrradiance}
           rows={rows}
           sampleCount={sampleCount}
-          csvHeader={csvHeader}
+          measurementLabels={measurementLabels}
         />
 
         <h2 className="my-3">Stimulus specification tables</h2>
@@ -39,7 +39,7 @@ const Report = () => {
           rows={rows}
           sampleCount={sampleCount}
           radianceOrIrradiance={radianceOrIrradiance}
-          csvHeader={csvHeader}
+          measurementLabels={measurementLabels}
         />
 
         <h2 className="my-3">Full spectral power distribution</h2>

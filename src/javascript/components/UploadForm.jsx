@@ -7,12 +7,12 @@ import ErrorTable from "./ErrorTable";
 import { relativeToAbsolute } from "../calculations";
 
 const UploadForm = ({
-  csvHeader,
+  measurementLabels,
   radianceOrIrradiance,
   setRadianceOrIrradiance,
   setRows,
   setSampleCount,
-  setCSVHeader,
+  setMeasurementLabels,
 }) => {
   const [powerScale, setPowerScale] = useState(1);
   const [areaScale, setAreaScale] = useState(1);
@@ -46,6 +46,13 @@ const UploadForm = ({
     }));
   };
 
+  const handleMeasurementLabel = (index) => ({ target: { value } }) => {
+    setMeasurementLabels((labels) => ({
+      ...labels,
+      [index]: value,
+    }));
+  };
+
   const handleFileInput = () => {
     if (fileInput.current.files.length > 0) {
       const [file] = fileInput.current.files;
@@ -54,7 +61,7 @@ const UploadForm = ({
         if (csvErrors.length > 0) {
           setErrors(csvErrors);
           setCSV([]);
-          setCSVHeader([]);
+          setMeasurementLabels({});
           setRelativePowers({});
         } else {
           const [header, ...body] = data;
@@ -63,11 +70,12 @@ const UploadForm = ({
           if (validationErrors.length > 0) {
             setErrors(validationErrors);
             setCSV([]);
-            setCSVHeader([]);
+            setMeasurementLabels({});
             setRelativePowers({});
           } else {
             setErrors([]);
-            setCSVHeader(header);
+            const [, ...labels] = header;
+            setMeasurementLabels({ ...labels });
             setCSV(body);
             setRelativePowers(
               Object.fromEntries(
@@ -104,6 +112,7 @@ const UploadForm = ({
   }, [
     setRows,
     setSampleCount,
+    measurementLabels,
     csv,
     powerScale,
     areaScale,
@@ -150,7 +159,11 @@ const UploadForm = ({
                   <option value="absolute">absolute</option>
                   <option value="relative">relative</option>
                 </select>
-                {" spectra with wavelength in nm "}
+                {" spectra with wavelength in nm. "}
+                <MeasurementLabels
+                  measurementLabels={measurementLabels}
+                  onChange={handleMeasurementLabel}
+                />
                 {absoluteOrRelative === "absolute" && (
                   <AbsoluteUnits
                     radianceOrIrradiance={radianceOrIrradiance}
@@ -165,7 +178,7 @@ const UploadForm = ({
                   <RelativeUnits
                     radianceOrIrradiance={radianceOrIrradiance}
                     setRadianceOrIrradiance={setRadianceOrIrradiance}
-                    csvHeader={csvHeader}
+                    measurementLabels={measurementLabels}
                     handleRelativePowers={handleRelativePowers}
                     relativePowers={relativePowers}
                   />
@@ -181,11 +194,11 @@ const UploadForm = ({
 
 UploadForm.propTypes = {
   radianceOrIrradiance: PropTypes.string.isRequired,
-  csvHeader: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   setRadianceOrIrradiance: PropTypes.func.isRequired,
   setRows: PropTypes.func.isRequired,
   setSampleCount: PropTypes.func.isRequired,
-  setCSVHeader: PropTypes.func.isRequired,
+  setMeasurementLabels: PropTypes.func.isRequired,
 };
 
 const AbsoluteUnits = ({
@@ -198,7 +211,7 @@ const AbsoluteUnits = ({
 }) => {
   return (
     <>
-      {" and "}
+      {"Each measurement column contains "}
       <select
         value={radianceOrIrradiance}
         onChange={handleRadianceOrIrradiance}
@@ -227,7 +240,7 @@ const AbsoluteUnits = ({
         <option value="10000">cm²</option>
         <option value="1">m²</option>
       </select>
-      {radianceOrIrradiance === "radiance" && " per sr"}
+      {radianceOrIrradiance === "radiance" && " per sr"}.
     </>
   );
 };
@@ -244,12 +257,10 @@ AbsoluteUnits.propTypes = {
 const RelativeUnits = ({
   radianceOrIrradiance,
   setRadianceOrIrradiance,
-  csvHeader,
+  measurementLabels,
   handleRelativePowers,
   relativePowers,
 }) => {
-  const [, ...observationTitles] = csvHeader;
-
   const luminanceOrIlluminance =
     radianceOrIrradiance === "radiance" ? "luminance" : "illuminance";
 
@@ -261,7 +272,7 @@ const RelativeUnits = ({
 
   return (
     <>
-      {" and a measured "}
+      {"I have separately measured "}
       <select
         value={luminanceOrIlluminance}
         onChange={handleLuminanceOrIlluminance}
@@ -270,17 +281,21 @@ const RelativeUnits = ({
         <option value="luminance">luminance</option>
         <option value="illuminance">illuminance</option>
       </select>
-      {observationTitles.map((title, index) => (
-        <React.Fragment key={title}>
-          <ObservationTitle
+      {Object.entries(measurementLabels).map(([key, title], index) => (
+        <React.Fragment key={key}>
+          <RelativePower
             title={title}
             onChange={handleRelativePowers(index)}
             value={relativePowers[index]}
             units={units}
           />
-          <Separator index={index} length={observationTitles.length} />
+          <Separator
+            index={index}
+            length={Object.keys(measurementLabels).length}
+          />
         </React.Fragment>
       ))}
+      .
     </>
   );
 };
@@ -288,16 +303,16 @@ const RelativeUnits = ({
 RelativeUnits.propTypes = {
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
   setRadianceOrIrradiance: PropTypes.func.isRequired,
-  csvHeader: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   handleRelativePowers: PropTypes.func.isRequired,
   relativePowers: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-const ObservationTitle = ({ title, onChange, value, units }) => {
+const RelativePower = ({ title, onChange, value, units }) => {
   return (
     <>
       {" "}
-      for observation {title} of{" "}
+      for <span className="font-italic">{title}</span> at{" "}
       <input
         type="number"
         className="form-control form-control-sm"
@@ -309,11 +324,38 @@ const ObservationTitle = ({ title, onChange, value, units }) => {
   );
 };
 
-ObservationTitle.propTypes = {
+RelativePower.propTypes = {
   title: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
   units: PropTypes.string.isRequired,
+};
+
+const MeasurementLabels = ({ measurementLabels, onChange }) => {
+  return (
+    <>
+      {"My measurements are labelled "}
+      {Object.entries(measurementLabels).map(([key, label], index) => (
+        <React.Fragment key={key}>
+          <input
+            className="form-control form-control-sm"
+            value={label}
+            onChange={onChange(key)}
+          />
+          <Separator
+            index={index}
+            length={Object.keys(measurementLabels).length}
+          />
+        </React.Fragment>
+      ))}
+      {". "}
+    </>
+  );
+};
+
+MeasurementLabels.propTypes = {
+  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 const Separator = ({ index, length }) => {

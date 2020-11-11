@@ -2,7 +2,7 @@ import Papa from "papaparse";
 
 const CalculationTableCSV = ({
   radianceOrIrradiance,
-  csvHeader,
+  measurementLabels,
   luminanceTotals,
   chromaticity31,
   chromaticity64,
@@ -19,10 +19,9 @@ const CalculationTableCSV = ({
     radianceOrIrradiance === "radiance" ? "mW ⋅ m⁻² ⋅ sr" : "mW ⋅ m⁻²";
   const equivalentDaylightUnit =
     radianceOrIrradiance === "radiance" ? "EDL [cd/m²]" : "EDI [lux]";
-  const [, ...labels] = csvHeader;
 
   const csv = Papa.unparse([
-    ["Condition", ...labels],
+    ["Condition", ...Object.values(measurementLabels)],
     [
       radianceOrIrradiance === "radiance"
         ? "Luminance [cd/m²]"

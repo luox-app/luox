@@ -2,7 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import createChart from "../chart";
 
-const Chart = ({ radianceOrIrradiance, rows, sampleCount, csvHeader }) => {
+const Chart = ({
+  radianceOrIrradiance,
+  rows,
+  sampleCount,
+  measurementLabels,
+}) => {
   const chartRef = useRef();
   const [yAxisScaling, setYAxisScaling] = useState("raw");
 
@@ -19,7 +24,7 @@ const Chart = ({ radianceOrIrradiance, rows, sampleCount, csvHeader }) => {
         radianceOrIrradiance,
         rows,
         sampleCount,
-        csvHeader,
+        measurementLabels,
         yAxisScaling
       );
     }
@@ -29,7 +34,13 @@ const Chart = ({ radianceOrIrradiance, rows, sampleCount, csvHeader }) => {
         chart.destroy();
       }
     };
-  }, [radianceOrIrradiance, rows, sampleCount, csvHeader, yAxisScaling]);
+  }, [
+    radianceOrIrradiance,
+    rows,
+    sampleCount,
+    measurementLabels,
+    yAxisScaling,
+  ]);
 
   return (
     <section>
@@ -86,7 +97,7 @@ Chart.propTypes = {
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
   rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   sampleCount: PropTypes.number.isRequired,
-  csvHeader: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default Chart;
