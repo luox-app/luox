@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import createChart from "../chart";
+import { referenceSpectraNames } from "../referenceSpectra";
 
 const Chart = ({
   radianceOrIrradiance,
@@ -10,9 +11,14 @@ const Chart = ({
 }) => {
   const chartRef = useRef();
   const [yAxisScaling, setYAxisScaling] = useState("raw");
+  const [displayedReference, setDisplayedReference] = useState("none");
 
   const handleYAxisScaling = ({ target: { value } }) => {
     setYAxisScaling(value);
+  };
+
+  const handleReferenceSpectraSelect = ({ target: { value } }) => {
+    setDisplayedReference(value);
   };
 
   useEffect(() => {
@@ -25,7 +31,8 @@ const Chart = ({
         rows,
         sampleCount,
         measurementLabels,
-        yAxisScaling
+        yAxisScaling,
+        displayedReference
       );
     }
 
@@ -40,6 +47,7 @@ const Chart = ({
     sampleCount,
     measurementLabels,
     yAxisScaling,
+    displayedReference,
   ]);
 
   return (
@@ -85,6 +93,27 @@ const Chart = ({
               id="log10-y-axis"
             />
             Log10
+          </label>
+        </div>
+      </form>
+      <form>
+        <div className="form-group">
+          <label htmlFor="referenceSpectraSelect">
+            Reference spectra
+            <select
+              className="form-control"
+              id="referenceSpectraSelect"
+              onChange={handleReferenceSpectraSelect}
+            >
+              <option value="none" key="none">
+                Select a reference spectrum
+              </option>
+              {referenceSpectraNames().map((name) => (
+                <option value={name} key={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
           </label>
         </div>
       </form>

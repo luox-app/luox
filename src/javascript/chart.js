@@ -1,6 +1,7 @@
 import Chart from "chart.js";
 import { mapSamples } from "./rows";
 import { radianceOrIrradianceSIUnit } from "./helpers";
+import { referenceSpectrum } from "./referenceSpectra";
 
 const generateHues = (sampleCount) => {
   const hues = [];
@@ -17,7 +18,8 @@ const createChart = (
   rows,
   sampleCount,
   measurementLabels,
-  yAxisScaling
+  yAxisScaling,
+  displayedReference
 ) => {
   const datasets = [];
   const hues = generateHues(sampleCount);
@@ -50,30 +52,43 @@ const createChart = (
     datasets[sampleIdx] = {
       backgroundColor: lineColor,
       borderColor: lineColor,
-      data: data.map((row) => row[sampleIdx + 1]),
+      data: data.map((row) => {
+        return { x: row[0], y: row[sampleIdx + 1] };
+      }),
       fill: false,
       label: measurementLabels[sampleIdx],
       pointRadius: 1,
     };
   }
-  const waveLengths = rows.map((row) => row[0]);
+
+  if (displayedReference !== "none") {
+    const reference = referenceSpectrum(displayedReference, yAxisScaling);
+    datasets.push({
+      data: reference.data,
+      label: reference.name,
+      fill: false,
+      pointRadius: 1,
+    });
+  }
 
   return new Chart(chartCanvas, {
     // eslint-disable-line no-new
     data: {
       datasets,
-      labels: waveLengths,
     },
     options: {
       scales: {
         xAxes: [
           {
+            type: "linear",
             scaleLabel: {
               display: true,
               labelString: "Wavelength [nm]",
             },
             ticks: {
-              maxTicksLimit: 20,
+              min: 380,
+              max: 780,
+              stepSize: 5,
             },
           },
         ],
