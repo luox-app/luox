@@ -29,6 +29,15 @@ const Results = ({
           Step 3. Check we have understood your input correctly.
         </h2>
 
+        <p className="lead">
+          Check that we have loaded the correct number of observations. Also
+          check the units of measurement. It may help to compare your spectra to
+          a standard reference spectra. For example, if your measurements were
+          made in daylight, check that they have a similar shape to{" "}
+          <code>CIE Standard Illuminant D65</code>. Your data might be easier to
+          read if you change the y-axis scale.
+        </p>
+
         <Chart
           radianceOrIrradiance={radianceOrIrradiance}
           rows={rows}

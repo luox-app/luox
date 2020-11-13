@@ -129,14 +129,19 @@ const UploadForm = ({
           </h2>
 
           <form>
-            <div className="form-group">
+            <div className="custom-file">
               <input
                 type="file"
                 ref={fileInput}
                 onChange={handleFileInput}
-                className="form-control-file"
+                className="custom-file-input"
                 id="file-input"
               />
+              {/* eslint-disable jsx-a11y/label-has-associated-control */}
+              <label className="custom-file-label" htmlFor="file-input">
+                Choose file...
+              </label>
+              {/* eslint-enable jsx-a11y/label-has-associated-control */}
             </div>
           </form>
 
