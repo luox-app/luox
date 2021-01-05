@@ -154,7 +154,7 @@ const UploadForm = ({
           <div className="col">
             <h2 className="my-3">Step 2. Tell us more about your data.</h2>
             <form className="form-inline">
-              <p className="lead" style={{ "line-height": "2.5rem" }}>
+              <p className="lead" style={{ lineHeight: "2.5rem" }}>
                 {"My data contains "}
                 <select
                   value={absoluteOrRelative}
