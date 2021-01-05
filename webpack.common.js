@@ -2,6 +2,7 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const Autoprefixer = require("autoprefixer");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
@@ -45,7 +46,7 @@ module.exports = {
         test: /\.(scss)$/,
         use: [
           {
-            loader: "style-loader",
+            loader: MiniCssExtractPlugin.loader,
           },
           {
             loader: "css-loader",
@@ -86,5 +87,7 @@ module.exports = {
       filename: "index.html",
       chunks: ["menu", "upload"],
     }),
+
+    new MiniCssExtractPlugin(),
   ],
 };
