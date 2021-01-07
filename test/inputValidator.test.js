@@ -51,6 +51,12 @@ describe("inputValidator", () => {
     );
   });
 
+  it("should return a validation error if the number of rows in the body is less than two", () => {
+    expect(validateInput(["lambda", "1"], [[380, 0.01]])).toHaveMessage(
+      "Data for at least 2 wavelengths is required"
+    );
+  });
+
   it("should return a validation error if the frequency column is not sorted", () => {
     expect(validateInput(["lambda"], [[380], [390], [385]])).toHaveMessage(
       "The first column should contain wavelengths sorted in ascending order"

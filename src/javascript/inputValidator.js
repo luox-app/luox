@@ -22,6 +22,17 @@ const validateHeaderForEachColumn = (header, body) => {
   return null;
 };
 
+const validateNumberOfWavelengths = (body) => {
+  if (body.length < 2) {
+    return {
+      row: null,
+      message: "Data for at least 2 wavelengths is required",
+    };
+  }
+
+  return null;
+};
+
 const validateWavelengthColumnSorted = (body) => {
   const isSortedAscending = (array) => {
     return array.every(function elementGreaterThanPrevious(element, idx) {
@@ -90,6 +101,7 @@ const inputValidator = (header, body) => {
 
   errors.push(validateNumberOfObservations(header));
   errors.push(validateHeaderForEachColumn(header, body));
+  errors.push(validateNumberOfWavelengths(body));
   errors.push(validateWavelengthColumnSorted(body));
   errors.push(validateWavelengthColumnContainsIntegerWavelengths(body));
   errors.push(validateWavelengthColumnHasConsistentDelta(body));
