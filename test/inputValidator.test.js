@@ -46,7 +46,7 @@ describe("inputValidator", () => {
   });
 
   it("should return a validation error if the number of columns in the header is different to the body", () => {
-    expect(validateInput(["lambda", "1"], [380])).toHaveMessage(
+    expect(validateInput(["lambda", "1"], [[380]])).toHaveMessage(
       "Expected to have one header for each column"
     );
   });
