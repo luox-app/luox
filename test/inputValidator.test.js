@@ -51,6 +51,24 @@ describe("inputValidator", () => {
     );
   });
 
+  it("should return a validation error if there is a null value in the header", () => {
+    expect(validateInput(["lambda", null], [[380, 0.01]])).toHaveMessage(
+      "Values must not be blank"
+    );
+  });
+
+  it("should return a validation error if there is a null value in the body", () => {
+    expect(
+      validateInput(
+        ["lambda", "1"],
+        [
+          [380, null],
+          [390, 0.02],
+        ]
+      )
+    ).toHaveMessage("Values must not be blank");
+  });
+
   it("should return a validation error if the number of rows in the body is less than two", () => {
     expect(validateInput(["lambda", "1"], [[380, 0.01]])).toHaveMessage(
       "Data for at least 2 wavelengths is required"

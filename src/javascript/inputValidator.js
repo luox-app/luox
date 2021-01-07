@@ -22,6 +22,21 @@ const validateHeaderForEachColumn = (header, body) => {
   return null;
 };
 
+const validateNonNullValues = (header, body) => {
+  const allRows = [header].concat(body);
+  const hasNull = (value) => value === null;
+  const firstRowWithNull = allRows.findIndex((row) => row.some(hasNull));
+
+  if (firstRowWithNull >= 0) {
+    return {
+      row: firstRowWithNull,
+      message: "Values must not be blank",
+    };
+  }
+
+  return null;
+};
+
 const validateNumberOfWavelengths = (body) => {
   if (body.length < 2) {
     return {
@@ -101,6 +116,7 @@ const inputValidator = (header, body) => {
 
   errors.push(validateNumberOfObservations(header));
   errors.push(validateHeaderForEachColumn(header, body));
+  errors.push(validateNonNullValues(header, body));
   errors.push(validateNumberOfWavelengths(body));
   errors.push(validateWavelengthColumnSorted(body));
   errors.push(validateWavelengthColumnContainsIntegerWavelengths(body));
