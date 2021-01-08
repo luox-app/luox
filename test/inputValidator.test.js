@@ -39,12 +39,6 @@ describe("inputValidator", () => {
     ).toEqual([]);
   });
 
-  it("should return a validation error if any of the header values does not start with a letter", () => {
-    expect(
-      validateInput(["lambda", "M1", "M2", "3", "M4", "M5"], [[]])
-    ).toHaveMessage("Header values must start with a letter");
-  });
-
   it("should return a validation error if the number of header columns is greater than 6", () => {
     expect(
       validateInput(["lambda", "M1", "M2", "M3", "M4", "M5", "M6"], [[]])

@@ -64,8 +64,18 @@ const UploadForm = ({
           setMeasurementLabels({});
           setRelativePowers({});
         } else {
-          const [header, ...rawBody] = data;
-          const body = rawBody.map((row) =>
+          const [rawHeader, ...rawBody] = data;
+
+          let header = rawHeader;
+          let fullBody = rawBody;
+          if (rawHeader.every((value) => typeof value === "number")) {
+            fullBody = [rawHeader].concat(rawBody);
+            header = rawHeader.map((_, index) =>
+              index === 0 ? "lambda" : `Observation ${index}`
+            );
+          }
+
+          const body = fullBody.map((row) =>
             row.map((value) => parseFloat(value))
           );
 
