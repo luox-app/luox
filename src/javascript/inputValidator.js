@@ -8,6 +8,21 @@ const validateNumberOfObservations = (header) => {
   return null;
 };
 
+const validateNumbers = (body) => {
+  const firstRowWithNaN = body.findIndex((row) =>
+    row.some((value) => Number.isNaN(value))
+  );
+
+  if (firstRowWithNaN >= 0) {
+    return {
+      row: firstRowWithNaN + 1,
+      message: "Values must be valid numbers",
+    };
+  }
+
+  return null;
+};
+
 const validateHeaderForEachColumn = (header, body) => {
   const headerColumnCount = header ? header.length : 0;
   const bodyColumnCount = body ? body[0].length : 0;
@@ -55,7 +70,7 @@ const validateWavelengthColumnSorted = (body) => {
     });
   };
 
-  const wavelengths = body.map((row) => parseFloat(row[0]));
+  const wavelengths = body.map((row) => row[0]);
 
   if (!isSortedAscending(wavelengths)) {
     return {
@@ -115,6 +130,7 @@ const inputValidator = (header, body) => {
   const errors = [];
 
   errors.push(validateNumberOfObservations(header));
+  errors.push(validateNumbers(body));
   errors.push(validateHeaderForEachColumn(header, body));
   errors.push(validateNonNullValues(header, body));
   errors.push(validateNumberOfWavelengths(body));

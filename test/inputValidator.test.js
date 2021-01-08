@@ -51,6 +51,18 @@ describe("inputValidator", () => {
     );
   });
 
+  it("should return a validation error if there is a NaN value in the body", () => {
+    expect(
+      validateInput(
+        ["lambda", "1"],
+        [
+          [380, NaN],
+          [390, 0.02],
+        ]
+      )
+    ).toHaveMessage("Values must be valid numbers");
+  });
+
   it("should return a validation error if there is a null value in the header", () => {
     expect(validateInput(["lambda", null], [[380, 0.01]])).toHaveMessage(
       "Values must not be blank"

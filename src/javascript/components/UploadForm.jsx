@@ -64,7 +64,10 @@ const UploadForm = ({
           setMeasurementLabels({});
           setRelativePowers({});
         } else {
-          const [header, ...body] = data;
+          const [header, ...rawBody] = data;
+          const body = rawBody.map((row) =>
+            row.map((value) => parseFloat(value))
+          );
 
           const validationErrors = validateInput(header, body);
           if (validationErrors.length > 0) {
