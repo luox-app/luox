@@ -71,6 +71,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-router-prop-types": "^1.0.5",
+    "reactstrap": "^8.8.1",
     "spdurl": "^0.2.0",
     "webpack-merge": "^4.2.2"
   }
