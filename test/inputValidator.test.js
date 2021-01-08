@@ -39,14 +39,20 @@ describe("inputValidator", () => {
     ).toEqual([]);
   });
 
+  it("should return a validation error if any of the header values does not start with a letter", () => {
+    expect(
+      validateInput(["lambda", "M1", "M2", "3", "M4", "M5"], [[]])
+    ).toHaveMessage("Header values must start with a letter");
+  });
+
   it("should return a validation error if the number of header columns is greater than 6", () => {
     expect(
-      validateInput(["lambda", "1", "2", "3", "4", "5", "6"], [[]])
+      validateInput(["lambda", "M1", "M2", "M3", "M4", "M5", "M6"], [[]])
     ).toHaveMessage("Input CSV must contain no more than 5 observations");
   });
 
   it("should return a validation error if the number of columns in the header is different to the body", () => {
-    expect(validateInput(["lambda", "1"], [[380]])).toHaveMessage(
+    expect(validateInput(["lambda", "M1"], [[380]])).toHaveMessage(
       "Expected to have one header for each column"
     );
   });
@@ -54,7 +60,7 @@ describe("inputValidator", () => {
   it("should return a validation error if there is a NaN value in the body", () => {
     expect(
       validateInput(
-        ["lambda", "1"],
+        ["lambda", "M1"],
         [
           [380, NaN],
           [390, 0.02],
@@ -72,7 +78,7 @@ describe("inputValidator", () => {
   it("should return a validation error if there is a null value in the body", () => {
     expect(
       validateInput(
-        ["lambda", "1"],
+        ["lambda", "M1"],
         [
           [380, null],
           [390, 0.02],
@@ -82,7 +88,7 @@ describe("inputValidator", () => {
   });
 
   it("should return a validation error if the number of rows in the body is less than two", () => {
-    expect(validateInput(["lambda", "1"], [[380, 0.01]])).toHaveMessage(
+    expect(validateInput(["lambda", "M1"], [[380, 0.01]])).toHaveMessage(
       "Data for at least 2 wavelengths is required"
     );
   });

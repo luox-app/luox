@@ -1,3 +1,14 @@
+const validateHeaderValuesStartWithLetter = (header) => {
+  if (!header.every((value) => /^[A-Za-z]/.test(value))) {
+    return {
+      row: 0,
+      message: "Header values must start with a letter",
+    };
+  }
+
+  return null;
+};
+
 const validateNumberOfObservations = (header) => {
   if (header.length > 6) {
     return {
@@ -129,6 +140,7 @@ const validateWavelengthColumnHasConsistentDelta = (body) => {
 const inputValidator = (header, body) => {
   const errors = [];
 
+  errors.push(validateHeaderValuesStartWithLetter(header));
   errors.push(validateNumberOfObservations(header));
   errors.push(validateNumbers(body));
   errors.push(validateHeaderForEachColumn(header, body));
