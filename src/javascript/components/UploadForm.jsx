@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
+import { Form, FormGroup, CustomInput } from "reactstrap";
 import parseCSV from "../csvParser";
 import validateInput from "../inputValidator";
 import { scaleSamples } from "../rows";
@@ -141,22 +142,16 @@ const UploadForm = ({
             Step 1. Upload your spectral power distribution data.
           </h2>
 
-          <form>
-            <div className="custom-file">
-              <input
+          <Form>
+            <FormGroup>
+              <CustomInput
                 type="file"
-                ref={fileInput}
-                onChange={handleFileInput}
-                className="custom-file-input"
                 id="file-input"
+                innerRef={fileInput}
+                onChange={handleFileInput}
               />
-              {/* eslint-disable jsx-a11y/label-has-associated-control */}
-              <label className="custom-file-label" htmlFor="file-input">
-                Choose file...
-              </label>
-              {/* eslint-enable jsx-a11y/label-has-associated-control */}
-            </div>
-          </form>
+            </FormGroup>
+          </Form>
 
           <ErrorTable errors={errors} />
         </div>
