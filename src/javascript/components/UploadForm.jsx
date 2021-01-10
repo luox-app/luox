@@ -111,7 +111,7 @@ const UploadForm = ({
         const powers = Object.fromEntries(
           Object.entries(relativePowers)
             .map(([k, v]) => [k, parseFloat(v)])
-            .filter(([, v]) => !Number.isNaN(v))
+            .filter(([, v]) => !Number.isNaN(v) && v > 0)
         );
 
         setRows(relativeToAbsolute(csv, sampleCount, powers));
@@ -327,6 +327,10 @@ RelativeUnits.propTypes = {
 };
 
 const RelativePower = ({ title, onChange, value, units }) => {
+  const handleInput = ({ target }) => {
+    target.reportValidity();
+  };
+
   return (
     <>
       {" "}
@@ -335,7 +339,11 @@ const RelativePower = ({ title, onChange, value, units }) => {
         type="number"
         className="form-control form-control-sm"
         onChange={onChange}
+        onInput={handleInput}
         value={value}
+        min="0.00001"
+        step="any"
+        required
       />{" "}
       {units}
     </>

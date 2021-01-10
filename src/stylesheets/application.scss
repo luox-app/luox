@@ -9,3 +9,7 @@ table {
     @extend .thead-dark;
   }
 }
+
+input:invalid {
+  border: 2px solid red;
+}
