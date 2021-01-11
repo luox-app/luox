@@ -25,9 +25,9 @@ export const uvToCorrelatedColourTemperatureRobertson = (u, v) => {
   let lastdu = 0;
   let T = 0;
 
-  for (let i = 1; i <= 31; i += 1) {
+  for (let i = 1; i <= 30; i += 1) {
     const wrRuvt = ROBERTSON[i];
-    const wrRuvtPrevious = ROBERTSON[i - 1];
+    const wrRuvtPrevious = ROBERTSON[i - 1] || {};
 
     let du = 1;
     let dv = wrRuvt.t;
