@@ -104,4 +104,16 @@ describe("inputValidator", () => {
       "The first (wavelength) column should have consistent spacing (e.g. 380, 385, 390 ... 780)"
     );
   });
+
+  it("should return a validation error if the frequency column has spacing of less than 1", () => {
+    expect(validateInput(["lambda"], [[380], [380], [380]])).toHaveMessage(
+      "The first (wavelength) column should have a spacing of at least 1. Currently the spacing is 0."
+    );
+  });
+
+  it("should return a validation error if the frequency column has spacing of more than 10", () => {
+    expect(validateInput(["lambda"], [[380], [391], [402]])).toHaveMessage(
+      "The first (wavelength) column should have a spacing of less than 10. Currently the spacing is 11."
+    );
+  });
 });

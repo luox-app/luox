@@ -126,6 +126,26 @@ const validateWavelengthColumnHasConsistentDelta = (body) => {
   return null;
 };
 
+const validateWavelengthDeltaIsInRange = (body) => {
+  const wavelengthDelta = (body[1] || [])[0] - (body[0] || [])[0];
+
+  if (wavelengthDelta < 1) {
+    return {
+      row: null,
+      message: `The first (wavelength) column should have a spacing of at least 1. Currently the spacing is ${wavelengthDelta}.`,
+    };
+  }
+
+  if (wavelengthDelta > 10) {
+    return {
+      row: null,
+      message: `The first (wavelength) column should have a spacing of less than 10. Currently the spacing is ${wavelengthDelta}.`,
+    };
+  }
+
+  return null;
+};
+
 const inputValidator = (header, body) => {
   const errors = [];
 
@@ -137,6 +157,7 @@ const inputValidator = (header, body) => {
   errors.push(validateWavelengthColumnSorted(body));
   errors.push(validateWavelengthColumnContainsIntegerWavelengths(body));
   errors.push(validateWavelengthColumnHasConsistentDelta(body));
+  errors.push(validateWavelengthDeltaIsInRange(body));
 
   return errors.filter((e) => e);
 };
