@@ -1,11 +1,6 @@
 import VL1924 from "../data/vl1924.json";
 import CIES026 from "../data/cies026.json";
-import {
-  integrateWithWeights,
-  rowsToSpectra,
-  interpolateData,
-  mapSamples,
-} from "./rows";
+import { integrateWithWeights, rowsToSpectra, mapSamples } from "./rows";
 import { calculateColourRenderingIndex } from "./colourRenderingIndex";
 import {
   calculateChromaticity31,
@@ -73,25 +68,12 @@ export const calculateColourRenderingIndices = (rows) => {
 };
 
 export const calculate = (rows, sampleCount) => {
-  const interpolatedRows = interpolateData(rows, sampleCount);
-  const luminanceTotals = calculateLuminance(interpolatedRows, sampleCount);
-  const sConeTotals = calculateAlphaOpic(
-    interpolatedRows,
-    sampleCount,
-    "sCone"
-  );
-  const mConeTotals = calculateAlphaOpic(
-    interpolatedRows,
-    sampleCount,
-    "mCone"
-  );
-  const lConeTotals = calculateAlphaOpic(
-    interpolatedRows,
-    sampleCount,
-    "lCone"
-  );
-  const rodTotals = calculateAlphaOpic(interpolatedRows, sampleCount, "rod");
-  const melTotals = calculateAlphaOpic(interpolatedRows, sampleCount, "mel");
+  const luminanceTotals = calculateLuminance(rows, sampleCount);
+  const sConeTotals = calculateAlphaOpic(rows, sampleCount, "sCone");
+  const mConeTotals = calculateAlphaOpic(rows, sampleCount, "mCone");
+  const lConeTotals = calculateAlphaOpic(rows, sampleCount, "lCone");
+  const rodTotals = calculateAlphaOpic(rows, sampleCount, "rod");
+  const melTotals = calculateAlphaOpic(rows, sampleCount, "mel");
 
   return {
     alphaOpicEfficiency: calculateAlphaOpicEfficiency(
@@ -102,8 +84,8 @@ export const calculate = (rows, sampleCount) => {
       melTotals,
       luminanceTotals
     ),
-    chromaticity31: calculateChromaticity31(interpolatedRows, sampleCount),
-    chromaticity64: calculateChromaticity64(interpolatedRows, sampleCount),
+    chromaticity31: calculateChromaticity31(rows, sampleCount),
+    chromaticity64: calculateChromaticity64(rows, sampleCount),
     colourRenderingIndices: calculateColourRenderingIndices(rows),
     equivalentDaylightAlphaOpic: calculateEquivalentDaylightAlphaOpic(
       sConeTotals,
