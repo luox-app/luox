@@ -45,6 +45,22 @@ describe("uvToCorrelatedColourTemperatureRobertson", () => {
     );
     expect(cct.toFixed(3)).toEqual("6500.016");
   });
+
+  it("calculates CCT from u,v using the Robertson method (Hunt & Pointer example values)", () => {
+    const cct = uvToCorrelatedColourTemperatureRobertson(0.2202, 0.3331);
+    // The worked example in Appendix 7.2 of the Hunt & Pointer book gives a CCT of 4224.400K
+    // which doesn't exactly match this result. However, the actual CCT returned does exactly
+    // match the value calculated using the Python colour-science package.
+    expect(cct.toFixed(3)).toEqual("4224.994");
+  });
+
+  it("does not raise a TypeError", () => {
+    const cct = uvToCorrelatedColourTemperatureRobertson(
+      0.25686519407615915,
+      0.010984366851941015
+    );
+    expect(cct.toFixed(3)).toEqual("100000.000");
+  });
 });
 
 describe("blackBodyReferenceSpectra", () => {

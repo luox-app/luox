@@ -2,7 +2,7 @@ require 'csv'
 require 'json'
 
 data = {}
-idx = 1
+idx = 0
 
 File.open('data/robertson.csv') do |file|
   file.each_line do |line|
