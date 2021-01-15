@@ -132,6 +132,7 @@ describe("calculate", () => {
 
     const result = calculate(rows, 1);
 
+    expect(result.luminanceTotals[0].toFixed(2)).toEqual("38595.35");
     expect((result.sConeTotals[0] / 1e3).toFixed(2)).toEqual("25.30");
     expect((result.mConeTotals[0] / 1e3).toFixed(2)).toEqual("55.11");
     expect((result.lConeTotals[0] / 1e3).toFixed(2)).toEqual("61.75");
@@ -151,6 +152,7 @@ describe("calculate", () => {
 
     const result = calculate(rows, 1);
 
+    expect(result.luminanceTotals[0].toFixed(2)).toEqual("31819.10");
     expect((result.sConeTotals[0] / 1e3).toFixed(2)).toEqual("28.13");
     expect((result.mConeTotals[0] / 1e3).toFixed(2)).toEqual("43.48");
     expect((result.lConeTotals[0] / 1e3).toFixed(2)).toEqual("52.48");
@@ -170,6 +172,7 @@ describe("calculate", () => {
 
     const result = calculate(rows, 1);
 
+    expect(result.luminanceTotals[0].toFixed(2)).toEqual("38347.76");
     expect((result.sConeTotals[0] / 1e3).toFixed(2)).toEqual("23.16");
     expect((result.mConeTotals[0] / 1e3).toFixed(2)).toEqual("51.42");
     expect((result.lConeTotals[0] / 1e3).toFixed(2)).toEqual("62.90");
@@ -189,6 +192,7 @@ describe("calculate", () => {
 
     const result = calculate(rows, 1);
 
+    expect(result.luminanceTotals[0].toFixed(2)).toEqual("1000037.00");
     expect((result.sConeTotals[0] / 1e3).toFixed(2)).toEqual("508.29");
     expect((result.mConeTotals[0] / 1e3).toFixed(2)).toEqual("1281.23");
     expect((result.lConeTotals[0] / 1e3).toFixed(2)).toEqual("1616.08");
@@ -208,6 +212,7 @@ describe("calculate", () => {
 
     const result = calculate(rows, 1);
 
+    expect(result.luminanceTotals[0].toFixed(2)).toEqual("999991.87");
     expect((result.sConeTotals[0] / 1e3).toFixed(2)).toEqual("378.63");
     expect((result.mConeTotals[0] / 1e3).toFixed(2)).toEqual("1199.80");
     expect((result.lConeTotals[0] / 1e3).toFixed(2)).toEqual("1623.51");

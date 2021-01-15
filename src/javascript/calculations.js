@@ -9,8 +9,9 @@ import {
 
 export const calculateLuminance = (rows, sampleCount) => {
   const key = "vl1924";
+  const K = 683.002;
   const samplesInWatts = integrateWithWeights(rows, sampleCount, VL1924, key);
-  return samplesInWatts.map((sample) => sample * 683);
+  return samplesInWatts.map((sample) => sample * K);
 };
 
 export const relativeToAbsolute = (rows, sampleCount, relativePowers) => {
