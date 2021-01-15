@@ -4,6 +4,7 @@ import ReactRouterPropTypes from "react-router-prop-types";
 const NavBar = ({ location }) => {
   const isHome = location.pathname === "/";
   const isGenerateCsv = location.pathname === "/generate-csv";
+  const isUpload = location.pathname === "/upload";
   const isAbout = location.pathname === "/about";
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -27,6 +28,11 @@ const NavBar = ({ location }) => {
             <a className="nav-link" href="/generate-csv">
               Report light exposure{" "}
               {isGenerateCsv && <span className="sr-only">(current)</span>}
+            </a>
+          </li>
+          <li className={isUpload ? "nav-item active" : "nav-item"}>
+            <a className="nav-link" href="/upload">
+              Upload {isUpload && <span className="sr-only">(current)</span>}
             </a>
           </li>
           <li className={isAbout ? "nav-item active" : "nav-item"}>
