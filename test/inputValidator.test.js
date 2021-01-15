@@ -65,7 +65,7 @@ describe("inputValidator", () => {
 
   it("should return a validation error if there is a null value in the header", () => {
     expect(validateInput(["lambda", null], [[380, 0.01]])).toHaveMessage(
-      "Values must not be blank"
+      "Please check if you have any empty columns, or if every line ends with a comma. If it does, please remove the comma at the end of the line."
     );
   });
 
@@ -78,7 +78,9 @@ describe("inputValidator", () => {
           [390, 0.02],
         ]
       )
-    ).toHaveMessage("Values must not be blank");
+    ).toHaveMessage(
+      "Please check if you have any empty columns, or if every line ends with a comma. If it does, please remove the comma at the end of the line."
+    );
   });
 
   it("should return a validation error if the number of rows in the body is less than two", () => {

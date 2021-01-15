@@ -45,7 +45,8 @@ const validateNonNullValues = (header, body) => {
   if (firstRowWithNull >= 0) {
     return {
       row: firstRowWithNull,
-      message: "Values must not be blank",
+      message:
+        "Please check if you have any empty columns, or if every line ends with a comma. If it does, please remove the comma at the end of the line.",
     };
   }
 
