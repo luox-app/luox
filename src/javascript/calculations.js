@@ -37,11 +37,11 @@ export const calculateEquivalentDaylightAlphaOpic = (
   melTotals
 ) => {
   return {
-    lc: lConeTotals.map((s) => s / 1.6289),
-    mc: mConeTotals.map((s) => s / 1.4558),
-    mel: melTotals.map((s) => s / 1.3262),
-    rh: rodTotals.map((s) => s / 1.4497),
-    sc: sConeTotals.map((s) => s / 0.8173),
+    lc: lConeTotals.map((s) => s / 1.62890776589039),
+    mc: mConeTotals.map((s) => s / 1.45582633881653),
+    mel: melTotals.map((s) => s / 1.32621318911359),
+    rh: rodTotals.map((s) => s / 1.4497035760559),
+    sc: sConeTotals.map((s) => s / 0.817289644883213),
   };
 };
 
