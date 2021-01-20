@@ -10,7 +10,6 @@ The purpose of the _luox_ platform is to faciliate the calculation of quantities
 
 The platform is primarily geared towards researchers and research users interested in the effects of light exposure on human physiology and behaviour, but it may be interesting to students, academics and professionals in other disciplines and areas.
 
-
 ### Citing
 
 For now, if you use _luox_ for calculations, please cite the following (APA format):
@@ -119,11 +118,15 @@ While calculation procedures are structurally well-defined by the CIE, there are
 | Aspect | Quantity | Method or quantity used in luox | Description |
 |-|-|-|-|
 | Calculation of Correlated Color Temperature [CCT} | Colour rendering index (CIE Ra) | [Robertson (1968)](https://doi.org/10.1364/JOSA.58.001528) parametrisation and method | Alternatives listed in CIE 015, section 9.4 (p. 39) |
-| Constant for absolute (il)luminance conversion | Illuminance [lux] and Luminance [cd/m2] | 683.0015478 lm/W | 683 lm/W acceptable "for all practical applications", 683.0015478 lm/W exact value used in CIE S 026 toolbox; usually rounded up to 683.002 lm/W  |
+| Constant for absolute (il)luminance conversion | Illuminance [lux] and Luminance [cd/m2] | 683.0015478 lm/W | 683 lm/W acceptable "for all practical applications" according to [BS ISO 23539:2005](https://shop.bsigroup.com/ProductDetail?pid=000000000030133892), 683.0015478 lm/W exact value used in (CIE S 026 toolbox)[https://doi.org/10.25039/S026.2018.TB]; usually rounded up to 683.002 lm/W  |
 
 ### Source code availability and license
 
 The source code is available on GitHub (https://github.com/luox-app/luox/) under an MIT License.
+
+### Alternatives
+
+The CIE has released a toolbox (DOI: [10.25039/S026.2018.TB](https://doi.org/10.25039/S026.2018.TB)) and user guide [10.25039/S026.2018.UG](https://doi.org/10.25039/S026.2018.UG)) for calculations of quantities specified in [CIE S 026/E:2018: CIE System for Metrology of Optical Radiation for ipRGC-Influenced Responses to Light](http://cie.co.at/publications/cie-system-metrology-optical-radiation-iprgc-influenced-responses-light-0), DOI: [10.25039/S026.2018](https://doi.org/10.25039/S026.2018). The Excel spreadsheet-based toolbox is freely available and is supplementary to the luox platform.
 
 ## Acknowledgements
 
