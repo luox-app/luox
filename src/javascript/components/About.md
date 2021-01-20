@@ -6,7 +6,7 @@ _A user-friendly, open-access platform for calculating quantities related to lig
 
 ### Purpose
 
-The purpose of the _luox_ platform is to faciliate the calculation of quantities related to light and lighting in a user-friendly and open-access fashion. Users can upload spectra (which are only stored in the browser) and the platform will calculate relevant quantites from the spectra, generate a visualisation of the spectrum, and enable the export of calculations in tabular form.
+The purpose of the _luox_ platform is to faciliate the calculation of quantities related to light and lighting in a user-friendly, open-access and free fashion. Users can upload spectra (which are only stored in the browser) and the platform will calculate relevant quantites (including (il)luminance, chromaticity, and α-opic (ir)radiance and α-opic daylight (il)luminances) from the spectra, generate a visualisation of the spectrum, and enable the export of calculations in tabular form.
 
 The platform is primarily geared towards researchers and research users interested in the effects of light exposure on human physiology and behaviour, but it may be interesting to students, academics and professionals in other disciplines and areas.
 
@@ -56,6 +56,10 @@ During development of the platform, Dr Manuel Spitschan was supported by a Sir H
 
 ## Usage
 
+### Quick start
+
+We provide a documented wizard for uploading your files to the platform.
+
 ### Sharing spectra and calculations using sharing URL
 
 Spectra and calculations within the luox platform can be shared using an URL that directly encodes the uploaded spectrum/spectra using Michael Herf's [spdurl](https://github.com/herf/spdurl) package. The sharing URL will open a view-only version of the platform. To copy the sharing URL, scroll down to the bottom of the page. Before sharing the URL, please double-check that it opens spectrum/spectra as expected.
@@ -72,21 +76,27 @@ There is no guarantee that DOI requests will be accepted. To ensure that a DOI i
 
 ### Sources of effect functions
 
+| Name | Source document | Wavelength spacing/range [nm] |
+|-|-|-|-|
+| CIE 1931 xy (2°) | [EN ISO/CIE 11664-1:2019](https://www.iso.org/standard/74164.html), Table 1 (p. 10-21) | 1 / 360-830 |
+| CIE 1964 xy (10°) | [EN ISO/CIE 11664-1:2019](https://www.iso.org/standard/74164.html), Table 2 (p. 22-32) | 1 / 360-830 |
+| CIE S 026/E:2018 a-opic action spectra | [CIE S 026/E:2018](https://doi.org/10.25039/S026.2018), Table 2 (p. 12-21) | / | 380-780 |
+
 ### Sources of illuminant data
 
-| Name                                          | Source document                                                                                              | Wavelength spacing [nm] | Wavelength range [nm] |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------- | --------------------- |
-| Standard illuminant A                         | [EN ISO/CIE 11664 2:2011](https://shop.bsigroup.com/ProductDetail?pid=000000000030231895), Table 1 (p. 7-12) | 1                       | 300-830               |
-| Standard illuminant D65                       | [EN ISO/CIE 11664 2:2011](https://shop.bsigroup.com/ProductDetail?pid=000000000030231895), Table 1 (p. 7-12) | 1                       | 300-830               |
-| Illuminant C                                  | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 5 (p. 51-53)                                     | 5                       | 300-780               |
-| Illuminant D50                                | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 5 (p. 51-53)                                     | 5                       | 300-780               |
-| Illuminant D75                                | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 5 (p. 51-53)                                     | 5                       | 300-780               |
-| Illuminants F1-F12                            | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 10.1 (p. 59-60)                                  | 5                       | 380-780               |
-| Illuminants FL3.1-FL3.8                       | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 10.2 (p. 61-62)                                  | 5                       | 380-780               |
-| Illuminants FL3.9-FL3.15                      | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 10.3 (p. 63-64)                                  | 5                       | 380-780               |
-| Illuminants HP1-HP5                           | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 11 (p. 65-66)                                    | 5                       | 380-780               |
-| Illuminants LED-B1-LED-B5                     | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 12.1 (p. 67-68)                                  | 5                       | 380-780               |
-| Illuminants LED-BH1, LED-RGB1, LED-V1, LED-V2 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 12.2 (p. 69-70)                                  | 5                       | 380-780               |
+| Name | Source document | Wavelength spacing/range [nm] |
+|-|-|-|-|
+| Standard illuminant A | [EN ISO/CIE 11664 2:2011](https://shop.bsigroup.com/ProductDetail?pid=000000000030231895), Table 1 (p. 7-12) | 1 / 300-830 |
+| Standard illuminant D65 | [EN ISO/CIE 11664 2:2011](https://shop.bsigroup.com/ProductDetail?pid=000000000030231895), Table 1 (p. 7-12) | 1 / 300-830 |
+| Illuminant C | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 5 (p. 51-53) | 5 / 300-780 |
+| Illuminant D50 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 5 (p. 51-53) | 5 / 300-780 |
+| Illuminant D75 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 5 (p. 51-53) | 5 / 300-780 |
+| Illuminants F1-F12 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 10.1 (p. 59-60) | 5 / 380-780 |
+| Illuminants FL3.1-FL3.8 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 10.2 (p. 61-62) | 5 / 380-780 |
+| Illuminants FL3.9-FL3.15 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 10.3 (p. 63-64) | 5 / 380-780 |
+| Illuminants HP1-HP5 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 11 (p. 65-66) | 5 / 380-780 |
+| Illuminants LED-B1-LED-B5 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 12.1 (p. 67-68) | 5 / 380-780 |
+| Illuminants LED-BH1, LED-RGB1, LED-V1, LED-V2 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 12.2 (p. 69-70) | 5 / 380-780 |
 
 ### References to official documents
 
@@ -98,7 +108,7 @@ There is no guarantee that DOI requests will be accepted. To ensure that a DOI i
 
 ### Source code availability and license
 
-
+The source code is available on GitHub (https://github.com/luox-app/luox/) under an MIT License.
 
 ## Acknowledgements
 
