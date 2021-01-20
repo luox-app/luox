@@ -28,7 +28,14 @@ This platform was developed by [Dr Manuel Spitschan](https://www.psy.ox.ac.uk/te
 
 ### Contact
 
-For any questions or concerns, please email [Dr Manuel Spitschan (manuel.spitschan@psy.ox.ac.uk)](mailto:manuel.spitschan@psy.ox.ac.uk).
+For any support-related questions, please email [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk). Please be as specific as possible in your request.
+
+### Bug reports and feature requests
+
+To report bugs and suggest new features, please raise an issue on the project's [GitHub page](luox-support@psy.ox.ac.uk). When reporting a bug or any other issue, you need to be as specific as possible:
+- Include concrete and specific steps to reproduce your problem, including any files that pose an issue
+- If the problem only occurs occasionally but is reproducible, please include any additional contextual information
+- If the problem is not reproducible, it may not be useful to submit a bug report
 
 ### Funding
 
