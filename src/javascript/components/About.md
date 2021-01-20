@@ -2,29 +2,28 @@
 
 _A user-friendly, open-access platform for calculating quantities related to light and lighting_
 
-- [_luox_](#-luox-)
-  * [About](#about)
-    + [Purpose](#purpose)
-    + [Team](#team)
-    + [Citing](#citing)
-    + [Announcements](#announcements)
-    + [Support](#support)
-    + [Bug reports and feature requests](#bug-reports-and-feature-requests)
-    + [Funding](#funding)
-  * [Usage](#usage)
-    + [Quick start](#quick-start)
-    + [Sharing spectra and calculations using sharing URL](#sharing-spectra-and-calculations-using-sharing-url)
-    + [Requesting DOI for sharing URL](#requesting-doi-for-sharing-url)
-  * [Under the hood](#under-the-hood)
-    + [Calculation definitions](#calculation-definitions)
-    + [Precision and decimal points](#precision-and-decimal-points)
-    + [Sources of effect functions](#sources-of-effect-functions)
-    + [Sources of illuminant data](#sources-of-illuminant-data)
-    + [References to official documents](#references-to-official-documents)
-    + [Implementation specifics](#implementation-specifics)
-    + [Source code availability and license](#source-code-availability-and-license)
-    + [Alternatives](#alternatives)
-  * [Acknowledgements](#acknowledgements)
+- [About](#about)
+  * [Purpose](#purpose)
+  * [Team](#team)
+  * [Citing](#citing)
+  * [Announcements](#announcements)
+  * [Support](#support)
+  * [Bug reports and feature requests](#bug-reports-and-feature-requests)
+  * [Funding](#funding)
+- [Usage](#usage)
+  * [Quick start](#quick-start)
+  * [Sharing spectra and calculations using sharing URL](#sharing-spectra-and-calculations-using-sharing-url)
+  * [Requesting DOI for sharing URL](#requesting-doi-for-sharing-url)
+- [Under the hood](#under-the-hood)
+  * [Calculation definitions](#calculation-definitions)
+  * [Precision and decimal points](#precision-and-decimal-points)
+  * [Sources of effect functions](#sources-of-effect-functions)
+  * [Sources of illuminant data](#sources-of-illuminant-data)
+  * [References to official documents](#references-to-official-documents)
+  * [Implementation specifics](#implementation-specifics)
+  * [Source code availability and license](#source-code-availability-and-license)
+  * [Alternatives](#alternatives)
+- [Acknowledgements](#acknowledgements)
   
 ## About
 
@@ -105,7 +104,7 @@ All calculations performed here following guidance from the [International Commi
 
 ### Precision and decimal points
 
-All calculations are computed with floating point precision using JavaScript. In the browser, the results are displayed up to four decimals for all quantities (including those in _Advanced_ mode).
+All calculations are computed with floating point precision using JavaScript. In the browser, the results are displayed up to four decimals for all quantities (including those in _Advanced_ mode). When downloading calculations, the precision will be higher than displayed in the browser.
 
 ### Sources of effect functions
 
