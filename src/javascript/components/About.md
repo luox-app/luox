@@ -72,7 +72,13 @@ There is no guarantee that DOI requests will be accepted. To ensure that a DOI i
 
 #### Under the hood
 
+### Calculation definitions
+
+All calculations performed here following guidance from the [International Commission on Illumination (CIE)](https://cie.co.at/).
+
 ### Precision and decimal points
+
+All calculations are computed with floating point precision using JavaScript. In the browser, the results are displayed up to four decimals for all quantities (including those in _Advanced_ mode).
 
 ### Sources of effect functions
 
@@ -80,7 +86,7 @@ There is no guarantee that DOI requests will be accepted. To ensure that a DOI i
 |-|-|-|
 | CIE 1931 xy (2°) | [EN ISO/CIE 11664-1:2019](https://www.iso.org/standard/74164.html), Table 1 (p. 10-21) | 1 / 360-830 |
 | CIE 1964 xy (10°) | [EN ISO/CIE 11664-1:2019](https://www.iso.org/standard/74164.html), Table 2 (p. 22-32) | 1 / 360-830 |
-| CIE S 026/E:2018 a-opic action spectra | [CIE S 026/E:2018](https://doi.org/10.25039/S026.2018), Table 2 (p. 12-21) | / | 380-780 |
+| CIE S 026/E:2018 a-opic action spectra | [CIE S 026/E:2018](https://doi.org/10.25039/S026.2018), Table 2 (p. 12-21) | 1 / 380-780 |
 
 ### Sources of illuminant data
 
@@ -105,6 +111,15 @@ There is no guarantee that DOI requests will be accepted. To ensure that a DOI i
 - [CIE 015:2018: Colorimetry, 4th Edition](http://cie.co.at/publications/colorimetry-4th-edition), DOI: [10.25039/TR.015.2018](https://doi.org/10.25039/TR.015.2018)
 - [EN ISO/CIE 11664 2:2011](https://shop.bsigroup.com/ProductDetail?pid=000000000030231895)
 - [CIE S 026/E:2018: CIE System for Metrology of Optical Radiation for ipRGC-Influenced Responses to Light](http://cie.co.at/publications/cie-system-metrology-optical-radiation-iprgc-influenced-responses-light-0), DOI: [10.25039/S026.2018](https://doi.org/10.25039/S026.2018)
+
+### Implementation specifics
+
+While calculation procedures are structurally well-defined by the CIE, there are a few ambiguities that may arise when implementing it. This includes the choice of specific and exchangeable algorithms (e.g. for the calculation of CCT), and the decimal points of specific constants. The specific choices are described here:
+
+| Aspect | Quantity | Method or quantity used in luox | Description |
+|-|-|-|-|
+| Calculation of Correlated Color Temperature [CCT} | Colour rendering index (CIE Ra) | [Robertson (1968)](https://doi.org/10.1364/JOSA.58.001528) parametrisation and method | Alternatives listed in CIE 015, section 9.4 (p. 39) |
+| Constant for absolute (il)luminance conversion | Illuminance [lux] and Luminance [cd/m2] | 683.0015478 lm/W | 683 lm/W acceptable "for all practical applications", 683.0015478 lm/W exact value used in CIE S 026 toolbox; usually rounded up to 683.002 lm/W  |
 
 ### Source code availability and license
 
