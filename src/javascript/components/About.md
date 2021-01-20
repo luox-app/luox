@@ -77,7 +77,7 @@ There is no guarantee that DOI requests will be accepted. To ensure that a DOI i
 ### Sources of effect functions
 
 | Name | Source document | Wavelength spacing/range [nm] |
-|-|-|-|-|
+|-|-|-|
 | CIE 1931 xy (2°) | [EN ISO/CIE 11664-1:2019](https://www.iso.org/standard/74164.html), Table 1 (p. 10-21) | 1 / 360-830 |
 | CIE 1964 xy (10°) | [EN ISO/CIE 11664-1:2019](https://www.iso.org/standard/74164.html), Table 2 (p. 22-32) | 1 / 360-830 |
 | CIE S 026/E:2018 a-opic action spectra | [CIE S 026/E:2018](https://doi.org/10.25039/S026.2018), Table 2 (p. 12-21) | / | 380-780 |
@@ -85,7 +85,7 @@ There is no guarantee that DOI requests will be accepted. To ensure that a DOI i
 ### Sources of illuminant data
 
 | Name | Source document | Wavelength spacing/range [nm] |
-|-|-|-|-|
+|-|-|-|
 | Standard illuminant A | [EN ISO/CIE 11664 2:2011](https://shop.bsigroup.com/ProductDetail?pid=000000000030231895), Table 1 (p. 7-12) | 1 / 300-830 |
 | Standard illuminant D65 | [EN ISO/CIE 11664 2:2011](https://shop.bsigroup.com/ProductDetail?pid=000000000030231895), Table 1 (p. 7-12) | 1 / 300-830 |
 | Illuminant C | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 5 (p. 51-53) | 5 / 300-780 |
