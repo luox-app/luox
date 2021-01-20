@@ -2,13 +2,41 @@
 
 _A user-friendly, open-access platform for calculating quantities related to light and lighting_
 
+- [_luox_](#-luox-)
+  * [About](#about)
+    + [Purpose](#purpose)
+    + [Team](#team)
+    + [Citing](#citing)
+    + [Announcements](#announcements)
+    + [Support](#support)
+    + [Bug reports and feature requests](#bug-reports-and-feature-requests)
+    + [Funding](#funding)
+  * [Usage](#usage)
+    + [Quick start](#quick-start)
+    + [Sharing spectra and calculations using sharing URL](#sharing-spectra-and-calculations-using-sharing-url)
+    + [Requesting DOI for sharing URL](#requesting-doi-for-sharing-url)
+  * [Under the hood](#under-the-hood)
+    + [Calculation definitions](#calculation-definitions)
+    + [Precision and decimal points](#precision-and-decimal-points)
+    + [Sources of effect functions](#sources-of-effect-functions)
+    + [Sources of illuminant data](#sources-of-illuminant-data)
+    + [References to official documents](#references-to-official-documents)
+    + [Implementation specifics](#implementation-specifics)
+    + [Source code availability and license](#source-code-availability-and-license)
+    + [Alternatives](#alternatives)
+  * [Acknowledgements](#acknowledgements)
+  
 ## About
 
 ### Purpose
 
-The purpose of the _luox_ platform is to faciliate the calculation of quantities related to light and lighting in a user-friendly, open-access and free fashion. Users can upload spectra (which are only stored in the browser) and the platform will calculate relevant quantites (including (il)luminance, chromaticity, and α-opic (ir)radiance and α-opic daylight (il)luminances) from the spectra, generate a visualisation of the spectrum, and enable the export of calculations in tabular form.
+The purpose of the _luox_ platform is to faciliate the calculation of quantities related to light and lighting in a user-friendly, open-access and free fashion. Users can upload spectra (which are only stored in the browser) and the platform will calculate relevant quantites (including (il)luminance, chromaticity, and α-opic (ir)radiance and α-opic daylight (il)luminances) from the spectra, generate a visualisation of the spectrum, and enable the export of calculations in tabular form. All quantities reported here are supported by the [International Commission on Illumination (CIE)](https://cie.co.at/).
 
 The platform is primarily geared towards researchers and research users interested in the effects of light exposure on human physiology and behaviour, but it may be interesting to students, academics and professionals in other disciplines and areas.
+
+### Team
+
+This platform was developed by [Dr Manuel Spitschan](https://www.psy.ox.ac.uk/team/manuel-spitschan) (Department of Experimental Psychology, Unversity of Oxford) and [Go Free Range](https://gofreerange.com/).
 
 ### Citing
 
@@ -24,15 +52,15 @@ For citing the source code:
 
 We are currently (January 2021) in the process of writing a report presenting _luox_ and will update this information here.
 
+When reporting quantites related to CIE S 026, we also recommend citing the standard:
+
+> **CIE (2018). CIE S 026/E:2018: CIE System for Metrology of Optical Radiation for ipRGC-Influenced Responses to Light. Vienna: CIE Central Bureau. DOI: [10.25039/S026.2018](https://doi.org/10.25039/S026.2018).**
+
 ### Announcements
 
 To stay up-to-date with any announcements on _luox_, please subscribe to the announcements listserv here. Send an email to [luox-users-subscribe@maillist.ox.ac.uk](mailto:luox-users-subscribe@maillist.ox.ac.uk). Subject and message content do not matter.
 
-### Developers
-
-This platform was developed by [Dr Manuel Spitschan](https://www.psy.ox.ac.uk/team/manuel-spitschan) (Department of Experimental Psychology, Unversity of Oxford) and [Go Free Range](https://gofreerange.com/).
-
-### Contact
+### Support
 
 For any support-related questions, please email [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk). Please be as specific as possible in your request.
 
@@ -69,7 +97,7 @@ We offer the option to request a digital object identifier (DOI) linked to the s
 
 There is no guarantee that DOI requests will be accepted. To ensure that a DOI is generated in a timely fashion, please submit the request well before it is needed (e.g. in a publication submission). We are currently investigating the possibility of generating DOIs directly without using ORA.
 
-#### Under the hood
+## Under the hood
 
 ### Calculation definitions
 
