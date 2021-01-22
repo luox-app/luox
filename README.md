@@ -45,4 +45,4 @@ $ npm start
 
 ## Production
 
-The app is [deployed to Netlify](https://luox.netlify.app/).
+The app is deployed to [luox.app](https://luox.app/).
