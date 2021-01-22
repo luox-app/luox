@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import CalculationTable from "./CalculationTable";
 import SpectraTable from "./SpectraTable";
@@ -11,15 +11,31 @@ const Results = ({
   radianceOrIrradiance,
   measurementLabels,
 }) => {
+  const originalButtonText = "Copy to clipboard";
+  const [buttonText, setButtonText] = useState(originalButtonText);
+
   if (rows.length === 0) {
     return null;
   }
 
   const sharingID = rowsToURL(rows, radianceOrIrradiance, measurementLabels);
+  const sharingURL = `${window.location.origin}/u/${sharingID}`;
 
-  const copySharingURL = ({ target }) => {
-    target.setSelectionRange(0, target.value.length);
-    document.execCommand("copy");
+  const buttonDisabled = () => {
+    return buttonText !== originalButtonText;
+  };
+
+  const copySharingURL = () => {
+    const sharingURLInput = document.querySelector("input#sharing-url");
+    sharingURLInput.select();
+    if (document.execCommand("copy")) {
+      setButtonText("Copied!");
+    } else {
+      setButtonText("Failed to copy!");
+    }
+    setTimeout(() => {
+      setButtonText(originalButtonText);
+    }, 1000);
   };
 
   return (
@@ -84,15 +100,22 @@ const Results = ({
 
         <div className="form-group">
           <input
+            id="sharing-url"
             type="text"
-            className="form-control"
-            value={`${window.location.origin}/u/${sharingID}`}
-            onClick={copySharingURL}
+            className="form-control my-2"
+            value={sharingURL}
             readOnly
           />
-          <small className="form-text text-muted">
-            Click above to copy the URL to your clipboard
-          </small>
+        </div>
+        <div className="form-group">
+          <button
+            className="btn btn-primary btn-block my-2"
+            type="button"
+            onClick={copySharingURL}
+            disabled={buttonDisabled()}
+          >
+            {buttonText}
+          </button>
         </div>
       </div>
     </div>

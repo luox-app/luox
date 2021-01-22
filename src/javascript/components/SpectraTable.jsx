@@ -23,8 +23,24 @@ SpectraTableRow.propTypes = {
   exponentialNotation: PropTypes.bool.isRequired,
 };
 
+const SpectraTableEllipsisRow = ({ exampleRow }) => {
+  return (
+    <tr>
+      {exampleRow.map((_, i) => (
+        <td key={i}>...</td>
+      ))}
+    </tr>
+  );
+};
+
+SpectraTableEllipsisRow.propTypes = {
+  exampleRow: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
+
 const SpectraTable = ({ rows, sampleCount, radianceOrIrradiance }) => {
   const [exponentialNotation, setExponentialNotation] = useState(true);
+  const [displayAllRows, setDisplayAllRows] = useState(false);
+
   const spectraDownloadUrl = useMemo(
     () => SpectraCSV({ radianceOrIrradiance, rows }),
     [radianceOrIrradiance, rows]
@@ -32,6 +48,14 @@ const SpectraTable = ({ rows, sampleCount, radianceOrIrradiance }) => {
 
   const handleExponentialNotation = () => {
     setExponentialNotation((checked) => !checked);
+  };
+
+  const handleDisplayAllRows = () => {
+    setDisplayAllRows((checked) => !checked);
+  };
+
+  const rowsToDisplay = () => {
+    return displayAllRows ? rows : rows.slice(0, 5);
   };
 
   return (
@@ -46,6 +70,17 @@ const SpectraTable = ({ rows, sampleCount, radianceOrIrradiance }) => {
               id="spectra-exponential-notation"
             />
             {" Use exponential notation?"}
+          </label>
+        </div>
+        <div className="col text-center">
+          <label htmlFor="spectra-all-rows">
+            <input
+              type="checkbox"
+              checked={displayAllRows}
+              onChange={handleDisplayAllRows}
+              id="spectra-all-rows"
+            />
+            {" Display all rows?"}
           </label>
         </div>
         <div className="col text-right">
@@ -69,7 +104,7 @@ const SpectraTable = ({ rows, sampleCount, radianceOrIrradiance }) => {
           </tr>
         </thead>
         <tbody>
-          {rows.map(([wavelength, ...samples], index) => (
+          {rowsToDisplay().map(([wavelength, ...samples], index) => (
             <SpectraTableRow
               key={index}
               wavelength={wavelength}
@@ -77,6 +112,7 @@ const SpectraTable = ({ rows, sampleCount, radianceOrIrradiance }) => {
               exponentialNotation={exponentialNotation}
             />
           ))}
+          {!displayAllRows && <SpectraTableEllipsisRow exampleRow={rows[0]} />}
         </tbody>
       </table>
     </section>
