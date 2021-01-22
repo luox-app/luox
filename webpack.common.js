@@ -80,6 +80,11 @@ module.exports = {
       {
         from: "_redirects",
       },
+      {
+        from: "version.json",
+        context: "src/",
+        to: ".",
+      },
     ]),
 
     new HtmlWebpackPlugin({
