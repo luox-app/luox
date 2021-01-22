@@ -3,28 +3,28 @@
 _A user-friendly, open-access platform for calculating quantities related to light and lighting_
 
 - [About](#about)
-  * [Purpose](#purpose)
-  * [Team](#team)
-  * [Citing](#citing)
-  * [Announcements](#announcements)
-  * [Support](#support)
-  * [Bug reports and feature requests](#bug-reports-and-feature-requests)
-  * [Funding](#funding)
+  - [Purpose](#purpose)
+  - [Team](#team)
+  - [Citing](#citing)
+  - [Announcements](#announcements)
+  - [Support](#support)
+  - [Bug reports and feature requests](#bug-reports-and-feature-requests)
+  - [Funding](#funding)
 - [Usage](#usage)
-  * [Quick start](#quick-start)
-  * [Sharing spectra and calculations using sharing URL](#sharing-spectra-and-calculations-using-sharing-url)
-  * [Requesting DOI for sharing URL](#requesting-doi-for-sharing-url)
+  - [Quick start](#quick-start)
+  - [Sharing spectra and calculations using sharing URL](#sharing-spectra-and-calculations-using-sharing-url)
+  - [Requesting DOI for sharing URL](#requesting-doi-for-sharing-url)
 - [Under the hood](#under-the-hood)
-  * [Calculation definitions](#calculation-definitions)
-  * [Precision and decimal points](#precision-and-decimal-points)
-  * [Sources of effect functions](#sources-of-effect-functions)
-  * [Sources of illuminant data](#sources-of-illuminant-data)
-  * [References to official documents](#references-to-official-documents)
-  * [Implementation specifics](#implementation-specifics)
-  * [Source code availability and license](#source-code-availability-and-license)
-  * [Alternatives](#alternatives)
+  - [Calculation definitions](#calculation-definitions)
+  - [Precision and decimal points](#precision-and-decimal-points)
+  - [Sources of effect functions](#sources-of-effect-functions)
+  - [Sources of illuminant data](#sources-of-illuminant-data)
+  - [References to official documents](#references-to-official-documents)
+  - [Implementation specifics](#implementation-specifics)
+  - [Source code availability and license](#source-code-availability-and-license)
+  - [Alternatives](#alternatives)
 - [Acknowledgements](#acknowledgements)
-  
+
 ## About
 
 ### Purpose
@@ -66,6 +66,7 @@ For any support-related questions, please email [luox-support@psy.ox.ac.uk](mail
 ### Bug reports and feature requests
 
 To report bugs and suggest new features, please raise an issue on the project's [GitHub page](luox-support@psy.ox.ac.uk). When reporting a bug or any other issue, you need to be as specific as possible:
+
 - Include concrete and specific steps to reproduce your problem, including any files that pose an issue
 - If the problem only occurs occasionally but is reproducible, please include any additional contextual information
 - If the problem is not reproducible, it may not be useful to submit a bug report
@@ -108,27 +109,27 @@ All calculations are computed with floating point precision using JavaScript. In
 
 ### Sources of effect functions
 
-| Name | Source document | Wavelength spacing/range [nm] |
-|-|-|-|
-| CIE 1931 xy (2°) | [EN ISO/CIE 11664-1:2019](https://www.iso.org/standard/74164.html), Table 1 (p. 10-21) | 1 / 360-830 |
-| CIE 1964 xy (10°) | [EN ISO/CIE 11664-1:2019](https://www.iso.org/standard/74164.html), Table 2 (p. 22-32) | 1 / 360-830 |
-| CIE S 026/E:2018 a-opic action spectra | [CIE S 026/E:2018](https://doi.org/10.25039/S026.2018), Table 2 (p. 12-21) | 1 / 380-780 |
+| Name                                   | Source document                                                                        | Wavelength spacing/range [nm] |
+| -------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------- |
+| CIE 1931 xy (2°)                       | [EN ISO/CIE 11664-1:2019](https://www.iso.org/standard/74164.html), Table 1 (p. 10-21) | 1 / 360-830                   |
+| CIE 1964 xy (10°)                      | [EN ISO/CIE 11664-1:2019](https://www.iso.org/standard/74164.html), Table 2 (p. 22-32) | 1 / 360-830                   |
+| CIE S 026/E:2018 a-opic action spectra | [CIE S 026/E:2018](https://doi.org/10.25039/S026.2018), Table 2 (p. 12-21)             | 1 / 380-780                   |
 
 ### Sources of illuminant data
 
-| Name | Source document | Wavelength spacing/range [nm] |
-|-|-|-|
-| Standard illuminant A | [EN ISO/CIE 11664 2:2011](https://shop.bsigroup.com/ProductDetail?pid=000000000030231895), Table 1 (p. 7-12) | 1 / 300-830 |
-| Standard illuminant D65 | [EN ISO/CIE 11664 2:2011](https://shop.bsigroup.com/ProductDetail?pid=000000000030231895), Table 1 (p. 7-12) | 1 / 300-830 |
-| Illuminant C | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 5 (p. 51-53) | 5 / 300-780 |
-| Illuminant D50 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 5 (p. 51-53) | 5 / 300-780 |
-| Illuminant D75 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 5 (p. 51-53) | 5 / 300-780 |
-| Illuminants F1-F12 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 10.1 (p. 59-60) | 5 / 380-780 |
-| Illuminants FL3.1-FL3.8 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 10.2 (p. 61-62) | 5 / 380-780 |
-| Illuminants FL3.9-FL3.15 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 10.3 (p. 63-64) | 5 / 380-780 |
-| Illuminants HP1-HP5 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 11 (p. 65-66) | 5 / 380-780 |
-| Illuminants LED-B1-LED-B5 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 12.1 (p. 67-68) | 5 / 380-780 |
-| Illuminants LED-BH1, LED-RGB1, LED-V1, LED-V2 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 12.2 (p. 69-70) | 5 / 380-780 |
+| Name                                          | Source document                                                                                              | Wavelength spacing/range [nm] |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| Standard illuminant A                         | [EN ISO/CIE 11664 2:2011](https://shop.bsigroup.com/ProductDetail?pid=000000000030231895), Table 1 (p. 7-12) | 1 / 300-830                   |
+| Standard illuminant D65                       | [EN ISO/CIE 11664 2:2011](https://shop.bsigroup.com/ProductDetail?pid=000000000030231895), Table 1 (p. 7-12) | 1 / 300-830                   |
+| Illuminant C                                  | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 5 (p. 51-53)                                     | 5 / 300-780                   |
+| Illuminant D50                                | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 5 (p. 51-53)                                     | 5 / 300-780                   |
+| Illuminant D75                                | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 5 (p. 51-53)                                     | 5 / 300-780                   |
+| Illuminants F1-F12                            | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 10.1 (p. 59-60)                                  | 5 / 380-780                   |
+| Illuminants FL3.1-FL3.8                       | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 10.2 (p. 61-62)                                  | 5 / 380-780                   |
+| Illuminants FL3.9-FL3.15                      | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 10.3 (p. 63-64)                                  | 5 / 380-780                   |
+| Illuminants HP1-HP5                           | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 11 (p. 65-66)                                    | 5 / 380-780                   |
+| Illuminants LED-B1-LED-B5                     | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 12.1 (p. 67-68)                                  | 5 / 380-780                   |
+| Illuminants LED-BH1, LED-RGB1, LED-V1, LED-V2 | [CIE 015:2018](https://doi.org/10.25039/TR.015.2018), Table 12.2 (p. 69-70)                                  | 5 / 380-780                   |
 
 ### References to official documents
 
@@ -142,10 +143,10 @@ All calculations are computed with floating point precision using JavaScript. In
 
 While calculation procedures are structurally well-defined by the CIE, there are a few ambiguities that may arise when implementing it. This includes the choice of specific and exchangeable algorithms (e.g. for the calculation of CCT), and the decimal points of specific constants. The specific choices are described here:
 
-| Aspect | Quantity | Method or quantity used in luox | Description |
-|-|-|-|-|
-| Calculation of Correlated Color Temperature [CCT} | Colour rendering index (CIE Ra) | [Robertson (1968)](https://doi.org/10.1364/JOSA.58.001528) parametrisation and method | Alternatives listed in CIE 015, section 9.4 (p. 39) |
-| Constant for absolute (il)luminance conversion | Illuminance [lux] and Luminance [cd/m2] | 683.0015478 lm/W | 683 lm/W acceptable "for all practical applications" according to [BS ISO 23539:2005](https://shop.bsigroup.com/ProductDetail?pid=000000000030133892), 683.0015478 lm/W exact value used in (CIE S 026 toolbox)[https://doi.org/10.25039/S026.2018.TB]; usually rounded up to 683.002 lm/W  |
+| Aspect                                            | Quantity                                | Method or quantity used in luox                                                       | Description                                                                                                                                                                                                                                                                                |
+| ------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Calculation of Correlated Color Temperature [CCT} | Colour rendering index (CIE Ra)         | [Robertson (1968)](https://doi.org/10.1364/JOSA.58.001528) parametrisation and method | Alternatives listed in CIE 015, section 9.4 (p. 39)                                                                                                                                                                                                                                        |
+| Constant for absolute (il)luminance conversion    | Illuminance [lux] and Luminance [cd/m2] | 683.0015478 lm/W                                                                      | 683 lm/W acceptable "for all practical applications" according to [BS ISO 23539:2005](https://shop.bsigroup.com/ProductDetail?pid=000000000030133892), 683.0015478 lm/W exact value used in (CIE S 026 toolbox)[https://doi.org/10.25039/S026.2018.TB]; usually rounded up to 683.002 lm/W |
 
 ### Source code availability and license
 
