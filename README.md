@@ -43,6 +43,10 @@ $ npm test
 $ npm start
 ```
 
+## Deploy Preview
+
+Netlify automatically runs a build on a non-`master` branch when a GitHub pull request is opened for that branch. If the build passes then Netlify automatically deploys the changes to a "Deploy Preview" whose URL is publicly accessible, but "secure" by being an obscure/unguessable URL. Deploy Previews are listed [here](https://app.netlify.com/sites/luox/deploys?filter=deploy+previews).
+
 ## Production
 
-The app is deployed to [luox.app](https://luox.app/).
+Netlify automatically runs a build when commits are pushed to the `master` branch. If the build passes then Netlify automatically deploys the changes to the production website, [luox.app](https://luox.app/). Production deployments are listed [here](https://app.netlify.com/sites/luox/deploys?filter=master).
