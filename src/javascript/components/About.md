@@ -107,7 +107,7 @@ All calculations performed here following guidance from the [International Commi
 
 All calculations are computed with floating point precision using JavaScript. In the browser, the results are displayed up to four decimals for all quantities (including those in _Advanced_ mode). When downloading calculations, the precision will be higher than displayed in the browser.
 
-### Sources of effect functions
+### Official source documents: Effect functions and action spectra
 
 | Name                                   | Source document                                                                        | Wavelength spacing/range [nm] |
 | -------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------- |
@@ -115,7 +115,9 @@ All calculations are computed with floating point precision using JavaScript. In
 | CIE 1964 xy (10°)                      | [EN ISO/CIE 11664-1:2019](https://www.iso.org/standard/74164.html), Table 2 (p. 22-32) | 1 / 360-830                   |
 | CIE S 026/E:2018 a-opic action spectra | [CIE S 026/E:2018](https://doi.org/10.25039/S026.2018), Table 2 (p. 12-21)             | 1 / 380-780                   |
 
-### Sources of illuminant data
+Note: The CIE S 026/E:2018 a-opic action spectra are available in tabulated form from the [CIE website](http://files.cie.co.at/S026_Table2_Data.xlsx) ([Internet Wayback Machine](http://web.archive.org/web/20210129094725/http://files.cie.co.at/S026_Table2_Data.xlsx)).
+
+### Official source documents: Illuminant data
 
 | Name                                          | Source document                                                                                              | Wavelength spacing/range [nm] |
 | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------- |
