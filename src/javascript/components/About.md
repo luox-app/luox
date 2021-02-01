@@ -24,6 +24,7 @@ _A user-friendly, open-access platform for calculating quantities related to lig
   - [Source code availability and license](#source-code-availability-and-license)
   - [Alternatives](#alternatives)
 - [Acknowledgements](#acknowledgements)
+- [Version information](#version-information)
 
 ## About
 
