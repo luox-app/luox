@@ -33,7 +33,7 @@ const Intro = () => {
         </p>
 
         <p>
-          <Link to="/generate-csv" className="btn btn-primary">
+          <Link to="/format-info" className="btn btn-primary">
             Start now
           </Link>
         </p>
