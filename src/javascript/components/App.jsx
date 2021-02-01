@@ -8,6 +8,7 @@ import GenerateCSV from "./GenerateCSV";
 import Upload from "./Upload";
 import Report from "./Report";
 import About from "./About";
+import ScrollToTop from "./ScrollToTop";
 
 const NavBarWithRouter = withRouter(NavBar);
 
@@ -15,6 +16,7 @@ const App = () => {
   return (
     <div>
       <Router>
+        <ScrollToTop />
         <header>
           <NavBarWithRouter />
         </header>
