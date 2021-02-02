@@ -17,31 +17,14 @@ const Intro = () => {
           psychology experiments.
         </p>
 
-        <p>The minimum reporting guidelines are:</p>
-
-        <ul>
-          <li>
-            Measure and report the spectral power distribution of the acute
-            stimulus from the observer’s point of view at a known and specified
-            angle and distance from the source
-          </li>
-          <li>
-            Measure and report the spectral power distribution of the background
-            light environment from the observer’s point of view at a known and
-            specified angle and distance from the source
-          </li>
-          <li>Make spectra available in tabulated form</li>
-          <li>Report α-opic (ir)radiances and illuminance</li>
-          <li>
-            Describe the timing properties of stimulus (clock time, duration and
-            pattern)
-          </li>
-          <li>
-            Describe the spatial properties of stimulus (spatial arrangement and
-            extent)
-          </li>
-          <li>Report measurement conditions and equipment</li>
-        </ul>
+        <p className="my-5">
+          For more information about purpose, calculated quantities, and key
+          references, please see{" "}
+          <a href="/about" title="About page">
+            the About page
+          </a>
+          .
+        </p>
 
         <p className="my-5">
           You’ll need a CSV file containing the spectral power distribution of
