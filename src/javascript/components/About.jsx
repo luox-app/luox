@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactHtmlParser from "react-html-parser";
 import html from "./About.md";
 import version from "../../version.json";
 
 const About = () => {
+  useEffect(() => {
+    document.title = "luox: About this application";
+  });
+
   return (
     <div className="row">
       <div className="col-lg-8">

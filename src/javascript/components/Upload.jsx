@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UploadForm from "./UploadForm";
 import Results from "./Results";
 
@@ -9,6 +9,10 @@ const Upload = () => {
   const [rows, setRows] = useState([]);
   const [sampleCount, setSampleCount] = useState(0);
   const [measurementLabels, setMeasurementLabels] = useState({});
+
+  useEffect(() => {
+    document.title = "luox: Upload spectrum and generate report";
+  });
 
   return (
     <>

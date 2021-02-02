@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Intro = () => {
+  useEffect(() => {
+    document.title = "luox: Home";
+  });
+
   return (
     <div className="row">
       <div className="col-lg-8">

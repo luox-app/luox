@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const GenerateCSV = () => {
+  useEffect(() => {
+    document.title = "luox: Format instructions";
+  });
+
   return (
     <div className="row">
       <div className="col-lg-8">
