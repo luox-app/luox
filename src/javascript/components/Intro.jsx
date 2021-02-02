@@ -13,9 +13,9 @@ const Intro = () => {
     <>
       <div className="row">
         <div className="col-lg-8">
-          <h1 className="my-5">luox: Home</h1>
+          <h1 className="my-4">luox: Home</h1>
 
-          <p className="lead mb-5">
+          <p className="lead mb-4">
             Use this tool to meet the{" "}
             <a href="https://doi.org/10.3390/clockssleep1030024">
               minimum reporting guidelines
@@ -25,7 +25,7 @@ const Intro = () => {
             psychology experiments.
           </p>
 
-          <p className="my-5">
+          <p className="my-4">
             For more information about purpose, calculated quantities, and key
             references, please see{" "}
             <a href="/about" title="About page">
@@ -34,7 +34,7 @@ const Intro = () => {
             .
           </p>
 
-          <p className="my-5">
+          <p className="my-4">
             You’ll need a CSV file containing the spectral power distribution of
             the acute stimulus and background light environment from the
             observer’s point of view.
@@ -49,15 +49,14 @@ const Intro = () => {
       </div>
       <div className="row">
         <div className="col-lg-8">
-          <div className="row">
-            <h1 className="my-5">Funding</h1>
-          </div>
+          <h3 className="my-4">Funding</h3>
           <div className="row">
             <div className="col">
               <a href="http://www.wellcome.ac.uk/">
                 <img
                   src={WellcomeLogo}
-                  width="100%"
+                  width="50%"
+                  className="mx-auto d-block"
                   alt="Wellcome Trust logo"
                 />
               </a>
@@ -69,7 +68,8 @@ const Intro = () => {
               <a href="https://www.cibse.org/society-of-light-and-lighting">
                 <img
                   src={SllLogo}
-                  width="100%"
+                  width="50%"
+                  className="mx-auto d-block"
                   alt="Society of Light & Lighting logo"
                 />
               </a>
@@ -81,8 +81,9 @@ const Intro = () => {
               <a href="https://www.ox.ac.uk/">
                 <img
                   src={UooLogo}
-                  width="100%"
+                  width="50%"
                   style={{ backgroundColor: "#002147" }}
+                  className="mx-auto d-block"
                   alt="University of Oxford logo"
                 />
               </a>
