@@ -14,7 +14,7 @@ const Upload = () => {
     <>
       <div className="row">
         <div className="col">
-          <h1 className="mt-5">Reporting Light Exposure</h1>
+          <h1 className="mt-5">Upload spectrum and generate report</h1>
         </div>
       </div>
       <UploadForm

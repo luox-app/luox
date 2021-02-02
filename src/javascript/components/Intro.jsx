@@ -5,7 +5,7 @@ const Intro = () => {
   return (
     <div className="row">
       <div className="col-lg-8">
-        <h1 className="my-5">Reporting Light Exposure</h1>
+        <h1 className="my-5">luox: Home</h1>
 
         <p className="lead mb-5">
           Use this tool to meet the{" "}
