@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Intro = () => {
+  useEffect(() => {
+    document.title = "luox: Home";
+  });
+
   return (
     <div className="row">
       <div className="col-lg-8">
-        <h1 className="my-5">Reporting Light Exposure</h1>
+        <h1 className="my-5">luox: Home</h1>
 
         <p className="lead mb-5">
           Use this tool to meet the{" "}
@@ -33,7 +37,7 @@ const Intro = () => {
         </p>
 
         <p>
-          <Link to="/generate-csv" className="btn btn-primary">
+          <Link to="/format-info" className="btn btn-primary">
             Start now
           </Link>
         </p>

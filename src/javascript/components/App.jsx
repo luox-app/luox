@@ -29,7 +29,7 @@ const App = () => {
             <Route path="/upload">
               <Upload />
             </Route>
-            <Route path="/generate-csv">
+            <Route path="/format-info">
               <GenerateCSV />
             </Route>
             <Route path="/about">

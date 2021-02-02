@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const GenerateCSV = () => {
+  useEffect(() => {
+    document.title = "luox: Format instructions";
+  });
+
   return (
     <div className="row">
       <div className="col-lg-8">
-        <h1 className="my-5">Reporting Light Exposure</h1>
+        <h1 className="my-5">Format instructions</h1>
 
         <p className="lead my-5">
           Generate a CSV file containing the spectral power distribution of all

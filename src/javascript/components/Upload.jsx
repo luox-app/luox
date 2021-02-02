@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UploadForm from "./UploadForm";
 import Results from "./Results";
 
@@ -10,11 +10,15 @@ const Upload = () => {
   const [sampleCount, setSampleCount] = useState(0);
   const [measurementLabels, setMeasurementLabels] = useState({});
 
+  useEffect(() => {
+    document.title = "luox: Upload spectrum and generate report";
+  });
+
   return (
     <>
       <div className="row">
         <div className="col">
-          <h1 className="mt-5">Reporting Light Exposure</h1>
+          <h1 className="mt-5">Upload spectrum and generate report</h1>
         </div>
       </div>
       <UploadForm
