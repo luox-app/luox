@@ -184,7 +184,7 @@ We recommend that you print a copy of these terms for future reference.
 
 #### We may make changes to these terms
 
-We amend these terms from time to time. Every time you wish to use our site, please check these terms to ensure you understand the terms that apply at that time. 
+We amend these terms from time to time. Every time you wish to use our site, please check these terms to ensure you understand the terms that apply at that time.
 
 #### We may make changes to our site
 
@@ -200,7 +200,7 @@ You are also responsible for ensuring that all persons who access our site throu
 
 #### How you may use material on our site
 
-The contents of our site are owned by us or, where content has been provided by third parties, by those third parties. The copyright in the material contained on our site belongs to us or our licensors. It is your responsibility to seek appropriate consent to re-use any contents of our site. 
+The contents of our site are owned by us or, where content has been provided by third parties, by those third parties. The copyright in the material contained on our site belongs to us or our licensors. It is your responsibility to seek appropriate consent to re-use any contents of our site.
 
 #### Do not rely on information on this site
 
@@ -244,4 +244,5 @@ We reserve the right to withdraw linking permission without notice.
 If you wish to link to or make any use of content on our site other than that set out above, please contact luox-support@psy.ox.ac.uk.
 
 #### Which country's laws apply to any disputes?
+
 These terms of use, their subject matter and their formation (and any non-contractual disputes or claims) are governed by English law. We both agree to the exclusive jurisdiction of the courts of England and Wales.
