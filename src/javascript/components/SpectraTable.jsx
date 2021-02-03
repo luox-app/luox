@@ -54,8 +54,16 @@ const SpectraTable = ({ rows, sampleCount, radianceOrIrradiance }) => {
     setDisplayAllRows((checked) => !checked);
   };
 
+  const truncateTable = () => {
+    return rows.length > 5;
+  };
+
   const rowsToDisplay = () => {
     return displayAllRows ? rows : rows.slice(0, 5);
+  };
+
+  const displayEllipsisRow = () => {
+    return truncateTable() && !displayAllRows;
   };
 
   return (
@@ -73,15 +81,17 @@ const SpectraTable = ({ rows, sampleCount, radianceOrIrradiance }) => {
           </label>
         </div>
         <div className="col text-center">
-          <label htmlFor="spectra-all-rows">
-            <input
-              type="checkbox"
-              checked={displayAllRows}
-              onChange={handleDisplayAllRows}
-              id="spectra-all-rows"
-            />
-            {" Display all rows?"}
-          </label>
+          {truncateTable() && (
+            <label htmlFor="spectra-all-rows">
+              <input
+                type="checkbox"
+                checked={displayAllRows}
+                onChange={handleDisplayAllRows}
+                id="spectra-all-rows"
+              />
+              {" Display all rows?"}
+            </label>
+          )}
         </div>
         <div className="col text-right">
           <a
@@ -112,7 +122,9 @@ const SpectraTable = ({ rows, sampleCount, radianceOrIrradiance }) => {
               exponentialNotation={exponentialNotation}
             />
           ))}
-          {!displayAllRows && <SpectraTableEllipsisRow exampleRow={rows[0]} />}
+          {displayEllipsisRow() && (
+            <SpectraTableEllipsisRow exampleRow={rows[0]} />
+          )}
         </tbody>
       </table>
     </section>
