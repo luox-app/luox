@@ -172,7 +172,7 @@ These terms tell you the rules for using our website [https://luox.app/](https:/
 
 #### Who we are and how to contact us
 
-Our site operated by the University of Oxford (whose legal title is the Chancellor, Masters and Scholars of the University of Oxford), whose administrative offices are at Wellington Square, Oxford OX1 2JD. To contact us, please email [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk].
+Our site operated by the University of Oxford (whose legal title is the Chancellor, Masters and Scholars of the University of Oxford), whose administrative offices are at Wellington Square, Oxford OX1 2JD. To contact us, please email [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk).
 
 #### By using our site you accept these terms
 
@@ -241,7 +241,7 @@ Our site must not be framed on any other site, nor may you create a link to any 
 
 We reserve the right to withdraw linking permission without notice.
 
-If you wish to link to or make any use of content on our site other than that set out above, please contact luox-support@psy.ox.ac.uk.
+If you wish to link to or make any use of content on our site other than that set out above, please contact [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk).
 
 #### Which country's laws apply to any disputes?
 
