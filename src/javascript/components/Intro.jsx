@@ -13,7 +13,7 @@ const Intro = () => {
     <>
       <div className="row">
         <div className="col-lg-8">
-          <h1 className="my-4">luox: Home</h1>
+          <h1 className="mt-5 mb-4">Home</h1>
 
           <p className="lead mb-4">
             Use this tool to meet the{" "}
