@@ -39,7 +39,7 @@ const GenerateCSV = () => {
               <td>Yes</td>
               <td>
                 Wavelength in nanometers. This should be restricted to the
-                visible light range (380-780nm) and contain only integer
+                visible light range (380-780 nm) and contain only integer
                 wavelengths (e.g. 380, 385, 390 ...).
               </td>
             </tr>
@@ -58,6 +58,11 @@ const GenerateCSV = () => {
                 Second measurement spectral (ir)radiance in µW/mW/W per
                 mm²/cm²/m² (per sr)
               </td>
+            </tr>
+            <tr>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
             </tr>
             <tr>
               <td>N</td>
