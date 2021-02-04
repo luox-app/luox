@@ -55,12 +55,12 @@ const Intro = () => {
               <a href="http://www.wellcome.ac.uk/">
                 <img
                   src={WellcomeLogo}
-                  width="50%"
+                  width="30%"
                   className="mx-auto d-block"
                   alt="Wellcome Trust logo"
                 />
               </a>
-              <p className="text-center">
+              <p style={{ fontSize: "75%" }} className="text-center">
                 Wellcome Trust (204686/Z/16/Z, 204686/Z/16/C)
               </p>
             </div>
@@ -68,12 +68,12 @@ const Intro = () => {
               <a href="https://www.cibse.org/society-of-light-and-lighting">
                 <img
                   src={SllLogo}
-                  width="50%"
+                  width="30%"
                   className="mx-auto d-block"
                   alt="Society of Light & Lighting logo"
                 />
               </a>
-              <p className="text-center">
+              <p style={{ fontSize: "75%" }} className="text-center">
                 Society of Light & Lighting (2020 Jean Heap Bursary)
               </p>
             </div>
@@ -81,13 +81,13 @@ const Intro = () => {
               <a href="https://www.ox.ac.uk/">
                 <img
                   src={UooLogo}
-                  width="50%"
+                  width="30%"
                   style={{ backgroundColor: "#002147" }}
                   className="mx-auto d-block"
                   alt="University of Oxford logo"
                 />
               </a>
-              <p className="text-center">
+              <p style={{ fontSize: "75%" }} className="text-center">
                 University of Oxford van Houten Fund (VH-148)
               </p>
             </div>
