@@ -60,7 +60,7 @@ const Intro = () => {
                   alt="Wellcome Trust logo"
                 />
               </a>
-              <p className="text-center">
+              <p style={ {fontSize: "50%"} } className="text-center">
                 Wellcome Trust (204686/Z/16/Z, 204686/Z/16/C)
               </p>
             </div>
@@ -73,7 +73,7 @@ const Intro = () => {
                   alt="Society of Light & Lighting logo"
                 />
               </a>
-              <p className="text-center">
+              <p style={ {fontSize: "50%"} } className="text-center">
                 Society of Light & Lighting (2020 Jean Heap Bursary)
               </p>
             </div>
@@ -87,7 +87,7 @@ const Intro = () => {
                   alt="University of Oxford logo"
                 />
               </a>
-              <p className="text-center">
+              <p style={ {fontSize: "50%"} } className="text-center">
                 University of Oxford van Houten Fund (VH-148)
               </p>
             </div>
