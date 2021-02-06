@@ -4,6 +4,7 @@ import CalculationTable from "./CalculationTable";
 import SpectraTable from "./SpectraTable";
 import Chart from "./Chart";
 import { urlToRows } from "../sharing";
+import "bootstrap/js/dist/alert";
 
 const Report = () => {
   const { id } = useParams();
@@ -14,6 +15,22 @@ const Report = () => {
   return (
     <div className="row">
       <div className="col">
+        <div
+          className="mt-3 alert alert-warning alert-dismissible fade show"
+          role="alert"
+        >
+          The reproduced spectrum has been compressed and then decompressed, so
+          there maybe small numerical differences.
+          <button
+            type="button"
+            className="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
         <h2 className="my-3">Light Exposure Report</h2>
 
         <p>
