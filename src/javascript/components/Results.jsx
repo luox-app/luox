@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
 import CalculationTable from "./CalculationTable";
 import SpectraTable from "./SpectraTable";
@@ -107,15 +108,26 @@ const Results = ({
             readOnly
           />
         </div>
-        <div className="form-group">
-          <button
-            className="btn btn-primary btn-block my-2"
-            type="button"
-            onClick={copySharingURL}
-            disabled={buttonDisabled()}
-          >
-            {buttonText}
-          </button>
+        <div className="row mb-3">
+          <div className="col">
+            <button
+              className="btn btn-primary btn-block my-2"
+              type="button"
+              onClick={copySharingURL}
+              disabled={buttonDisabled()}
+            >
+              {buttonText}
+            </button>
+          </div>
+          <div className="col">
+            <HashLink
+              className="btn btn-secondary btn-block my-2"
+              type="button"
+              to="/about#requesting-doi-for-sharing-url"
+            >
+              Request DOI
+            </HashLink>
+          </div>
         </div>
       </div>
     </div>
