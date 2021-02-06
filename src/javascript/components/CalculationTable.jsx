@@ -9,7 +9,7 @@ const CalculationTableHeader = ({ measurementLabels }) => {
     <thead>
       <tr>
         <th key="condition">Condition</th>
-        {Object.entries(measurementLabels).map(([key, value]) => (
+        {measurementLabels.map(([key, value]) => (
           <th key={key}>{value}</th>
         ))}
       </tr>
@@ -18,7 +18,7 @@ const CalculationTableHeader = ({ measurementLabels }) => {
 };
 
 CalculationTableHeader.propTypes = {
-  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const CalculationTableRow = ({ heading, samples, exponentialNotation }) => {
@@ -262,7 +262,7 @@ CalculationTable.propTypes = {
   rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   sampleCount: PropTypes.number.isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
-  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default CalculationTable;
