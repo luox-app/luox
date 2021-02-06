@@ -145,7 +145,7 @@ Chart.propTypes = {
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
   rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   sampleCount: PropTypes.number.isRequired,
-  measurementLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default Chart;
