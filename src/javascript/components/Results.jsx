@@ -122,7 +122,7 @@ const Results = ({
           <div className="col">
             <HashLink
               className="btn btn-secondary btn-block my-2"
-              type="button"
+              role="button"
               to="/about#requesting-doi-for-sharing-url"
             >
               Request DOI
