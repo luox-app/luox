@@ -70,7 +70,6 @@ const CalculationTable = ({
     luminanceTotals,
     chromaticity31,
     chromaticity64,
-    colourRenderingIndices,
     lConeTotals,
     mConeTotals,
     sConeTotals,
@@ -168,11 +167,6 @@ const CalculationTable = ({
               />
             </>
           )}
-          <CalculationTableRow
-            heading="Colour rendering index (CIE Ra)"
-            samples={colourRenderingIndices}
-            exponentialNotation={exponentialNotation}
-          />
           <CalculationTableRow
             heading={`S-cone-opic ${radianceOrIrradiance} (${units})`}
             samples={sConeTotals}

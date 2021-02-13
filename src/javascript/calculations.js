@@ -87,7 +87,6 @@ export const calculate = (rows, sampleCount) => {
     ),
     chromaticity31: calculateChromaticity31(rows, sampleCount),
     chromaticity64: calculateChromaticity64(rows, sampleCount),
-    colourRenderingIndices: calculateColourRenderingIndices(rows),
     equivalentDaylightAlphaOpic: calculateEquivalentDaylightAlphaOpic(
       sConeTotals,
       mConeTotals,
