@@ -271,7 +271,7 @@ export const specialColourRenderingIndicies = (input) => {
         (input[i].Wri - input[i].Wki) ** 2
     );
 
-    const Ri = Math.round(100 - 4.6 * DeltaEi);
+    const Ri = 100 - 4.6 * DeltaEi;
 
     output[i] = {
       DeltaEi,
