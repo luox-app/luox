@@ -111,14 +111,13 @@ All calculations are computed with floating point precision using JavaScript. In
 
 ### Official source documents: Effect functions and action spectra
 
-| Name                                   | Source document                                                                                                                    | Wavelength spacing/range [nm] |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| CIE 1931 xy (2°)                       | [ISO/CIE 11664-1:2019](http://cie.co.at/publications/
+| Name             | Source document                                       | Wavelength spacing/range [nm] |
+| ---------------- | ----------------------------------------------------- | ----------------------------- |
+| CIE 1931 xy (2°) | [ISO/CIE 11664-1:2019](http://cie.co.at/publications/ |
 
-
-imetry-part-1-cie-standard-colorimetric-observers-0), Table 1 (p. 10-21) | 1 / 360-830                   |
-| CIE 1964 xy (10°)                      | [ISO/CIE 11664-1:2019](http://cie.co.at/publications/colorimetry-part-1-cie-standard-colorimetric-observers-0), Table 2 (p. 22-32) | 1 / 360-830                   |
-| CIE S 026/E:2018 a-opic action spectra | [CIE S 026/E:2018](https://doi.org/10.25039/S026.2018), Table 2 (p. 12-21)                                                         | 1 / 380-780                   |
+imetry-part-1-cie-standard-colorimetric-observers-0), Table 1 (p. 10-21) | 1 / 360-830 |
+| CIE 1964 xy (10°) | [ISO/CIE 11664-1:2019](http://cie.co.at/publications/colorimetry-part-1-cie-standard-colorimetric-observers-0), Table 2 (p. 22-32) | 1 / 360-830 |
+| CIE S 026/E:2018 a-opic action spectra | [CIE S 026/E:2018](https://doi.org/10.25039/S026.2018), Table 2 (p. 12-21) | 1 / 380-780 |
 
 Note: The CIE S 026/E:2018 a-opic action spectra are available in tabulated form from the [CIE website](http://files.cie.co.at/S026_Table2_Data.xlsx) ([Internet Wayback Machine](http://web.archive.org/web/20210129094725/http://files.cie.co.at/S026_Table2_Data.xlsx)).
 
@@ -150,10 +149,10 @@ Note: The CIE S 026/E:2018 a-opic action spectra are available in tabulated form
 
 While calculation procedures are structurally well-defined by the CIE, there are a few ambiguities that may arise when implementing it. This includes the choice of specific and exchangeable algorithms (e.g. for the calculation of CCT), and the decimal points of specific constants. The specific choices are described here:
 
-| Aspect                                            | Quantity                                | Method or quantity used in luox                                                       | Description                                                                                                                                                                                                                                                                                                     |
-| ------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Calculation of Correlated Colour Temperature [CCT] | Colour rendering index (CIE Ra)         | [Robertson (1968)](https://doi.org/10.1364/JOSA.58.001528) parametrisation and method | Alternatives listed in CIE 015, section 9.4 (p. 39)                                                                                                                                                                                                                                                             |
-| Constant for absolute (il)luminance conversion    | Illuminance [lx] and Luminance [cd/m<sup>2</sup>] | 683.0015478 lm/W                                                                      | 683 lm/W acceptable "for all practical applications" according to [ISO 23539:2005/CIE S 010:2004](http://cie.co.at/publications/photometry-cie-system-physical-photometry), 683.0015478 lm/W exact value used in the [CIE S 026 toolbox](https://doi.org/10.25039/S026.2018.TB); usually rounded up to 683.002 lm/W |
+| Aspect                                             | Quantity                                          | Method or quantity used in luox                                                       | Description                                                                                                                                                                                                                                                                                                         |
+| -------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Calculation of Correlated Colour Temperature [CCT] | Colour rendering index (CIE Ra)                   | [Robertson (1968)](https://doi.org/10.1364/JOSA.58.001528) parametrisation and method | Alternatives listed in CIE 015, section 9.4 (p. 39)                                                                                                                                                                                                                                                                 |
+| Constant for absolute (il)luminance conversion     | Illuminance [lx] and Luminance [cd/m<sup>2</sup>] | 683.0015478 lm/W                                                                      | 683 lm/W acceptable "for all practical applications" according to [ISO 23539:2005/CIE S 010:2004](http://cie.co.at/publications/photometry-cie-system-physical-photometry), 683.0015478 lm/W exact value used in the [CIE S 026 toolbox](https://doi.org/10.25039/S026.2018.TB); usually rounded up to 683.002 lm/W |
 
 ### Source code availability and license
 
