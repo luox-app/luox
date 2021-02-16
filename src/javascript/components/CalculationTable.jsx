@@ -95,7 +95,7 @@ const CalculationTable = ({
   };
 
   const equivalentDaylightUnit =
-    radianceOrIrradiance === "radiance" ? "EDL [cd/m²]" : "EDI [lux]";
+    radianceOrIrradiance === "radiance" ? "EDL [cd/m²]" : "EDI [lx]";
 
   return (
     <section>
@@ -139,7 +139,7 @@ const CalculationTable = ({
             heading={
               radianceOrIrradiance === "radiance"
                 ? "Luminance [cd/m²]"
-                : "Illuminance [lux]"
+                : "Illuminance [lx]"
             }
             samples={luminanceTotals}
             exponentialNotation={exponentialNotation}
