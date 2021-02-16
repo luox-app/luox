@@ -89,12 +89,12 @@ describe("calculateColourRenderingIndices", () => {
 });
 
 describe("calculateLuminance", () => {
-  it("returns 100 lux for our reference D65 spectra spaced every 1nm", () => {
+  it("returns 100 lx for our reference D65 spectra spaced every 1nm", () => {
     const [luminance] = calculateLuminance(spdD651nm100lx, 1);
     expect(luminance).toBeCloseTo(100);
   });
 
-  it("returns 100 lux for our reference D65 spectra spaced every 2nm", () => {
+  it("returns 100 lx for our reference D65 spectra spaced every 2nm", () => {
     const [luminance] = calculateLuminance(spdD652nm100lx, 1);
     expect(luminance).toBeCloseTo(100);
   });
