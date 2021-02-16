@@ -18,14 +18,14 @@ const CalculationTableCSV = ({
   const units =
     radianceOrIrradiance === "radiance" ? "mW ⋅ m⁻² ⋅ sr" : "mW ⋅ m⁻²";
   const equivalentDaylightUnit =
-    radianceOrIrradiance === "radiance" ? "EDL [cd/m²]" : "EDI [lux]";
+    radianceOrIrradiance === "radiance" ? "EDL [cd/m²]" : "EDI [lx]";
 
   const csv = Papa.unparse([
     ["Condition", ...Object.values(measurementLabels)],
     [
       radianceOrIrradiance === "radiance"
         ? "Luminance [cd/m²]"
-        : "Illuminance [lux]",
+        : "Illuminance [lx]",
       ...luminanceTotals,
     ],
     ["CIE 1931 xy chromaticity (x)", ...chromaticity31.map(({ x }) => x)],
