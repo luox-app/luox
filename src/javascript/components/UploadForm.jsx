@@ -281,7 +281,7 @@ const RelativeUnits = ({
     setRadianceOrIrradiance(value === "luminance" ? "radiance" : "irradiance");
   };
 
-  const units = radianceOrIrradiance === "radiance" ? "[cd/m²]" : "[lux]";
+  const units = radianceOrIrradiance === "radiance" ? "[cd/m²]" : "[lx]";
 
   return (
     <>
