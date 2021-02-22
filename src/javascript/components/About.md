@@ -107,11 +107,11 @@ There is no guarantee that DOI requests will be accepted. To ensure that a DOI i
 
 The following is a list of depositions with assigned DOIs, up-to-date as of 22 February 2021.
 
-| Deposition ID  | Date             | DOI                                                                      | Depositor                                  |     |
-| -------------- | ---------------- | ------------------------------------------------------------------------ | ------------------------------------------ | --- |
-| luox-2021-0001 | 23 January 2021  | TBD                                                                      | Manuel Spitschan, University of Oxford     |     |
-| luox-2021-0002 | 18 February 2021 | [10.5287/bodleian:AeZAXN1km](https://doi.org/10.5287/bodleian:AeZAXN1km) | Jan-Frieder Harmsen, Maastricht University |     |
-| luox-2021-0003 | 18 February 2021 | [10.5287/bodleian:dp7QEqYAm](https://doi.org/10.5287/bodleian:dp7QEqYAm) | Jan-Frieder Harmsen, Maastricht University |     |
+| Deposition ID  | Date             | DOI                                                                      | Depositor                                  |
+| -------------- | ---------------- | ------------------------------------------------------------------------ | ------------------------------------------ |
+| luox-2021-0001 | 23 January 2021  | TBD                                                                      | Manuel Spitschan, University of Oxford     |
+| luox-2021-0002 | 18 February 2021 | [10.5287/bodleian:AeZAXN1km](https://doi.org/10.5287/bodleian:AeZAXN1km) | Jan-Frieder Harmsen, Maastricht University |
+| luox-2021-0003 | 18 February 2021 | [10.5287/bodleian:dp7QEqYAm](https://doi.org/10.5287/bodleian:dp7QEqYAm) | Jan-Frieder Harmsen, Maastricht University |
 
 ## Under the hood
 
