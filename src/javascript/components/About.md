@@ -19,15 +19,14 @@ _A user-friendly, open-access platform for calculating quantities related to lig
 - [Under the hood](#under-the-hood)
   - [Calculation definitions](#calculation-definitions)
   - [Precision and decimal points](#precision-and-decimal-points)
-  - [Sources of effect functions](#sources-of-effect-functions)
-  - [Sources of illuminant data](#sources-of-illuminant-data)
+  - [Official source documents: Effect functions and action spectra](#official-source-documents--effect-functions-and-action-spectra)
+  - [Official source documents: Illuminant data](#official-source-documents--illuminant-data)
   - [References to official documents](#references-to-official-documents)
   - [Implementation specifics](#implementation-specifics)
   - [Source code availability and license](#source-code-availability-and-license)
   - [Alternatives](#alternatives)
 - [Acknowledgements](#acknowledgements)
 - [Terms and conditions of website use](#terms-and-conditions-of-website-use)
-- [Version information](#version-information)
 
 ## About
 
