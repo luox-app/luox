@@ -19,8 +19,8 @@ _A user-friendly, open-access platform for calculating quantities related to lig
 - [Under the hood](#under-the-hood)
   - [Calculation definitions](#calculation-definitions)
   - [Precision and decimal points](#precision-and-decimal-points)
-  - [Official source documents: Effect functions and action spectra](#official-source-documents--effect-functions-and-action-spectra)
-  - [Official source documents: Illuminant data](#official-source-documents--illuminant-data)
+  - [Effect functions and action spectra](#effect-functions-and-action-spectra)
+  - [Illuminant data](#illuminant-data)
   - [References to official documents](#references-to-official-documents)
   - [Implementation specifics](#implementation-specifics)
   - [Source code availability and license](#source-code-availability-and-license)
@@ -122,7 +122,7 @@ All calculations performed here following guidance from the [International Commi
 
 All calculations are computed with floating point precision using JavaScript. In the browser, the results are displayed up to four decimals for all quantities (including those in _Advanced_ mode). When downloading calculations, the precision will be higher than displayed in the browser.
 
-### Official source documents: Effect functions and action spectra
+### Effect functions and action spectra
 
 | Name                                   | Source document                                                                                                                    | Wavelength spacing/range [nm] |
 | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
@@ -132,7 +132,7 @@ All calculations are computed with floating point precision using JavaScript. In
 
 Note: The CIE S 026/E:2018 a-opic action spectra are available in tabulated form from the [CIE website](http://files.cie.co.at/S026_Table2_Data.xlsx) ([Internet Wayback Machine](http://web.archive.org/web/20210129094725/http://files.cie.co.at/S026_Table2_Data.xlsx)).
 
-### Official source documents: Illuminant data
+### Illuminant data
 
 | Name                                          | Source document                                                                                                                     | Wavelength spacing/range [nm] |
 | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
