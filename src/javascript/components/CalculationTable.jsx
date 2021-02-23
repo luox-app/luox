@@ -143,18 +143,18 @@ const CalculationTable = ({
             samples={luminanceTotals}
             exponentialNotation={exponentialNotation}
           />
+          <CalculationTableRow
+            heading="CIE 1931 xy chromaticity (x)"
+            samples={chromaticity31.map(({ x }) => x)}
+            exponentialNotation={exponentialNotation}
+          />
+          <CalculationTableRow
+            heading="CIE 1931 xy chromaticity (y)"
+            samples={chromaticity31.map(({ y }) => y)}
+            exponentialNotation={exponentialNotation}
+          />
           {advanced && (
             <>
-              <CalculationTableRow
-                heading="CIE 1931 xy chromaticity (x)"
-                samples={chromaticity31.map(({ x }) => x)}
-                exponentialNotation={exponentialNotation}
-              />
-              <CalculationTableRow
-                heading="CIE 1931 xy chromaticity (y)"
-                samples={chromaticity31.map(({ y }) => y)}
-                exponentialNotation={exponentialNotation}
-              />
               <CalculationTableRow
                 heading="CIE 1964 x₁₀y₁₀ chromaticity (x₁₀)"
                 samples={chromaticity64.map(({ x }) => x)}
@@ -192,33 +192,34 @@ const CalculationTable = ({
             samples={melTotals}
             exponentialNotation={exponentialNotation}
           />
+
+          <CalculationTableRow
+            heading={`S-cone-opic ${equivalentDaylightUnit}`}
+            samples={equivalentDaylightAlphaOpic.sc}
+            exponentialNotation={exponentialNotation}
+          />
+          <CalculationTableRow
+            heading={`M-cone-opic ${equivalentDaylightUnit}`}
+            samples={equivalentDaylightAlphaOpic.mc}
+            exponentialNotation={exponentialNotation}
+          />
+          <CalculationTableRow
+            heading={`L-cone-opic ${equivalentDaylightUnit}`}
+            samples={equivalentDaylightAlphaOpic.lc}
+            exponentialNotation={exponentialNotation}
+          />
+          <CalculationTableRow
+            heading={`Rhodopic ${equivalentDaylightUnit}`}
+            samples={equivalentDaylightAlphaOpic.rh}
+            exponentialNotation={exponentialNotation}
+          />
+          <CalculationTableRow
+            heading={`Melanopic ${equivalentDaylightUnit}`}
+            samples={equivalentDaylightAlphaOpic.mel}
+            exponentialNotation={exponentialNotation}
+          />
           {advanced && (
             <>
-              <CalculationTableRow
-                heading={`S-cone-opic ${equivalentDaylightUnit}`}
-                samples={equivalentDaylightAlphaOpic.sc}
-                exponentialNotation={exponentialNotation}
-              />
-              <CalculationTableRow
-                heading={`M-cone-opic ${equivalentDaylightUnit}`}
-                samples={equivalentDaylightAlphaOpic.mc}
-                exponentialNotation={exponentialNotation}
-              />
-              <CalculationTableRow
-                heading={`L-cone-opic ${equivalentDaylightUnit}`}
-                samples={equivalentDaylightAlphaOpic.lc}
-                exponentialNotation={exponentialNotation}
-              />
-              <CalculationTableRow
-                heading={`Rhodopic ${equivalentDaylightUnit}`}
-                samples={equivalentDaylightAlphaOpic.rh}
-                exponentialNotation={exponentialNotation}
-              />
-              <CalculationTableRow
-                heading={`Melanopic ${equivalentDaylightUnit}`}
-                samples={equivalentDaylightAlphaOpic.mel}
-                exponentialNotation={exponentialNotation}
-              />
               <CalculationTableRow
                 heading="S-cone-opic ELR"
                 samples={alphaOpicEfficiency.sc}
