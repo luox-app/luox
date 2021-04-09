@@ -37,6 +37,8 @@ The purpose of the _luox_ platform is to faciliate the calculation of quantities
 
 The platform is primarily geared towards researchers and research users interested in the effects of light exposure on human physiology and behaviour, but it may be interesting to students, academics and professionals in other disciplines and areas.
 
+_luox_ is deployed on [Netlify](https://www.netlify.com/).
+
 ### Team
 
 This platform was developed by [Dr Manuel Spitschan](https://www.psy.ox.ac.uk/team/manuel-spitschan) (Department of Experimental Psychology, Unversity of Oxford) and [Go Free Range](https://gofreerange.com/).
