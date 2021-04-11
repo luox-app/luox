@@ -87,6 +87,8 @@ Funding to develop _luox_ was provided by:
 
 During development of the platform, Dr Manuel Spitschan was supported by a Sir Henry Wellcome Postdoctoral Fellowship ([Wellcome Trust](https://wellcome.org/), 204686/Z/16/Z) and [Linacre College](https://www.linacre.ox.ac.uk/), University of Oxford (Biomedical Sciences Junior Research Fellowship).
 
+Deployment on [Netlify](https://www.netlify.com/) is supported by the [Netlify Open Source Plan](https://www.netlify.com/legal/open-source-policy/).
+
 ### Contributing code of conduct
 
 We welcome contributions. To contribute code, [please create a fork and issue a pull request on GitHub](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork).
