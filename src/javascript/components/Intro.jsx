@@ -92,6 +92,15 @@ const Intro = () => {
               </p>
             </div>
           </div>
+
+          <p className="my-4">
+            This site is powered by {" "}
+            <a href="https://www.netlify.com/" title="Netlify">
+              Netlify
+            </a>
+            .
+          </p>
+
         </div>
       </div>
     </>
