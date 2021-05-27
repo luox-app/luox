@@ -25,6 +25,7 @@ _A user-friendly, open-access platform for calculating quantities related to lig
   - [References to official documents](#references-to-official-documents)
   - [Implementation specifics](#implementation-specifics)
   - [Source code availability and license](#source-code-availability-and-license)
+  - [Validation](#validation)
   - [Alternatives](#alternatives)
 - [Acknowledgements](#acknowledgements)
 - [Terms and conditions of website use](#terms-and-conditions-of-website-use)
@@ -254,6 +255,12 @@ While calculation procedures are structurally well-defined by the CIE, there are
 ### Source code availability and license
 
 The source code is available on GitHub (https://github.com/luox-app/luox/) under an MIT License.
+
+### Validation
+
+*luox* has been validated and endorsed by the CIE. The validation report can be found [here](https://github.com/luox-app/luox/raw/master/docs/CIE_Software_Check_of_luox_app.pdf):
+
+**This software incorporates methods, formulae, spectral function calculations and spectra from the International Commission on Illumination (CIE). The CIE endorses this software having made a black-box evaluation of the software as of Feb. 11, 2021, finding that the software performs satisfactorily. This software is not a replacement for the CIE publications and works from which it is derived. The user is advised to consult the original publications and works for proper understanding of and calculation of the result of this software.**
 
 ### Alternatives
 
