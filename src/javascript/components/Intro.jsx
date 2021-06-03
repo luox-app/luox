@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import WellcomeLogo from "../../images/wellcome-logo.png";
 import SllLogo from "../../images/society-of-light-and-lighting-logo.png";
 import UooLogo from "../../images/university-of-oxford-logo.svg";
+import CieLogo from "../../images/cie-logo.jpg";
 
 const Intro = () => {
   useEffect(() => {
@@ -92,7 +93,31 @@ const Intro = () => {
               </p>
             </div>
           </div>
-
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-lg-8">
+          <h3 className="my-4">Validation</h3>
+          <p>
+            This software incorporates methods, formulae, spectral function
+            calculations and spectra from the International Commission on
+            Illumination (CIE). The CIE endorses this software having made a
+            black-box evaluation of the software as of Feb. 11, 2021, finding
+            that the software performs satisfactorily. This software is not a
+            replacement for the CIE publications and works from which it is
+            derived. The user is advised to consult the original publications
+            and works for proper understanding of and calculation of the result
+            of this software.
+          </p>
+          <p>
+            <a href="http://cie.co.at/">
+              <img src={CieLogo} width="30%" alt="CIE logo" />
+            </a>
+          </p>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-lg-8">
           <p className="my-4">
             This site is powered by{" "}
             <a href="https://www.netlify.com/" title="Netlify">
