@@ -258,7 +258,7 @@ The source code is available on GitHub (https://github.com/luox-app/luox/) under
 
 ### Validation
 
-luox has been validated by the CIE. The validation report is available [https://github.com/luox-app/luox/raw/master/docs/CIE_Software_Check_of_luox_app.pdf](here)].
+luox has been validated by the CIE. The validation report is available [https://github.com/luox-app/luox/raw/master/docs/CIE_Software_Check_of_luox_app.pdf](here).
 
 According to the CIE:
 
