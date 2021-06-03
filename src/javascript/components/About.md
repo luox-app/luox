@@ -25,6 +25,7 @@ _A user-friendly, open-access platform for calculating quantities related to lig
   - [References to official documents](#references-to-official-documents)
   - [Implementation specifics](#implementation-specifics)
   - [Source code availability and license](#source-code-availability-and-license)
+  - [Validation](#validation)
   - [Alternatives](#alternatives)
 - [Acknowledgements](#acknowledgements)
 - [Terms and conditions of website use](#terms-and-conditions-of-website-use)
@@ -255,6 +256,14 @@ While calculation procedures are structurally well-defined by the CIE, there are
 
 The source code is available on GitHub (https://github.com/luox-app/luox/) under an MIT License.
 
+### Validation
+
+luox has been validated by the CIE. The validation report is available [https://github.com/luox-app/luox/raw/master/docs/CIE_Software_Check_of_luox_app.pdf](here)].
+
+According to the CIE:
+
+> This software incorporates methods, formulae, spectral function calculations and spectra from the International Commission on Illumination (CIE). The CIE endorses this software having made a black-box evaluation of the software as of Feb. 11, 2021, finding that the software performs satisfactorily. This software is not a replacement for the CIE publications and works from which it is derived. The user is advised to consult the original publications and works for proper understanding of and calculation of the result of this software.
+
 ### Alternatives
 
 The CIE has released a toolbox (DOI: [10.25039/S026.2018.TB](https://doi.org/10.25039/S026.2018.TB)) and user guide (DOI: [10.25039/S026.2018.UG](https://doi.org/10.25039/S026.2018.UG)) for calculations of quantities specified in [CIE S 026/E:2018: CIE System for Metrology of Optical Radiation for ipRGC-Influenced Responses to Light](http://cie.co.at/publications/cie-system-metrology-optical-radiation-iprgc-influenced-responses-light-0) (DOI: [10.25039/S026.2018](https://doi.org/10.25039/S026.2018)). The Excel spreadsheet-based toolbox is freely available and is supplementary to the luox platform.
@@ -321,9 +330,10 @@ This website may include information and materials uploaded by other users of th
 
 To the extent permitted in law, we accept no liability for any loss or damage which may be suffered by you or by other parties as a direct or indirect result of using our site (including loss of profit, loss of opportunity, loss of business, and consequential loss).
 
-We are not responsible for viruses and you must not introduce them
+We are not responsible for viruses and you must not introduce them.
 
 We do not guarantee that our site will be secure or free from bugs or viruses.
+
 You are responsible for configuring your information technology, computer programmes and platform to access our site. You should use your own virus protection software.
 
 You must not misuse our site by knowingly introducing viruses, trojans, worms, logic bombs or other material that is malicious or technologically harmful. You must not attempt to gain unauthorised access to our site, the server on which our site is stored or any server, computer or database connected to our site. You must not attack our site via a denial-of-service attack or a distributed denial-of service attack. By breaching this provision, you would commit a criminal offence under the Computer Misuse Act 1990. We will report any such breach to the relevant law enforcement authorities and we will co-operate with those authorities by disclosing your identity to them. In the event of such a breach, your right to use our site will cease immediately.
