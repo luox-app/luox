@@ -169,7 +169,7 @@ the community.
 
 This Code of Conduct is adapted from the [Contributor Covenant version 2.0](https://www.contributor-covenant.org/version/2/0/code_of_conduct.html).
 
-Community Impact Guidelines were inspired by [Mozilla's code of conduct enforcement ladder][https://github.com/mozilla/inclusion/blob/master/code-of-conduct-enforcement/consequence-ladder.md].
+Community Impact Guidelines were inspired by [Mozilla's code of conduct enforcement ladder](https://github.com/mozilla/inclusion/blob/master/code-of-conduct-enforcement/consequence-ladder.md).
 
 For answers to common questions about this code of conduct, see [the FAQ](https://www.contributor-covenant.org/faq). [Translations are available](https://www.contributor-covenant.org/translations).
 
@@ -258,7 +258,7 @@ The source code is available on GitHub (https://github.com/luox-app/luox/) under
 
 ### Validation
 
-luox has been validated by the CIE. The validation report is available [https://github.com/luox-app/luox/raw/master/docs/CIE_Software_Check_of_luox_app.pdf](here).
+luox has been validated by the CIE. The validation report is available [here](https://github.com/luox-app/luox/raw/master/docs/CIE_Software_Check_of_luox_app.pdf).
 
 According to the CIE:
 
