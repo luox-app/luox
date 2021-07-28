@@ -50,6 +50,20 @@ const Intro = () => {
       </div>
       <div className="row">
         <div className="col-lg-8">
+          <h3 className="my-4">Help us improve luox</h3>
+          <p>
+            We would like to hear from you to improve the luox platform.
+            Completing this survey takes only around 6 minutes.
+          </p>
+          <a href="https://forms.office.com/r/kSp3fHCBJF">
+            <button type="button" className="btn btn-secondary">
+              Complete the survey
+            </button>
+          </a>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-lg-8">
           <h3 className="my-4">Funding</h3>
           <div className="row">
             <div className="col">
