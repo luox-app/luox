@@ -72,7 +72,7 @@ For any support-related questions, please email [luox-support@psy.ox.ac.uk](mail
 
 ### Bug reports and feature requests
 
-To report bugs and suggest new features, please raise an issue on the project's [GitHub page](luox-support@psy.ox.ac.uk). When reporting a bug or any other issue, you need to be as specific as possible:
+To report bugs and suggest new features, please raise an issue on the project's [GitHub page](https://github.com/luox-app/luox/issues/new). When reporting a bug or any other issue, you need to be as specific as possible:
 
 - Include concrete and specific steps to reproduce your problem, including any files that pose an issue
 - If the problem only occurs occasionally but is reproducible, please include any additional contextual information
