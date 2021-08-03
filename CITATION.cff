@@ -1,9 +1,7 @@
-cff-version: 1.2.0
+cff-version: 1.1.0
 message: "If you use this software repository, please cite it using these metadata. If you have used luox for calculations, please cite our article in Wellcome Open Research (https://doi.org/10.12688/wellcomeopenres.16595.2)."
 authors:
-- family-names: "Spitschan"
-  given-names: "Manuel"
-  orcid: "https://orcid.org/0000-0002-8572-9268"
+  - family-names: Spitschan
+    given-names: Manuel
+    orcid: https://orcid.org/0000-0003-4925-7248
 title: "luox: Platform for calculating quantities related to light and lighting"
-url: "https://github.com/luox-app/luox"
-license: "GPL-3.0 License"
