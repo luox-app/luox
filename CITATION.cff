@@ -1,13 +1,9 @@
-# YAML 1.2
----
-authors: 
-  -
-    family-names: Spitschan
-    given-names: Manuel
-    orcid: "https://orcid.org/0000-0002-8572-9268"
-cff-version: "1.1.0"
-license: "GPL-3.0 License "
+cff-version: 1.2.0
 message: "If you use this software repository, please cite it using these metadata. If you have used luox for calculations, please cite our article in Wellcome Open Research (https://doi.org/10.12688/wellcomeopenres.16595.2)."
-repository-code: "https://github.com/luox-app/luox"
+authors:
+- family-names: "Spitschan"
+  given-names: "Manuel"
+  orcid: "https://orcid.org/0000-0002-8572-9268"
 title: "luox: Platform for calculating quantities related to light and lighting"
-...
+url: "https://github.com/luox-app/luox"
+license: "GPL-3.0 License"
