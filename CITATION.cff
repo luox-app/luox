@@ -5,3 +5,4 @@ authors:
     given-names: Manuel
     orcid: https://orcid.org/0000-0003-4925-7248
 title: "luox: Platform for calculating quantities related to light and lighting"
+version: e1520a2907cc0ccd5d0aba520eda84b4fde6243f
