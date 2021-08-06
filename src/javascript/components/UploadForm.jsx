@@ -24,6 +24,11 @@ const UploadForm = ({
   const [absoluteOrRelative, setAbsoluteOrRelative] = useState("absolute");
   const [relativePowers, setRelativePowers] = useState({});
 
+  const SPDX_INVALID =
+    "Error Parsing SPDX File. Please Verify That The File Is In The Proper Format.";
+
+  const ALL_ROW_CONST = "All";
+
   const reset = () => {
     setCSV([]);
     setMeasurementLabels({});
@@ -112,7 +117,7 @@ const UploadForm = ({
         if (file.name.toLowerCase().indexOf(".csv") === -1) {
           setErrors([
             {
-              row: "All",
+              row: ALL_ROW_CONST,
               message: "Invalid File Format. File Needs To Be In .CSV Format",
             },
           ]);
@@ -131,7 +136,7 @@ const UploadForm = ({
           reset();
           setErrors([
             {
-              row: "All",
+              row: ALL_ROW_CONST,
               message: "Invalid File Format. File Needs To Be In .SPDX Format",
             },
           ]);
@@ -149,9 +154,8 @@ const UploadForm = ({
             reset();
             setErrors([
               {
-                row: "All",
-                message:
-                  "Error Parsing SPDX File. Please Verify That The File Is In The Proper Format.",
+                row: ALL_ROW_CONST,
+                message: SPDX_INVALID,
               },
             ]);
             return;
@@ -166,9 +170,8 @@ const UploadForm = ({
             reset();
             setErrors([
               {
-                row: "All",
-                message:
-                  "Error Parsing SPDX File. Please Verify That The File Is In The Proper Format.",
+                row: ALL_ROW_CONST,
+                message: SPDX_INVALID,
               },
             ]);
             return;
@@ -188,9 +191,8 @@ const UploadForm = ({
           reset();
           setErrors([
             {
-              row: "All",
-              message:
-                "Error Parsing SPDX File. Please Verify That The File Is In The Proper Format.",
+              row: ALL_ROW_CONST,
+              message: SPDX_INVALID,
             },
           ]);
         };
