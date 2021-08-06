@@ -67,13 +67,13 @@ const UploadForm = ({
     }));
   };
 
-  const handleFileTypeChange = (e, control) => {
+  const handleFileTypeChange = (e) => {
     fileInput.current.value = null;
     reset();
     if (e.target.checked) {
-      setFileType(control);
+      setFileType(e.target.value);
     } else {
-      if (control === "spdx") {
+      if (e.target.value === "spdx") {
         setFileType("csv");
         return;
       }
@@ -250,7 +250,7 @@ const UploadForm = ({
                   name="file_type"
                   value="csv"
                   checked={fileType === "csv"}
-                  onChange={(e) => handleFileTypeChange(e, "csv")}
+                  onChange={(e) => handleFileTypeChange(e)}
                 />{" "}
                 .CSV
               </label>
@@ -264,7 +264,7 @@ const UploadForm = ({
                   name="file_type"
                   value="spdx"
                   checked={fileType === "spdx"}
-                  onChange={(e) => handleFileTypeChange(e, "spdx")}
+                  onChange={(e) => handleFileTypeChange(e)}
                 />{" "}
                 .SPDX
               </label>
