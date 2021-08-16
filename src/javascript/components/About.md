@@ -48,9 +48,14 @@ This platform was developed by [Dr Manuel Spitschan](https://www.psy.ox.ac.uk/te
 
 For now, if you use _luox_ for calculations, please cite the following (APA format):
 
+Software:
+
 > **Spitschan, M. (2021). luox: Platform for calculating quantities related to light and lighting [Software]. Available from https://luox.app/.**
 
-> **Spitschan, M., Stefani, O., Blattner, P., Gronfier, C., Lockley, S. W., & Lucas, R. J. (2019) How to report Light exposure in human chronobiology and sleep research experiments. _Clocks & Sleep_. 2019; 1(3):280-289. DOI: [10.3390/clockssleep1030024](https://doi.org/10.3390/clockssleep1030024).**
+Companion paper:
+
+> **Spitschan, M., Mead, J., Roos, C., Lowis, C., Griffiths, B., Mucur, P., & Herf, M. (2021). luox: novel validated open-access and open-source web platform for calculating and sharing physiologically relevant quantities for light and lighting. Wellcome Open Res, 6, 69. doi:10.12688/wellcomeopenres.16595.2**
+
 
 For citing the source code:
 
