@@ -163,7 +163,18 @@ const UploadForm = ({
 
           const relOrAbs = dom.getElementsByTagName("SpectralQuantity");
           if (relOrAbs.length > 0) {
-            setAbsoluteOrRelative(relOrAbs[0].innerHTML);
+            if (relOrAbs[0].innerHTML.toLowerCase().indexOf("radian") !== -1) {
+              setAbsoluteOrRelative("absolute");
+              if (
+                relOrAbs[0].innerHTML.toLowerCase().indexOf("irradian") !== -1
+              ) {
+                setRadianceOrIrradiance("irradiance");
+              } else {
+                setRadianceOrIrradiance("radiance");
+              }
+            } else {
+              setAbsoluteOrRelative("relative");
+            }
           }
           const paths = [].slice.call(dom.getElementsByTagName("SpectralData"));
           if (!(paths.length > 0)) {
