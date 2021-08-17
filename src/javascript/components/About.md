@@ -56,7 +56,6 @@ Companion paper:
 
 > **Spitschan, M., Mead, J., Roos, C., Lowis, C., Griffiths, B., Mucur, P., & Herf, M. (2021). luox: novel validated open-access and open-source web platform for calculating and sharing physiologically relevant quantities for light and lighting. Wellcome Open Res, 6, 69. doi:10.12688/wellcomeopenres.16595.2**
 
-
 For citing the source code:
 
 > **Spitschan, M. (2021). luox: Platform for calculating quantities related to light and lighting [Source code]. Available from https://github.com/luox-app/luox.**
