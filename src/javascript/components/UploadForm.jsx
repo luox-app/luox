@@ -1,10 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+
 import PropTypes from "prop-types";
-import parseCSV from "../csvParser";
-import validateInput from "../inputValidator";
-import { scaleSamples } from "../rows";
 import ErrorTable from "./ErrorTable";
+
+import parseCSV from "../csvParser";
 import { relativeToAbsolute } from "../calculations";
+import { scaleSamples } from "../rows";
+import validateInput from "../inputValidator";
 
 const UploadForm = ({
   measurementLabels,
@@ -16,10 +18,22 @@ const UploadForm = ({
 }) => {
   const [powerScale, setPowerScale] = useState("watt");
   const [areaScale, setAreaScale] = useState("metresq");
+  const [fileType, setFileType] = useState("csv");
   const [errors, setErrors] = useState([]);
   const [csv, setCSV] = useState([]);
   const [absoluteOrRelative, setAbsoluteOrRelative] = useState("absolute");
   const [relativePowers, setRelativePowers] = useState({});
+
+  const SPDX_INVALID =
+    "Error Parsing SPDX File. Please Verify That The File Is In The Proper Format.";
+
+  const ALL_ROW_CONST = "All";
+
+  const reset = () => {
+    setCSV([]);
+    setMeasurementLabels({});
+    setRelativePowers({});
+  };
 
   const fileInput = useRef();
 
@@ -53,51 +67,147 @@ const UploadForm = ({
     }));
   };
 
+  const handleFileTypeChange = (e) => {
+    fileInput.current.value = null;
+    reset();
+    if (e.target.checked) {
+      setFileType(e.target.value);
+    } else {
+      if (e.target.value === "spdx") {
+        setFileType("csv");
+        return;
+      }
+      setFileType("spdx");
+    }
+  };
+
+  const handleData = (data) => {
+    const [rawHeader, ...rawBody] = data;
+
+    let header = rawHeader;
+    let fullBody = rawBody;
+    if (rawHeader.every((value) => typeof value === "number")) {
+      fullBody = [rawHeader].concat(rawBody);
+      header = rawHeader.map((_, index) =>
+        index === 0 ? "lambda" : `Observation ${index}`
+      );
+    }
+
+    const body = fullBody.map((row) => row.map((value) => parseFloat(value)));
+
+    const validationErrors = validateInput(header, body);
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+      reset();
+    } else {
+      setErrors([]);
+      const [, ...labels] = header;
+      setMeasurementLabels({ ...labels });
+      setCSV(body);
+      setRelativePowers(
+        Object.fromEntries(new Array(header.length - 1).fill("1").entries())
+      );
+    }
+  };
+
   const handleFileInput = () => {
     if (fileInput.current.files.length > 0) {
       const [file] = fileInput.current.files;
-
-      parseCSV(file).then(({ data, errors: csvErrors }) => {
-        if (csvErrors.length > 0) {
-          setErrors(csvErrors);
-          setCSV([]);
-          setMeasurementLabels({});
-          setRelativePowers({});
-        } else {
-          const [rawHeader, ...rawBody] = data;
-
-          let header = rawHeader;
-          let fullBody = rawBody;
-          if (rawHeader.every((value) => typeof value === "number")) {
-            fullBody = [rawHeader].concat(rawBody);
-            header = rawHeader.map((_, index) =>
-              index === 0 ? "lambda" : `Observation ${index}`
-            );
-          }
-
-          const body = fullBody.map((row) =>
-            row.map((value) => parseFloat(value))
-          );
-
-          const validationErrors = validateInput(header, body);
-          if (validationErrors.length > 0) {
-            setErrors(validationErrors);
-            setCSV([]);
-            setMeasurementLabels({});
-            setRelativePowers({});
-          } else {
-            setErrors([]);
-            const [, ...labels] = header;
-            setMeasurementLabels({ ...labels });
-            setCSV(body);
-            setRelativePowers(
-              Object.fromEntries(
-                new Array(header.length - 1).fill("1").entries()
-              )
-            );
-          }
+      if (fileType === "csv") {
+        if (file.name.toLowerCase().indexOf(".csv") === -1) {
+          setErrors([
+            {
+              row: ALL_ROW_CONST,
+              message: "Invalid File Format. File Needs To Be In .CSV Format",
+            },
+          ]);
+          return;
         }
-      });
+        parseCSV(file).then(({ data, errors: csvErrors }) => {
+          if (csvErrors.length > 0) {
+            setErrors(csvErrors);
+            reset();
+          } else {
+            handleData(data);
+          }
+        });
+      } else if (fileType === "spdx") {
+        if (file.name.toLowerCase().indexOf(".spdx") === -1) {
+          reset();
+          setErrors([
+            {
+              row: ALL_ROW_CONST,
+              message: "Invalid File Format. File Needs To Be In .SPDX Format",
+            },
+          ]);
+          return;
+        }
+        const reader = new FileReader();
+        reader.readAsText(file, "UTF-8");
+        reader.onload = (evt) => {
+          const parser = new DOMParser();
+          const dom = parser.parseFromString(
+            evt.target.result,
+            "application/xml"
+          );
+          if (dom.documentElement.nodeName === "parsererror") {
+            reset();
+            setErrors([
+              {
+                row: ALL_ROW_CONST,
+                message: SPDX_INVALID,
+              },
+            ]);
+            return;
+          }
+
+          const relOrAbs = dom.getElementsByTagName("SpectralQuantity");
+          if (relOrAbs.length > 0) {
+            if (relOrAbs[0].innerHTML.toLowerCase().indexOf("radian") !== -1) {
+              setAbsoluteOrRelative("absolute");
+              if (
+                relOrAbs[0].innerHTML.toLowerCase().indexOf("irradian") !== -1
+              ) {
+                setRadianceOrIrradiance("irradiance");
+              } else {
+                setRadianceOrIrradiance("radiance");
+              }
+            } else {
+              setAbsoluteOrRelative("relative");
+            }
+          }
+          const paths = [].slice.call(dom.getElementsByTagName("SpectralData"));
+          if (!(paths.length > 0)) {
+            reset();
+            setErrors([
+              {
+                row: ALL_ROW_CONST,
+                message: SPDX_INVALID,
+              },
+            ]);
+            return;
+          }
+          const data = [];
+
+          paths.forEach((element) => {
+            data.push([
+              parseFloat(element.getAttribute("wavelength")),
+              parseFloat(element.innerHTML),
+            ]);
+          });
+
+          handleData(data);
+        };
+        reader.onerror = () => {
+          reset();
+          setErrors([
+            {
+              row: ALL_ROW_CONST,
+              message: SPDX_INVALID,
+            },
+          ]);
+        };
+      }
     }
   };
 
@@ -142,6 +252,35 @@ const UploadForm = ({
           </h2>
 
           <form>
+            <p>Select an import File Type:</p>
+            <div>
+              <label htmlFor="csv">
+                <input
+                  type="radio"
+                  id="csv"
+                  name="file_type"
+                  value="csv"
+                  checked={fileType === "csv"}
+                  onChange={(e) => handleFileTypeChange(e)}
+                />{" "}
+                .CSV
+              </label>
+            </div>
+
+            <div>
+              <label htmlFor="spdx">
+                <input
+                  type="radio"
+                  id="spdx"
+                  name="file_type"
+                  value="spdx"
+                  checked={fileType === "spdx"}
+                  onChange={(e) => handleFileTypeChange(e)}
+                />{" "}
+                .SPDX
+              </label>
+            </div>
+
             <div className="form-group">
               <input
                 type="file"
