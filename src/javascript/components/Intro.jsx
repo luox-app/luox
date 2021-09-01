@@ -106,6 +106,7 @@ const Intro = () => {
               <p style={{ fontSize: "75%" }} className="text-center">
                 University of Oxford van Houten Fund (VH-148)
               </p>
+            </div>
             <div className="col">
               <a href="https://www.ies.org/">
                 <img
@@ -118,7 +119,6 @@ const Intro = () => {
               <p style={{ fontSize: "75%" }} className="text-center">
                 Illuminating Engineering Society
               </p>
-            </div>
             </div>
           </div>
         </div>
