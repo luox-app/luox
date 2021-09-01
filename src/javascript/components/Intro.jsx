@@ -143,11 +143,12 @@ const Intro = () => {
             </a>
           </p>
           <p>
-            This software loads SPDX files according to TM-27-20.
+            This software has been validated to load SPDX files according to
+            TM-27-20.
           </p>
           <p>
             <a href="http://www.ies.org/">
-              <img src={IesLogo} width="30%" alt="Illuminating Engineering Society logo" />
+              <img src={IesLogo} width="30%" alt="IES logo" />
             </a>
           </p>
         </div>
