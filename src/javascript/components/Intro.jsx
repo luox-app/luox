@@ -37,7 +37,7 @@ const Intro = () => {
           </p>
 
           <p className="my-4">
-            You’ll need a CSV or SPDX file containing the spectral power 
+            You’ll need a CSV or SPDX file containing the spectral power
             distribution of the acute stimulus and background light environment
             from the observer’s point of view.
           </p>
