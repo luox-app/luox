@@ -147,7 +147,7 @@ const Intro = () => {
           </p>
           <p>
             <a href="http://www.ies.org/">
-              <img src={IesLogo} width="30%" alt="Illuminating Engineering `Society logo" />
+              <img src={IesLogo} width="30%" alt="Illuminating Engineering Society logo" />
             </a>
           </p>
         </div>
