@@ -111,7 +111,7 @@ const Intro = () => {
               <a href="https://www.ies.org/">
                 <img
                   src={IesLogo}
-                  width="30%"
+                  width="60%"
                   className="mx-auto d-block"
                   alt="Illuminating Engineering Society logo"
                 />
