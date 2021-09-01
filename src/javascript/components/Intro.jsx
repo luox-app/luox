@@ -4,7 +4,7 @@ import WellcomeLogo from "../../images/wellcome-logo.png";
 import SllLogo from "../../images/society-of-light-and-lighting-logo.png";
 import UooLogo from "../../images/university-of-oxford-logo.svg";
 import CieLogo from "../../images/cie-logo.jpg";
-import iesLogo from "../../images/illuminating-engineering-society-logo.png";
+import IesLogo from "../../images/illuminating-engineering-society-logo.png";
 
 const Intro = () => {
   useEffect(() => {
@@ -110,7 +110,7 @@ const Intro = () => {
             <div className="col">
               <a href="https://www.ies.org/">
                 <img
-                  src={iesLogo}
+                  src={IesLogo}
                   width="30%"
                   className="mx-auto d-block"
                   alt="Illuminating Engineering Society logo"
