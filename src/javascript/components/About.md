@@ -90,6 +90,8 @@ Funding to develop _luox_ was provided by:
 - [Society of Light & Lighting](https://www.cibse.org/society-of-light-and-lighting) (2020 Jean Heap Bursary);
 - [van Houten Fund](https://governance.admin.ox.ac.uk/van-houten-fund) of the [University of Oxford](https://www.ox.ac.uk/) (VH-148).
 
+The development of the module for loading SPDX files was supported by the [Illumating Engineering Society (IES)](https://www.ies.org/).
+
 During development of the platform, Dr Manuel Spitschan was supported by a Sir Henry Wellcome Postdoctoral Fellowship ([Wellcome Trust](https://wellcome.org/), 204686/Z/16/Z) and [Linacre College](https://www.linacre.ox.ac.uk/), University of Oxford (Biomedical Sciences Junior Research Fellowship).
 
 Deployment on [Netlify](https://www.netlify.com/) is supported by the [Netlify Open Source Plan](https://www.netlify.com/legal/open-source-policy/).

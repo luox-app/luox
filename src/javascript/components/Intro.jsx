@@ -4,6 +4,7 @@ import WellcomeLogo from "../../images/wellcome-logo.png";
 import SllLogo from "../../images/society-of-light-and-lighting-logo.png";
 import UooLogo from "../../images/university-of-oxford-logo.svg";
 import CieLogo from "../../images/cie-logo.jpg";
+import IesLogo from "../../images/illuminating-engineering-society-logo.png";
 
 const Intro = () => {
   useEffect(() => {
@@ -36,9 +37,9 @@ const Intro = () => {
           </p>
 
           <p className="my-4">
-            You’ll need a CSV file containing the spectral power distribution of
-            the acute stimulus and background light environment from the
-            observer’s point of view.
+            You’ll need a CSV or SPDX file containing the spectral power
+            distribution of the acute stimulus and background light environment
+            from the observer’s point of view.
           </p>
 
           <p>
@@ -64,7 +65,7 @@ const Intro = () => {
       </div>
       <div className="row">
         <div className="col-lg-8">
-          <h3 className="my-4">Funding</h3>
+          <h3 className="my-4">Funding & Support</h3>
           <div className="row">
             <div className="col">
               <a href="http://www.wellcome.ac.uk/">
@@ -106,6 +107,19 @@ const Intro = () => {
                 University of Oxford van Houten Fund (VH-148)
               </p>
             </div>
+            <div className="col">
+              <a href="https://www.ies.org/">
+                <img
+                  src={IesLogo}
+                  width="100%"
+                  className="mx-auto d-block"
+                  alt="Illuminating Engineering Society logo"
+                />
+              </a>
+              <p style={{ fontSize: "75%" }} className="text-center">
+                Illuminating Engineering Society
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -126,6 +140,15 @@ const Intro = () => {
           <p>
             <a href="http://cie.co.at/">
               <img src={CieLogo} width="30%" alt="CIE logo" />
+            </a>
+          </p>
+          <p>
+            This software has been validated to load SPDX files according to
+            TM-27-20.
+          </p>
+          <p>
+            <a href="http://www.ies.org/">
+              <img src={IesLogo} width="30%" alt="IES logo" />
             </a>
           </p>
         </div>
