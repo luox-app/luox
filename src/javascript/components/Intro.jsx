@@ -65,7 +65,7 @@ const Intro = () => {
       </div>
       <div className="row">
         <div className="col-lg-8">
-          <h3 className="my-4">Funding</h3>
+          <h3 className="my-4">Funding & Support</h3>
           <div className="row">
             <div className="col">
               <a href="http://www.wellcome.ac.uk/">
