@@ -142,6 +142,14 @@ const Intro = () => {
               <img src={CieLogo} width="30%" alt="CIE logo" />
             </a>
           </p>
+          <p>
+            This software loads SPDX files according to TM-27-20.
+          </p>
+          <p>
+            <a href="http://www.ies.org/">
+              <img src={IesLogo} width="30%" alt="Illuminating Engineering `Society logo" />
+            </a>
+          </p>
         </div>
       </div>
       <div className="row">
