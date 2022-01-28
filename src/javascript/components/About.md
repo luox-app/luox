@@ -260,7 +260,7 @@ While calculation procedures are structurally well-defined by the CIE, there are
 
 ### Source code availability and license
 
-The source code is available on GitHub (https://github.com/luox-app/luox/) under an MIT License.
+The source code is available on GitHub (https://github.com/luox-app/luox/) under the GPL-3.0 License.
 
 ### Validation
 
