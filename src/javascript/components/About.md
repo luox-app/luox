@@ -13,7 +13,7 @@ _A user-friendly, open-access platform for calculating quantities related to lig
   - [Contributing code of conduct](#contributing-code-of-conduct)
 - [Usage](#usage)
   - [Quick start](#quick-start)
-  - [Sharing spectra and calculations using sharing URL](#sharing-spectra-and-calculations-using-sharing-url)
+  - [Sharing spectra and calculations using sharing URL](#sharing-spectra-and-calculations-using-sharing-url)§
   - [Requesting DOI for sharing URL](#requesting-doi-for-sharing-url)
 - [Depositions](#depositions)
   - [List of depositions](#list-of-depositions)
@@ -199,13 +199,16 @@ There is no guarantee that DOI requests will be accepted. To ensure that a DOI i
 
 ### List of depositions
 
-The following is a list of depositions with assigned DOIs, up-to-date as of 22 February 2021.
+The following is a list of depositions with assigned DOIs, up-to-date as of 1 February 2022.
 
-| Deposition ID  | Date             | DOI                                                                      | Depositor                                  |
-| -------------- | ---------------- | ------------------------------------------------------------------------ | ------------------------------------------ |
-| luox-2021-0001 | 23 January 2021  | TBD                                                                      | Manuel Spitschan, University of Oxford     |
-| luox-2021-0002 | 18 February 2021 | [10.5287/bodleian:AeZAXN1km](https://doi.org/10.5287/bodleian:AeZAXN1km) | Jan-Frieder Harmsen, Maastricht University |
-| luox-2021-0003 | 18 February 2021 | [10.5287/bodleian:dp7QEqYAm](https://doi.org/10.5287/bodleian:dp7QEqYAm) | Jan-Frieder Harmsen, Maastricht University |
+| Deposition ID  | Date             | DOI                                                                      | Depositor                                                     |
+| -------------- | ---------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------- |
+| luox-2021-0001 | 23 January 2021  | TBD                                                                      | Manuel Spitschan, University of Oxford                        |
+| luox-2021-0002 | 18 February 2021 | [10.5287/bodleian:AeZAXN1km](https://doi.org/10.5287/bodleian:AeZAXN1km) | Jan-Frieder Harmsen, Maastricht University                    |
+| luox-2021-0003 | 18 February 2021 | [10.5287/bodleian:dp7QEqYAm](https://doi.org/10.5287/bodleian:dp7QEqYAm) | Jan-Frieder Harmsen, Maastricht University                    |
+| luox-2021-0004 | 18 February 2021 | [10.5287/bodleian:0ogQP5bb5](https://doi.org/10.5287/bodleian:0ogQP5bb5) | Jamie Zeitzer, Renske Lok & Daniel Joyce, Stanford University |
+| luox-2022-0001 | 01 February 2022 | [10.17617/2.3364820](https://doi.org/10.17617/2.3364820)                 | Boris Hanák, Spectrasol                                       |
+| luox-2022-0002 | 01 February 2022 | [10.17617/2.3364831](https://doi.org/10.17617/2.3364831)                 | Jamie Zeitzer, Stanford University                            |
 
 ## Under the hood
 
