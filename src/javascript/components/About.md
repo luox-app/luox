@@ -72,7 +72,7 @@ To stay up-to-date with any announcements on _luox_, please subscribe to the ann
 
 ### Support
 
-For any support-related questions, please email [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk). Please be as specific as possible in your request.
+For any support-related questions, please email [luox-support@tuebingen.mpg.de](mailto:luox-support@tuebingen.mpg.de). Please be as specific as possible in your request.
 
 ### Bug reports and feature requests
 
@@ -138,7 +138,7 @@ This Code of Conduct applies within all community spaces, and also applies when 
 
 ##### Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement via email at [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk). All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement via email at [luox-support@tuebingen.mpg.de](mailto:luox-support@tuebingen.mpg.de). All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 
@@ -289,7 +289,7 @@ These terms tell you the rules for using our website [https://luox.app/](https:/
 
 #### Who we are and how to contact us
 
-Our site operated by the University of Oxford (whose legal title is the Chancellor, Masters and Scholars of the University of Oxford), whose administrative offices are at Wellington Square, Oxford OX1 2JD. To contact us, please email [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk).
+Our site operated by the Translational Sensory & Circadian Neuroscience Group at the Max Planck Institute for Biological Cybernetics. To contact us, please email [luox-support@tuebingen.mpg.de](mailto:luox-support@tuebingen.mpg.de).
 
 #### By using our site you accept these terms
 
@@ -359,7 +359,7 @@ Our site must not be framed on any other site, nor may you create a link to any 
 
 We reserve the right to withdraw linking permission without notice.
 
-If you wish to link to or make any use of content on our site other than that set out above, please contact [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk).
+If you wish to link to or make any use of content on our site other than that set out above, please contact [luox-support@tuebingen.mpg.de](mailto:luox-support@tuebingen.mpg.de).
 
 #### Which country's laws apply to any disputes?
 
