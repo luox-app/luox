@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import PropTypes from "prop-types";
 import ErrorTable from "./ErrorTable";
@@ -15,14 +15,20 @@ const UploadForm = ({
   setRows,
   setSampleCount,
   setMeasurementLabels,
+  relativePowers,
+  setRelativePowers,
+  setCSV,
+  csv,
+  powerMode,
+  fileInput,
+  isLoaded,
+  setLoaded,
 }) => {
   const [powerScale, setPowerScale] = useState("watt");
   const [areaScale, setAreaScale] = useState("metresq");
   const [fileType, setFileType] = useState("csv");
   const [errors, setErrors] = useState([]);
-  const [csv, setCSV] = useState([]);
   const [absoluteOrRelative, setAbsoluteOrRelative] = useState("absolute");
-  const [relativePowers, setRelativePowers] = useState({});
 
   const SPDX_INVALID =
     "Error Parsing SPDX File. Please Verify That The File Is In The Proper Format.";
@@ -33,9 +39,8 @@ const UploadForm = ({
     setCSV([]);
     setMeasurementLabels({});
     setRelativePowers({});
+    setLoaded(false);
   };
-
-  const fileInput = useRef();
 
   const handleRadianceOrIrradiance = ({ target: { value } }) => {
     setRadianceOrIrradiance(value);
@@ -68,6 +73,7 @@ const UploadForm = ({
   };
 
   const handleFileTypeChange = (e) => {
+    // eslint-disable-next-line no-param-reassign
     fileInput.current.value = null;
     reset();
     if (e.target.checked) {
@@ -95,7 +101,7 @@ const UploadForm = ({
 
     const body = fullBody.map((row) => row.map((value) => parseFloat(value)));
 
-    const validationErrors = validateInput(header, body);
+    const validationErrors = validateInput(header, body, powerMode);
     if (validationErrors.length > 0) {
       setErrors(validationErrors);
       reset();
@@ -113,6 +119,9 @@ const UploadForm = ({
   const handleFileInput = () => {
     if (fileInput.current.files.length > 0) {
       const [file] = fileInput.current.files;
+      if (file) {
+        setLoaded(true);
+      }
       if (fileType === "csv") {
         if (file.name.toLowerCase().indexOf(".csv") === -1) {
           setErrors([
@@ -285,13 +294,13 @@ const UploadForm = ({
               <input
                 type="file"
                 ref={fileInput}
+                disabled={isLoaded}
                 onChange={handleFileInput}
                 className="form-control-file"
                 id="file-input"
               />
             </div>
           </form>
-
           <ErrorTable errors={errors} />
         </div>
       </div>
@@ -347,10 +356,18 @@ const UploadForm = ({
 UploadForm.propTypes = {
   radianceOrIrradiance: PropTypes.string.isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
+  relativePowers: PropTypes.objectOf(PropTypes.string).isRequired,
+  csv: PropTypes.arrayOf(PropTypes.array).isRequired,
+  powerMode: PropTypes.bool.isRequired,
+  fileInput: PropTypes.objectOf(PropTypes.object).isRequired,
+
   setRadianceOrIrradiance: PropTypes.func.isRequired,
   setRows: PropTypes.func.isRequired,
   setSampleCount: PropTypes.func.isRequired,
   setMeasurementLabels: PropTypes.func.isRequired,
+  setRelativePowers: PropTypes.func.isRequired,
+  setCSV: PropTypes.func.isRequired,
+  setLoaded: PropTypes.func.isRequired,
 };
 
 const AbsoluteUnits = ({
@@ -363,6 +380,7 @@ const AbsoluteUnits = ({
 }) => {
   return (
     <>
+      <br />
       {"Each measurement column contains "}
       <select
         value={radianceOrIrradiance}
@@ -420,7 +438,7 @@ const RelativeUnits = ({
     setRadianceOrIrradiance(value === "luminance" ? "radiance" : "irradiance");
   };
 
-  const units = radianceOrIrradiance === "radiance" ? "[cd/m²]" : "[lx]";
+  const units = radianceOrIrradiance === "radiance" ? "(cd/m²)" : "(lx)";
 
   return (
     <>

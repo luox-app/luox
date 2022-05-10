@@ -6,11 +6,16 @@ import SpectraTable from "./SpectraTable";
 import Chart from "./Chart";
 import { rowsToURL } from "../sharing";
 
+// export const t0 = performance.now();
+
 const Results = ({
   rows,
   sampleCount,
   radianceOrIrradiance,
   measurementLabels,
+  powerMode,
+  isLoaded,
+  setLoaded,
 }) => {
   const originalButtonText = "Copy to clipboard";
   const [buttonText, setButtonText] = useState(originalButtonText);
@@ -45,7 +50,6 @@ const Results = ({
         <h2 className="my-3">
           Step 3. Check we have understood your input correctly.
         </h2>
-
         <p className="lead">
           Check that we have loaded the correct number of observations. Also
           check the units of measurement. It may help to compare your spectra to
@@ -54,13 +58,14 @@ const Results = ({
           <code>CIE Standard Illuminant D65</code>. Your data might be easier to
           read if you change the y-axis scale.
         </p>
-
-        <Chart
-          radianceOrIrradiance={radianceOrIrradiance}
-          rows={rows}
-          sampleCount={sampleCount}
-          measurementLabels={measurementLabels}
-        />
+        {!powerMode && (
+          <Chart
+            radianceOrIrradiance={radianceOrIrradiance}
+            rows={rows}
+            sampleCount={sampleCount}
+            measurementLabels={measurementLabels}
+          />
+        )}
 
         <h2 className="my-3">
           Step 4. Download the stimulus specification tables and include them in
@@ -72,6 +77,8 @@ const Results = ({
           sampleCount={sampleCount}
           radianceOrIrradiance={radianceOrIrradiance}
           measurementLabels={measurementLabels}
+          isLoaded={isLoaded}
+          setLoaded={setLoaded}
         />
 
         <h2 className="my-3">
@@ -139,6 +146,8 @@ Results.propTypes = {
   sampleCount: PropTypes.number.isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
+  powerMode: PropTypes.bool.isRequired,
+  isLoaded: PropTypes.bool.isRequired,
+  setLoaded: PropTypes.func.isRequired,
 };
-
 export default Results;

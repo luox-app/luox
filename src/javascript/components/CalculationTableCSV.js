@@ -13,24 +13,48 @@ const CalculationTableCSV = ({
   rodTotals,
   equivalentDaylightAlphaOpic,
   alphaOpicEfficiency,
+  colourFidelityIndex,
+  colourRenderingIndex,
 }) => {
   const units =
     radianceOrIrradiance === "radiance" ? "mW ⋅ m⁻² ⋅ sr" : "mW ⋅ m⁻²";
   const equivalentDaylightUnit =
-    radianceOrIrradiance === "radiance" ? "EDL [cd/m²]" : "EDI [lx]";
+    radianceOrIrradiance === "radiance" ? "EDL (cd/m²)" : "EDI (lx)";
 
-  const csv = Papa.unparse([
+  const getIntermediateVals = (indexVals, keySet) => {
+    let heading = "";
+    const displayArray = [];
+    Object.keys(keySet).forEach((ki) => {
+      heading = keySet[ki];
+      displayArray.push([heading, ...indexVals.map((sample) => sample[ki])]);
+    });
+    return displayArray;
+  };
+
+  const rfKeyset = {
+    u: `CIE 1960 UCS [u]`,
+    uPrime: `CIE 1976 UCS [u prime]`,
+    v: `CIE 1960 UCS [v]`,
+    vPrime: `CIE 1976 UCS [v prime]`,
+    Duv: "Duv",
+  };
+  const displayRows = getIntermediateVals(colourFidelityIndex, rfKeyset);
+
+  // Papa takes an array of rows in the format of
+  // ["heading text", reduced values from a package]
+  // First construct the array:
+  const contentRows = [
     ["Condition", ...Object.values(measurementLabels)],
     [
       radianceOrIrradiance === "radiance"
-        ? "Luminance [cd/m²]"
-        : "Illuminance [lx]",
+        ? "Luminance (cd/m²)"
+        : "Illuminance (lx)",
       ...luminanceTotals,
     ],
-    ["CIE 1931 xy chromaticity (x)", ...chromaticity31.map(({ x }) => x)],
-    ["CIE 1931 xy chromaticity (y)", ...chromaticity31.map(({ y }) => y)],
-    ["CIE 1964 x₁₀y₁₀ chromaticity (x₁₀)", ...chromaticity64.map(({ x }) => x)],
-    ["CIE 1964 x₁₀y₁₀ chromaticity (y₁₀)", ...chromaticity64.map(({ y }) => y)],
+    ["CIE 1931 xy chromaticity [x]", ...chromaticity31.map(({ x }) => x)],
+    ["CIE 1931 xy chromaticity [y]", ...chromaticity31.map(({ y }) => y)],
+    ["CIE 1964 x₁₀y₁₀ chromaticity [x₁₀]", ...chromaticity64.map(({ x }) => x)],
+    ["CIE 1964 x₁₀y₁₀ chromaticity [y₁₀]", ...chromaticity64.map(({ y }) => y)],
     [`S-cone-opic ${radianceOrIrradiance} (${units})`, ...sConeTotals],
     [`M-cone-opic ${radianceOrIrradiance} (${units})`, ...mConeTotals],
     [`L-cone-opic ${radianceOrIrradiance} (${units})`, ...lConeTotals],
@@ -55,7 +79,19 @@ const CalculationTableCSV = ({
     [`L-cone-opic ELR`, ...alphaOpicEfficiency.lc],
     [`Rhodopic ELR`, ...alphaOpicEfficiency.rh],
     [`Melanopic ELR`, ...alphaOpicEfficiency.mel],
-  ]);
+    [`CCT (K) - Ohno, 2013`, ...colourFidelityIndex.map(({ CCT }) => CCT)],
+    [
+      `CCT (K) - Robertson, 1968`,
+      ...colourRenderingIndex.map(({ CCT }) => CCT),
+    ],
+    [
+      `Colour Rendering Index [Ra]`,
+      ...colourRenderingIndex.map(({ Ra }) => Ra),
+    ],
+    [`Colour Fidelity Index [Rf]`, ...colourFidelityIndex.map(({ Rf }) => Rf)],
+  ];
+
+  const csv = Papa.unparse(contentRows.concat(displayRows));
 
   return window.URL.createObjectURL(
     new Blob(["\ufeff", csv], { type: "text/csv" })
