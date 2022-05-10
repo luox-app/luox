@@ -2,6 +2,7 @@ import VL1924 from "../data/vl1924.json";
 import CIES026 from "../data/cies026.json";
 import { integrateWithWeights, rowsToSpectra, mapSamples } from "./rows";
 import { calculateColourRenderingIndex } from "./colourRenderingIndex";
+import { calculateColourFidelityIndex } from "./colourFidelityIndex";
 import {
   calculateChromaticity31,
   calculateChromaticity64,
@@ -68,6 +69,12 @@ export const calculateColourRenderingIndices = (rows) => {
   );
 };
 
+export const calculateColourFidelityIndices = (rows) => {
+  return rowsToSpectra(rows).map((spectra) =>
+    calculateColourFidelityIndex(spectra)
+  );
+};
+
 export const calculate = (rows, sampleCount) => {
   const luminanceTotals = calculateLuminance(rows, sampleCount);
   const sConeTotals = calculateAlphaOpic(rows, sampleCount, "sCone");
@@ -77,6 +84,8 @@ export const calculate = (rows, sampleCount) => {
   const melTotals = calculateAlphaOpic(rows, sampleCount, "mel");
 
   return {
+    colourFidelityIndex: calculateColourFidelityIndices(rows),
+    colourRenderingIndex: calculateColourRenderingIndices(rows),
     alphaOpicEfficiency: calculateAlphaOpicEfficiency(
       sConeTotals,
       mConeTotals,

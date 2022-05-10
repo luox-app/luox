@@ -13,7 +13,7 @@ _A user-friendly, open-access platform for calculating quantities related to lig
   - [Contributing code of conduct](#contributing-code-of-conduct)
 - [Usage](#usage)
   - [Quick start](#quick-start)
-  - [Sharing spectra and calculations using sharing URL](#sharing-spectra-and-calculations-using-sharing-url)§
+  - [Sharing spectra and calculations using sharing URL](#sharing-spectra-and-calculations-using-sharing-url)
   - [Requesting DOI for sharing URL](#requesting-doi-for-sharing-url)
 - [Depositions](#depositions)
   - [List of depositions](#list-of-depositions)
@@ -72,7 +72,7 @@ To stay up-to-date with any announcements on _luox_, please subscribe to the ann
 
 ### Support
 
-For any support-related questions, please email [luox-support@tuebingen.mpg.de](mailto:luox-support@tuebingen.mpg.de). Please be as specific as possible in your request.
+For any support-related questions, please email [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk). Please be as specific as possible in your request.
 
 ### Bug reports and feature requests
 
@@ -138,7 +138,7 @@ This Code of Conduct applies within all community spaces, and also applies when 
 
 ##### Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement via email at [luox-support@tuebingen.mpg.de](mailto:luox-support@tuebingen.mpg.de). All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement via email at [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk). All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 
@@ -199,16 +199,13 @@ There is no guarantee that DOI requests will be accepted. To ensure that a DOI i
 
 ### List of depositions
 
-The following is a list of depositions with assigned DOIs, up-to-date as of 1 February 2022.
+The following is a list of depositions with assigned DOIs, up-to-date as of 22 February 2021.
 
-| Deposition ID  | Date             | DOI                                                                      | Depositor                                                     |
-| -------------- | ---------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------- |
-| luox-2021-0001 | 23 January 2021  | TBD                                                                      | Manuel Spitschan, University of Oxford                        |
-| luox-2021-0002 | 18 February 2021 | [10.5287/bodleian:AeZAXN1km](https://doi.org/10.5287/bodleian:AeZAXN1km) | Jan-Frieder Harmsen, Maastricht University                    |
-| luox-2021-0003 | 18 February 2021 | [10.5287/bodleian:dp7QEqYAm](https://doi.org/10.5287/bodleian:dp7QEqYAm) | Jan-Frieder Harmsen, Maastricht University                    |
-| luox-2021-0004 | 18 February 2021 | [10.5287/bodleian:0ogQP5bb5](https://doi.org/10.5287/bodleian:0ogQP5bb5) | Jamie Zeitzer, Renske Lok & Daniel Joyce, Stanford University |
-| luox-2022-0001 | 01 February 2022 | [10.17617/2.3364820](https://doi.org/10.17617/2.3364820)                 | Boris Hanák, Spectrasol                                       |
-| luox-2022-0002 | 01 February 2022 | [10.17617/2.3364831](https://doi.org/10.17617/2.3364831)                 | Jamie Zeitzer, Stanford University                            |
+| Deposition ID  | Date             | DOI                                                                      | Depositor                                  |
+| -------------- | ---------------- | ------------------------------------------------------------------------ | ------------------------------------------ |
+| luox-2021-0001 | 23 January 2021  | TBD                                                                      | Manuel Spitschan, University of Oxford     |
+| luox-2021-0002 | 18 February 2021 | [10.5287/bodleian:AeZAXN1km](https://doi.org/10.5287/bodleian:AeZAXN1km) | Jan-Frieder Harmsen, Maastricht University |
+| luox-2021-0003 | 18 February 2021 | [10.5287/bodleian:dp7QEqYAm](https://doi.org/10.5287/bodleian:dp7QEqYAm) | Jan-Frieder Harmsen, Maastricht University |
 
 ## Under the hood
 
@@ -263,7 +260,7 @@ While calculation procedures are structurally well-defined by the CIE, there are
 
 ### Source code availability and license
 
-The source code is available on GitHub (https://github.com/luox-app/luox/) under the GPL-3.0 License.
+The source code is available on GitHub (https://github.com/luox-app/luox/) under an MIT License.
 
 ### Validation
 
@@ -289,7 +286,7 @@ These terms tell you the rules for using our website [https://luox.app/](https:/
 
 #### Who we are and how to contact us
 
-Our site operated by the Translational Sensory & Circadian Neuroscience Group at the Max Planck Institute for Biological Cybernetics. To contact us, please email [luox-support@tuebingen.mpg.de](mailto:luox-support@tuebingen.mpg.de).
+Our site operated by the University of Oxford (whose legal title is the Chancellor, Masters and Scholars of the University of Oxford), whose administrative offices are at Wellington Square, Oxford OX1 2JD. To contact us, please email [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk).
 
 #### By using our site you accept these terms
 
@@ -359,7 +356,7 @@ Our site must not be framed on any other site, nor may you create a link to any 
 
 We reserve the right to withdraw linking permission without notice.
 
-If you wish to link to or make any use of content on our site other than that set out above, please contact [luox-support@tuebingen.mpg.de](mailto:luox-support@tuebingen.mpg.de).
+If you wish to link to or make any use of content on our site other than that set out above, please contact [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk).
 
 #### Which country's laws apply to any disputes?
 

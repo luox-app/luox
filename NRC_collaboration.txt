@@ -1,0 +1,44 @@
+Files created:
+/data
+|   /Rf_test.csv
+|   /planckian_table_cie.csv
+|   /planckian_table_ies.csv
+|   /TCS99_5nm.csv
+|   /TCS99_1nm.csv
+|   /CES99_1nm.csv
+/scripts
+|   /planckian_table_csv_to_json.rb
+|   /tcs99_csv_to_json.rb
+/src
+|---/data
+|   |   /planckian_table_cie.json
+|   |   /planckian_table_ies.json
+|   |   /planckian_table_ruby.json
+|   |   /CES99_1nm.json
+|   |   /TCS99_5nm.json
+|   |   /TCS99_1nm.json
+|---/examples
+|   |   /testing_10columns.csv
+|   |   /testing_10columns_760.csv
+|   |   /test_irregular_nm_3col.csv
+|   |   /test_2nm_3col.csv
+|   |   /1nm_CIEStandardIlluminant_A_D65_Illuminant_E.csv
+|   |   /t5nm_multi_column_test_sample.csv
+|   |   /Illuminant_C_D50_D55_D75.csv
+|---/javascript
+|   |   /colourFidelityIndex.js
+|   |   /colourFidelityIndexIES.js
+/test
+|   /colourFidelityIndex.test.js
+
+
+Files modified:
+- CalculationTable.jsx
+- UploadForm.jsx
+- inputValidator.js
+- upload.css
+- Upload.jsx 
+
++ Fixed unorganized way of displaying/documentation
+-> Round brackets () for units such as lx, mW ⋅ m⁻²
+-> Square brackets [] for the variable names such as Rf, x, y, u, v
