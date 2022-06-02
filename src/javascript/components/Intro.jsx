@@ -5,7 +5,6 @@ import SllLogo from "../../images/society-of-light-and-lighting-logo.png";
 import UooLogo from "../../images/university-of-oxford-logo.svg";
 import CieLogo from "../../images/cie-logo.jpg";
 import IesLogo from "../../images/illuminating-engineering-society-logo.png";
-import NRCLogo from "../../images/nrc-signature-e-kr.jpg";
 
 const Intro = () => {
   useEffect(() => {
@@ -19,9 +18,7 @@ const Intro = () => {
           <h1 className="mt-5 mb-4">Home</h1>
 
           <p className="lead mb-4">
-            luox is a free-to-use and open-source tool for calculating light-
-            and lighting-related quantities directly in the browser. The tool
-            was inspired by the development of{" "}
+            Use this tool to meet the{" "}
             <a href="https://doi.org/10.3390/clockssleep1030024">
               minimum reporting guidelines
             </a>{" "}
@@ -31,8 +28,8 @@ const Intro = () => {
           </p>
 
           <p className="my-4">
-            For further information about purpose, calculated quantities, and
-            key references, please see{" "}
+            For more information about purpose, calculated quantities, and key
+            references, please see{" "}
             <a href="/about" title="About page">
               the About page
             </a>
@@ -40,12 +37,9 @@ const Intro = () => {
           </p>
 
           <p className="my-4">
-            You will need a CSV (comma-separated) or SPDX (following ANSI/IES
-            TM-27-20) file containing the spectral radiance or irradiance
-            distribution. luox is operated by the joint research group
-            Chronobiology & Health at the Technical University of Munich and
-            Translational Sensory and Circadian Neuroscience at the Max Planck
-            Institute for Biological Cybernetics (Prof. Dr. Manuel Spitschan).
+            You’ll need a CSV or SPDX file containing the spectral power
+            distribution of the acute stimulus and background light environment
+            from the observer’s point of view.
           </p>
 
           <p>
@@ -55,7 +49,20 @@ const Intro = () => {
           </p>
         </div>
       </div>
-
+      <div className="row">
+        <div className="col-lg-8">
+          <h3 className="my-4">Help us improve luox</h3>
+          <p>
+            We would like to hear from you to improve the luox platform.
+            Completing this survey takes only around 6 minutes.
+          </p>
+          <a href="https://forms.office.com/r/kSp3fHCBJF">
+            <button type="button" className="btn btn-secondary">
+              Complete the survey
+            </button>
+          </a>
+        </div>
+      </div>
       <div className="row">
         <div className="col-lg-8">
           <h3 className="my-4">Funding & Support</h3>
@@ -114,23 +121,6 @@ const Intro = () => {
               </p>
             </div>
           </div>
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="col">
-                <a href="https://nrc.canada.ca/en">
-                  <img
-                    src={NRCLogo}
-                    width="100%"
-                    className="img-fluid nrclogo"
-                    alt="National Research Council of Canada logo"
-                  />
-                </a>
-                <p style={{ fontSize: "75%" }} className="text-center">
-                  National Research Council of Canada
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       <div className="row">
@@ -141,8 +131,7 @@ const Intro = () => {
             calculations and spectra from the International Commission on
             Illumination (CIE). The CIE endorses this software having made a
             black-box evaluation of the software as of Feb. 11, 2021, finding
-            that the software performs satisfactorily to calculate quantities
-            and indices derived from CIE publications. This software is not a
+            that the software performs satisfactorily. This software is not a
             replacement for the CIE publications and works from which it is
             derived. The user is advised to consult the original publications
             and works for proper understanding of and calculation of the result
@@ -155,8 +144,7 @@ const Intro = () => {
           </p>
           <p>
             This software has been validated to load SPDX files according to
-            TM-27-20. This software offers optional calculation of indices from
-            IES TM-30-20. These optional calculations have not been validated.
+            TM-27-20.
           </p>
           <p>
             <a href="http://www.ies.org/">

@@ -42,9 +42,7 @@ describe("inputValidator", () => {
   it("should return a validation error if the number of header columns is greater than 6", () => {
     expect(
       validateInput(["lambda", "M1", "M2", "M3", "M4", "M5", "M6"], [[]])
-    ).toHaveMessage(
-      "Input CSV must contain no more than 5 observations in light user mode. Please check the box for the power user mode if you wish to process more columns."
-    );
+    ).toHaveMessage("Input CSV must contain no more than 5 observations");
   });
 
   it("should return a validation error if the number of columns in the header is different to the body", () => {
