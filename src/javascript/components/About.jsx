@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ReactHtmlParser from "react-html-parser";
-import UooRectLogo from "../../images/university-of-oxford-rect-logo.svg";
-import EpLogo from "../../images/experimental-psychology-logo.jpg";
+import tumLogo from "../../images/tum.png";
+import mpiLogo from "../../images/mpi.png";
 import html from "./About.md";
 import version from "../../version.json";
 
@@ -16,23 +16,22 @@ const About = () => {
         <div className="col-lg-8">
           <div className="row d-flex flex-wrap align-items-center">
             <div className="col-3">
-              <a href="https://www.ox.ac.uk/">
+              <a href="https://www.sg.tum.de/en/chronobiology/home/">
                 <img
-                  src={UooRectLogo}
+                  src={tumLogo}
                   width="100%"
-                  style={{ backgroundColor: "#002147" }}
                   className="align-middle"
-                  alt="University of Oxford logo"
+                  alt="Technical University of Munich logo"
                 />
               </a>
             </div>
             <div className="col-3">
-              <a href="https://www.psy.ox.ac.uk/">
+              <a href="https://www.kyb.tuebingen.mpg.de/614159/translational-sensory-and-circadian-neuroscience">
                 <img
-                  src={EpLogo}
-                  width="75%"
+                  src={mpiLogo}
+                  width="125%"
                   className="align-middle"
-                  alt="University of Oxford Experimental Psychology logo"
+                  alt="Max Planck Institute for Biological Cybernetics logo"
                 />
               </a>
             </div>
