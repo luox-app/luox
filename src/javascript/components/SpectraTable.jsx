@@ -37,7 +37,43 @@ SpectraTableEllipsisRow.propTypes = {
   exampleRow: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
-const SpectraTable = ({ rows, sampleCount, radianceOrIrradiance }) => {
+const SpectraTableHeader = ({
+  sampleCount,
+  measurementLabels,
+  radianceOrIrradiance,
+}) => {
+  /* eslint-disable react/no-array-index-key */
+
+  return (
+    <thead>
+      <tr>
+        <th colSpan={sampleCount + 1}>
+          Spectral {radianceOrIrradiance} [
+          {radianceOrIrradianceSIUnit(radianceOrIrradiance)}]
+        </th>
+      </tr>
+      <tr>
+        <th>Wavelength [nm]</th>
+        {Object.entries(measurementLabels).map(([key, value]) => (
+          <th key={key}>{value}</th>
+        ))}
+      </tr>
+    </thead>
+  );
+};
+
+SpectraTableHeader.propTypes = {
+  sampleCount: PropTypes.number.isRequired,
+  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
+  radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
+};
+
+const SpectraTable = ({
+  rows,
+  sampleCount,
+  radianceOrIrradiance,
+  measurementLabels,
+}) => {
   const [exponentialNotation, setExponentialNotation] = useState(true);
   const [displayAllRows, setDisplayAllRows] = useState(false);
 
@@ -104,15 +140,11 @@ const SpectraTable = ({ rows, sampleCount, radianceOrIrradiance }) => {
         </div>
       </div>
       <table className="table table-sm mt-3 result-table">
-        <thead>
-          <tr>
-            <th>Wavelength [nm]</th>
-            <th colSpan={sampleCount}>
-              Spectral {radianceOrIrradiance} [
-              {radianceOrIrradianceSIUnit(radianceOrIrradiance)}]
-            </th>
-          </tr>
-        </thead>
+        <SpectraTableHeader
+          sampleCount={sampleCount}
+          measurementLabels={measurementLabels}
+          radianceOrIrradiance={radianceOrIrradiance}
+        />
         <tbody>
           {rowsToDisplay().map(([wavelength, ...samples], index) => (
             <SpectraTableRow
@@ -135,6 +167,7 @@ SpectraTable.propTypes = {
   rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   sampleCount: PropTypes.number.isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
+  measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default SpectraTable;
