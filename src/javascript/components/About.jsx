@@ -19,7 +19,7 @@ const About = () => {
               <a href="https://www.sg.tum.de/en/chronobiology/home/">
                 <img
                   src={tumLogo}
-                  width="50%"
+                  width="100%"
                   className="align-middle"
                   alt="Technical University of Munich logo"
                 />
