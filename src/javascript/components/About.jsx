@@ -30,7 +30,7 @@ const About = () => {
               <a href="https://www.kyb.tuebingen.mpg.de/614159/translational-sensory-and-circadian-neuroscience">
                 <img
                   src={mpiLogo}
-                  width="75%"
+                  width="100%"
                   className="align-middle"
                   alt="Max Planck Institute for Biological Cybernetics logo"
                 />
