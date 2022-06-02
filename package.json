@@ -1,13 +1,13 @@
 {
   "name": "lightbox",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "private": true,
   "scripts": {
-    "version": "generate-version-information.sh",
+    "version": "./generate-version-information.sh",
     "test": "npm run version && prettier --check . && eslint --ext .js,.jsx *.js src test && jest",
     "build": "npm run version && mkdir -p dist && webpack --config webpack.prod.js",
-    "start": "npm run version && webpack-dev-server --open --config webpack.dev.js"
+    "start": "npm run version && mkdir -p dist && webpack-dev-server --open --config webpack.dev.js"
   },
   "browserslist": [
     "defaults",
