@@ -1,7 +1,12 @@
 import D_ILLUMINANT_S from "../data/d_illuminant.json";
-import ROBERTSON from "../data/robertson.json";
 import TEST_COLOURS from "../data/cri_test_colours.json";
 import { calculateChromaticity31 } from "./chromaticity";
+import {
+  uvToCorrelatedColourTemperatureRobertson,
+  uvToCorrelatedColourTemperatureOhno,
+} from "./cctCalculations";
+
+let intermediateValuesRa = {};
 
 export const cie1960UCS = (x, y) => {
   const u = (4 * x) / (-2 * x + 12 * y + 3);
@@ -13,74 +18,8 @@ export const cie1960UCS = (x, y) => {
   };
 };
 
-export const correlatedColourTemperature = (x, y) => {
-  const n = (x - 0.332) / (y - 0.1858);
-  const cct = -449 * n ** 3 + 3525 * n ** 2 - 6823.3 * n + 5520.33;
-  return cct;
-};
-
-export const uvToCorrelatedColourTemperatureRobertson = (u, v) => {
-  let lastdt = 0;
-  let lastdv = 0;
-  let lastdu = 0;
-  let T = 0;
-
-  for (let i = 1; i <= 30; i += 1) {
-    const wrRuvt = ROBERTSON[i];
-    const wrRuvtPrevious = ROBERTSON[i - 1] || {};
-
-    let du = 1;
-    let dv = wrRuvt.t;
-    let length = Math.sqrt(1 ** 2 + dv ** 2);
-
-    du /= length;
-    dv /= length;
-
-    let uu = u - wrRuvt.u;
-    let vv = v - wrRuvt.v;
-
-    let dt = -uu * dv + vv * du;
-
-    if (dt <= 0 || i === 30) {
-      if (dt > 0) {
-        dt = 0;
-      }
-
-      dt = -dt;
-
-      let f = 0;
-      if (i === 1) {
-        f = 0;
-      } else {
-        f = dt / (lastdt + dt);
-      }
-
-      T = 1.0e6 / (wrRuvtPrevious.r * f + wrRuvt.r * (1 - f));
-
-      uu = u - (wrRuvtPrevious.u * f + wrRuvt.u * (1 - f));
-      vv = v - (wrRuvtPrevious.v * f + wrRuvt.v * (1 - f));
-
-      du = du * (1 - f) + lastdu * f;
-      dv = dv * (1 - f) + lastdv * f;
-
-      length = Math.sqrt(du ** 2 + dv ** 2);
-
-      du /= length;
-      dv /= length;
-
-      break;
-    }
-
-    lastdt = dt;
-    lastdu = du;
-    lastdv = dv;
-  }
-
-  return T;
-};
-
 // Cite: CIE 015:2018 Annex E
-const blackBodyspectralRadiance = (lambda, t) => {
+export const blackBodyspectralRadiance = (lambda, t) => {
   const pi = Math.PI;
   // Plank constant
   const h = 6.62607015e-34;
@@ -311,9 +250,17 @@ export const interpolateLinearly = (spectra) => {
 };
 
 export const calculateColourRenderingIndex = (spectra) => {
+  intermediateValuesRa = {}; // reset the container
   const [{ x, y }] = calculateChromaticity31(spectra, 1);
   const { u, v } = cie1960UCS(x, y);
   const T = uvToCorrelatedColourTemperatureRobertson(u, v);
+  intermediateValuesRa.CCT = T;
+  // eslint-disable-next-line no-unused-vars
+  const { T: ohnoCCT, Duv: ohnoDuv } = uvToCorrelatedColourTemperatureOhno(
+    u,
+    v,
+    "CIE"
+  );
 
   let referenceSpectra = [];
 
@@ -330,7 +277,14 @@ export const calculateColourRenderingIndex = (spectra) => {
   }
 
   const colourDifferences = uniformSpace(spectra, referenceSpectra);
-  return generalColourRenderingIndex(
+  intermediateValuesRa.Ra = generalColourRenderingIndex(
     specialColourRenderingIndicies(colourDifferences)
   );
+
+  if (Math.abs(ohnoDuv) >= 0.05) {
+    intermediateValuesRa.Ra = "N/A";
+    intermediateValuesRa.CCT = "N/A";
+  }
+
+  return intermediateValuesRa;
 };

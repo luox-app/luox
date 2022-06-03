@@ -7,6 +7,7 @@ import {
   calculateEquivalentDaylightAlphaOpic,
   calculateAlphaOpicEfficiency,
   calculateColourRenderingIndices,
+  calculateColourFidelityIndices,
   calculate,
 } from "../src/javascript/calculations";
 import spdD651nm100lx from "./fixtures/spd_d65_1nm_100lx.json";
@@ -70,7 +71,7 @@ describe("calculateColourRenderingIndices", () => {
     ]);
 
     expect(
-      calculateColourRenderingIndices(rows).map((e) => e.toFixed(0))
+      calculateColourRenderingIndices(rows).map((e) => e.Ra.toFixed(0))
     ).toEqual(["95", "95", "95"]);
   });
 
@@ -83,8 +84,36 @@ describe("calculateColourRenderingIndices", () => {
     ]);
 
     expect(
-      calculateColourRenderingIndices(rows).map((e) => e.toFixed(0))
+      calculateColourRenderingIndices(rows).map((e) => e.Ra.toFixed(0))
     ).toEqual(["95", "95", "95"]);
+  });
+});
+
+describe("calculateColourFidelityIndices", () => {
+  it("returns the colour fidelity indices for each sample when input is at 5nm intervals", () => {
+    const rows = _.range(380, 781, 5).map((wavelength) => [
+      wavelength,
+      0.1,
+      0.2,
+      0.3,
+    ]);
+
+    expect(
+      calculateColourFidelityIndices(rows).map((e) => e.Rf.toFixed(1))
+    ).toEqual(["94.7", "94.7", "94.7"]);
+  });
+
+  it("returns the colour rendering indices for each sample when input is at 1nm intervals", () => {
+    const rows = _.range(380, 781, 1).map((wavelength) => [
+      wavelength,
+      0.1,
+      0.2,
+      0.3,
+    ]);
+
+    expect(
+      calculateColourFidelityIndices(rows).map((e) => e.Rf.toFixed(1))
+    ).toEqual(["94.7", "94.7", "94.7"]);
   });
 });
 
