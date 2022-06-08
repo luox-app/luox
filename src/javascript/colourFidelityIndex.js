@@ -451,7 +451,7 @@ export const calculateColourFidelityIndex = (spectra) => {
     u,
     v,
     "CIE",
-    true
+    false
   );
   if (T <= 0) {
     return intermediateValuesRf;

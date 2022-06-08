@@ -1,8 +1,9 @@
 const validateNumberOfObservations = (header) => {
   if (header.length > 6) {
     return {
-      row: 1,
-      message: "Input CSV must contain no more than 5 observations",
+      row: 0,
+      message:
+        "Input CSV must contain no more than 5 observations in light user mode. Please check the box for the power user mode if you wish to process more columns.",
     };
   }
   return null;
@@ -147,10 +148,11 @@ const validateWavelengthDeltaIsInRange = (body) => {
   return null;
 };
 
-const inputValidator = (header, body) => {
+const inputValidator = (header, body, powerMode) => {
   const errors = [];
-
-  errors.push(validateNumberOfObservations(header));
+  if (!powerMode) {
+    errors.push(validateNumberOfObservations(header));
+  }
   errors.push(validateNumbers(body));
   errors.push(validateHeaderForEachColumn(header, body));
   errors.push(validateNonNullValues(header, body));

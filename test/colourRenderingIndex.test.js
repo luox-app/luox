@@ -1,10 +1,8 @@
 import {
   cie1960UCS,
-  correlatedColourTemperature,
   blackBodyReferenceSpectra,
   daylightIlluminantChromaticity,
   daylightReferenceSpectra,
-  uvToCorrelatedColourTemperatureRobertson,
   testColourColorimetry,
   adaptiveColourShift,
   normalizeSpectra,
@@ -14,6 +12,10 @@ import {
   calculateColourRenderingIndex,
   interpolateLinearly,
 } from "../src/javascript/colourRenderingIndex";
+import {
+  uvToCorrelatedColourTemperatureRobertson,
+  correlatedColourTemperature,
+} from "../src/javascript/cctCalculations";
 import { calculateChromaticity31 } from "../src/javascript/chromaticity";
 import fl1 from "./fixtures/fl1.json";
 import fl2 from "./fixtures/fl2.json";
@@ -235,22 +237,22 @@ describe("generalColourRenderingIndex", () => {
 
 describe("calculateColourRenderingIndex", () => {
   it("calculates the correct CRI given the input spectrum for CIE illuminant FL1 in 5nm spacing", () => {
-    expect(calculateColourRenderingIndex(fl1).toFixed(0)).toEqual("76");
+    expect(calculateColourRenderingIndex(fl1).Ra.toFixed(0)).toEqual("76");
   });
 
   it("calculates the correct CRI given the input spectrum for CIE illuminant FL1 in 1nm spacing", () => {
     expect(
-      calculateColourRenderingIndex(interpolateLinearly(fl1)).toFixed(0)
+      calculateColourRenderingIndex(interpolateLinearly(fl1)).Ra.toFixed(0)
     ).toEqual("76");
   });
 
   it("calculates the correct CRI given the input spectrum for CIE illuminant FL2 in 5nm spacing", () => {
-    expect(calculateColourRenderingIndex(fl2).toFixed(0)).toEqual("64");
+    expect(calculateColourRenderingIndex(fl2).Ra.toFixed(0)).toEqual("64");
   });
 
   it("calculates the correct CRI given the input spectrum for CIE illuminant FL2 in 1nm spacing", () => {
     expect(
-      calculateColourRenderingIndex(interpolateLinearly(fl2)).toFixed(0)
+      calculateColourRenderingIndex(interpolateLinearly(fl2)).Ra.toFixed(0)
     ).toEqual("64");
   });
 });

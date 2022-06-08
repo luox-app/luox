@@ -20,7 +20,7 @@ const ErrorTableRow = ({ row, message }) => {
 
 ErrorTableRow.propTypes = {
   message: PropTypes.string.isRequired,
-  row: PropTypes.string,
+  row: PropTypes.number,
 };
 
 ErrorTableRow.defaultProps = {

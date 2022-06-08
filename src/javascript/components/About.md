@@ -13,7 +13,7 @@ _A user-friendly, open-access platform for calculating quantities related to lig
   - [Contributing code of conduct](#contributing-code-of-conduct)
 - [Usage](#usage)
   - [Quick start](#quick-start)
-  - [Sharing spectra and calculations using sharing URL](#sharing-spectra-and-calculations-using-sharing-url)§
+  - [Sharing spectra and calculations using sharing URL](#sharing-spectra-and-calculations-using-sharing-url)
   - [Requesting DOI for sharing URL](#requesting-doi-for-sharing-url)
 - [Depositions](#depositions)
   - [List of depositions](#list-of-depositions)
@@ -34,7 +34,7 @@ _A user-friendly, open-access platform for calculating quantities related to lig
 
 ### Purpose
 
-The purpose of the _luox_ platform is to faciliate the calculation of quantities related to light and lighting in a user-friendly, open-access and free fashion. Users can upload spectra (which are only stored in the browser) and the platform will calculate relevant quantites (including (il)luminance, chromaticity, and α-opic (ir)radiance and α-opic daylight (il)luminances) from the spectra, generate a visualisation of the spectrum, and enable the export of calculations in tabular form. All quantities reported here are supported by the [International Commission on Illumination (CIE)](https://cie.co.at/).
+The purpose of the _luox_ platform is to faciliate the calculation of quantities related to light and lighting in a user-friendly, open-access and free fashion. Users can upload spectra (which are only stored in the browser) and the platform will calculate relevant quantites (including (il)luminance, chromaticity, and α-opic (ir)radiance and α-opic daylight (il)luminances) from the spectra, generate a visualisation of the spectrum, and enable the export of calculations in tabular form. All default quantities reported here are supported by the [International Commission on Illumination (CIE)](https://cie.co.at/).
 
 The platform is primarily geared towards researchers and research users interested in the effects of light exposure on human physiology and behaviour, but it may be interesting to students, academics and professionals in other disciplines and areas.
 
@@ -42,7 +42,7 @@ _luox_ is deployed on [Netlify](https://www.netlify.com/).
 
 ### Team
 
-This platform was developed by [Dr Manuel Spitschan](https://www.psy.ox.ac.uk/team/manuel-spitschan) (Department of Experimental Psychology, Unversity of Oxford) and [Go Free Range](https://gofreerange.com/).
+This platform was developed by [Dr Manuel Spitschan](https://www.psy.ox.ac.uk/team/manuel-spitschan) (Technical University of Munich and Max Planck Institute for Biological Cybernetics) and [Go Free Range](https://gofreerange.com/). Code to calculate colour indices was developed by Dr. Somang Nam and Dr. Jennifer A. Veitch at the National Research Council of Canada – Construction Research Centre, in collaboration with Dr. Spitschan.
 
 ### Citing
 
@@ -50,25 +50,21 @@ For now, if you use _luox_ for calculations, please cite the following (APA form
 
 Software:
 
-> **Spitschan, M. (2021). luox: Platform for calculating quantities related to light and lighting [Software]. Available from https://luox.app/.**
+> **Spitschan, M., Nam, S., & Veitch, J. A. (2022). luox: Platform for calculating quantities related to light and lighting [Software]. Available from https://luox.app/.**
 
 Companion paper:
 
-> **Spitschan, M., Mead, J., Roos, C., Lowis, C., Griffiths, B., Mucur, P., & Herf, M. (2021). luox: novel validated open-access and open-source web platform for calculating and sharing physiologically relevant quantities for light and lighting. Wellcome Open Res, 6, 69. doi:10.12688/wellcomeopenres.16595.2**
+> **Spitschan, M., Mead, J., Roos, C., Lowis, C., Griffiths, B., Mucur, P., Herf, M., Nam, S., & Veitch, J. A. (2022). luox: novel validated open-access and open-source web platform for calculating and sharing physiologically relevant quantities for light and lighting. Wellcome Open Res, 6, 69. doi:10.12688/wellcomeopenres.16595.3**
 
 For citing the source code:
 
-> **Spitschan, M. (2021). luox: Platform for calculating quantities related to light and lighting [Source code]. Available from https://github.com/luox-app/luox.**
+> **Spitschan, M., Nam, S., & Veitch, J. A. (2022). luox: Platform for calculating quantities related to light and lighting [Source code]. Available from https://github.com/luox-app/luox.**
 
-We are currently (January 2021) in the process of writing a report presenting _luox_ and will update this information here.
-
-When reporting quantites related to CIE S 026, we also recommend citing the standard:
+When reporting quantities related to CIE S 026, we also recommend citing the standard:
 
 > **CIE (2018). CIE S 026/E:2018: CIE System for Metrology of Optical Radiation for ipRGC-Influenced Responses to Light. Vienna: CIE Central Bureau. DOI: [10.25039/S026.2018](https://doi.org/10.25039/S026.2018).**
 
-### Announcements
-
-To stay up-to-date with any announcements on _luox_, please subscribe to the announcements listserv here. Send an email to [luox-users-subscribe@maillist.ox.ac.uk](mailto:luox-users-subscribe@maillist.ox.ac.uk). Subject and message content do not matter.
+When citing other outputs from this software, we recommend citing the appropriate documents, listed below.
 
 ### Support
 
@@ -93,6 +89,8 @@ Funding to develop _luox_ was provided by:
 The development of the module for loading SPDX files was supported by the [Illumating Engineering Society (IES)](https://www.ies.org/).
 
 During development of the platform, Dr Manuel Spitschan was supported by a Sir Henry Wellcome Postdoctoral Fellowship ([Wellcome Trust](https://wellcome.org/), 204686/Z/16/Z) and [Linacre College](https://www.linacre.ox.ac.uk/), University of Oxford (Biomedical Sciences Junior Research Fellowship).
+
+The module for calculating CIE colour indices (D<sub>uv</sub>, T<sub>cp</sub>, R<sub>a</sub>, and R<sub>f</sub> ), the power user mode, and the optional IES TM-30-20 indices and graphics was developed at the [National Research Council of Canada, Construction Research Centre](https://nrc.canada.ca/), as a strategic research activity.
 
 Deployment on [Netlify](https://www.netlify.com/) is supported by the [Netlify Open Source Plan](https://www.netlify.com/legal/open-source-policy/).
 
@@ -138,7 +136,7 @@ This Code of Conduct applies within all community spaces, and also applies when 
 
 ##### Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement via email at [luox-support@tuebingen.mpg.de](mailto:luox-support@tuebingen.mpg.de). All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement via email at [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk). All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 
@@ -191,34 +189,35 @@ Spectra and calculations within the luox platform can be shared using an URL tha
 
 ### Requesting DOI for sharing URL
 
-We offer the option to request a digital object identifier (DOI) linked to the sharing URL. This DOI has to be requested manually and the request will be vetted manually. To request a DOI, please complete this [form](https://forms.office.com/Pages/ResponsePage.aspx?id=G96VzPWXk0-0uv5ouFLPkZQkeC9QuStHlpH3Nt-sDo1URExCVlBCNFdNWk02TDVVVFhYSkUyMUxETi4u). The DOI will be generated by generating an entry for the sharing URL in the [Oxford University Research Archive (ORA)](https://ora.ox.ac.uk/) and author information will be included in the record. All luox sharing URLs added to ORA will receive a unique luox number of the format (`YYYY-####`; `Y`=year). A running list of luox sharing URLs with associated DOIs is on this page, under [Depositions](#depositions). Please note that deposition of the sharing URL into ORA is permanent.
+We offer the option to request a digital object identifier (DOI) linked to the sharing URL. This DOI has to be requested manually and the request will be vetted manually. To request a DOI, please complete this [form](https://forms.office.com/Pages/ResponsePage.aspx?id=G96VzPWXk0-0uv5ouFLPkZQkeC9QuStHlpH3Nt-sDo1URExCVlBCNFdNWk02TDVVVFhYSkUyMUxETi4u). The DOI will be generated by generating an entry for the sharing URL in the [MPG.PuRE](https://pure.mpg.de/) and author information will be included in the record. All luox sharing URLs added to ORA will receive a unique luox number of the format (`YYYY-####`; `Y`=year). A running list of luox sharing URLs with associated DOIs is on this page, under [Depositions](#depositions). Please note that deposition of the sharing URL into MPG.PuRE is permanent.
 
-There is no guarantee that DOI requests will be accepted. To ensure that a DOI is generated in a timely fashion, please submit the request well before it is needed (e.g. in a publication submission). We are currently investigating the possibility of generating DOIs directly without using ORA.
+There is no guarantee that DOI requests will be accepted. To ensure that a DOI is generated in a timely fashion, please submit the request well before it is needed (e.g. in a publication submission).
+Please note: Prior to January 2022, deposits were made into the Oxford Research Archive (ORA). These materials will remain in archival form in ORA.
 
 ## Depositions
 
 ### List of depositions
 
-The following is a list of depositions with assigned DOIs, up-to-date as of 1 February 2022.
+The following is a list of depositions with assigned DOIs, up-to-date as of 22 February 2021.
 
-| Deposition ID  | Date             | DOI                                                                      | Depositor                                                     |
-| -------------- | ---------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------- |
-| luox-2021-0001 | 23 January 2021  | TBD                                                                      | Manuel Spitschan, University of Oxford                        |
-| luox-2021-0002 | 18 February 2021 | [10.5287/bodleian:AeZAXN1km](https://doi.org/10.5287/bodleian:AeZAXN1km) | Jan-Frieder Harmsen, Maastricht University                    |
-| luox-2021-0003 | 18 February 2021 | [10.5287/bodleian:dp7QEqYAm](https://doi.org/10.5287/bodleian:dp7QEqYAm) | Jan-Frieder Harmsen, Maastricht University                    |
-| luox-2021-0004 | 18 February 2021 | [10.5287/bodleian:0ogQP5bb5](https://doi.org/10.5287/bodleian:0ogQP5bb5) | Jamie Zeitzer, Renske Lok & Daniel Joyce, Stanford University |
-| luox-2022-0001 | 01 February 2022 | [10.17617/2.3364820](https://doi.org/10.17617/2.3364820)                 | Boris Hanák, Spectrasol                                       |
-| luox-2022-0002 | 01 February 2022 | [10.17617/2.3364831](https://doi.org/10.17617/2.3364831)                 | Jamie Zeitzer, Stanford University                            |
+| Deposition ID  | Date             | DOI                                                                      | Depositor                                  |
+| -------------- | ---------------- | ------------------------------------------------------------------------ | ------------------------------------------ |
+| luox-2021-0001 | 23 January 2021  | TBD                                                                      | Manuel Spitschan, University of Oxford     |
+| luox-2021-0002 | 18 February 2021 | [10.5287/bodleian:AeZAXN1km](https://doi.org/10.5287/bodleian:AeZAXN1km) | Jan-Frieder Harmsen, Maastricht University |
+| luox-2021-0003 | 18 February 2021 | [10.5287/bodleian:dp7QEqYAm](https://doi.org/10.5287/bodleian:dp7QEqYAm) | Jan-Frieder Harmsen, Maastricht University |
 
 ## Under the hood
 
 ### Calculation definitions
 
-All calculations performed here following guidance from the [International Commission on Illumination (CIE)](https://cie.co.at/).
+All default calculations performed here follow guidance from the [International Commission on Illumination (CIE)](https://cie.co.at/).
+
+Indices that are undefined for a given test spectrum return a value of N/A. For example, colour rendering and colour fidelity are defined only when |D<sub>uv</sub>| < 0.05.
 
 ### Precision and decimal points
 
-All calculations are computed with floating point precision using JavaScript. In the browser, the results are displayed up to four decimals for all quantities (including those in _Advanced_ mode). When downloading calculations, the precision will be higher than displayed in the browser.
+All calculations are computed with double-precision floating point numbers using JavaScript. In the browser, the results are displayed up to four decimals for all quantities (including those in Advanced mode). When downloading calculations, the precision will be higher than displayed in the browser. The possible ranges of numbers which can be represented under the double precision will then be limited to approximately 16 decimal places of precision.
+The calculations in _luox_ follow the published documents strictly, including any guidance concerning rounding at intermediate stages. This can introduce what appear to be rounding errors when compared to other calculation tools. In order to mitigate this issue and to maximise transparency, _luox_ provides an option to display all intermediate values in the calculation, in which can be useful to track down errors.
 
 ### Effect functions and action spectra
 
@@ -252,30 +251,39 @@ Note: The CIE S 026/E:2018 a-opic action spectra are available in tabulated form
 - [CIE 015:2018: Colorimetry, 4th Edition](http://cie.co.at/publications/colorimetry-4th-edition), DOI: [10.25039/TR.015.2018](https://doi.org/10.25039/TR.015.2018)
 - [ISO 11664-2:2007/CIE S 014-2:2006: Colorimetry — Part 2: CIE Standard Illuminants](http://cie.co.at/publications/colorimetry-part-2-cie-standard-illuminants-0)
 - [CIE S 026/E:2018: CIE System for Metrology of Optical Radiation for ipRGC-Influenced Responses to Light](http://cie.co.at/publications/cie-system-metrology-optical-radiation-iprgc-influenced-responses-light-0), DOI: [10.25039/S026.2018](https://doi.org/10.25039/S026.2018)
+- [CIE 13.3-1995 : Method of measuring and specifying colour rendering properties of light sources](https://cie.co.at/publications/method-measuring-and-specifying-colour-rendering-properties-light-sources)
+- [IES TM-30-20: IES method for evaluating light source color rendition](https://store.ies.org/product/tm-30-20-ies-method-for-evaluating-light-source-color-rendition/)
 
 ### Implementation specifics
 
 While calculation procedures are structurally well-defined by the CIE, there are a few ambiguities that may arise when implementing it. This includes the choice of specific and exchangeable algorithms (e.g. for the calculation of CCT), and the decimal points of specific constants. The specific choices are described here:
 
-| Aspect                                         | Quantity                                          | Method or quantity used in luox | Description                                                                                                                                                                                                                                                                                                         |
-| ---------------------------------------------- | ------------------------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Constant for absolute (il)luminance conversion | Illuminance [lx] and Luminance [cd/m<sup>2</sup>] | 683.0015478 lm/W                | 683 lm/W acceptable "for all practical applications" according to [ISO 23539:2005/CIE S 010:2004](http://cie.co.at/publications/photometry-cie-system-physical-photometry), 683.0015478 lm/W exact value used in the [CIE S 026 toolbox](https://doi.org/10.25039/S026.2018.TB); usually rounded up to 683.002 lm/W |
+| Aspect                                         | Quantity                                          | Method or quantity used in luox              | Description                                                                                                                                                                                                                                                                                                                     |
+| ---------------------------------------------- | ------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Constant for absolute (il)luminance conversion | Illuminance [lx] and Luminance [cd/m<sup>2</sup>] | 683.0015478 lm/W                             | 683 lm/W acceptable "for all practical applications" according to [ISO 23539:2005/CIE S 010:2004](http://cie.co.at/publications/photometry-cie-system-physical-photometry), 683.0015478 lm/W exact value used in the [CIE S 026 toolbox](https://doi.org/10.25039/S026.2018.TB); usually rounded up to 683.002 lm/W             |
+| Rounding                                       | CIE colour rendering index R<sub>a</sub>)         | Strict rounding after calculating subindices | Following [CIE 13.3-1995](https://cie.co.at/publications/method-measuring-and-specifying-colour-rendering-properties-light-sources), luox rounds to the nearest whole number after calculating the subindex for each of the special colour rendering indices, and then averages them to form the General Colour Rendering Index |
 
 ### Source code availability and license
 
-The source code is available on GitHub (https://github.com/luox-app/luox/) under the GPL-3.0 License.
+The source code is available on GitHub (https://github.com/luox-app/luox/) under an MIT License.
 
 ### Validation
 
-luox has been validated by the CIE. The validation report is available [here](https://github.com/luox-app/luox/raw/master/docs/CIE_Software_Check_of_luox_app.pdf).
+The default output of luox (CIE quantities and indices) has been validated by the CIE. The validation report is available [here](https://github.com/luox-app/luox/raw/master/docs/CIE_Software_Check_of_luox_app.pdf).
 
 According to the CIE:
 
-> This software incorporates methods, formulae, spectral function calculations and spectra from the International Commission on Illumination (CIE). The CIE endorses this software having made a black-box evaluation of the software as of Feb. 11, 2021, finding that the software performs satisfactorily. This software is not a replacement for the CIE publications and works from which it is derived. The user is advised to consult the original publications and works for proper understanding of and calculation of the result of this software.
+> This software incorporates methods, formulae, spectral function calculations and spectra from the International Commission on Illumination (CIE). The CIE endorses this software having made a black-box evaluation of the software as of Feb. 11, 2021, finding that the software performs satisfactorily to calculate quantities and indices derived from CIE publications. This software is not a replacement for the CIE publications and works from which it is derived. The user is advised to consult the original publications and works for proper understanding of and calculation of the result of this software.
+
+This software has been validated to load SPDX files according to TM-27-20.
+
+This software offers optional calculation of indices from IES TM-30-20. These optional calculations have not been validated.
 
 ### Alternatives
 
 The CIE has released a toolbox (DOI: [10.25039/S026.2018.TB](https://doi.org/10.25039/S026.2018.TB)) and user guide (DOI: [10.25039/S026.2018.UG](https://doi.org/10.25039/S026.2018.UG)) for calculations of quantities specified in [CIE S 026/E:2018: CIE System for Metrology of Optical Radiation for ipRGC-Influenced Responses to Light](http://cie.co.at/publications/cie-system-metrology-optical-radiation-iprgc-influenced-responses-light-0) (DOI: [10.25039/S026.2018](https://doi.org/10.25039/S026.2018)). The Excel spreadsheet-based toolbox is freely available and is supplementary to the luox platform.
+
+An Excel spreadsheet tool for calculating the CIE Colour Fidelity Index (Rf) is available as a companion to [CIE 224:2017 CIE 2017 Colour Fidelity Index for accurate scientific use](https://cie.co.at/publications/cie-2017-colour-fidelity-index-accurate-scientific-use).
 
 ## Acknowledgements
 
@@ -289,7 +297,7 @@ These terms tell you the rules for using our website [https://luox.app/](https:/
 
 #### Who we are and how to contact us
 
-Our site operated by the Translational Sensory & Circadian Neuroscience Group at the Max Planck Institute for Biological Cybernetics. To contact us, please email [luox-support@tuebingen.mpg.de](mailto:luox-support@tuebingen.mpg.de).
+Our site operated by the joint research group Chronobiology & Health at the Technical University of Munich and Translational Sensory and Circadian Neuroscience at the Max Planck Institute for Biological Cybernetics (Prof. Dr. Manuel Spitschan). To contact us, please email [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk).
 
 #### By using our site you accept these terms
 
@@ -359,8 +367,8 @@ Our site must not be framed on any other site, nor may you create a link to any 
 
 We reserve the right to withdraw linking permission without notice.
 
-If you wish to link to or make any use of content on our site other than that set out above, please contact [luox-support@tuebingen.mpg.de](mailto:luox-support@tuebingen.mpg.de).
+If you wish to link to or make any use of content on our site other than that set out above, please contact [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk).
 
 #### Which country's laws apply to any disputes?
 
-These terms of use, their subject matter and their formation (and any non-contractual disputes or claims) are governed by English law. We both agree to the exclusive jurisdiction of the courts of England and Wales.
+These terms of use, their subject matter and their formation (and any non-contractual disputes or claims) are governed by German law.

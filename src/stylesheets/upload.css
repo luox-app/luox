@@ -10,3 +10,40 @@ table.errors {
   border: 1px solid #ddd;
   padding: 1rem;
 }
+
+.promode-label {
+  border:1px solid #ccc;
+  padding:10px;
+  margin:0 0 10px;
+  display:block; 
+  width: fit-content;
+}
+
+.promode-label:hover {
+  background:#eee;
+  cursor:pointer;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
