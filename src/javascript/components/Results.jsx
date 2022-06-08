@@ -73,7 +73,10 @@ const Results = ({
           Step 4. Download the stimulus specification tables and include them in
           your report.
         </h2>
-        <p>Heavy load (200+ spectra) may take some time to load. Please wait until it populates the table below.</p>
+        <p>
+          Heavy load (200+ spectra) may take some time to load. Please wait
+          until it populates the table below.
+        </p>
 
         <CalculationTable
           rows={rows}
