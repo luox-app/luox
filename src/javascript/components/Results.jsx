@@ -110,7 +110,10 @@ const Results = ({
         <h2 className="my-3">
           Step 6. Share an online version of this report.
         </h2>
-
+        <p>
+          In order to avoid the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/431">HTTP 431 Request Header Fields Too Large</a> response, 
+          url share is unavailable under power user mode.
+        </p>
         <div className="form-group">
           <input
             id="sharing-url"
@@ -122,14 +125,16 @@ const Results = ({
         </div>
         <div className="row mb-3">
           <div className="col">
+          {!powerMode && (
             <button
-              className="btn btn-primary btn-block my-2"
-              type="button"
-              onClick={copySharingURL}
-              disabled={buttonDisabled()}
-            >
-              {buttonText}
-            </button>
+            className="btn btn-primary btn-block my-2"
+            type="button"
+            onClick={copySharingURL}
+            disabled={buttonDisabled()}
+          >
+            {buttonText}
+          </button>        
+        )}
           </div>
           <div className="col">
             <HashLink

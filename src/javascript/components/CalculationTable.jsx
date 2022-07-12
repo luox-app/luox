@@ -181,7 +181,6 @@ const CalculationTable = ({
       });
       return displayArray;
     };
-
     const rfKeyset = {
       u: `CIE 1960 UCS [u]`,
       uPrime: `CIE 1976 UCS [u prime]`,
@@ -193,8 +192,6 @@ const CalculationTable = ({
       calculation.colourFidelityIndex,
       rfKeyset
     );
-    setRfDisplayRows(displayRows);
-
     const tm30Keyset = {
       tm30CCT: `TM30 - CCT (K) - Ohno, 2013`,
       tm30Duv: `TM30 - Duv`,
@@ -207,8 +204,6 @@ const CalculationTable = ({
       calculation.tm30ColourFidelityIndex,
       tm30Keyset
     );
-    setTm30DisplayRows(tm30rfDisplayRows);
-
     setCalculationTableDownloadUrl(
       CalculationTableCSV({
         radianceOrIrradiance,
@@ -216,9 +211,10 @@ const CalculationTable = ({
         ...calculation,
       })
     );
-    // Ref for passing values to HueAngleBins.jsx
-    setRefHAB(calculation.tm30ColourFidelityIndex);
-
+    setRfDisplayRows(displayRows);
+    setTm30DisplayRows(tm30rfDisplayRows);
+    setRefHAB(calculation.tm30ColourFidelityIndex); // Ref for passing values to HueAngleBins.jsx
+    
     if (isLoaded) {
       const worker = new Worker();
       worker.postMessage([rows, sampleCount]);
