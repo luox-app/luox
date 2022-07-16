@@ -1,14 +1,13 @@
 import { SPD, encodeSPD, decodeSPD } from "spdurl";
-import React, { useEffect, useState } from "react";
 
 /**
  * This function will convert current results page into URL by
  * storing the information into hashed string
- * 
- * @param {*} rows 
- * @param {*} radianceOrIrradiance 
- * @param {*} measurementLabels 
- * @returns 
+ *
+ * @param {*} rows
+ * @param {*} radianceOrIrradiance
+ * @param {*} measurementLabels
+ * @returns
  */
 export const rowsToURL = (rows, radianceOrIrradiance, measurementLabels) => {
   if (rows.length < 2) {
@@ -33,17 +32,14 @@ export const rowsToURL = (rows, radianceOrIrradiance, measurementLabels) => {
   return url.join("|");
 };
 
-
 /**
  * This function will convert the given url and encode into values
  * required for loading the result page
- * 
- * @param {*} url 
- * @returns 
+ *
+ * @param {*} url
+ * @returns
  */
 export const urlToRows = (url) => {
-  const [measurementLocalLabels, setMeasurementLocalLabels] = useState({});
-
   if (url.length === 0) {
     return [[]];
   }
@@ -68,7 +64,7 @@ export const urlToRows = (url) => {
       }
 
       measurementLabelArray.push(name);
-      
+
       data.forEach((sample, i) => {
         const wavelength = base + delta * i;
         if (!wavelengths.has(wavelength)) {
@@ -76,15 +72,14 @@ export const urlToRows = (url) => {
         }
         wavelengths.get(wavelength).push(sample);
       });
-
     });
 
     const rows = Array.from(wavelengths).map(([wavelength, samples]) => [
       wavelength,
       ...samples,
     ]);
-    
-    const measurementLabelArrayLocal = {...measurementLabelArray}
+
+    const measurementLabelArrayLocal = { ...measurementLabelArray };
 
     return [rows, radianceOrIrradiance, measurementLabelArrayLocal];
   } catch (error) {

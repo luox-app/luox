@@ -214,13 +214,23 @@ const CalculationTable = ({
     setRfDisplayRows(displayRows);
     setTm30DisplayRows(tm30rfDisplayRows);
     setRefHAB(calculation.tm30ColourFidelityIndex); // Ref for passing values to HueAngleBins.jsx
-    
+
     if (isLoaded) {
       const worker = new Worker();
       worker.postMessage([rows, sampleCount]);
       worker.onmessage = (event) => {
         setCalculation(event.data);
-        setLoaded(false);
+        // run this in global scope of window or worker. Since window.self = window, we're ok
+        if (
+          typeof WorkerGlobalScope !== "undefined" &&
+          // eslint-disable-next-line no-restricted-globals, no-undef
+          self instanceof WorkerGlobalScope
+        ) {
+          // eslint-disable-next-line no-console
+          console.log("web worker still working...");
+        } else {
+          setLoaded(false);
+        }
         worker.terminate();
         // eslint-disable-next-line no-console
         console.log(`worker terminated`);
