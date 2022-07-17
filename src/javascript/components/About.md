@@ -42,7 +42,7 @@ _luox_ is deployed on [Netlify](https://www.netlify.com/).
 
 ### Team
 
-This platform was developed by [Dr Manuel Spitschan](https://www.psy.ox.ac.uk/team/manuel-spitschan) (Technical University of Munich and Max Planck Institute for Biological Cybernetics) and [Go Free Range](https://gofreerange.com/). Code to calculate colour indices was developed by Dr. Somang Nam and Dr. Jennifer A. Veitch at the National Research Council of Canada – Construction Research Centre, in collaboration with Dr. Spitschan.
+This platform was developed by [Dr Manuel Spitschan](https://groupleaders.mpdl.mpg.de/group-leader/manuel-spitschan/) (Technical University of Munich and Max Planck Institute for Biological Cybernetics) and [Go Free Range](https://gofreerange.com/). Code to calculate colour indices was developed by [Dr. Somang Nam](https://y.at/grad-cap.pizza.picture.balloon.pine-tree) and [Dr. Jennifer A. Veitch](https://nrc.canada.ca/en/corporate/contact-us/nrc-directory-science-professionals/jennifer-veitch) at the National Research Council of Canada – Construction Research Centre, in collaboration with Dr. Spitschan.
 
 ### Citing
 
