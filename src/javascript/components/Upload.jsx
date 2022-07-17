@@ -32,7 +32,7 @@ const Upload = () => {
   const LoadingIndicator = () => {
     return (
       isLoaded && (
-        <div>
+        <div className="overlay">
           <h1>Calculating... Please wait... </h1>
           <div className="loading-container">
             <div className="loader" />

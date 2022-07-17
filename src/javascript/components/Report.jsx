@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import CalculationTable from "./CalculationTable";
 import SpectraTable from "./SpectraTable";
@@ -10,7 +10,13 @@ const Report = () => {
   const { id } = useParams();
 
   const [rows, radianceOrIrradiance, measurementLabels] = urlToRows(id);
+
   const sampleCount = rows[0].length - 1;
+
+  const [isLoaded, setLoaded] = useState(true);
+  const [refHAB, setRefHAB] = useState(null);
+
+  const powerMode = sampleCount < 6;
 
   return (
     <div className="row">
@@ -42,14 +48,14 @@ const Report = () => {
           intervention in chronobiology, sleep research and environmental
           psychology experiments.
         </p>
-
-        <Chart
-          radianceOrIrradiance={radianceOrIrradiance}
-          rows={rows}
-          sampleCount={sampleCount}
-          measurementLabels={measurementLabels}
-        />
-
+        {powerMode && (
+          <Chart
+            radianceOrIrradiance={radianceOrIrradiance}
+            rows={rows}
+            sampleCount={sampleCount}
+            measurementLabels={measurementLabels}
+          />
+        )}
         <h2 className="my-3">Stimulus specification tables</h2>
 
         <CalculationTable
@@ -57,6 +63,10 @@ const Report = () => {
           sampleCount={sampleCount}
           radianceOrIrradiance={radianceOrIrradiance}
           measurementLabels={measurementLabels}
+          isLoaded={isLoaded}
+          setLoaded={setLoaded}
+          refHAB={refHAB}
+          setRefHAB={setRefHAB}
         />
 
         <h2 className="my-3">Full spectral power distribution</h2>
@@ -65,6 +75,7 @@ const Report = () => {
           rows={rows}
           sampleCount={sampleCount}
           radianceOrIrradiance={radianceOrIrradiance}
+          measurementLabels={measurementLabels}
         />
       </div>
     </div>

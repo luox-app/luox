@@ -132,6 +132,7 @@ const UploadForm = ({
               message: "Invalid File Format. File Needs To Be In .CSV Format",
             },
           ]);
+          reset();
           return;
         }
         parseCSV(file).then(({ data, errors: csvErrors }) => {
@@ -144,13 +145,13 @@ const UploadForm = ({
         });
       } else if (fileType === "spdx") {
         if (file.name.toLowerCase().indexOf(".spdx") === -1) {
-          reset();
           setErrors([
             {
               row: ALL_ROW_CONST,
               message: "Invalid File Format. File Needs To Be In .SPDX Format",
             },
           ]);
+          reset();
           return;
         }
         const reader = new FileReader();
@@ -225,19 +226,18 @@ const UploadForm = ({
   useEffect(() => {
     if (csv.length > 0) {
       const sampleCount = csv[0].length - 1;
-
       if (absoluteOrRelative === "absolute") {
         setRows(scaleSamples(csv, areaScale, powerScale));
+        setLoaded(true);
       } else {
         const powers = Object.fromEntries(
           Object.entries(relativePowers)
             .map(([k, v]) => [k, parseFloat(v)])
             .filter(([, v]) => !Number.isNaN(v) && v > 0)
         );
-
         setRows(relativeToAbsolute(csv, sampleCount, powers));
+        setLoaded(true);
       }
-
       setSampleCount(sampleCount);
     } else {
       setRows([]);
@@ -245,6 +245,7 @@ const UploadForm = ({
     }
   }, [
     setRows,
+    setLoaded,
     setSampleCount,
     measurementLabels,
     csv,

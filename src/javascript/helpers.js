@@ -1,6 +1,10 @@
 export const asExponential = (number) => {
   const parts = number.toExponential(2).split(/(e\+|-)/);
-  return parts[0] + parts[1] + parts[2].padStart(2, "0");
+  let result = String(number);
+  if (parts[2]) {
+    result = parts[0] + parts[1] + parts[2].padStart(2, "0");
+  }
+  return result;
 };
 
 export const asDecimal = (number, precision = 4) => number.toFixed(precision);
