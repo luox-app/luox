@@ -136,7 +136,7 @@ This Code of Conduct applies within all community spaces, and also applies when 
 
 ##### Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement via email at [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk). All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement via email at [manuel.spitschan@tum.de](mailto:manuel.spitschan@tum.de). All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 
@@ -300,7 +300,7 @@ These terms tell you the rules for using our website [https://luox.app/](https:/
 
 #### Who we are and how to contact us
 
-Our site operated by the joint research group Chronobiology & Health at the Technical University of Munich and Translational Sensory and Circadian Neuroscience at the Max Planck Institute for Biological Cybernetics (Prof. Dr. Manuel Spitschan). To contact us, please email [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk).
+Our site operated by the joint research group Chronobiology & Health at the Technical University of Munich and Translational Sensory and Circadian Neuroscience at the Max Planck Institute for Biological Cybernetics (Prof. Dr. Manuel Spitschan). To contact us, please email [manuel.spitschan@tum.de](mailto:manuel.spitschan@tum.de).
 
 #### By using our site you accept these terms
 
@@ -370,7 +370,7 @@ Our site must not be framed on any other site, nor may you create a link to any 
 
 We reserve the right to withdraw linking permission without notice.
 
-If you wish to link to or make any use of content on our site other than that set out above, please contact [luox-support@psy.ox.ac.uk](mailto:luox-support@psy.ox.ac.uk).
+If you wish to link to or make any use of content on our site other than that set out above, please contact [manuel.spitschan@tum.de](mailto:manuel.spitschan@tum.de).
 
 #### Which country's laws apply to any disputes?
 
