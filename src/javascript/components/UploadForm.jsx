@@ -228,7 +228,6 @@ const UploadForm = ({
       const sampleCount = csv[0].length - 1;
       if (absoluteOrRelative === "absolute") {
         setRows(scaleSamples(csv, areaScale, powerScale));
-        setLoaded(true);
       } else {
         const powers = Object.fromEntries(
           Object.entries(relativePowers)
@@ -236,8 +235,8 @@ const UploadForm = ({
             .filter(([, v]) => !Number.isNaN(v) && v > 0)
         );
         setRows(relativeToAbsolute(csv, sampleCount, powers));
-        setLoaded(true);
       }
+      setLoaded(true);
       setSampleCount(sampleCount);
     } else {
       setRows([]);
@@ -247,7 +246,7 @@ const UploadForm = ({
     setRows,
     setLoaded,
     setSampleCount,
-    measurementLabels,
+    // measurementLabels,
     csv,
     powerScale,
     areaScale,
