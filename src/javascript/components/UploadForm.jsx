@@ -516,7 +516,7 @@ RelativePower.propTypes = {
 const MeasurementLabels = ({ measurementLabels, onChange }) => {
   return (
     <>
-      {"My measurements are labelled "}
+      {"Label my measurements as "}
       {Object.entries(measurementLabels).map(([key, label], index) => (
         <React.Fragment key={key}>
           <input
