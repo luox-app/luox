@@ -1,6 +1,6 @@
 import React from "react";
 import ReactRouterPropTypes from "react-router-prop-types";
-import luoxIcon from "../../images/icon.svg";
+import luoxIcon from "../../images/logo.svg";
 
 const NavBar = ({ location }) => {
   const isHome = location.pathname === "/";
@@ -9,9 +9,8 @@ const NavBar = ({ location }) => {
   const isAbout = location.pathname === "/about";
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <img src={luoxIcon} width="1%" alt="luox icon" />
       <a className="navbar-brand" href="/">
-        luox {isHome && <span className="sr-only">(current)</span>}
+        <img src={luoxIcon} width="2%" alt="luox logo" />
       </a>
       <button
         className="navbar-toggler"
