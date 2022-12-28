@@ -9,9 +9,9 @@ const NavBar = ({ location }) => {
   const isAbout = location.pathname === "/about";
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <img src={luoxIcon} width="5%" alt="luox icon" />{" "}
+      <img src={luoxIcon} width="2%" alt="luox icon" />
       <a className="navbar-brand" href="/">
-        Home {isHome && <span className="sr-only">(current)</span>}
+        {" "}{" "}Home {isHome && <span className="sr-only">(current)</span>}
       </a>
       <button
         className="navbar-toggler"
