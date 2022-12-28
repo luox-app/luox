@@ -11,7 +11,7 @@ const NavBar = ({ location }) => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <img
         src={luoxIcon}
-        style="padding: 0px 10px 0px 0px;"
+        style={padding: "0px 10px 0px 0px"}
         width="5%"
         alt="luox logo"
       />
