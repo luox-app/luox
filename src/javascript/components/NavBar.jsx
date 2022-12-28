@@ -11,7 +11,8 @@ const NavBar = ({ location }) => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <img src={luoxIcon} width="2%" alt="luox icon" />
       <a className="navbar-brand" href="/">
-        {" "}{" "}Home {isHome && <span className="sr-only">(current)</span>}
+        {" "}
+        Home {isHome && <span className="sr-only">(current)</span>}
       </a>
       <button
         className="navbar-toggler"
