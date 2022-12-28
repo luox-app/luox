@@ -17,6 +17,8 @@ const Intro = () => {
     <>
       <div className="row">
         <div className="col-lg-8">
+          <p></p>
+
           <p>
             <a href="http://luox.app/">
               <img src={luoxLogo} width="30%" alt="luox logo" />
