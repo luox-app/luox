@@ -22,7 +22,7 @@ const Intro = () => {
               <img src={luoxLogo} width="30%" alt="luox logo" />
             </a>
           </p>
-    
+
           <p className="lead mb-4">
             luox is a free-to-use and open-source tool for calculating light-
             and lighting-related quantities directly in the browser. The tool
