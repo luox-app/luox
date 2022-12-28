@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import WellcomeLogo from "../../images/wellcome-logo.png";
+import luoxLogo from "../../images/logo.svg";
 import SllLogo from "../../images/society-of-light-and-lighting-logo.png";
 import UooLogo from "../../images/university-of-oxford-logo.svg";
 import CieLogo from "../../images/cie-logo.jpg";
@@ -16,7 +17,11 @@ const Intro = () => {
     <>
       <div className="row">
         <div className="col-lg-8">
-          <h1 className="mt-5 mb-4">Home</h1>
+          <p>
+            <a href="http://luox.app/">
+              <img src={luoxLogo} width="30%" alt="luox logo" />
+            </a>
+          </p>
 
           <p className="lead mb-4">
             luox is a free-to-use and open-source tool for calculating light-
