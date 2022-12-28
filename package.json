@@ -43,7 +43,7 @@
     "jest": "^26.4.2",
     "jest-cli": "^27.4.7",
     "lodash": "^4.17.21",
-    "markdown-loader": "^6.0.0",
+    "markdown-loader": "^8.0.0",
     "node-sass": "^5.0.0",
     "postcss": "^8.4.14",
     "postcss-loader": "^4.3.0",
