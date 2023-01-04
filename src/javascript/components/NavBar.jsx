@@ -10,7 +10,13 @@ const NavBar = ({ location }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand" href="/">
-      <img src={luoxIcon} width="30" height="30" className="d-inline-block align-top mr-3" alt="luox icon" />
+        <img
+          src={luoxIcon}
+          width="30"
+          height="30"
+          className="d-inline-block align-top mr-3"
+          alt="luox icon"
+        />
         Home {isHome && <span className="sr-only">(current)</span>}
       </a>
       <button
