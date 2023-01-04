@@ -15,8 +15,8 @@ const Intro = () => {
 
   return (
     <>
-      <div className="row">
-        <div className="col-lg-8">
+      <div className="row mt-5">
+        <div className="col-12">
           <p>
             {" "}
             <a href="http://luox.app/">
@@ -63,10 +63,10 @@ const Intro = () => {
       </div>
 
       <div className="row">
-        <div className="col-lg-8">
+        <div className="col-12">
           <h3 className="my-4">Funding & Support</h3>
           <div className="row">
-            <div className="col">
+            <div className="col-3">
               <a href="http://www.wellcome.ac.uk/">
                 <img
                   src={WellcomeLogo}
@@ -79,7 +79,7 @@ const Intro = () => {
                 Wellcome Trust (204686/Z/16/Z, 204686/Z/16/C)
               </p>
             </div>
-            <div className="col">
+            <div className="col-3">
               <a href="https://www.cibse.org/society-of-light-and-lighting">
                 <img
                   src={SllLogo}
@@ -92,7 +92,7 @@ const Intro = () => {
                 Society of Light & Lighting (2020 Jean Heap Bursary)
               </p>
             </div>
-            <div className="col">
+            <div className="col-3">
               <a href="https://www.ox.ac.uk/">
                 <img
                   src={UooLogo}
@@ -106,7 +106,7 @@ const Intro = () => {
                 University of Oxford van Houten Fund (VH-148)
               </p>
             </div>
-            <div className="col">
+            <div className="col-3">
               <a href="https://www.ies.org/">
                 <img
                   src={IesLogo}
@@ -120,9 +120,8 @@ const Intro = () => {
               </p>
             </div>
           </div>
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="col">
+          <div className="row justify-content-center">
+              <div className="col-6">
                 <a href="https://nrc.canada.ca/en">
                   <img
                     src={NRCLogo}
@@ -134,13 +133,12 @@ const Intro = () => {
                 <p style={{ fontSize: "75%" }} className="text-center">
                   National Research Council of Canada
                 </p>
-              </div>
             </div>
           </div>
         </div>
       </div>
       <div className="row">
-        <div className="col-lg-8">
+        <div className="col-12">
           <h3 className="my-4">Validation</h3>
           <p>
             This software incorporates methods, formulae, spectral function
@@ -172,7 +170,7 @@ const Intro = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col-lg-8">
+        <div className="col-12">
           <p className="my-4">
             This site is powered by{" "}
             <a href="https://www.netlify.com/" title="Netlify">

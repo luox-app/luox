@@ -8,7 +8,7 @@ const GenerateCSV = () => {
 
   return (
     <div className="row">
-      <div className="col-lg-8">
+      <div className="col-12">
         <h1 className="my-5">Format instructions</h1>
 
         <p className="lead my-5">
