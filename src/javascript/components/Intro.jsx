@@ -121,18 +121,18 @@ const Intro = () => {
             </div>
           </div>
           <div className="row justify-content-center">
-              <div className="col-6">
-                <a href="https://nrc.canada.ca/en">
-                  <img
-                    src={NRCLogo}
-                    width="100%"
-                    className="img-fluid nrclogo"
-                    alt="National Research Council of Canada logo"
-                  />
-                </a>
-                <p style={{ fontSize: "75%" }} className="text-center">
-                  National Research Council of Canada
-                </p>
+            <div className="col-6">
+              <a href="https://nrc.canada.ca/en">
+                <img
+                  src={NRCLogo}
+                  width="100%"
+                  className="img-fluid nrclogo"
+                  alt="National Research Council of Canada logo"
+                />
+              </a>
+              <p style={{ fontSize: "75%" }} className="text-center">
+                National Research Council of Canada
+              </p>
             </div>
           </div>
         </div>
