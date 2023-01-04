@@ -13,7 +13,7 @@ const About = () => {
   return (
     <>
       <div className="row mt-3">
-        <div className="col-lg-8">
+        <div className="col-12">
           <div className="row d-flex flex-wrap align-items-center">
             <div className="col-3">
               <a href="https://www.sg.tum.de/en/chronobiology/home/">
@@ -39,7 +39,7 @@ const About = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col-lg-8">
+        <div className="col-12">
           <h1 className="my-5">About this application</h1>
           {ReactHtmlParser(html)}
           <h2 id="version-information">Version information</h2>
