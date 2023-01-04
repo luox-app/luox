@@ -20,7 +20,7 @@ const Intro = () => {
           <p>
             {" "}
             <a href="http://luox.app/">
-              <img src={luoxLogo} width="30%" alt="luox logo" />
+              <img src={luoxLogo} width="20%" alt="luox logo" />
             </a>
           </p>
 
