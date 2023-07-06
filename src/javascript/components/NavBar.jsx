@@ -91,7 +91,7 @@ const NavBar = ({ location }) => {
             </a>
           </li>
         </ul>
-        <i className="bi bi-list mobile-nav-toggle"></i>
+        <i className="bi bi-list mobile-nav-toggle" />
       </nav>
     </div>
   );

@@ -5,4 +5,4 @@ dist
 *.yaml
 *.json
 *.css
-src/assets/*
+assets/*

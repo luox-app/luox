@@ -14,14 +14,9 @@ import FooterBar from "./FooterBar";
 const NavBarWithRouter = withRouter(NavBar);
 const FooterBarWithRouter = withRouter(FooterBar);
 
-let home_active = false;
-console.log(window.location.href);
-console.log(window.location.origin);
-if (
-  window.location.href == window.location.origin ||
-  window.location.href == window.location.origin + "/"
-) {
-  home_active = true;
+let homeActive = false;
+if (window.location.pathname === "/") {
+  homeActive = true;
 }
 
 const App = () => {
@@ -32,7 +27,7 @@ const App = () => {
         <header
           id="header"
           className={
-            home_active
+            homeActive
               ? "fixed-top d-flex align-items-center header-transparent"
               : "fixed-top d-flex align-items-center"
           }
@@ -66,10 +61,10 @@ const App = () => {
           <FooterBarWithRouter />
         </footer>
         <a
-          href="#"
+          href="/#"
           className="back-to-top d-flex align-items-center justify-content-center"
         >
-          <i className="bi bi-arrow-up-short"></i>
+          <i className="bi bi-arrow-up-short" />
         </a>
       </Router>
     </div>
