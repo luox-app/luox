@@ -1,0 +1,46 @@
+#header .logo h1 {
+    line-height: 1.5 !important;
+}
+
+#header.header-scrolled {
+    background: rgba(30, 67, 86, 1);
+    height: 60px;
+}
+
+#hero {
+    height: auto !important;
+}
+
+.portfolio {
+    padding-bottom: 0px !important;
+}
+
+.portfolio .portfolio-item {
+    /* height: 300px !important; */
+    background: none !important;
+    min-height: auto !important;
+    padding: 10px 40px !important;
+}
+.portfolio-item > p {
+    margin-top: 10px !important;
+}
+
+.bg-white {
+    background-color: #fff !important;
+}
+
+.py-30 {
+    padding-top: 30% !important;
+    padding-bottom: 30% !important;
+}
+
+#hero::after {
+    background-image: linear-gradient(to right, rgba(30, 67, 86, 1), rgba(30, 67, 86, 0.9)), url("../images/light.jpeg") !important;
+    background-position: initial;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.features .row+.row {
+    margin-top: 10px;
+}
