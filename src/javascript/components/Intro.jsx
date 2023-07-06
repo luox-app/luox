@@ -17,20 +17,20 @@ const Intro = () => {
     <>
       <section
         id="hero"
-        class="d-flex justify-cntent-center align-items-center"
+        className="d-flex justify-cntent-center align-items-center"
       >
         <div
           id="heroCarousel"
-          class="container carousel carousel-fade"
+          className="container carousel carousel-fade"
           data-bs-ride="carousel"
           data-bs-interval="5000"
         >
-          <div class="carousel-item active">
-            <div class="carousel-container">
-              <h2 class="animate__animated animate__fadeInDown">
+          <div className="carousel-item active">
+            <div className="carousel-container">
+              <h2 className="animate__animated animate__fadeInDown">
                 Welcome to <span>luox</span>
               </h2>
-              <p class="animate__animated animate__fadeInUp">
+              <p className="animate__animated animate__fadeInUp">
                 luox is a free-to-use and open-source tool for calculating
                 light- and lighting-related quantities directly in the browser.
                 The tool was inspired by the development of{" "}
@@ -61,7 +61,7 @@ const Intro = () => {
               </p>
               <a
                 href="/format-info"
-                class="btn-get-started animate__animated animate__fadeInUp"
+                className="btn-get-started animate__animated animate__fadeInUp"
               >
                 Start Now
               </a>
@@ -116,20 +116,20 @@ const Intro = () => {
         </div>
       </div> */}
       <main>
-        <section class="portfolio">
-          <div class="container">
-            <div class="section-title">
+        <section className="portfolio">
+          <div className="container">
+            <div className="section-title">
               <h2>Funding & Support</h2>
             </div>
 
             <div
-              class="row portfolio-container  justify-content-center"
+              className="row portfolio-container  justify-content-center"
               data-aos="fade-up"
               data-aos-easing="ease-in-out"
               data-aos-duration="500"
             >
-              {/* <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 portfolio-wrap filter-card ">
-                <div class="portfolio-item">
+              {/* <div className="col-lg-3 col-md-3 col-sm-6 col-xs-6 portfolio-wrap filter-card ">
+                <div className="portfolio-item">
                   <a href="http://www.wellcome.ac.uk/">
                     <img
                       src={WellcomeLogo}
@@ -137,14 +137,14 @@ const Intro = () => {
                       width="100%"
                       height="100%"
                     />
-                    <div class="portfolio-info">
+                    <div className="portfolio-info">
                       <h3>Wellcome Trust (204686/Z/16/Z, 204686/Z/16/C)</h3>
                     </div>
                   </a>
                 </div>
               </div>
-              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 portfolio-wrap filter-card">
-                <div class="portfolio-item">
+              <div className="col-lg-3 col-md-3 col-sm-6 col-xs-6 portfolio-wrap filter-card">
+                <div className="portfolio-item">
                   <a href="https://www.cibse.org/society-of-light-and-lighting">
                     <img
                       src={SllLogo}
@@ -152,7 +152,7 @@ const Intro = () => {
                       width="100%"
                       height="100%"
                     />
-                    <div class="portfolio-info">
+                    <div className="portfolio-info">
                       <h3>
                         Society of Light & Lighting (2020 Jean Heap Bursary)
                       </h3>
@@ -160,44 +160,44 @@ const Intro = () => {
                   </a>
                 </div>
               </div>
-              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 portfolio-wrap filter-card">
-                <div class="portfolio-item ">
+              <div className="col-lg-3 col-md-3 col-sm-6 col-xs-6 portfolio-wrap filter-card">
+                <div className="portfolio-item ">
                   <a href="https://www.ox.ac.uk/">
                     <img
                       src={UooLogo}
                       alt="University of Oxford logo"
                       width="100%"
                     />
-                    <div class="portfolio-info">
+                    <div className="portfolio-info">
                       <h3>University of Oxford van Houten Fund (VH-148)</h3>
                     </div>
                   </a>
                 </div>
               </div>
-              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 portfolio-wrap filter-card">
-                <div class="portfolio-item py-30 px-4">
+              <div className="col-lg-3 col-md-3 col-sm-6 col-xs-6 portfolio-wrap filter-card">
+                <div className="portfolio-item py-30 px-4">
                   <a href="https://www.ies.org/">
                     <img
                       src={IesLogo}
                       alt="Illuminating Engineering Society logo"
                       width="100%"
                     />
-                    <div class="portfolio-info">
+                    <div className="portfolio-info">
                       <h3>Illuminating Engineering Society</h3>
                     </div>
                   </a>
                 </div>
               </div>
-              <div class="col-lg-6 offset-3 portfolio-wrap filter-card">
-                <div class="portfolio-item  py-30 px-4">
+              <div className="col-lg-6 offset-3 portfolio-wrap filter-card">
+                <div className="portfolio-item  py-30 px-4">
                   <a href="https://nrc.canada.ca/en">
                     <img
                       src={NRCLogo}
-                      class="img-fluid"
+                      className="img-fluid"
                       alt="National Research Council of Canada logo"
                       width="100%"
                     />
-                    <div class="portfolio-info">
+                    <div className="portfolio-info">
                       <h3>National Research Council of Canada</h3>
                     </div>
                   </a>
@@ -282,20 +282,20 @@ const Intro = () => {
             </div>
           </div>
         </section>
-        <section class="features">
-          <div class="container">
-            <div class="section-title">
+        <section className="features">
+          <div className="container">
+            <div className="section-title">
               <h2>Validation</h2>
             </div>
 
-            <div class="row" data-aos="fade-up">
-              <div class="col-md-2">
+            <div className="row" data-aos="fade-up">
+              <div className="col-md-2">
                 <a href="http://cie.co.at/">
                   <img src={CieLogo} width="100%" alt="CIE logo" />
                 </a>
               </div>
-              <div class="col-md-10 pt-4">
-                <p class="fst-italic">
+              <div className="col-md-10 pt-4">
+                <p className="fst-italic">
                   This software incorporates methods, formulae, spectral
                   function calculations and spectra from the International
                   Commission on Illumination (CIE). The CIE endorses this
@@ -311,14 +311,14 @@ const Intro = () => {
               </div>
             </div>
 
-            <div class="row" data-aos="fade-up">
-              <div class="col-md-3 order-1 order-md-2">
+            <div className="row" data-aos="fade-up">
+              <div className="col-md-3 order-1 order-md-2">
                 <a href="http://www.ies.org/">
                   <img src={IesLogo} width="100%" alt="IES logo" />
                 </a>
               </div>
-              <div class="col-md-9 pt-4 order-2 order-md-1">
-                <p class="fst-italic">
+              <div className="col-md-9 pt-4 order-2 order-md-1">
+                <p className="fst-italic">
                   This software has been validated to load SPDX files according
                   to TM-27-20. This software offers optional calculation of
                   indices from IES TM-30-20. These optional calculations have

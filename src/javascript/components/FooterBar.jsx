@@ -2,8 +2,8 @@ import React from "react";
 
 const FooterBar = () => {
   return (
-    <div class="container">
-      <div class="copyright">
+    <div className="container">
+      <div className="copyright">
         &copy; Copyright{" "}
         <strong>
           <span>luox</span>

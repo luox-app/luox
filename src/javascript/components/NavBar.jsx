@@ -52,9 +52,9 @@ const NavBar = ({ location }) => {
     //     </ul>
     //   </div>
     // </nav>
-    <div class="container d-flex justify-content-between align-items-center">
-      <div class="logo">
-        <h1 class="text-light">
+    <div className="container d-flex justify-content-between align-items-center">
+      <div className="logo">
+        <h1 className="text-light">
           <a className="" href="/">
             <img
               src={luoxIcon}
@@ -68,30 +68,30 @@ const NavBar = ({ location }) => {
         </h1>
       </div>
 
-      <nav id="navbar" class="navbar">
+      <nav id="navbar" className="navbar">
         <ul>
           <li>
-            <a class={isHome ? "active" : ""} href="/">
+            <a className={isHome ? "active" : ""} href="/">
               Home
             </a>
           </li>
           <li>
-            <a class={isFormatInfo ? "active" : ""} href="/format-info">
+            <a className={isFormatInfo ? "active" : ""} href="/format-info">
               Format instructions
             </a>
           </li>
           <li>
-            <a class={isUpload ? "active" : ""} href="/upload">
+            <a className={isUpload ? "active" : ""} href="/upload">
               Upload spectrum and generate report
             </a>
           </li>
           <li>
-            <a class={isAbout ? "active" : ""} href="/about">
+            <a className={isAbout ? "active" : ""} href="/about">
               About
             </a>
           </li>
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
+        <i className="bi bi-list mobile-nav-toggle"></i>
       </nav>
     </div>
   );
