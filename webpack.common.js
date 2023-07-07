@@ -49,6 +49,15 @@ module.exports = {
         },
       },
       {
+        test: /\.(eot|ttf|woff|woff2?)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "../css/fonts/[name]-[hash:8].[ext]",
+          },
+        },
+      },
+      {
         test: /\.(scss)$/,
         use: [
           {
@@ -90,6 +99,10 @@ module.exports = {
         from: "version.json",
         context: "src/",
         to: ".",
+      },
+      {
+        from: "./assets",
+        to: "assets",
       },
     ]),
 
