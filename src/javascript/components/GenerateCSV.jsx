@@ -104,13 +104,13 @@ const GenerateCSV = () => {
                     To download example spectral power distribution, click on
                     Download Button.
                   </p>
-                  <Link
+                  <a
                     download="sample.csv"
                     href="/examples/sample.csv"
                     className="btn btn-primary"
                   >
                     Download
-                  </Link>
+                  </a>
                   <p className="pt-3">
                     Please note that the accuracy of calculations implemented
                     here depends on the uncertainties present in the uploaded
