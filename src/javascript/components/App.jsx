@@ -56,12 +56,12 @@ const App = () => {
           id="footer"
           data-aos="fade-up"
           data-aos-easing="ease-in-out"
-          data-aos-duration="500"
+          data-aos-duration="200"
         >
           <FooterBarWithRouter />
         </footer>
         <a
-          href="/#"
+          href="#"
           className="back-to-top d-flex align-items-center justify-content-center"
         >
           <i className="bi bi-arrow-up-short" />

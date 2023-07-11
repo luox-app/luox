@@ -44,3 +44,7 @@
 .features .row+.row {
     margin-top: 10px !important;
 }
+
+.generate-csv-table th, .generate-csv-table td {
+    padding: 15px !important;
+}
