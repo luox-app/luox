@@ -22,7 +22,7 @@ const GenerateCSV = () => {
         </section>
         <section className="why-us pt-2">
           <div className="container p-5">
-            <div className="row">
+            <div className="row justify-content-center">
               <div className="section-title">
                 <h2>Specification</h2>
                 <p>
@@ -35,7 +35,7 @@ const GenerateCSV = () => {
               <div className="row px-5">
                 <div className="col-md-12">
                   <table className="table table-striped table-bordered table-hover generate-csv-table mb-5">
-                    <thead className="table-dark">
+                    <thead>
                       <tr>
                         <th>Column</th>
                         <th>Required?</th>

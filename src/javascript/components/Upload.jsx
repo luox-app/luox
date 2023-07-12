@@ -49,53 +49,64 @@ const Upload = () => {
 
   return (
     <>
-      <div className="row">
-        <div className="col">
-          <h1 className="mt-5">Upload spectrum and generate report</h1>
-          <label htmlFor="pro_mode_checkbox" className="promode-label">
-            <input
-              type="checkbox"
-              id="pro_mode_checkbox"
-              value="proMode"
-              checked={powerMode}
-              onChange={userModeChange}
-            />{" "}
-            Power user mode (check if your SPD columns &gt; 5)
-          </label>
-        </div>
-      </div>
-      <LoadingIndicator />
+      <main id="main">
+        <section className="portfolio">
+          <div className="container">
+            <div className="section-title">
+              <h2>Upload spectrum and generate report</h2>
+              <p className="justify-content-center">
+                <label htmlFor="pro_mode_checkbox" className="promode-label">
+                  <input
+                    type="checkbox"
+                    id="pro_mode_checkbox"
+                    value="proMode"
+                    checked={powerMode}
+                    onChange={userModeChange}
+                  />{" "}
+                  Power user mode (check if your SPD columns &gt; 5)
+                </label>
+              </p>
+            </div>
+          </div>
+        </section>
+        <LoadingIndicator />
+        <section className="why-us pt-2">
+          <div className="container p-5 text-center">
+            <div className="row justify-content-center">
+              <UploadForm
+                radianceOrIrradiance={radianceOrIrradiance}
+                measurementLabels={measurementLabels}
+                setRadianceOrIrradiance={setRadianceOrIrradiance}
+                setRows={setRows}
+                setSampleCount={setSampleCount}
+                setMeasurementLabels={setMeasurementLabels}
+                csv={csv}
+                setCSV={setCSV}
+                relativePowers={relativePowers}
+                setRelativePowers={setRelativePowers}
+                setPowerMode={setPowerMode}
+                powerMode={powerMode}
+                fileInput={fileInput}
+                setRefHAB={setRefHAB}
+                isLoaded={isLoaded}
+                setLoaded={setLoaded}
+              />
 
-      <UploadForm
-        radianceOrIrradiance={radianceOrIrradiance}
-        measurementLabels={measurementLabels}
-        setRadianceOrIrradiance={setRadianceOrIrradiance}
-        setRows={setRows}
-        setSampleCount={setSampleCount}
-        setMeasurementLabels={setMeasurementLabels}
-        csv={csv}
-        setCSV={setCSV}
-        relativePowers={relativePowers}
-        setRelativePowers={setRelativePowers}
-        setPowerMode={setPowerMode}
-        powerMode={powerMode}
-        fileInput={fileInput}
-        setRefHAB={setRefHAB}
-        isLoaded={isLoaded}
-        setLoaded={setLoaded}
-      />
-
-      <Results
-        rows={rows}
-        sampleCount={sampleCount}
-        radianceOrIrradiance={radianceOrIrradiance}
-        measurementLabels={measurementLabels}
-        powerMode={powerMode}
-        isLoaded={isLoaded}
-        setLoaded={setLoaded}
-        refHAB={refHAB}
-        setRefHAB={setRefHAB}
-      />
+              <Results
+                rows={rows}
+                sampleCount={sampleCount}
+                radianceOrIrradiance={radianceOrIrradiance}
+                measurementLabels={measurementLabels}
+                powerMode={powerMode}
+                isLoaded={isLoaded}
+                setLoaded={setLoaded}
+                refHAB={refHAB}
+                setRefHAB={setRefHAB}
+              />
+            </div>
+          </div>
+        </section>
+      </main>
     </>
   );
 };

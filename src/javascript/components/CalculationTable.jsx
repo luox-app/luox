@@ -253,7 +253,7 @@ const CalculationTable = ({
   return (
     <section>
       <div className="row">
-        <div className="col text-left">
+        <div className="col text-left py-2">
           <label htmlFor="calculation-exponential-notation">
             <input
               type="checkbox"
@@ -264,7 +264,7 @@ const CalculationTable = ({
             {" Use exponential notation?"}
           </label>
         </div>
-        <div className="col text-center">
+        <div className="col text-center py-2">
           <label htmlFor="calculation-advanced-calculations">
             <input
               type="checkbox"
@@ -275,7 +275,7 @@ const CalculationTable = ({
             {" Display advanced calculations?"}
           </label>
         </div>
-        <div className="col text-center">
+        <div className="col text-center py-2">
           <label htmlFor="tm30display">
             <input
               type="checkbox"
@@ -296,7 +296,7 @@ const CalculationTable = ({
           </a>
         </div>
       </div>
-      <table className="table table-sm mt-3 result-table">
+      <table className="table table-sm table-striped table-bordered table-hover generate-csv-table mt-5 result-table">
         <CalculationTableHeader measurementLabels={measurementLabels} />
         <tbody>
           <CalculationTableRow
@@ -444,7 +444,7 @@ const CalculationTable = ({
       </table>
       {tm30display && (
         <>
-          <h2 className="my-3">Colour Vector Graphics</h2>
+          <h2 className="mt-4 mb-2">Colour Vector Graphics</h2>
           <CVGPlot measurementLabels={measurementLabels} refHAB={refHAB} />
         </>
       )}

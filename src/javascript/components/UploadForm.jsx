@@ -298,7 +298,7 @@ const UploadForm = ({
                 ref={fileInput}
                 disabled={isLoaded}
                 onChange={handleFileInput}
-                className="form-control-file"
+                className="form-control-file ml-100 mt-2"
                 id="file-input"
               />
             </div>

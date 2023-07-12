@@ -52,20 +52,9 @@ const App = () => {
             <Intro />
           </Route>
         </Switch>
-        <footer
-          id="footer"
-          data-aos="fade-up"
-          data-aos-easing="ease-in-out"
-          data-aos-duration="200"
-        >
+        <footer id="footer">
           <FooterBarWithRouter />
         </footer>
-        {/* <a
-          href="#"
-          className="back-to-top d-flex align-items-center justify-content-center"
-        >
-          <i className="bi bi-arrow-up-short" />
-        </a> */}
       </Router>
     </div>
   );

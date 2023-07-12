@@ -47,7 +47,7 @@ const SpectraTableHeader = ({
   return (
     <thead>
       <tr>
-        <th colSpan={sampleCount + 1}>
+        <th colSpan={sampleCount + 1} className="text-center">
           Spectral {radianceOrIrradiance} [
           {radianceOrIrradianceSIUnit(radianceOrIrradiance)}]
         </th>
@@ -105,7 +105,7 @@ const SpectraTable = ({
   return (
     <section>
       <div className="row">
-        <div className="col text-left">
+        <div className="col text-left py-2">
           <label htmlFor="spectra-exponential-notation">
             <input
               type="checkbox"
@@ -116,7 +116,7 @@ const SpectraTable = ({
             {" Use exponential notation?"}
           </label>
         </div>
-        <div className="col text-center">
+        <div className="col text-center py-2">
           {truncateTable() && (
             <label htmlFor="spectra-all-rows">
               <input
@@ -139,7 +139,7 @@ const SpectraTable = ({
           </a>
         </div>
       </div>
-      <table className="table table-sm mt-3 result-table">
+      <table className="table table-sm table-striped table-bordered table-hover generate-csv-table mt-5 result-table">
         <SpectraTableHeader
           sampleCount={sampleCount}
           measurementLabels={measurementLabels}

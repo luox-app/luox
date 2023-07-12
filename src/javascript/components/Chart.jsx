@@ -52,9 +52,9 @@ const Chart = ({
 
   return (
     <section>
-      <div className="container">
+      <div className="container p-4">
         <div className="row">
-          <div className="col-sm">
+          <div className="col-sm pt-5">
             <div className="row">
               <div>
                 <h5>Y-axis scale</h5>
