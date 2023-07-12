@@ -49,7 +49,7 @@ const Upload = () => {
 
   return (
     <>
-      <main id="main">
+      <main id="main" className="upload-main">
         <section className="portfolio">
           <div className="container">
             <div className="section-title">
