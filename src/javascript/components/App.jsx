@@ -9,10 +9,8 @@ import Upload from "./Upload";
 import Report from "./Report";
 import About from "./About";
 import ScrollToTop from "./ScrollToTop";
-import FooterBar from "./FooterBar";
 
 const NavBarWithRouter = withRouter(NavBar);
-const FooterBarWithRouter = withRouter(FooterBar);
 
 let homeActive = false;
 if (window.location.pathname === "/") {
@@ -52,9 +50,12 @@ const App = () => {
             <Intro />
           </Route>
         </Switch>
-        <footer id="footer">
-          <FooterBarWithRouter />
-        </footer>
+        <a
+          href="/#"
+          className="back-to-top d-flex align-items-center justify-content-center"
+        >
+          <i className="bi bi-arrow-up-short" />
+        </a>
       </Router>
     </div>
   );
