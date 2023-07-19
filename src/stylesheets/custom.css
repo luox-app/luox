@@ -233,3 +233,16 @@
     padding-left: 20px !important;
     margin: 10px 0px 0px 0px !important;
 }
+
+.about-us-toggle-link {
+    color: #007bff !important;
+}
+
+.about-us-toggle-link:hover {
+    color: #0056b3 !important;
+}
+
+.accordion-list-sub .row-div {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}

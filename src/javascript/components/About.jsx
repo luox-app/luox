@@ -257,42 +257,17 @@ const About = () => {
                                     </p>
                                   </div>
                                 </li>
-                                {/* <li>
-                                  <a
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#accordion-list-1-4"
-                                    className="collapsed"
-                                  >
-                                    <span>1-4</span> Announcements
-                                  </a>
-                                  <div
-                                    id="accordion-list-1-4"
-                                    className="collapse"
-                                    data-bs-parent=".accordion-list-sub-1"
-                                  >
-                                    <p>
-                                      Eleifend mi in nulla posuere sollicitudin
-                                      aliquam ultrices sagittis orci. Faucibus
-                                      pulvinar elementum integer enim. Sem nulla
-                                      pharetra diam sit amet nisl suscipit.
-                                      Rutrum tellus pellentesque eu tincidunt.
-                                      Lectus urna duis convallis convallis
-                                      tellus. Urna molestie at elementum eu
-                                      facilisis sed odio morbi quis
-                                    </p>
-                                  </div>
-                                </li> */}
                                 <li>
                                   <a
                                     href="#!"
                                     data-bs-toggle="collapse"
-                                    data-bs-target="#accordion-list-1-5"
+                                    data-bs-target="#accordion-list-1-4"
                                     className="collapsed"
                                   >
-                                    <span>1-5</span> Support
+                                    <span>1-4</span> Support
                                   </a>
                                   <div
-                                    id="accordion-list-1-5"
+                                    id="accordion-list-1-4"
                                     className="collapse"
                                     data-bs-parent=".accordion-list-sub-1"
                                   >
@@ -311,14 +286,14 @@ const About = () => {
                                   <a
                                     href="#!"
                                     data-bs-toggle="collapse"
-                                    data-bs-target="#accordion-list-1-6"
+                                    data-bs-target="#accordion-list-1-5"
                                     className="collapsed"
                                   >
-                                    <span>1-6</span> Bug reports and feature
+                                    <span>1-5</span> Bug reports and feature
                                     requests
                                   </a>
                                   <div
-                                    id="accordion-list-1-6"
+                                    id="accordion-list-1-5"
                                     className="collapse"
                                     data-bs-parent=".accordion-list-sub-1"
                                   >
@@ -356,13 +331,13 @@ const About = () => {
                                   <a
                                     href="#!"
                                     data-bs-toggle="collapse"
-                                    data-bs-target="#accordion-list-1-7"
+                                    data-bs-target="#accordion-list-1-6"
                                     className="collapsed"
                                   >
-                                    <span>1-7</span> Funding
+                                    <span>1-6</span> Funding
                                   </a>
                                   <div
-                                    id="accordion-list-1-7"
+                                    id="accordion-list-1-6"
                                     className="collapse"
                                     data-bs-parent=".accordion-list-sub-1"
                                   >
@@ -446,14 +421,14 @@ const About = () => {
                                   <a
                                     href="#!"
                                     data-bs-toggle="collapse"
-                                    data-bs-target="#accordion-list-1-8"
+                                    data-bs-target="#accordion-list-1-7"
                                     className="collapsed"
                                   >
-                                    <span>1-8</span> Contributing code of
+                                    <span>1-7</span> Contributing code of
                                     conduct
                                   </a>
                                   <div
-                                    id="accordion-list-1-8"
+                                    id="accordion-list-1-7"
                                     className="collapse"
                                     data-bs-parent=".accordion-list-sub-1"
                                   >
@@ -729,7 +704,7 @@ const About = () => {
                         data-bs-target="#accordion-list-2"
                         className="collapsed"
                       >
-                        <span>02</span> Usage
+                        <span>2</span> Usage
                       </a>
                       <div
                         id="accordion-list-2"
@@ -747,7 +722,7 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-2-1"
                                   >
-                                    <span>01</span> About urna duis?
+                                    <span>2-1</span> Quick start
                                   </a>
                                   <div
                                     id="accordion-list-2-1"
@@ -755,11 +730,90 @@ const About = () => {
                                     data-bs-parent=".accordion-list-sub-2"
                                   >
                                     <p>
-                                      Feugiat pretium nibh ipsum consequat.
-                                      Tempus iaculis urna id volutpat lacus
-                                      laoreet non curabitur gravida. Venenatis
-                                      lectus magna fringilla urna porttitor
-                                      rhoncus dolor purus non.
+                                      We provide a documented wizard for
+                                      uploading your files to the platform.
+                                    </p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a
+                                    href="#!"
+                                    data-bs-toggle="collapse"
+                                    className="collapsed"
+                                    data-bs-target="#accordion-list-2-2"
+                                  >
+                                    <span>2-2</span> Sharing spectra and
+                                    calculations using sharing URL
+                                  </a>
+                                  <div
+                                    id="accordion-list-2-2"
+                                    className="collapse"
+                                    data-bs-parent=".accordion-list-sub-2"
+                                  >
+                                    <p className="about-us-detail">
+                                      Spectra and calculations within the luox
+                                      platform can be shared using an URL that
+                                      directly encodes the uploaded
+                                      spectrum/spectra using Michael Herf&apos;s{" "}
+                                      <a href="https://github.com/herf/spdurl">
+                                        spdurl
+                                      </a>{" "}
+                                      package. The sharing URL will open a
+                                      view-only version of the platform. To copy
+                                      the sharing URL, scroll down to the bottom
+                                      of the page. Before sharing the URL,
+                                      please double-check that it opens
+                                      spectrum/spectra as expected.
+                                    </p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a
+                                    href="#!"
+                                    data-bs-toggle="collapse"
+                                    className="collapsed"
+                                    data-bs-target="#accordion-list-2-3"
+                                  >
+                                    <span>2-3</span> Requesting DOI for sharing
+                                    URL
+                                  </a>
+                                  <div
+                                    id="accordion-list-2-3"
+                                    className="collapse"
+                                    data-bs-parent=".accordion-list-sub-2"
+                                  >
+                                    <p className="about-us-detail">
+                                      We offer the option to request a digital
+                                      object identifier (DOI) linked to the
+                                      sharing URL. This DOI has to be requested
+                                      manually and the request will be vetted
+                                      manually. To request a DOI, please
+                                      complete this{" "}
+                                      <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=G96VzPWXk0-0uv5ouFLPkZQkeC9QuStHlpH3Nt-sDo1URExCVlBCNFdNWk02TDVVVFhYSkUyMUxETi4u">
+                                        form
+                                      </a>
+                                      . The DOI will be generated by generating
+                                      an entry for the sharing URL in the{" "}
+                                      <a href="https://pure.mpg.de/">
+                                        MPG.PuRE
+                                      </a>{" "}
+                                      and author information will be included in
+                                      the record. All luox sharing URLs added to
+                                      ORA will receive a unique luox number of
+                                      the format (<code>YYYY-####</code>;{" "}
+                                      <code>Y</code>=year). A running list of
+                                      luox sharing URLs with associated DOIs is
+                                      on this page, under{" "}
+                                      <a
+                                        href="#!"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#accordion-list-3"
+                                        className="about-us-toggle-link"
+                                      >
+                                        Depositions
+                                      </a>
+                                      . Please note that deposition of the
+                                      sharing URL into MPG.PuRE is permanent.
                                     </p>
                                   </div>
                                 </li>
@@ -776,7 +830,7 @@ const About = () => {
                         data-bs-target="#accordion-list-3"
                         className="collapsed"
                       >
-                        <span>03</span> Deposition
+                        <span>3</span> Deposition
                       </a>
                       <div
                         id="accordion-list-3"
@@ -794,7 +848,7 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-3-1"
                                   >
-                                    <span>01</span> About urna duis?
+                                    <span>3-1</span> List of depositions
                                   </a>
                                   <div
                                     id="accordion-list-3-1"
@@ -802,12 +856,98 @@ const About = () => {
                                     data-bs-parent=".accordion-list-sub-3"
                                   >
                                     <p>
-                                      Feugiat pretium nibh ipsum consequat.
-                                      Tempus iaculis urna id volutpat lacus
-                                      laoreet non curabitur gravida. Venenatis
-                                      lectus magna fringilla urna porttitor
-                                      rhoncus dolor purus non.
+                                      The following is a list of depositions
+                                      with assigned DOIs, up-to-date as of 1
+                                      February 2022.
                                     </p>
+                                    <div className="row mt-3 row-div">
+                                      <div className="col-md-12">
+                                        <table className="table table-striped table-bordered table-hover generate-csv-table mb-1">
+                                          <thead>
+                                            <tr>
+                                              <th>Deposition ID</th>
+                                              <th>Date</th>
+                                              <th>DOI</th>
+                                              <th>Depositor</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td>luox-2021-0001</td>
+                                              <td>23 January 2021</td>
+                                              <td>TBD</td>
+                                              <td>
+                                                Manuel Spitschan, University of
+                                                Oxford
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td>luox-2021-0002</td>
+                                              <td>18 February 2021</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.5287/bodleian:AeZAXN1km">
+                                                  10.5287/bodleian:AeZAXN1km
+                                                </a>
+                                              </td>
+                                              <td>
+                                                Jan-Frieder Harmsen, Maastricht
+                                                University
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td>luox-2021-0003</td>
+                                              <td>18 February 2021</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.5287/bodleian:dp7QEqYAm">
+                                                  10.5287/bodleian:dp7QEqYAm
+                                                </a>
+                                              </td>
+                                              <td>
+                                                Jan-Frieder Harmsen, Maastricht
+                                                University
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td>luox-2021-0004</td>
+                                              <td>18 February 2021</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.5287/bodleian:0ogQP5bb5">
+                                                  10.5287/bodleian:0ogQP5bb5
+                                                </a>
+                                              </td>
+                                              <td>
+                                                Jamie Zeitzer, Renske Lok &
+                                                Daniel Joyce, Stanford
+                                                University
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td>luox-2022-0001</td>
+                                              <td>01 February 2022</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.17617/2.3364820">
+                                                  10.17617/2.3364820
+                                                </a>
+                                              </td>
+                                              <td>Boris Hanák, Spectrasol</td>
+                                            </tr>
+                                            <tr>
+                                              <td>luox-2022-0002</td>
+                                              <td>01 February 2022</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.17617/2.3364831">
+                                                  10.17617/2.3364831
+                                                </a>
+                                              </td>
+                                              <td>
+                                                Jamie Zeitzer, Stanford
+                                                University
+                                              </td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
                                   </div>
                                 </li>
                               </ul>
@@ -823,7 +963,7 @@ const About = () => {
                         data-bs-target="#accordion-list-4"
                         className="collapsed"
                       >
-                        <span>04</span> Under the hood
+                        <span>4</span> Under the hood
                       </a>
                       <div
                         id="accordion-list-4"
@@ -841,19 +981,592 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-4-1"
                                   >
-                                    <span>01</span> About urna duis?
+                                    <span>4-1</span> Calculation definitions
                                   </a>
                                   <div
                                     id="accordion-list-4-1"
                                     className="collapse"
                                     data-bs-parent=".accordion-list-sub-4"
                                   >
+                                    <p className="about-us-detail">
+                                      All default calculations performed here
+                                      follow guidance from the{" "}
+                                      <a href="https://cie.co.at/">
+                                        International Commission on Illumination
+                                        (CIE)
+                                      </a>
+                                      .
+                                    </p>
                                     <p>
-                                      Feugiat pretium nibh ipsum consequat.
-                                      Tempus iaculis urna id volutpat lacus
-                                      laoreet non curabitur gravida. Venenatis
-                                      lectus magna fringilla urna porttitor
-                                      rhoncus dolor purus non.
+                                      Indices that are undefined for a given
+                                      test spectrum return a value of N/A. For
+                                      example, colour rendering and colour
+                                      fidelity are defined only when |D
+                                      <sub>uv</sub>| {"<"} 0.05.
+                                    </p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a
+                                    href="#!"
+                                    data-bs-toggle="collapse"
+                                    className="collapsed"
+                                    data-bs-target="#accordion-list-4-2"
+                                  >
+                                    <span>4-2</span> Precision and decimal
+                                    points
+                                  </a>
+                                  <div
+                                    id="accordion-list-4-2"
+                                    className="collapse"
+                                    data-bs-parent=".accordion-list-sub-4"
+                                  >
+                                    <p>
+                                      All calculations are computed with
+                                      double-precision floating point numbers
+                                      using JavaScript. In the browser, the
+                                      results are displayed up to four decimals
+                                      for all quantities (including those in
+                                      Advanced mode). When downloading
+                                      calculations, the precision will be higher
+                                      than displayed in the browser. The
+                                      possible ranges of numbers which can be
+                                      represented under the double precision
+                                      will then be limited to approximately 16
+                                      decimal places of precision. The
+                                      calculations in <em>_luox_</em> follow the
+                                      published documents strictly, including
+                                      any guidance concerning rounding at
+                                      intermediate stages. This can introduce
+                                      what appear to be rounding errors when
+                                      compared to other calculation tools. In
+                                      order to mitigate this issue and to
+                                      maximise transparency, <em>_luox_</em>{" "}
+                                      provides an option to display all
+                                      intermediate values in the calculation, in
+                                      which can be useful to track down errors.
+                                    </p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a
+                                    href="#!"
+                                    data-bs-toggle="collapse"
+                                    className="collapsed"
+                                    data-bs-target="#accordion-list-4-3"
+                                  >
+                                    <span>4-3</span> Effect functions and action
+                                    spectra
+                                  </a>
+                                  <div
+                                    id="accordion-list-4-3"
+                                    className="collapse"
+                                    data-bs-parent=".accordion-list-sub-4"
+                                  >
+                                    <div className="row mt-3 row-div">
+                                      <div className="col-md-12">
+                                        <table className="table table-striped table-bordered table-hover generate-csv-table mb-1">
+                                          <thead>
+                                            <tr>
+                                              <th>Name</th>
+                                              <th>Source document</th>
+                                              <th>
+                                                Wavelength spacing/range [nm]
+                                              </th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td>CIE 1931 xy (2°)</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://cie.co.at/publications/colorimetry-part-1-cie-standard-colorimetric-observers-0">
+                                                  ISO/CIE 11664-1:2019
+                                                </a>
+                                                , Table 1 (p. 10-21)
+                                              </td>
+                                              <td>1 / 360-830</td>
+                                            </tr>
+                                            <tr>
+                                              <td>CIE 1964 xy (10°)</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://cie.co.at/publications/colorimetry-part-1-cie-standard-colorimetric-observers-0">
+                                                  ISO/CIE 11664-1:2019
+                                                </a>
+                                                , Table 2 (p. 22-32)
+                                              </td>
+                                              <td>1 / 360-830</td>
+                                            </tr>
+                                            <tr>
+                                              <td>
+                                                CIE S 026/E:2018 a-opic action
+                                                spectra
+                                              </td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.25039/S026.2018">
+                                                  CIE S 026/E:2018
+                                                </a>
+                                                , Table 2 (p. 12-21)
+                                              </td>
+                                              <td>1 / 380-780</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                    <p className="about-us-detail">
+                                      Note: The CIE S 026/E:2018 a-opic action
+                                      spectra are available in tabulated form
+                                      from the{" "}
+                                      <a href="http://files.cie.co.at/S026_Table2_Data.xlsx">
+                                        CIE website
+                                      </a>{" "}
+                                      (
+                                      <a href="http://web.archive.org/web/20210129094725/http://files.cie.co.at/S026_Table2_Data.xlsx">
+                                        Internet Wayback Machine
+                                      </a>
+                                      ).
+                                    </p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a
+                                    href="#!"
+                                    data-bs-toggle="collapse"
+                                    className="collapsed"
+                                    data-bs-target="#accordion-list-4-4"
+                                  >
+                                    <span>4-4</span> Illuminant data
+                                  </a>
+                                  <div
+                                    id="accordion-list-4-4"
+                                    className="collapse"
+                                    data-bs-parent=".accordion-list-sub-4"
+                                  >
+                                    <div className="row mt-3 row-div">
+                                      <div className="col-md-12">
+                                        <table className="table table-striped table-bordered table-hover generate-csv-table mb-1">
+                                          <thead>
+                                            <tr>
+                                              <th>Name</th>
+                                              <th>Source document</th>
+                                              <th>
+                                                Wavelength spacing/range [nm]
+                                              </th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td>Standard illuminant A</td>
+                                              <td className="about-us-detail">
+                                                <a href="http://cie.co.at/publications/colorimetry-part-2-cie-standard-illuminants-0">
+                                                  ISO 11664-2:2007/CIE S
+                                                  014-2:2006
+                                                </a>
+                                                , Table 1 (p. 7-12)
+                                              </td>
+                                              <td>1 / 300-830</td>
+                                            </tr>
+                                            <tr>
+                                              <td>Standard illuminant D65</td>
+                                              <td className="about-us-detail">
+                                                <a href="http://cie.co.at/publications/colorimetry-part-2-cie-standard-illuminants-0">
+                                                  ISO 11664-2:2007/CIE S
+                                                  014-2:2006
+                                                </a>
+                                                , Table 1 (p. 7-12)
+                                              </td>
+                                              <td>1 / 300-830</td>
+                                            </tr>
+                                            <tr>
+                                              <td>Illuminant C</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.25039/TR.015.2018">
+                                                  CIE 015:2018
+                                                </a>
+                                                , Table 5 (p. 51-53)
+                                              </td>
+                                              <td>5 / 300-780</td>
+                                            </tr>
+                                            <tr>
+                                              <td>Illuminant D50</td>
+                                              <td className="about-us-detail">
+                                                <a href="http://cie.co.at/publications/colorimetry-part-2-cie-standard-illuminants-0">
+                                                  ISO/CIE 11664-2:2022(E)
+                                                </a>
+                                                , Table A.1 (p. 8-14)
+                                              </td>
+                                              <td>1 / 300-830</td>
+                                            </tr>
+                                            <tr>
+                                              <td>Illuminant D75</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.25039/TR.015.2018">
+                                                  CIE 015:2018
+                                                </a>
+                                                , Table 5 (p. 51-53)
+                                              </td>
+                                              <td>5 / 300-780</td>
+                                            </tr>
+                                            <tr>
+                                              <td>Illuminants F1-F12</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.25039/TR.015.2018">
+                                                  CIE 015:2018
+                                                </a>
+                                                , Table 10.1 (p. 59-60)
+                                              </td>
+                                              <td>5 / 380-780</td>
+                                            </tr>
+                                            <tr>
+                                              <td>Illuminants FL3.1-FL3.8</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.25039/TR.015.2018">
+                                                  CIE 015:2018
+                                                </a>
+                                                , Table 10.2 (p. 61-62)
+                                              </td>
+                                              <td>5 / 380-780</td>
+                                            </tr>
+                                            <tr>
+                                              <td>Illuminants FL3.9-FL3.15</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.25039/TR.015.2018">
+                                                  CIE 015:2018
+                                                </a>
+                                                , Table 10.3 (p. 63-64)
+                                              </td>
+                                              <td>5 / 380-780</td>
+                                            </tr>
+                                            <tr>
+                                              <td>Illuminants HP1-HP5</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.25039/TR.015.2018">
+                                                  CIE 015:2018
+                                                </a>
+                                                , Table 11 (p. 65-66)
+                                              </td>
+                                              <td>5 / 380-780</td>
+                                            </tr>
+                                            <tr>
+                                              <td>Illuminants LED-B1-LED-B5</td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.25039/TR.015.2018">
+                                                  CIE 015:2018
+                                                </a>
+                                                , Table 12.1 (p. 67-68)
+                                              </td>
+                                              <td>5 / 380-780</td>
+                                            </tr>
+                                            <tr>
+                                              <td>
+                                                Illuminants LED-BH1, LED-RGB1,
+                                                LED-V1, LED-V2
+                                              </td>
+                                              <td className="about-us-detail">
+                                                <a href="https://doi.org/10.25039/TR.015.2018">
+                                                  CIE 015:2018
+                                                </a>
+                                                , Table 12.2 (p. 69-70)
+                                              </td>
+                                              <td>5 / 380-780</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a
+                                    href="#!"
+                                    data-bs-toggle="collapse"
+                                    className="collapsed"
+                                    data-bs-target="#accordion-list-4-5"
+                                  >
+                                    <span>4-5</span> References to official
+                                    documents
+                                  </a>
+                                  <div
+                                    id="accordion-list-4-5"
+                                    className="collapse"
+                                    data-bs-parent=".accordion-list-sub-4"
+                                  >
+                                    <p className="about-us-detail">
+                                      <ul>
+                                        <li>
+                                          <a href="http://cie.co.at/publications/cie-2017-colour-fidelity-index-accurate-scientific-use">
+                                            CIE 224:2017: CIE 2017 Colour
+                                            Fidelity Index for accurate
+                                            scientific use
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="http://cie.co.at/publications/colorimetry-4th-edition">
+                                            CIE 015:2018: Colorimetry, 4th
+                                            Edition
+                                          </a>
+                                          , DOI:{" "}
+                                          <a href="https://doi.org/10.25039/TR.015.2018">
+                                            10.25039/TR.015.2018
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="http://cie.co.at/publications/colorimetry-part-2-cie-standard-illuminants-0">
+                                            ISO 11664-2:2007/CIE S 014-2:2006:
+                                            Colorimetry — Part 2: CIE Standard
+                                            Illuminants
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="http://cie.co.at/publications/cie-system-metrology-optical-radiation-iprgc-influenced-responses-light-0">
+                                            CIE S 026/E:2018: CIE System for
+                                            Metrology of Optical Radiation for
+                                            ipRGC-Influenced Responses to Light
+                                          </a>
+                                          , DOI:{" "}
+                                          <a href="https://doi.org/10.25039/S026.2018">
+                                            10.25039/S026.2018
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="https://cie.co.at/publications/method-measuring-and-specifying-colour-rendering-properties-light-sources">
+                                            CIE 13.3-1995 : Method of measuring
+                                            and specifying colour rendering
+                                            properties of light sources
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="https://store.ies.org/product/tm-30-20-ies-method-for-evaluating-light-source-color-rendition/">
+                                            IES TM-30-20: IES method for
+                                            evaluating light source color
+                                            rendition
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a
+                                    href="#!"
+                                    data-bs-toggle="collapse"
+                                    className="collapsed"
+                                    data-bs-target="#accordion-list-4-6"
+                                  >
+                                    <span>4-6</span> Implementation specifics
+                                  </a>
+                                  <div
+                                    id="accordion-list-4-6"
+                                    className="collapse"
+                                    data-bs-parent=".accordion-list-sub-4"
+                                  >
+                                    <p>
+                                      While calculation procedures are
+                                      structurally well-defined by the CIE,
+                                      there are a few ambiguities that may arise
+                                      when implementing it. This includes the
+                                      choice of specific and exchangeable
+                                      algorithms (e.g. for the calculation of
+                                      CCT), and the decimal points of specific
+                                      constants. The specific choices are
+                                      described here:
+                                    </p>
+                                    <div className="row mt-3 row-div">
+                                      <div className="col-md-12">
+                                        <table className="table table-striped table-bordered table-hover generate-csv-table mb-1">
+                                          <thead>
+                                            <tr>
+                                              <th>Aspect</th>
+                                              <th>Quantity</th>
+                                              <th>
+                                                Method or quantity used in luox
+                                              </th>
+                                              <th>Description</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td>
+                                                Constant for absolute
+                                                (il)luminance conversion
+                                              </td>
+                                              <td>
+                                                Illuminance [lx] and Luminance
+                                                [cd/m<sup>2</sup>]
+                                              </td>
+                                              <td>683.0015478 lm/W</td>
+                                              <td className="about-us-detail">
+                                                683 lm/W acceptable &quot;for
+                                                all practical applications&quot;
+                                                according to{" "}
+                                                <a href="http://cie.co.at/publications/photometry-cie-system-physical-photometry">
+                                                  ISO 23539:2005/CIE S 010:2004
+                                                </a>
+                                                , 683.0015478 lm/W exact value
+                                                used in the{" "}
+                                                <a href="https://doi.org/10.25039/S026.2018.TB">
+                                                  CIE S 026 toolbox
+                                                </a>
+                                                ; usually rounded up to 683.002
+                                                lm/W
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td>Rounding</td>
+                                              <td>
+                                                CIE colour rendering index R
+                                                <sub>a</sub>
+                                              </td>
+                                              <td>
+                                                Strict rounding after
+                                                calculating subindices
+                                              </td>
+                                              <td className="about-us-detail">
+                                                Following{" "}
+                                                <a href="https://cie.co.at/publications/method-measuring-and-specifying-colour-rendering-properties-light-sources">
+                                                  CIE 13.3-1995
+                                                </a>
+                                                , luox rounds to the nearest
+                                                whole number after calculating
+                                                the subindex for each of the
+                                                special colour rendering
+                                                indices, and then averages them
+                                                to form the General Colour
+                                                Rendering Index
+                                              </td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a
+                                    href="#!"
+                                    data-bs-toggle="collapse"
+                                    className="collapsed"
+                                    data-bs-target="#accordion-list-4-7"
+                                  >
+                                    <span>4-7</span> Source code availability
+                                    and license
+                                  </a>
+                                  <div
+                                    id="accordion-list-4-7"
+                                    className="collapse"
+                                    data-bs-parent=".accordion-list-sub-4"
+                                  >
+                                    <p className="about-us-detail">
+                                      The source code is available on GitHub (
+                                      <a href="https://github.com/luox-app/luox/">
+                                        https://github.com/luox-app/luox/
+                                      </a>
+                                      ) under an MIT License.
+                                    </p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a
+                                    href="#!"
+                                    data-bs-toggle="collapse"
+                                    className="collapsed"
+                                    data-bs-target="#accordion-list-4-8"
+                                  >
+                                    <span>4-8</span> Validation
+                                  </a>
+                                  <div
+                                    id="accordion-list-4-8"
+                                    className="collapse"
+                                    data-bs-parent=".accordion-list-sub-4"
+                                  >
+                                    <p className="about-us-detail">
+                                      The default output of luox (CIE quantities
+                                      and indices) has been validated by the
+                                      CIE. The validation report is available{" "}
+                                      <a href="https://github.com/luox-app/luox/raw/master/docs/CIE_Software_Check_of_luox_app.pdf">
+                                        here
+                                      </a>
+                                      .
+                                    </p>
+                                    <p>According to the CIE:</p>
+                                    <p>
+                                      This software incorporates methods,
+                                      formulae, spectral function calculations
+                                      and spectra from the International
+                                      Commission on Illumination (CIE). The CIE
+                                      endorses this software having made a
+                                      black-box evaluation of the software as of
+                                      Feb. 11, 2021, finding that the software
+                                      performs satisfactorily to calculate
+                                      quantities and indices derived from CIE
+                                      publications. This software is not a
+                                      replacement for the CIE publications and
+                                      works from which it is derived. The user
+                                      is advised to consult the original
+                                      publications and works for proper
+                                      understanding of and calculation of the
+                                      result of this software.
+                                    </p>
+                                    <p>
+                                      This software has been validated to load
+                                      SPDX files according to TM-27-20.
+                                    </p>
+                                    <p>
+                                      This software offers optional calculation
+                                      of indices from IES TM-30-20. These
+                                      optional calculations have not been
+                                      validated.
+                                    </p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a
+                                    href="#!"
+                                    data-bs-toggle="collapse"
+                                    className="collapsed"
+                                    data-bs-target="#accordion-list-4-9"
+                                  >
+                                    <span>4-9</span> Alternatives
+                                  </a>
+                                  <div
+                                    id="accordion-list-4-9"
+                                    className="collapse"
+                                    data-bs-parent=".accordion-list-sub-4"
+                                  >
+                                    <p className="about-us-detail">
+                                      The CIE has released a toolbox (DOI:{" "}
+                                      <a href="https://doi.org/10.25039/S026.2018.TB">
+                                        10.25039/S026.2018.TB
+                                      </a>
+                                      ) and user guide (DOI:{" "}
+                                      <a href="https://doi.org/10.25039/S026.2018.UG">
+                                        10.25039/S026.2018.UG
+                                      </a>
+                                      ) or calculations of quantities specified
+                                      in{" "}
+                                      <a href="http://cie.co.at/publications/cie-system-metrology-optical-radiation-iprgc-influenced-responses-light-0">
+                                        CIE S 026/E:2018: CIE System for
+                                        Metrology of Optical Radiation for
+                                        ipRGC-Influenced Responses to Light
+                                      </a>{" "}
+                                      (DOI:{" "}
+                                      <a href="https://doi.org/10.25039/S026.2018">
+                                        10.25039/S026.2018
+                                      </a>
+                                      ). The Excel spreadsheet-based toolbox is
+                                      freely available and is supplementary to
+                                      the luox platform.
+                                    </p>
+                                    <p className="about-us-detail">
+                                      An Excel spreadsheet tool for calculating
+                                      the CIE Colour Fidelity Index (Rf) is
+                                      available as a companion to{" "}
+                                      <a href="https://cie.co.at/publications/cie-2017-colour-fidelity-index-accurate-scientific-use">
+                                        {" "}
+                                        CIE 224:2017 CIE 2017 Colour Fidelity
+                                        Index for accurate scientific use
+                                      </a>
+                                      .
                                     </p>
                                   </div>
                                 </li>
@@ -870,14 +1583,22 @@ const About = () => {
                         data-bs-target="#accordion-list-5"
                         className="collapsed"
                       >
-                        <span>05</span> Acknowledgements
+                        <span>5</span> Acknowledgements
                       </a>
                       <div
                         id="accordion-list-5"
                         className="collapse"
                         data-bs-parent=".accordion-list"
                       >
-                        <p>Test</p>
+                        <p>
+                          The following individuals tested and provided feedback
+                          on an early version of the platform: Paul
+                          O&apos;Mahoney, Tos Berendschot, Isabel Schöllhorn,
+                          Christine Blume, Katharina Wulff, Kinjiro Amano, Tony
+                          Esposito, Minchen Tommy Wei, Suzanne Ftouni, Paula M.
+                          Esquivias, Gayline Manalang Jr., Daniel Garside,
+                          Joachim Stormly Hansen, and Hao Xie.
+                        </p>
                       </div>
                     </li>
                     <li>
@@ -887,14 +1608,256 @@ const About = () => {
                         data-bs-target="#accordion-list-6"
                         className="collapsed"
                       >
-                        <span>06</span> Terms and conditions of website use
+                        <span>6</span> Terms and conditions of website use
                       </a>
                       <div
                         id="accordion-list-6"
                         className="collapse"
                         data-bs-parent=".accordion-list"
                       >
-                        <p>Test</p>
+                        <div className="section-title pb-0 mt-3">
+                          <h5>What&apos;s in these terms?</h5>
+                        </div>
+                        <p className="about-us-detail">
+                          These terms tell you the rules for using our website{" "}
+                          <a href="https://luox.app/">https://luox.app/</a>
+                          (our site).
+                        </p>
+                        <div className="section-title pb-0 mt-3">
+                          <h5>Who we are and how to contact us</h5>
+                        </div>
+                        <p className="about-us-detail">
+                          Our site operated by the joint research group
+                          Chronobiology & Health at the Technical University of
+                          Munich and Translational Sensory and Circadian
+                          Neuroscience at the Max Planck Institute for
+                          Biological Cybernetics (Prof. Dr. Manuel Spitschan).
+                          To contact us, please email{" "}
+                          <a href="mailto:manuel.spitschan@tum.de">
+                            manuel.spitschan@tum.de
+                          </a>
+                          .
+                        </p>
+                        <div className="section-title pb-0 mt-3">
+                          <h5>By using our site you accept these terms</h5>
+                        </div>
+                        <p>
+                          By using our site, you confirm that you accept these
+                          terms of use and that you agree to comply with them.
+                        </p>
+                        <p>
+                          If you do not agree to these terms, you must not use
+                          our site.
+                        </p>
+                        <p>
+                          We recommend that you print a copy of these terms for
+                          future reference.
+                        </p>
+                        <div className="section-title pb-0 mt-3">
+                          <h5>We may make changes to these terms</h5>
+                        </div>
+                        <p>
+                          We amend these terms from time to time. Every time you
+                          wish to use our site, please check these terms to
+                          ensure you understand the terms that apply at that
+                          time.
+                        </p>
+                        <div className="section-title pb-0 mt-3">
+                          <h5>We may make changes to our site</h5>
+                        </div>
+                        <p>
+                          We may update and change our site from time to time to
+                          ensure it is up to date.
+                        </p>
+                        <div className="section-title pb-0 mt-3">
+                          <h5>We may suspend or withdraw our site</h5>
+                        </div>
+                        <p>Our site is made available free of charge.</p>
+                        <p>
+                          We do not guarantee that our site, or any content on
+                          it, will always be available or be uninterrupted. We
+                          may suspend or withdraw or restrict the availability
+                          of all or any part of our site for business and
+                          operational reasons. We will try to give you
+                          reasonable notice of any suspension or withdrawal.
+                        </p>
+                        <p>
+                          You are also responsible for ensuring that all persons
+                          who access our site through your internet connection
+                          are aware of these terms of use and other applicable
+                          terms and conditions, and that they comply with them.
+                        </p>
+                        <div className="section-title pb-0 mt-3">
+                          <h5>How you may use material on our site</h5>
+                        </div>
+                        <p>
+                          The contents of our site are owned by us or, where
+                          content has been provided by third parties, by those
+                          third parties. The copyright in the material contained
+                          on our site belongs to us or our licensors. It is your
+                          responsibility to seek appropriate consent to re-use
+                          any contents of our site.
+                        </p>
+                        <div className="section-title pb-0 mt-3">
+                          <h5>Do not rely on information on this site</h5>
+                        </div>
+                        <p>
+                          The content on our site is provided for general
+                          information only and is not intended to amount to
+                          advice on which you should rely. You must obtain
+                          professional or specialist advice before taking, or
+                          refraining from, any action on the basis of the
+                          content on our site.
+                        </p>
+                        <p>
+                          Although we make reasonable efforts to update the
+                          information on our site, we make no representations,
+                          warranties or guarantees, whether express or implied,
+                          that the content on our site is accurate, complete or
+                          up to date.
+                        </p>
+                        <div className="section-title pb-0 mt-3">
+                          <h5>
+                            We are not responsible for websites we link to or
+                            third party information
+                          </h5>
+                        </div>
+                        <p>
+                          Where our site contains links to other sites and
+                          resources provided by third parties, these links and
+                          resources are provided for your information only. Such
+                          links should not be interpreted as approval by us of
+                          those linked websites or information you may obtain
+                          from them.
+                        </p>
+                        <p>
+                          We have no control over the contents of those sites or
+                          resources.
+                        </p>
+                        <div className="section-title pb-0 mt-3">
+                          <h5>User-generated content is not approved by us</h5>
+                        </div>
+                        <p>
+                          This website may include information and materials
+                          uploaded by other users of the site. This information
+                          and these materials have not been verified or approved
+                          by us. The views expressed by other users on our site
+                          do not represent our views or values.
+                        </p>
+                        <div className="section-title pb-0 mt-3">
+                          <h5>
+                            Our responsibility for loss or damage suffered by
+                            you
+                          </h5>
+                        </div>
+                        <p>
+                          To the extent permitted in law, we accept no liability
+                          for any loss or damage which may be suffered by you or
+                          by other parties as a direct or indirect result of
+                          using our site (including loss of profit, loss of
+                          opportunity, loss of business, and consequential
+                          loss).
+                        </p>
+                        <p>
+                          We are not responsible for viruses and you must not
+                          introduce them.
+                        </p>
+                        <p>
+                          We do not guarantee that our site will be secure or
+                          free from bugs or viruses.
+                        </p>
+                        <p>
+                          You are responsible for configuring your information
+                          technology, computer programmes and platform to access
+                          our site. You should use your own virus protection
+                          software.
+                        </p>
+                        <p>
+                          You must not misuse our site by knowingly introducing
+                          viruses, trojans, worms, logic bombs or other material
+                          that is malicious or technologically harmful. You must
+                          not attempt to gain unauthorised access to our site,
+                          the server on which our site is stored or any server,
+                          computer or database connected to our site. You must
+                          not attack our site via a denial-of-service attack or
+                          a distributed denial-of service attack. By breaching
+                          this provision, you would commit a criminal offence
+                          under the Computer Misuse Act 1990. We will report any
+                          such breach to the relevant law enforcement
+                          authorities and we will co-operate with those
+                          authorities by disclosing your identity to them. In
+                          the event of such a breach, your right to use our site
+                          will cease immediately.
+                        </p>
+                        <div className="section-title pb-0 mt-3">
+                          <h5>Rules about linking to our site</h5>
+                        </div>
+                        <p>
+                          You may link to our home page, provided you do so in a
+                          way that is fair and legal and does not damage our
+                          reputation or take advantage of it.
+                        </p>
+                        <p>
+                          You must not establish a link in such a way as to
+                          suggest any form of association, approval or
+                          endorsement on our part where none exists.
+                        </p>
+                        <p>
+                          You must not establish a link to our site in any
+                          website that is not owned by you.
+                        </p>
+                        <p>
+                          Our site must not be framed on any other site, nor may
+                          you create a link to any part of our site other than
+                          the home page.
+                        </p>
+                        <p>
+                          We reserve the right to withdraw linking permission
+                          without notice.
+                        </p>
+                        <p className="about-us-detail">
+                          If you wish to link to or make any use of content on
+                          our site other than that set out above, please contact{" "}
+                          <a href="mailto:manuel.spitschan@tum.de">
+                            manuel.spitschan@tum.de
+                          </a>
+                          .
+                        </p>
+                        <div className="section-title pb-0 mt-3">
+                          <h5>
+                            Which country&apos;s laws apply to any disputes?
+                          </h5>
+                        </div>
+                        <p>
+                          These terms of use, their subject matter and their
+                          formation (and any non-contractual disputes or claims)
+                          are governed by German law.
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <a
+                        href="#!"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordion-list-7"
+                        className="collapsed"
+                      >
+                        <span>7</span> Version information
+                      </a>
+                      <div
+                        id="accordion-list-7"
+                        className="collapse"
+                        data-bs-parent=".accordion-list"
+                      >
+                        <p className="about-us-detail">
+                          <ul>
+                            <li>Latest tag: wellcome-open-research</li>
+                            <li>
+                              Latest commit SHA:
+                              fe38483db011a577d645853be9f8ae371f952297
+                            </li>
+                          </ul>
+                        </p>
                       </div>
                     </li>
                   </ul>
