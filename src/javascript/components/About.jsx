@@ -1620,8 +1620,8 @@ const About = () => {
                         </div>
                         <p className="about-us-detail">
                           These terms tell you the rules for using our website{" "}
-                          <a href="https://luox.app/">https://luox.app/</a>
-                          (our site).
+                          <a href="https://luox.app/">https://luox.app/</a> (our
+                          site).
                         </p>
                         <div className="section-title pb-0 mt-3">
                           <h5>Who we are and how to contact us</h5>
