@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import MultiStepProgressBar from "./MultiStepProgressBar";
 
 const GenerateCSV = () => {
   useEffect(() => {
@@ -17,6 +18,10 @@ const GenerateCSV = () => {
                 Generate a CSV file containing the spectral power distribution
                 of all of the measurements taken during the experiment.
               </p>
+              <MultiStepProgressBar
+                page="format_instruction"
+                // onPageNumberClick={nextPageNumber}
+              />
             </div>
           </div>
         </section>

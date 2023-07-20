@@ -246,3 +246,20 @@
     padding-left: 20px !important;
     padding-right: 20px !important;
 }
+
+.progressBarDiv a {
+    display: none !important;
+}
+
+.progressBarDiv > div {
+    padding-bottom: 0px !important;
+    padding-top: 50px !important;
+}
+
+.upload-main .portfolio {
+    padding-bottom: 0px !important;
+}
+
+.upload-main .portfolio .section-title {
+    padding-bottom: 0px !important;
+}

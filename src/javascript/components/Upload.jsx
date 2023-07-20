@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import UploadForm from "./UploadForm";
 import Results from "./Results";
+import MultiStepProgressBar from "./MultiStepProgressBar";
 
 const Upload = () => {
   const [radianceOrIrradiance, setRadianceOrIrradiance] = useState(
@@ -66,6 +67,10 @@ const Upload = () => {
                   Power user mode (check if your SPD columns &gt; 5)
                 </label>
               </p>
+              <MultiStepProgressBar
+                page="upload"
+                // onPageNumberClick={nextPageNumber}
+              />
             </div>
           </div>
         </section>
