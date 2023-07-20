@@ -25,7 +25,7 @@ const GenerateCSV = () => {
             <div className="row justify-content-center">
               <div className="section-title">
                 <h2>Specification</h2>
-                <p>
+                <p className="text-start">
                   The first column contains the wavelength in nanometers. The
                   subsequent columns contain the spectral (ir)radiance for each
                   of the measurements taken during the experiment. Your data can
@@ -91,7 +91,7 @@ const GenerateCSV = () => {
                 <h2>Example</h2>
               </div>
               <div className="row px-5">
-                <div className="col-md-12 text-center">
+                <div className="col-md-12 text-start">
                   <p>Wavelength,Measurement 1,Measurement 2,Measurement 3</p>
                   <p>380,1.87,1.18,0.82</p>
                   <p>385,2.36,1.48,1.02</p>
@@ -99,7 +99,7 @@ const GenerateCSV = () => {
                   <p>775,0.52,0.33,0.28</p>
                   <p>780,0.43,0.27,0.21</p>
                 </div>
-                <div className="col-md-12 text-center">
+                <div className="col-md-12 text-start">
                   <p>
                     To download example spectral power distribution, click on
                     Download Button.
@@ -111,7 +111,7 @@ const GenerateCSV = () => {
                   >
                     Download
                   </a>
-                  <p className="pt-3">
+                  <p className="pt-3 text-start">
                     Please note that the accuracy of calculations implemented
                     here depends on the uncertainties present in the uploaded
                     data. For more information, please see{" "}

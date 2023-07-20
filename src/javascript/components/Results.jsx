@@ -52,7 +52,7 @@ const Results = ({
         <h2 className="my-3">
           Step 3. Check we have understood your input correctly.
         </h2>
-        <p className="lead">
+        <p className="lead text-start">
           Check that we have loaded the correct number of observations. Also
           check the units of measurement. It may help to compare your spectra to
           a standard reference spectra. For example, if your measurements were
@@ -73,7 +73,7 @@ const Results = ({
           Step 4. Download the stimulus specification tables and include them in
           your report.
         </h2>
-        <p>
+        <p className="text-start">
           Heavy load may take some time to render (even if the loading has been
           processed). Please wait until it populates the table below.
         </p>
@@ -94,7 +94,7 @@ const Results = ({
           supplementary material.
         </h2>
 
-        <p>
+        <p className="text-start">
           Where a journal does not offer the capability of making Supplementary
           Material available, files can be made available on{" "}
           <a href="https://figshare.com/">Figshare</a>, the{" "}
@@ -113,7 +113,7 @@ const Results = ({
         <h2 className="my-3">
           Step 6. Share an online version of this report.
         </h2>
-        <p>
+        <p className="text-start">
           In order to avoid the{" "}
           <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/431">
             HTTP 431 Request Header Fields Too Large
