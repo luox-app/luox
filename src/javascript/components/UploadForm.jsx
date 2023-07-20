@@ -224,6 +224,8 @@ const UploadForm = ({
   };
 
   useEffect(() => {
+    // const fileTypes = ["CSV", "SPDX"];
+    // const [file, setFile] = useState(null);
     if (csv.length > 0) {
       const sampleCount = csv[0].length - 1;
       if (absoluteOrRelative === "absolute") {
@@ -293,14 +295,20 @@ const UploadForm = ({
             </div>
 
             <div className="form-group">
-              <input
-                type="file"
-                ref={fileInput}
-                disabled={isLoaded}
-                onChange={handleFileInput}
-                className="form-control-file ml-100 mt-2"
-                id="file-input"
-              />
+              <div className="file-drop-area col-md-6 offset-md-3 col-xs-12">
+                <span className="choose-file-button">Choose files</span>
+                <span className="file-message">
+                  or drag and drop files here
+                </span>
+                <input
+                  type="file"
+                  ref={fileInput}
+                  disabled={isLoaded}
+                  onChange={handleFileInput}
+                  className="form-control-file ml-100 mt-2 file-input"
+                  id="file-input"
+                />
+              </div>
             </div>
           </form>
           <ErrorTable errors={errors} />
