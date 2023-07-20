@@ -3,7 +3,7 @@ import React from "react";
 import StepProgressBar from "react-step-progress";
 // import the stylesheet
 import "react-step-progress/dist/index.css";
-import ReactRouterPropTypes from "react-router-prop-types";
+import PropTypes from "prop-types";
 
 // import "../../stylesheets/multistepprogressbar.css";
 // import { ProgressBar, Step, StepLabel } from "react-step-progress-bar";
@@ -88,7 +88,7 @@ const MultiStepProgressBar = ({ page }) => {
   );
 };
 MultiStepProgressBar.propTypes = {
-  page: ReactRouterPropTypes.page.isRequired,
+  page: PropTypes.string.isRequired,
 };
 
 export default MultiStepProgressBar;
