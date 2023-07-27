@@ -75,7 +75,7 @@ const Upload = () => {
           </div>
         </section>
         <LoadingIndicator />
-        <section className="why-us pt-2">
+        <section className="why-us pt-2 upload-section">
           <div className="container p-5 text-center">
             <div className="row justify-content-center">
               <UploadForm

@@ -21,7 +21,8 @@
     min-height: auto !important;
     padding: 10px 40px !important;
 }
-.portfolio-item > p {
+
+.portfolio-item>p {
     margin-top: 10px !important;
 }
 
@@ -45,11 +46,12 @@
     margin-top: 10px !important;
 }
 
-.generate-csv-table th, .generate-csv-table td {
+.generate-csv-table th,
+.generate-csv-table td {
     padding: 15px !important;
 }
 
-.table > thead {
+.table>thead {
     --bs-table-color: #fff;
     --bs-table-bg: #212529;
     --bs-table-border-color: #373b3e;
@@ -185,6 +187,7 @@
     list-style-type: disc !important;
     padding: 10px 40px !important;
 }
+
 .about-us-detail li {
     box-shadow: none !important;
     display: list-item !important;
@@ -207,7 +210,8 @@
     position: relative;
 }
 
-.section-title h4::before, .section-title h5::before {
+.section-title h4::before,
+.section-title h5::before {
     content: "";
     position: absolute;
     display: block;
@@ -218,7 +222,8 @@
     left: calc(50% - 60px);
 }
 
-.section-title h4::after, .section-title h5::after {
+.section-title h4::after,
+.section-title h5::after {
     content: "";
     position: absolute;
     display: block;
@@ -251,7 +256,7 @@
     display: none !important;
 }
 
-.progressBarDiv > div {
+.progressBarDiv>div {
     padding-bottom: 0px !important;
     padding-top: 50px !important;
 }
@@ -276,9 +281,9 @@
     transition: 0.2s;
     margin-top: 20px !important;
     margin-bottom: 20px !important;
-  }
-  
-  .choose-file-button {
+}
+
+.choose-file-button {
     flex-shrink: 0;
     background-color: rgba(255, 255, 255, 0.04);
     border: 1px solid black;
@@ -287,18 +292,18 @@
     margin-right: 10px;
     font-size: 12px;
     text-transform: uppercase;
-  }
-  
-  .file-message {
+}
+
+.file-message {
     font-size: small;
     font-weight: 300;
     line-height: 1.4;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  
-  .file-input {
+}
+
+.file-input {
     position: absolute;
     left: 0;
     top: 0;
@@ -306,9 +311,110 @@
     width: 100%;
     cursor: pointer;
     opacity: 0;
-    
-  }
-  
-  .mt-100{
-      margin-top:100px;
-  }
+
+}
+
+.mt-100 {
+    margin-top: 100px;
+}
+
+.accordion-list p {
+    word-wrap: break-word !important;
+}
+
+@media screen and (max-width: 576px) {
+    #app {
+        overflow-x: hidden !important;
+    }
+
+    .table-row {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        overflow-x: scroll !important;
+    }
+
+    /* .specification-section  .row {
+        display: block !important;
+        margin-right: 0px !important;
+    }*/
+
+    .specification-section .px-5 {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+    }
+
+    .table-row .col-md-12 {
+        padding-left: 0px !important;
+    }
+
+    .specification-section>.container>.row>.section-title>p {
+        text-align: center !important;
+    }
+
+    .upload-section>.p-5 {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .file-drop-area {
+        padding: 25px 5px !important;
+    }
+
+    .choose-file-button {
+        font-size: 10px !important;
+    }
+
+    .file-message {
+        font-size: 10px !important;
+    }
+
+    .file-input {
+        margin-left: 0px !important;
+    }
+
+    .overlay {
+        padding-top: 30% !important;
+    }
+
+    .img-item img {
+        width: 100% !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .navbar-mobile a {
+        font-size: 13px !important;
+    }
+
+    .accordion-list {
+        padding: 0px !important;
+    }
+
+    .accordion-list .row {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+    }
+
+    .accordion-list-sub {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+    }
+
+    .accordion-list-sub p {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .about-us-detail ul {
+        padding: 10px 15px !important;
+    }
+
+    .accordion-list-sub h6 {
+        padding-left: 0px !important;
+    }
+
+    .accordion-list a {
+        padding-right: 0px !important;
+    }
+
+}

@@ -25,7 +25,7 @@ const GenerateCSV = () => {
             </div>
           </div>
         </section>
-        <section className="why-us pt-2">
+        <section className="why-us pt-2 specification-section">
           <div className="container p-5">
             <div className="row justify-content-center">
               <div className="section-title">
@@ -37,9 +37,9 @@ const GenerateCSV = () => {
                   contain up to 5 measurements:
                 </p>
               </div>
-              <div className="row px-5">
+              <div className="row px-5 table-row">
                 <div className="col-md-12">
-                  <table className="table table-striped table-bordered table-hover generate-csv-table mb-5">
+                  <table className="table table-striped table-bordered table-hover generate-csv-table">
                     <thead>
                       <tr>
                         <th>Column</th>
@@ -91,7 +91,7 @@ const GenerateCSV = () => {
                 </div>
               </div>
             </div>
-            <div className="row">
+            <div className="row mt-5">
               <div className="section-title">
                 <h2>Example</h2>
               </div>

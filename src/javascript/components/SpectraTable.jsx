@@ -139,26 +139,28 @@ const SpectraTable = ({
           </a>
         </div>
       </div>
-      <table className="table table-sm table-striped table-bordered table-hover generate-csv-table mt-5 result-table">
-        <SpectraTableHeader
-          sampleCount={sampleCount}
-          measurementLabels={measurementLabels}
-          radianceOrIrradiance={radianceOrIrradiance}
-        />
-        <tbody>
-          {rowsToDisplay().map(([wavelength, ...samples], index) => (
-            <SpectraTableRow
-              key={index}
-              wavelength={wavelength}
-              samples={samples}
-              exponentialNotation={exponentialNotation}
-            />
-          ))}
-          {displayEllipsisRow() && (
-            <SpectraTableEllipsisRow exampleRow={rows[0]} />
-          )}
-        </tbody>
-      </table>
+      <div className="row table-row">
+        <table className="table table-sm table-striped table-bordered table-hover generate-csv-table mt-5 result-table">
+          <SpectraTableHeader
+            sampleCount={sampleCount}
+            measurementLabels={measurementLabels}
+            radianceOrIrradiance={radianceOrIrradiance}
+          />
+          <tbody>
+            {rowsToDisplay().map(([wavelength, ...samples], index) => (
+              <SpectraTableRow
+                key={index}
+                wavelength={wavelength}
+                samples={samples}
+                exponentialNotation={exponentialNotation}
+              />
+            ))}
+            {displayEllipsisRow() && (
+              <SpectraTableEllipsisRow exampleRow={rows[0]} />
+            )}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 };

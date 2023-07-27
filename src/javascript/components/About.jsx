@@ -32,7 +32,7 @@ const About = () => {
                       <a href="https://www.kyb.tuebingen.mpg.de/614159/translational-sensory-and-circadian-neuroscience">
                         <img
                           src={mpiLogo}
-                          width="125%"
+                          width="100%"
                           className="align-middle"
                           alt="Max Planck Institute for Biological Cybernetics logo"
                         />
@@ -860,7 +860,7 @@ const About = () => {
                                       with assigned DOIs, up-to-date as of 1
                                       February 2022.
                                     </p>
-                                    <div className="row mt-3 row-div">
+                                    <div className="row mt-3 row-div table-row">
                                       <div className="col-md-12">
                                         <table className="table table-striped table-bordered table-hover generate-csv-table mb-1">
                                           <thead>
@@ -1063,7 +1063,7 @@ const About = () => {
                                     className="collapse"
                                     data-bs-parent=".accordion-list-sub-4"
                                   >
-                                    <div className="row mt-3 row-div">
+                                    <div className="row mt-3 row-div table-row">
                                       <div className="col-md-12">
                                         <table className="table table-striped table-bordered table-hover generate-csv-table mb-1">
                                           <thead>
@@ -1142,7 +1142,7 @@ const About = () => {
                                     className="collapse"
                                     data-bs-parent=".accordion-list-sub-4"
                                   >
-                                    <div className="row mt-3 row-div">
+                                    <div className="row mt-3 row-div table-row">
                                       <div className="col-md-12">
                                         <table className="table table-striped table-bordered table-hover generate-csv-table mb-1">
                                           <thead>
@@ -1371,7 +1371,7 @@ const About = () => {
                                       constants. The specific choices are
                                       described here:
                                     </p>
-                                    <div className="row mt-3 row-div">
+                                    <div className="row mt-3 row-div table-row">
                                       <div className="col-md-12">
                                         <table className="table table-striped table-bordered table-hover generate-csv-table mb-1">
                                           <thead>

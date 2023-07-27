@@ -296,152 +296,154 @@ const CalculationTable = ({
           </a>
         </div>
       </div>
-      <table className="table table-sm table-striped table-bordered table-hover generate-csv-table mt-5 result-table">
-        <CalculationTableHeader measurementLabels={measurementLabels} />
-        <tbody>
-          <CalculationTableRow
-            heading={
-              radianceOrIrradiance === "radiance"
-                ? "Luminance (cd/m²)"
-                : "Illuminance (lx)"
-            }
-            samples={calculation.luminanceTotals}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading="CIE 1931 xy chromaticity [x]"
-            samples={calculation.chromaticity31.map(({ x }) => x)}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading="CIE 1931 xy chromaticity [y]"
-            samples={calculation.chromaticity31.map(({ y }) => y)}
-            exponentialNotation={exponentialNotation}
-          />
-          {advanced && (
-            <>
-              <CalculationTableRow
-                heading="CIE 1964 x₁₀y₁₀ chromaticity [x₁₀]"
-                samples={calculation.chromaticity64.map(({ x }) => x)}
-                exponentialNotation={exponentialNotation}
-              />
-              <CalculationTableRow
-                heading="CIE 1964 x₁₀y₁₀ chromaticity [y₁₀]"
-                samples={calculation.chromaticity64.map(({ y }) => y)}
-                exponentialNotation={exponentialNotation}
-              />
-            </>
-          )}
-          <CalculationTableRow
-            heading={`S-cone-opic ${radianceOrIrradiance} (${units})`}
-            samples={calculation.sConeTotals}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading={`M-cone-opic ${radianceOrIrradiance} (${units})`}
-            samples={calculation.mConeTotals}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading={`L-cone-opic ${radianceOrIrradiance} (${units})`}
-            samples={calculation.lConeTotals}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading={`Rhodopic ${radianceOrIrradiance} (${units})`}
-            samples={calculation.rodTotals}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading={`Melanopic ${radianceOrIrradiance} (${units})`}
-            samples={calculation.melTotals}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading={`S-cone-opic ${equivalentDaylightUnit}`}
-            samples={calculation.equivalentDaylightAlphaOpic.sc}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading={`M-cone-opic ${equivalentDaylightUnit}`}
-            samples={calculation.equivalentDaylightAlphaOpic.mc}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading={`L-cone-opic ${equivalentDaylightUnit}`}
-            samples={calculation.equivalentDaylightAlphaOpic.lc}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading={`Rhodopic ${equivalentDaylightUnit}`}
-            samples={calculation.equivalentDaylightAlphaOpic.rh}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading={`Melanopic ${equivalentDaylightUnit}`}
-            samples={calculation.equivalentDaylightAlphaOpic.mel}
-            exponentialNotation={exponentialNotation}
-          />
-          {advanced && (
-            <>
-              <CalculationTableRow
-                heading="S-cone-opic ELR"
-                samples={calculation.alphaOpicEfficiency.sc}
-                exponentialNotation={exponentialNotation}
-              />
-              <CalculationTableRow
-                heading="M-cone-opic ELR"
-                samples={calculation.alphaOpicEfficiency.mc}
-                exponentialNotation={exponentialNotation}
-              />
-              <CalculationTableRow
-                heading="L-cone-opic ELR"
-                samples={calculation.alphaOpicEfficiency.lc}
-                exponentialNotation={exponentialNotation}
-              />
-              <CalculationTableRow
-                heading="Rhodopic ELR"
-                samples={calculation.alphaOpicEfficiency.rh}
-                exponentialNotation={exponentialNotation}
-              />
-              <CalculationTableRow
-                heading="Melanopic ELR"
-                samples={calculation.alphaOpicEfficiency.mel}
-                exponentialNotation={exponentialNotation}
-              />
-            </>
-          )}
-          <CalculationTableRow
-            heading="CCT (K) - Ohno, 2013"
-            samples={calculation.colourFidelityIndex.map(({ CCT }) => CCT)}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading="CCT (K) - Robertson, 1968"
-            samples={calculation.colourRenderingIndex.map(({ CCT }) => CCT)}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading="Colour Rendering Index [Ra]"
-            samples={calculation.colourRenderingIndex.map(({ Ra }) => Ra)}
-            exponentialNotation={exponentialNotation}
-          />
-          <CalculationTableRow
-            heading="Colour Fidelity Index [Rf]"
-            samples={calculation.colourFidelityIndex.map(({ Rf }) => Rf)}
-            exponentialNotation={exponentialNotation}
-          />
-          {/* <CalculationTableRow
+      <div className="row table-row">
+        <table className="table table-sm table-striped table-bordered table-hover generate-csv-table mt-5 result-table">
+          <CalculationTableHeader measurementLabels={measurementLabels} />
+          <tbody>
+            <CalculationTableRow
+              heading={
+                radianceOrIrradiance === "radiance"
+                  ? "Luminance (cd/m²)"
+                  : "Illuminance (lx)"
+              }
+              samples={calculation.luminanceTotals}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading="CIE 1931 xy chromaticity [x]"
+              samples={calculation.chromaticity31.map(({ x }) => x)}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading="CIE 1931 xy chromaticity [y]"
+              samples={calculation.chromaticity31.map(({ y }) => y)}
+              exponentialNotation={exponentialNotation}
+            />
+            {advanced && (
+              <>
+                <CalculationTableRow
+                  heading="CIE 1964 x₁₀y₁₀ chromaticity [x₁₀]"
+                  samples={calculation.chromaticity64.map(({ x }) => x)}
+                  exponentialNotation={exponentialNotation}
+                />
+                <CalculationTableRow
+                  heading="CIE 1964 x₁₀y₁₀ chromaticity [y₁₀]"
+                  samples={calculation.chromaticity64.map(({ y }) => y)}
+                  exponentialNotation={exponentialNotation}
+                />
+              </>
+            )}
+            <CalculationTableRow
+              heading={`S-cone-opic ${radianceOrIrradiance} (${units})`}
+              samples={calculation.sConeTotals}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading={`M-cone-opic ${radianceOrIrradiance} (${units})`}
+              samples={calculation.mConeTotals}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading={`L-cone-opic ${radianceOrIrradiance} (${units})`}
+              samples={calculation.lConeTotals}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading={`Rhodopic ${radianceOrIrradiance} (${units})`}
+              samples={calculation.rodTotals}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading={`Melanopic ${radianceOrIrradiance} (${units})`}
+              samples={calculation.melTotals}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading={`S-cone-opic ${equivalentDaylightUnit}`}
+              samples={calculation.equivalentDaylightAlphaOpic.sc}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading={`M-cone-opic ${equivalentDaylightUnit}`}
+              samples={calculation.equivalentDaylightAlphaOpic.mc}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading={`L-cone-opic ${equivalentDaylightUnit}`}
+              samples={calculation.equivalentDaylightAlphaOpic.lc}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading={`Rhodopic ${equivalentDaylightUnit}`}
+              samples={calculation.equivalentDaylightAlphaOpic.rh}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading={`Melanopic ${equivalentDaylightUnit}`}
+              samples={calculation.equivalentDaylightAlphaOpic.mel}
+              exponentialNotation={exponentialNotation}
+            />
+            {advanced && (
+              <>
+                <CalculationTableRow
+                  heading="S-cone-opic ELR"
+                  samples={calculation.alphaOpicEfficiency.sc}
+                  exponentialNotation={exponentialNotation}
+                />
+                <CalculationTableRow
+                  heading="M-cone-opic ELR"
+                  samples={calculation.alphaOpicEfficiency.mc}
+                  exponentialNotation={exponentialNotation}
+                />
+                <CalculationTableRow
+                  heading="L-cone-opic ELR"
+                  samples={calculation.alphaOpicEfficiency.lc}
+                  exponentialNotation={exponentialNotation}
+                />
+                <CalculationTableRow
+                  heading="Rhodopic ELR"
+                  samples={calculation.alphaOpicEfficiency.rh}
+                  exponentialNotation={exponentialNotation}
+                />
+                <CalculationTableRow
+                  heading="Melanopic ELR"
+                  samples={calculation.alphaOpicEfficiency.mel}
+                  exponentialNotation={exponentialNotation}
+                />
+              </>
+            )}
+            <CalculationTableRow
+              heading="CCT (K) - Ohno, 2013"
+              samples={calculation.colourFidelityIndex.map(({ CCT }) => CCT)}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading="CCT (K) - Robertson, 1968"
+              samples={calculation.colourRenderingIndex.map(({ CCT }) => CCT)}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading="Colour Rendering Index [Ra]"
+              samples={calculation.colourRenderingIndex.map(({ Ra }) => Ra)}
+              exponentialNotation={exponentialNotation}
+            />
+            <CalculationTableRow
+              heading="Colour Fidelity Index [Rf]"
+              samples={calculation.colourFidelityIndex.map(({ Rf }) => Rf)}
+              exponentialNotation={exponentialNotation}
+            />
+            {/* <CalculationTableRow
             heading="Colour Fidelity Index [Rf] Rounded"
             samples={calculation.colourFidelityIndexRounded.map(
               ({ Rf }) => Rf
             )}
             exponentialNotation={exponentialNotation}
           /> */}
-          {advanced && <>{rfDisplayRows}</>}
-          {tm30display && <>{tm30DisplayRows}</>}
-        </tbody>
-      </table>
+            {advanced && <>{rfDisplayRows}</>}
+            {tm30display && <>{tm30DisplayRows}</>}
+          </tbody>
+        </table>
+      </div>
       {tm30display && (
         <>
           <h2 className="mt-4 mb-2">Colour Vector Graphics</h2>
