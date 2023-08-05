@@ -9,7 +9,7 @@ const Chart = ({
   sampleCount,
   measurementLabels,
 }) => {
-  let windowWidth = window.innerWidth;
+  const windowWidth = window.innerWidth;
   const chartRef = useRef();
   const [yAxisScaling, setYAxisScaling] = useState("raw");
   const [displayedReference, setDisplayedReference] = useState("none");
@@ -22,7 +22,6 @@ const Chart = ({
   };
 
   useEffect(() => {
-    // windowWidth = window.innerWidth;
     let chart;
 
     if (chartRef.current) {
