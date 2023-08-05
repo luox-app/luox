@@ -9,10 +9,10 @@ const Chart = ({
   sampleCount,
   measurementLabels,
 }) => {
+  let windowWidth = window.innerWidth;
   const chartRef = useRef();
   const [yAxisScaling, setYAxisScaling] = useState("raw");
   const [displayedReference, setDisplayedReference] = useState("none");
-
   const handleYAxisScaling = ({ target: { value } }) => {
     setYAxisScaling(value);
   };
@@ -22,6 +22,7 @@ const Chart = ({
   };
 
   useEffect(() => {
+    // windowWidth = window.innerWidth;
     let chart;
 
     if (chartRef.current) {
@@ -54,7 +55,7 @@ const Chart = ({
     <section>
       <div className="container p-4">
         <div className="row">
-          <div className="col-sm pt-5">
+          <div className="col-md-4 col-xs-12 pt-5">
             <div className="row">
               <div>
                 <h5>Y-axis scale</h5>
@@ -132,8 +133,12 @@ const Chart = ({
               </form>
             </div>
           </div>
-          <div className="col-8">
-            <canvas width="400" height="200" ref={chartRef} />
+          <div className="col-md-8 col-xs-12">
+            {windowWidth < 500 ? (
+              <canvas width="800" height="800" ref={chartRef} />
+            ) : (
+              <canvas width="400" height="200" ref={chartRef} />
+            )}
           </div>
         </div>
       </div>
