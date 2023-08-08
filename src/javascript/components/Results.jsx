@@ -9,8 +9,8 @@ import { rowsToURL } from "../sharing";
 // export const t0 = performance.now();
 
 const Results = ({
-  rows,
-  sampleCount,
+  selectedRows,
+  selectedRowsSampleCount,
   radianceOrIrradiance,
   measurementLabels,
   powerMode,
@@ -22,11 +22,15 @@ const Results = ({
   const originalButtonText = "Copy to clipboard";
   const [buttonText, setButtonText] = useState(originalButtonText);
 
-  if (rows.length === 0) {
+  if (selectedRows.length === 0) {
     return null;
   }
 
-  const sharingID = rowsToURL(rows, radianceOrIrradiance, measurementLabels);
+  const sharingID = rowsToURL(
+    selectedRows,
+    radianceOrIrradiance,
+    measurementLabels
+  );
   const sharingURL = `${window.location.origin}/u/${sharingID}`;
 
   const buttonDisabled = () => {
@@ -63,8 +67,8 @@ const Results = ({
         {!powerMode && (
           <Chart
             radianceOrIrradiance={radianceOrIrradiance}
-            rows={rows}
-            sampleCount={sampleCount}
+            selectedRows={selectedRows}
+            selectedRowsSampleCount={selectedRowsSampleCount}
             measurementLabels={measurementLabels}
           />
         )}
@@ -79,8 +83,8 @@ const Results = ({
         </p>
 
         <CalculationTable
-          rows={rows}
-          sampleCount={sampleCount}
+          selectedRows={selectedRows}
+          selectedRowsSampleCount={selectedRowsSampleCount}
           radianceOrIrradiance={radianceOrIrradiance}
           measurementLabels={measurementLabels}
           isLoaded={isLoaded}
@@ -104,8 +108,8 @@ const Results = ({
         </p>
 
         <SpectraTable
-          rows={rows}
-          sampleCount={sampleCount}
+          selectedRows={selectedRows}
+          selectedRowsSampleCount={selectedRowsSampleCount}
           radianceOrIrradiance={radianceOrIrradiance}
           measurementLabels={measurementLabels}
         />
@@ -158,8 +162,9 @@ const Results = ({
 };
 
 Results.propTypes = {
-  rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
-  sampleCount: PropTypes.number.isRequired,
+  selectedRows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+    .isRequired,
+  selectedRowsSampleCount: PropTypes.number.isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   powerMode: PropTypes.bool.isRequired,

@@ -5,8 +5,8 @@ import { referenceSpectraNames } from "../referenceSpectra";
 
 const Chart = ({
   radianceOrIrradiance,
-  rows,
-  sampleCount,
+  selectedRows,
+  selectedRowsSampleCount,
   measurementLabels,
 }) => {
   const windowWidth = window.innerWidth;
@@ -28,8 +28,8 @@ const Chart = ({
       chart = createChart(
         chartRef.current,
         radianceOrIrradiance,
-        rows,
-        sampleCount,
+        selectedRows,
+        selectedRowsSampleCount,
         measurementLabels,
         yAxisScaling,
         displayedReference
@@ -43,8 +43,8 @@ const Chart = ({
     };
   }, [
     radianceOrIrradiance,
-    rows,
-    sampleCount,
+    selectedRows,
+    selectedRowsSampleCount,
     measurementLabels,
     yAxisScaling,
     displayedReference,
@@ -147,8 +147,9 @@ const Chart = ({
 
 Chart.propTypes = {
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
-  rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
-  sampleCount: PropTypes.number.isRequired,
+  selectedRows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+    .isRequired,
+  selectedRowsSampleCount: PropTypes.number.isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 

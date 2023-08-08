@@ -38,7 +38,7 @@ SpectraTableEllipsisRow.propTypes = {
 };
 
 const SpectraTableHeader = ({
-  sampleCount,
+  selectedRowsSampleCount,
   measurementLabels,
   radianceOrIrradiance,
 }) => {
@@ -47,7 +47,7 @@ const SpectraTableHeader = ({
   return (
     <thead>
       <tr>
-        <th colSpan={sampleCount + 1} className="text-center">
+        <th colSpan={selectedRowsSampleCount + 1} className="text-center">
           Spectral {radianceOrIrradiance} [
           {radianceOrIrradianceSIUnit(radianceOrIrradiance)}]
         </th>
@@ -63,14 +63,14 @@ const SpectraTableHeader = ({
 };
 
 SpectraTableHeader.propTypes = {
-  sampleCount: PropTypes.number.isRequired,
+  selectedRowsSampleCount: PropTypes.number.isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
 };
 
 const SpectraTable = ({
-  rows,
-  sampleCount,
+  selectedRows,
+  selectedRowsSampleCount,
   radianceOrIrradiance,
   measurementLabels,
 }) => {
@@ -78,8 +78,8 @@ const SpectraTable = ({
   const [displayAllRows, setDisplayAllRows] = useState(false);
 
   const spectraDownloadUrl = useMemo(
-    () => SpectraCSV({ radianceOrIrradiance, rows }),
-    [radianceOrIrradiance, rows]
+    () => SpectraCSV({ radianceOrIrradiance, selectedRows }),
+    [radianceOrIrradiance, selectedRows]
   );
 
   const handleExponentialNotation = () => {
@@ -91,11 +91,11 @@ const SpectraTable = ({
   };
 
   const truncateTable = () => {
-    return rows.length > 5;
+    return selectedRows.length > 5;
   };
 
   const rowsToDisplay = () => {
-    return displayAllRows ? rows : rows.slice(0, 5);
+    return displayAllRows ? selectedRows : selectedRows.slice(0, 5);
   };
 
   const displayEllipsisRow = () => {
@@ -142,7 +142,7 @@ const SpectraTable = ({
       <div className="row table-row">
         <table className="table table-sm table-striped table-bordered table-hover generate-csv-table mt-5 result-table">
           <SpectraTableHeader
-            sampleCount={sampleCount}
+            selectedRowsSampleCount={selectedRowsSampleCount}
             measurementLabels={measurementLabels}
             radianceOrIrradiance={radianceOrIrradiance}
           />
@@ -156,7 +156,7 @@ const SpectraTable = ({
               />
             ))}
             {displayEllipsisRow() && (
-              <SpectraTableEllipsisRow exampleRow={rows[0]} />
+              <SpectraTableEllipsisRow exampleRow={selectedRows[0]} />
             )}
           </tbody>
         </table>
@@ -166,8 +166,9 @@ const SpectraTable = ({
 };
 
 SpectraTable.propTypes = {
-  rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
-  sampleCount: PropTypes.number.isRequired,
+  selectedRows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+    .isRequired,
+  selectedRowsSampleCount: PropTypes.number.isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
 };

@@ -77,8 +77,8 @@ CalculationTableRow.propTypes = {
  * */
 const CalculationTable = ({
   radianceOrIrradiance,
-  rows,
-  sampleCount,
+  selectedRows,
+  selectedRowsSampleCount,
   measurementLabels,
   isLoaded,
   setLoaded,
@@ -217,7 +217,7 @@ const CalculationTable = ({
 
     if (isLoaded) {
       const worker = new Worker();
-      worker.postMessage([rows, sampleCount]);
+      worker.postMessage([selectedRows, selectedRowsSampleCount]);
       worker.onmessage = (event) => {
         setCalculation(event.data);
         // run this in global scope of window or worker. Since window.self = window, we're ok
@@ -242,8 +242,8 @@ const CalculationTable = ({
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    rows,
-    sampleCount,
+    selectedRows,
+    selectedRowsSampleCount,
     exponentialNotation,
     measurementLabels,
     radianceOrIrradiance,
@@ -455,8 +455,9 @@ const CalculationTable = ({
 };
 
 CalculationTable.propTypes = {
-  rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
-  sampleCount: PropTypes.number.isRequired,
+  selectedRows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+    .isRequired,
+  selectedRowsSampleCount: PropTypes.number.isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   isLoaded: PropTypes.bool.isRequired,

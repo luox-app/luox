@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import UploadForm from "./UploadForm";
 import Results from "./Results";
 import MultiStepProgressBar from "./MultiStepProgressBar";
+import ManageCSV from "./ManageCSV";
 
 const Upload = () => {
   const [radianceOrIrradiance, setRadianceOrIrradiance] = useState(
@@ -9,6 +10,8 @@ const Upload = () => {
   );
   const [rows, setRows] = useState([]);
   const [sampleCount, setSampleCount] = useState(0);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [selectedRowsSampleCount, setSelectedRowsSampleCount] = useState(0);
   const [measurementLabels, setMeasurementLabels] = useState({});
   const [csv, setCSV] = useState([]);
   const [relativePowers, setRelativePowers] = useState({});
@@ -97,9 +100,17 @@ const Upload = () => {
                 setLoaded={setLoaded}
               />
 
-              <Results
+              <ManageCSV
                 rows={rows}
                 sampleCount={sampleCount}
+                setSelectedRows={setSelectedRows}
+                setSelectedRowsSampleCount={setSelectedRowsSampleCount}
+                measurementLabels={measurementLabels}
+              />
+
+              <Results
+                selectedRows={selectedRows}
+                selectedRowsSampleCount={selectedRowsSampleCount}
                 radianceOrIrradiance={radianceOrIrradiance}
                 measurementLabels={measurementLabels}
                 powerMode={powerMode}

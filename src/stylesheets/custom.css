@@ -322,6 +322,14 @@
     word-wrap: break-word !important;
 }
 
+.displayNone {
+    display: none !important;
+}
+
+.colorRed {
+    color: red !important;
+}
+
 @media screen and (max-width: 576px) {
     #app {
         overflow-x: hidden !important;
