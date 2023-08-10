@@ -169,7 +169,7 @@ Results.propTypes = {
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   powerMode: PropTypes.bool.isRequired,
   isLoaded: PropTypes.bool.isRequired,
-  refHAB: PropTypes.arrayOf(PropTypes.object),
+  refHAB: PropTypes.arrayOf(PropTypes.shape),
   setLoaded: PropTypes.func.isRequired,
   setRefHAB: PropTypes.func.isRequired,
 };

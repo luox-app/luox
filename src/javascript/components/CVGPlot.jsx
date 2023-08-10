@@ -296,7 +296,7 @@ const CVGPlot = ({ measurementLabels, refHAB }) => {
 
 CVGPlot.propTypes = {
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
-  refHAB: PropTypes.arrayOf(PropTypes.object),
+  refHAB: PropTypes.arrayOf(PropTypes.shape),
 };
 
 CVGPlot.defaultProps = {

@@ -367,9 +367,9 @@ UploadForm.propTypes = {
   radianceOrIrradiance: PropTypes.string.isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   relativePowers: PropTypes.objectOf(PropTypes.string).isRequired,
-  csv: PropTypes.arrayOf(PropTypes.array).isRequired,
+  csv: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
   powerMode: PropTypes.bool.isRequired,
-  fileInput: PropTypes.objectOf(PropTypes.object).isRequired,
+  fileInput: PropTypes.objectOf(PropTypes.shape).isRequired,
   isLoaded: PropTypes.bool.isRequired,
 
   setRadianceOrIrradiance: PropTypes.func.isRequired,
