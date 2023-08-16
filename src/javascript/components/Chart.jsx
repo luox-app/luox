@@ -23,7 +23,6 @@ const Chart = ({
 
   useEffect(() => {
     let chart;
-
     if (chartRef.current) {
       chart = createChart(
         chartRef.current,

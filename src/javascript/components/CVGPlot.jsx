@@ -50,6 +50,15 @@ const drawBinDividers = () => {
   return binDividerLines;
 };
 
+let styleWidth = 700;
+let styleHeight = 700;
+const windowWidth = window.innerWidth;
+
+if (windowWidth < 500) {
+  styleWidth = windowWidth;
+  styleHeight = windowWidth;
+}
+
 const CVGPlot = ({ measurementLabels, refHAB }) => {
   const [activePage, setCurrentPage] = useState(1);
   const handlePageChange = (pageNumber) => {
@@ -270,10 +279,10 @@ const CVGPlot = ({ measurementLabels, refHAB }) => {
 
       <Plot
         data={data}
-        style={{ width: 700, height: 700 }}
+        style={{ width: styleWidth, height: styleHeight }}
         layout={layout}
         config={{
-          toImageButtonOptions: { width: 700, height: 700 },
+          toImageButtonOptions: { width: styleWidth, height: styleHeight },
           displayModeBar: true,
           showLink: false,
           modeBarButtonsToRemove: [

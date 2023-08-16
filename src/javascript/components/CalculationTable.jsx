@@ -446,8 +446,10 @@ const CalculationTable = ({
       </div>
       {tm30display && (
         <>
-          <h2 className="mt-4 mb-2">Colour Vector Graphics</h2>
-          <CVGPlot measurementLabels={measurementLabels} refHAB={refHAB} />
+          <div className="col-md-12">
+            <h2 className="mt-4 mb-2">Colour Vector Graphics</h2>
+            <CVGPlot measurementLabels={measurementLabels} refHAB={refHAB} />
+          </div>
         </>
       )}
     </section>

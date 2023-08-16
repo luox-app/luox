@@ -34,7 +34,7 @@ const ManageCSV = ({
     if (selectedRowsLength > 0) {
       setError(false);
       setSelectedRows(selectedRowsArray);
-      setSelectedRowsSampleCount(selectedRowsLength);
+      setSelectedRowsSampleCount(sampleCount);
       setShow(false);
     } else {
       setError(true);
