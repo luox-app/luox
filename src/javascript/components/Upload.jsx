@@ -106,6 +106,7 @@ const Upload = () => {
                 setSelectedRows={setSelectedRows}
                 setSelectedRowsSampleCount={setSelectedRowsSampleCount}
                 measurementLabels={measurementLabels}
+                setMeasurementLabels={setMeasurementLabels}
               />
 
               <Results

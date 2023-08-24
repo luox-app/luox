@@ -330,6 +330,14 @@
     color: red !important;
 }
 
+.modal-lg {
+    --bs-modal-width: 70%;
+}
+@media screen and (max-width: 776px) {
+    .modal-lg {
+        --bs-modal-width: 100%;
+    }
+}
 @media screen and (max-width: 576px) {
     #app {
         overflow-x: hidden !important;
@@ -424,5 +432,7 @@
     .accordion-list a {
         padding-right: 0px !important;
     }
-
+    .modal-lg {
+        --bs-modal-width: 100%;
+    }
 }

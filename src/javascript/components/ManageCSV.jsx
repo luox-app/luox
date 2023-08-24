@@ -10,11 +10,14 @@ const ManageCSV = ({
   setSelectedRows,
   setSelectedRowsSampleCount,
   measurementLabels,
+  setMeasurementLabels,
 }) => {
   const [error, setError] = useState(false);
   const [show, setShow] = useState(true);
-  const selectedRowsArray = [];
-  let selectedRowsLength = 0;
+  let selectedRowsArray = [];
+  const selectedRowsColumnsArray = [];
+  const selectedColumnsArray = [];
+  const selectedColumnsKeysArray = [];
 
   if (rows.length === 0) {
     return null;
@@ -22,16 +25,21 @@ const ManageCSV = ({
 
   const addSelectedRow = (row, isChecked) => {
     if (isChecked) {
-      selectedRowsLength += 1;
       selectedRowsArray.push(row);
     } else {
-      selectedRowsArray.pop(row);
-      selectedRowsLength -= 1;
+      for (let i = 0; i < selectedRowsArray.length; i += 1) {
+        if (selectedRowsArray[i] === row) {
+          const valueIndex = selectedRowsArray.indexOf(row);
+          if (valueIndex > -1) {
+            selectedRowsArray.splice(valueIndex, 1);
+          }
+        }
+      }
     }
   };
 
-  const useSelectedRows = () => {
-    if (selectedRowsLength > 0) {
+  const useSelectedRowsAllColumns = () => {
+    if (selectedRowsArray.length > 0) {
       setError(false);
       setSelectedRows(selectedRowsArray);
       setSelectedRowsSampleCount(sampleCount);
@@ -40,10 +48,89 @@ const ManageCSV = ({
       setError(true);
     }
   };
-  const useAllRows = () => {
+  const useSelectedRowsSelectedColumns = () => {
+    if (selectedRowsArray.length > 0 && selectedColumnsArray.length > 0) {
+      if (measurementLabels.length === selectedColumnsArray.length) {
+        setError(false);
+        setSelectedRows(selectedRowsArray);
+        setSelectedRowsSampleCount(sampleCount);
+        setShow(false);
+      } else {
+        for (let i = 0; i < selectedRowsArray.length; i += 1) {
+          const rowArray = [];
+          for (let j = 1; j <= selectedRowsArray[i].length; j += 1) {
+            if (j - 1 === 0) {
+              rowArray.push(selectedRowsArray[i][j - 1]);
+            }
+            if (selectedColumnsKeysArray.includes(j - 1)) {
+              rowArray.push(selectedRowsArray[i][j]);
+            }
+          }
+          selectedRowsColumnsArray.push(rowArray);
+        }
+        setError(false);
+        setSelectedRows(selectedRowsColumnsArray);
+        setSelectedRowsSampleCount(selectedColumnsArray.length);
+        setMeasurementLabels({ ...selectedColumnsArray });
+        setShow(false);
+      }
+    } else {
+      setError(true);
+    }
+  };
+  const useAllRowsColumns = () => {
     setSelectedRows(rows);
     setSelectedRowsSampleCount(sampleCount);
     setShow(false);
+  };
+  const useAllRowsSelectedColumns = () => {
+    if (selectedColumnsArray.length > 0) {
+      if (measurementLabels.length === selectedColumnsArray.length) {
+        setSelectedRows(rows);
+        setSelectedRowsSampleCount(sampleCount);
+        setShow(false);
+      } else {
+        selectedRowsArray = [];
+        for (let i = 0; i < rows.length; i += 1) {
+          const rowArray = [];
+          for (let j = 1; j <= rows[i].length; j += 1) {
+            if (j - 1 === 0) {
+              rowArray.push(rows[i][j - 1]);
+            }
+            if (selectedColumnsKeysArray.includes(j - 1)) {
+              rowArray.push(rows[i][j]);
+            }
+          }
+          selectedRowsArray.push(rowArray);
+        }
+        setSelectedRows(selectedRowsArray);
+        setSelectedRowsSampleCount(selectedColumnsArray.length);
+        setMeasurementLabels({ ...selectedColumnsArray });
+        setShow(false);
+      }
+    } else {
+      setError(true);
+    }
+  };
+
+  const changeColumnCheckbox = (key, value, isChecked) => {
+    if (isChecked) {
+      selectedColumnsArray.push(value);
+      selectedColumnsKeysArray.push(Number(key));
+    } else {
+      for (let i = 0; i < selectedColumnsArray.length; i += 1) {
+        if (selectedColumnsArray[i] === value) {
+          const valueIndex = selectedColumnsArray.indexOf(value);
+          const keyIndex = selectedColumnsKeysArray.indexOf(Number(key));
+          if (valueIndex > -1) {
+            selectedColumnsArray.splice(valueIndex, 1);
+            selectedColumnsKeysArray.splice(keyIndex, 1);
+          }
+        }
+      }
+    }
+    selectedColumnsArray.sort();
+    selectedColumnsKeysArray.sort();
   };
 
   return (
@@ -53,6 +140,48 @@ const ManageCSV = ({
           <Modal.Title>Manage Rows</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <div className="row">
+            <div className="col-md-12 text-end">
+              {error ? (
+                <p className="colorRed">
+                  Please select atleast one row or one column.
+                </p>
+              ) : (
+                ""
+              )}
+              <Button
+                variant="success"
+                onClick={useAllRowsColumns}
+                className="mx-2"
+              >
+                Use all Rows and Columns
+              </Button>
+              <Button
+                variant="primary"
+                onClick={useAllRowsSelectedColumns}
+                className="mx-2"
+              >
+                Use all Rows and Selected Columns
+              </Button>
+            </div>
+          </div>
+          <div className="row mt-3">
+            <div className="col-md-12 text-end">
+              <Button
+                variant="success"
+                onClick={useSelectedRowsAllColumns}
+                className="mx-2"
+              >
+                Use Selected Rows and all Columns
+              </Button>
+              <Button
+                variant="primary"
+                onClick={useSelectedRowsSelectedColumns}
+              >
+                Use Selected Rows and Selected Columns
+              </Button>
+            </div>
+          </div>
           <div className="row mt-3 row-div table-row">
             <div className="col-md-12">
               <table className="table table-striped table-bordered table-hover generate-csv-table mb-1">
@@ -61,7 +190,20 @@ const ManageCSV = ({
                     <th> </th>
                     <th>Wavelength</th>
                     {Object.entries(measurementLabels).map(([key, value]) => (
-                      <th key={key}>{value}</th>
+                      <th key={key}>
+                        <input
+                          type="checkbox"
+                          name="columnCheckbox"
+                          onChange={(event) =>
+                            changeColumnCheckbox(
+                              key,
+                              value,
+                              event.target.checked
+                            )
+                          }
+                        />{" "}
+                        {value}
+                      </th>
                     ))}
                   </tr>
                 </thead>
@@ -100,19 +242,8 @@ const ManageCSV = ({
             </div>
           </div>
         </Modal.Body>
-        <Modal.Footer>
-          {error ? (
-            <p className="colorRed">Please select atleast one row.</p>
-          ) : (
-            ""
-          )}
-          <Button variant="success" onClick={useAllRows}>
-            Use all rows
-          </Button>
-          <Button variant="primary" onClick={useSelectedRows}>
-            Use Selected Rows
-          </Button>
-        </Modal.Footer>
+        {/* <Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     </>
   );
@@ -124,5 +255,6 @@ ManageCSV.propTypes = {
   setSelectedRows: PropTypes.func.isRequired,
   setSelectedRowsSampleCount: PropTypes.func.isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
+  setMeasurementLabels: PropTypes.func.isRequired,
 };
 export default ManageCSV;
