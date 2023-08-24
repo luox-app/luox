@@ -68,11 +68,11 @@ const About = () => {
                         className="collapsed"
                         data-bs-target="#accordion-list-1"
                       >
-                        <span>1</span> About
+                        About
                       </a>
                       <div
                         id="accordion-list-1"
-                        className="collapse"
+                        className="collapse show"
                         data-bs-parent=".accordion-list"
                       >
                         <div className="row">
@@ -86,11 +86,11 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-1-1"
                                   >
-                                    <span>1-1</span> Purpose
+                                    Purpose
                                   </a>
                                   <div
                                     id="accordion-list-1-1"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-1"
                                   >
                                     <p className="about-us-detail">
@@ -139,11 +139,11 @@ const About = () => {
                                     data-bs-target="#accordion-list-1-2"
                                     className="collapsed"
                                   >
-                                    <span>1-2</span> Team
+                                    Team
                                   </a>
                                   <div
                                     id="accordion-list-1-2"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-1"
                                   >
                                     <p className="about-us-detail">
@@ -179,11 +179,11 @@ const About = () => {
                                     data-bs-target="#accordion-list-1-3"
                                     className="collapsed"
                                   >
-                                    <span>1-3</span> Citing
+                                    Citing
                                   </a>
                                   <div
                                     id="accordion-list-1-3"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-1"
                                   >
                                     <p>
@@ -264,11 +264,11 @@ const About = () => {
                                     data-bs-target="#accordion-list-1-4"
                                     className="collapsed"
                                   >
-                                    <span>1-4</span> Support
+                                    Support
                                   </a>
                                   <div
                                     id="accordion-list-1-4"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-1"
                                   >
                                     <p className="about-us-detail">
@@ -289,12 +289,11 @@ const About = () => {
                                     data-bs-target="#accordion-list-1-5"
                                     className="collapsed"
                                   >
-                                    <span>1-5</span> Bug reports and feature
-                                    requests
+                                    Bug reports and feature requests
                                   </a>
                                   <div
                                     id="accordion-list-1-5"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-1"
                                   >
                                     <p className="about-us-detail">
@@ -334,11 +333,11 @@ const About = () => {
                                     data-bs-target="#accordion-list-1-6"
                                     className="collapsed"
                                   >
-                                    <span>1-6</span> Funding
+                                    Funding
                                   </a>
                                   <div
                                     id="accordion-list-1-6"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-1"
                                   >
                                     <p>
@@ -424,12 +423,11 @@ const About = () => {
                                     data-bs-target="#accordion-list-1-7"
                                     className="collapsed"
                                   >
-                                    <span>1-7</span> Contributing code of
-                                    conduct
+                                    Contributing code of conduct
                                   </a>
                                   <div
                                     id="accordion-list-1-7"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-1"
                                   >
                                     <p className="about-us-detail">
@@ -704,11 +702,11 @@ const About = () => {
                         data-bs-target="#accordion-list-2"
                         className="collapsed"
                       >
-                        <span>2</span> Usage
+                        Usage
                       </a>
                       <div
                         id="accordion-list-2"
-                        className="collapse"
+                        className="collapse show"
                         data-bs-parent=".accordion-list"
                       >
                         <div className="row">
@@ -722,11 +720,11 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-2-1"
                                   >
-                                    <span>2-1</span> Quick start
+                                    Quick start
                                   </a>
                                   <div
                                     id="accordion-list-2-1"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-2"
                                   >
                                     <p>
@@ -742,12 +740,12 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-2-2"
                                   >
-                                    <span>2-2</span> Sharing spectra and
-                                    calculations using sharing URL
+                                    Sharing spectra and calculations using
+                                    sharing URL
                                   </a>
                                   <div
                                     id="accordion-list-2-2"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-2"
                                   >
                                     <p className="about-us-detail">
@@ -774,12 +772,11 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-2-3"
                                   >
-                                    <span>2-3</span> Requesting DOI for sharing
-                                    URL
+                                    Requesting DOI for sharing URL
                                   </a>
                                   <div
                                     id="accordion-list-2-3"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-2"
                                   >
                                     <p className="about-us-detail">
@@ -830,11 +827,11 @@ const About = () => {
                         data-bs-target="#accordion-list-3"
                         className="collapsed"
                       >
-                        <span>3</span> Deposition
+                        Deposition
                       </a>
                       <div
                         id="accordion-list-3"
-                        className="collapse"
+                        className="collapse show"
                         data-bs-parent=".accordion-list"
                       >
                         <div className="row">
@@ -848,11 +845,11 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-3-1"
                                   >
-                                    <span>3-1</span> List of depositions
+                                    List of depositions
                                   </a>
                                   <div
                                     id="accordion-list-3-1"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-3"
                                   >
                                     <p>
@@ -963,11 +960,11 @@ const About = () => {
                         data-bs-target="#accordion-list-4"
                         className="collapsed"
                       >
-                        <span>4</span> Under the hood
+                        Under the hood
                       </a>
                       <div
                         id="accordion-list-4"
-                        className="collapse"
+                        className="collapse show"
                         data-bs-parent=".accordion-list"
                       >
                         <div className="row">
@@ -981,11 +978,11 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-4-1"
                                   >
-                                    <span>4-1</span> Calculation definitions
+                                    Calculation definitions
                                   </a>
                                   <div
                                     id="accordion-list-4-1"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-4"
                                   >
                                     <p className="about-us-detail">
@@ -1013,12 +1010,11 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-4-2"
                                   >
-                                    <span>4-2</span> Precision and decimal
-                                    points
+                                    Precision and decimal points
                                   </a>
                                   <div
                                     id="accordion-list-4-2"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-4"
                                   >
                                     <p>
@@ -1055,12 +1051,11 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-4-3"
                                   >
-                                    <span>4-3</span> Effect functions and action
-                                    spectra
+                                    Effect functions and action spectra
                                   </a>
                                   <div
                                     id="accordion-list-4-3"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-4"
                                   >
                                     <div className="row mt-3 row-div table-row">
@@ -1135,11 +1130,11 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-4-4"
                                   >
-                                    <span>4-4</span> Illuminant data
+                                    Illuminant data
                                   </a>
                                   <div
                                     id="accordion-list-4-4"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-4"
                                   >
                                     <div className="row mt-3 row-div table-row">
@@ -1283,12 +1278,11 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-4-5"
                                   >
-                                    <span>4-5</span> References to official
-                                    documents
+                                    References to official documents
                                   </a>
                                   <div
                                     id="accordion-list-4-5"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-4"
                                   >
                                     <p className="about-us-detail">
@@ -1353,11 +1347,11 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-4-6"
                                   >
-                                    <span>4-6</span> Implementation specifics
+                                    Implementation specifics
                                   </a>
                                   <div
                                     id="accordion-list-4-6"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-4"
                                   >
                                     <p>
@@ -1448,12 +1442,11 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-4-7"
                                   >
-                                    <span>4-7</span> Source code availability
-                                    and license
+                                    Source code availability and license
                                   </a>
                                   <div
                                     id="accordion-list-4-7"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-4"
                                   >
                                     <p className="about-us-detail">
@@ -1472,11 +1465,11 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-4-8"
                                   >
-                                    <span>4-8</span> Validation
+                                    Validation
                                   </a>
                                   <div
                                     id="accordion-list-4-8"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-4"
                                   >
                                     <p className="about-us-detail">
@@ -1526,11 +1519,11 @@ const About = () => {
                                     className="collapsed"
                                     data-bs-target="#accordion-list-4-9"
                                   >
-                                    <span>4-9</span> Alternatives
+                                    Alternatives
                                   </a>
                                   <div
                                     id="accordion-list-4-9"
-                                    className="collapse"
+                                    className="collapse show"
                                     data-bs-parent=".accordion-list-sub-4"
                                   >
                                     <p className="about-us-detail">
@@ -1583,11 +1576,11 @@ const About = () => {
                         data-bs-target="#accordion-list-5"
                         className="collapsed"
                       >
-                        <span>5</span> Acknowledgements
+                        Acknowledgements
                       </a>
                       <div
                         id="accordion-list-5"
-                        className="collapse"
+                        className="collapse show"
                         data-bs-parent=".accordion-list"
                       >
                         <p>
@@ -1608,11 +1601,11 @@ const About = () => {
                         data-bs-target="#accordion-list-6"
                         className="collapsed"
                       >
-                        <span>6</span> Terms and conditions of website use
+                        Terms and conditions of website use
                       </a>
                       <div
                         id="accordion-list-6"
-                        className="collapse"
+                        className="collapse show"
                         data-bs-parent=".accordion-list"
                       >
                         <div className="section-title pb-0 mt-3">
@@ -1842,11 +1835,11 @@ const About = () => {
                         data-bs-target="#accordion-list-7"
                         className="collapsed"
                       >
-                        <span>7</span> Version information
+                        Version information
                       </a>
                       <div
                         id="accordion-list-7"
-                        className="collapse"
+                        className="collapse show"
                         data-bs-parent=".accordion-list"
                       >
                         <p className="about-us-detail">
