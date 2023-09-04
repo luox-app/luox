@@ -11,9 +11,10 @@ const ManageCSV = ({
   setSelectedRowsSampleCount,
   measurementLabels,
   setMeasurementLabels,
+  modalView,
+  setModalView,
 }) => {
   const [error, setError] = useState(false);
-  const [show, setShow] = useState(true);
   let selectedRowsArray = [];
   const selectedRowsColumnsArray = [];
   const selectedColumnsArray = [];
@@ -43,7 +44,7 @@ const ManageCSV = ({
       setError(false);
       setSelectedRows(selectedRowsArray);
       setSelectedRowsSampleCount(sampleCount);
-      setShow(false);
+      setModalView(false);
     } else {
       setError(true);
     }
@@ -54,7 +55,7 @@ const ManageCSV = ({
         setError(false);
         setSelectedRows(selectedRowsArray);
         setSelectedRowsSampleCount(sampleCount);
-        setShow(false);
+        setModalView(false);
       } else {
         for (let i = 0; i < selectedRowsArray.length; i += 1) {
           const rowArray = [];
@@ -72,7 +73,7 @@ const ManageCSV = ({
         setSelectedRows(selectedRowsColumnsArray);
         setSelectedRowsSampleCount(selectedColumnsArray.length);
         setMeasurementLabels({ ...selectedColumnsArray });
-        setShow(false);
+        setModalView(false);
       }
     } else {
       setError(true);
@@ -81,14 +82,14 @@ const ManageCSV = ({
   const useAllRowsColumns = () => {
     setSelectedRows(rows);
     setSelectedRowsSampleCount(sampleCount);
-    setShow(false);
+    setModalView(false);
   };
   const useAllRowsSelectedColumns = () => {
     if (selectedColumnsArray.length > 0) {
       if (measurementLabels.length === selectedColumnsArray.length) {
         setSelectedRows(rows);
         setSelectedRowsSampleCount(sampleCount);
-        setShow(false);
+        setModalView(false);
       } else {
         selectedRowsArray = [];
         for (let i = 0; i < rows.length; i += 1) {
@@ -106,7 +107,7 @@ const ManageCSV = ({
         setSelectedRows(selectedRowsArray);
         setSelectedRowsSampleCount(selectedColumnsArray.length);
         setMeasurementLabels({ ...selectedColumnsArray });
-        setShow(false);
+        setModalView(false);
       }
     } else {
       setError(true);
@@ -135,7 +136,7 @@ const ManageCSV = ({
 
   return (
     <>
-      <Modal size="lg" show={show}>
+      <Modal size="lg" show={modalView}>
         <Modal.Header>
           <Modal.Title>Manage Rows</Modal.Title>
         </Modal.Header>
@@ -152,14 +153,14 @@ const ManageCSV = ({
               <Button
                 variant="success"
                 onClick={useAllRowsColumns}
-                className="mx-2"
+                className="mx-2 my-1"
               >
                 Use all Rows and Columns
               </Button>
               <Button
                 variant="primary"
                 onClick={useAllRowsSelectedColumns}
-                className="mx-2"
+                className="mx-2 my-1"
               >
                 Use all Rows and Selected Columns
               </Button>
@@ -170,13 +171,14 @@ const ManageCSV = ({
               <Button
                 variant="success"
                 onClick={useSelectedRowsAllColumns}
-                className="mx-2"
+                className="mx-2 my-1"
               >
                 Use Selected Rows and all Columns
               </Button>
               <Button
                 variant="primary"
                 onClick={useSelectedRowsSelectedColumns}
+                className="my-1"
               >
                 Use Selected Rows and Selected Columns
               </Button>
@@ -256,5 +258,7 @@ ManageCSV.propTypes = {
   setSelectedRowsSampleCount: PropTypes.func.isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   setMeasurementLabels: PropTypes.func.isRequired,
+  modalView: PropTypes.bool.isRequired,
+  setModalView: PropTypes.func.isRequired,
 };
 export default ManageCSV;

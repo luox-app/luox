@@ -66,6 +66,8 @@
     "chart.js": "^2.9.4",
     "copy-webpack-plugin": "^5.1.2",
     "file-loader": "^6.2.0",
+    "file-saver": "^2.0.5",
+    "html-to-image": "^1.11.11",
     "jquery": "3.5.0",
     "mathjs": "^9.5.2",
     "mini-css-extract-plugin": "^1.6.2",

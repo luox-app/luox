@@ -1454,7 +1454,8 @@ const About = () => {
                                       <a href="https://github.com/luox-app/luox/">
                                         https://github.com/luox-app/luox/
                                       </a>
-                                      ) under an MIT License.
+                                      ) under the GNU General Public License
+                                      v3.0.
                                     </p>
                                   </div>
                                 </li>

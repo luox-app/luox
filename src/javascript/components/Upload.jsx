@@ -18,6 +18,7 @@ const Upload = () => {
   const [powerMode, setPowerMode] = useState(false);
   const [isLoaded, setLoaded] = useState(false);
   const [refHAB, setRefHAB] = useState(null);
+  const [modalView, setModalView] = useState(false);
   const fileInput = useRef();
 
   const userModeChange = () => {
@@ -98,6 +99,7 @@ const Upload = () => {
                 setRefHAB={setRefHAB}
                 isLoaded={isLoaded}
                 setLoaded={setLoaded}
+                setModalView={setModalView}
               />
 
               <ManageCSV
@@ -107,6 +109,8 @@ const Upload = () => {
                 setSelectedRowsSampleCount={setSelectedRowsSampleCount}
                 measurementLabels={measurementLabels}
                 setMeasurementLabels={setMeasurementLabels}
+                modalView={modalView}
+                setModalView={setModalView}
               />
 
               <Results

@@ -18,6 +18,9 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Plot from "react-plotly.js";
 import Pagination from "react-js-pagination";
+import { saveAs } from "file-saver";
+import * as htmlToImage from "html-to-image";
+import { Button } from "react-bootstrap";
 import hueBG from "../../images/hueBG.png";
 
 /**
@@ -58,6 +61,22 @@ if (windowWidth < 500) {
   styleWidth = windowWidth;
   styleHeight = windowWidth;
 }
+
+const downloadChart = (downloadType) => {
+  if (downloadType === "png") {
+    htmlToImage
+      .toBlob(document.getElementById("colorVectorGraphics"))
+      .then(function (blob) {
+        saveAs(blob, "colorVectorGraphics.png");
+      });
+  } else if (downloadType === "svg") {
+    htmlToImage
+      .toSvg(document.getElementById("colorVectorGraphics"))
+      .then(function (blob) {
+        saveAs(blob, "colorVectorGraphics.svg");
+      });
+  }
+};
 
 const CVGPlot = ({ measurementLabels, refHAB }) => {
   const [activePage, setCurrentPage] = useState(1);
@@ -268,7 +287,7 @@ const CVGPlot = ({ measurementLabels, refHAB }) => {
   }
 
   return (
-    <section className="cvg">
+    <section className="cvg col-md-12">
       <Pagination
         activePage={activePage}
         itemsCountPerPage={1}
@@ -276,29 +295,46 @@ const CVGPlot = ({ measurementLabels, refHAB }) => {
         pageRangeDisplayed={10}
         onChange={handlePageChange}
       />
-
-      <Plot
-        data={data}
-        style={{ width: styleWidth, height: styleHeight }}
-        layout={layout}
-        config={{
-          toImageButtonOptions: { width: styleWidth, height: styleHeight },
-          displayModeBar: true,
-          showLink: false,
-          modeBarButtonsToRemove: [
-            "zoom2d",
-            "pan",
-            "pan2d",
-            "sendDataToCloud",
-            "hoverClosestCartesian",
-            "hoverCompareCartesian",
-            "autoScale2d",
-            "toggleSpikelines",
-            "toggleHover",
-          ],
-          displaylogo: false,
-        }}
-      />
+      <div id="colorVectorGraphics" className="col-md-8 md-offset-2 col-xs-12">
+        <Plot
+          data={data}
+          style={{ width: styleWidth, height: styleHeight }}
+          layout={layout}
+          config={{
+            toImageButtonOptions: { width: styleWidth, height: styleHeight },
+            displayModeBar: true,
+            showLink: false,
+            modeBarButtonsToRemove: [
+              "zoom2d",
+              "pan",
+              "pan2d",
+              "sendDataToCloud",
+              "hoverClosestCartesian",
+              "hoverCompareCartesian",
+              "autoScale2d",
+              "toggleSpikelines",
+              "toggleHover",
+            ],
+            displaylogo: false,
+          }}
+        />
+      </div>
+      <div className="col-md-12 my-1">
+        <Button
+          variant="primary"
+          onClick={() => downloadChart("png")}
+          className="btn-sm my-1"
+        >
+          Download Chart as PNG
+        </Button>
+        <Button
+          variant="success"
+          onClick={() => downloadChart("svg")}
+          className="btn-sm mx-3 my-1"
+        >
+          Download Chart as SVG
+        </Button>
+      </div>
     </section>
   );
 };

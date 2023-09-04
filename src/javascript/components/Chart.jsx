@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
+import { saveAs } from "file-saver";
+import * as htmlToImage from "html-to-image";
+import { Button } from "react-bootstrap";
 import createChart from "../chart";
 import { referenceSpectraNames } from "../referenceSpectra";
 
@@ -19,6 +22,22 @@ const Chart = ({
 
   const handleReferenceSpectraSelect = ({ target: { value } }) => {
     setDisplayedReference(value);
+  };
+
+  const downloadChart = (downloadType) => {
+    if (downloadType === "png") {
+      htmlToImage
+        .toBlob(document.getElementById("canvasChart"))
+        .then(function (blob) {
+          saveAs(blob, "canvasChart.png");
+        });
+    } else if (downloadType === "svg") {
+      htmlToImage
+        .toSvg(document.getElementById("canvasChart"))
+        .then(function (blob) {
+          saveAs(blob, "canvasChart.svg");
+        });
+    }
   };
 
   useEffect(() => {
@@ -133,10 +152,36 @@ const Chart = ({
           </div>
           <div className="col-md-8 col-xs-12">
             {windowWidth < 500 ? (
-              <canvas width="800" height="800" ref={chartRef} />
+              <canvas
+                width="800"
+                height="800"
+                ref={chartRef}
+                id="canvasChart"
+              />
             ) : (
-              <canvas width="400" height="200" ref={chartRef} />
+              <canvas
+                width="400"
+                height="200"
+                ref={chartRef}
+                id="canvasChart"
+              />
             )}
+            <div className="col-md-12">
+              <Button
+                variant="primary"
+                onClick={() => downloadChart("png")}
+                className="btn-sm my-1"
+              >
+                Download Chart as PNG
+              </Button>
+              <Button
+                variant="success"
+                onClick={() => downloadChart("svg")}
+                className="btn-sm mx-3 my-1"
+              >
+                Download Chart as SVG
+              </Button>
+            </div>
           </div>
         </div>
       </div>

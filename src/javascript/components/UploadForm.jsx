@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import PropTypes from "prop-types";
 import ErrorTable from "./ErrorTable";
-
 import parseCSV from "../csvParser";
 import { relativeToAbsolute } from "../calculations";
 import { scaleSamples } from "../rows";
@@ -24,6 +23,7 @@ const UploadForm = ({
   setRefHAB,
   isLoaded,
   setLoaded,
+  setModalView,
 }) => {
   const [powerScale, setPowerScale] = useState("watt");
   const [areaScale, setAreaScale] = useState("metresq");
@@ -141,6 +141,8 @@ const UploadForm = ({
             reset();
           } else {
             handleData(data);
+            setModalView(true);
+            fileInput.current.value = null;
           }
         });
       } else if (fileType === "spdx") {
@@ -380,6 +382,7 @@ UploadForm.propTypes = {
   setCSV: PropTypes.func.isRequired,
   setRefHAB: PropTypes.func.isRequired,
   setLoaded: PropTypes.func.isRequired,
+  setModalView: PropTypes.func.isRequired,
 };
 
 const AbsoluteUnits = ({
