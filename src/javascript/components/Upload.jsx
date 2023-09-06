@@ -80,7 +80,7 @@ const Upload = () => {
         </section>
         <LoadingIndicator />
         <section className="why-us pt-2 upload-section">
-          <div className="container p-5 text-center">
+          <div className="container p-4 text-center upload-div">
             <div className="row justify-content-center">
               <UploadForm
                 radianceOrIrradiance={radianceOrIrradiance}

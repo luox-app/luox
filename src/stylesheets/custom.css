@@ -333,9 +333,28 @@
 .modal-lg {
     --bs-modal-width: 70%;
 }
-@media screen and (max-width: 776px) {
+@media screen and (max-width: 996px) {
+    .upload-div, .container {
+        max-width: 95% !important;
+    }
+    .table-row {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        overflow-x: scroll !important;
+    }
+}
+@media screen and (max-width: 768px){
     .modal-lg {
         --bs-modal-width: 100%;
+    }
+    .upload-div, .container {
+        padding: 20px !important;
+        max-width: 95% !important;
+    }
+    .table-row {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        overflow-x: scroll !important;
     }
 }
 @media screen and (max-width: 576px) {

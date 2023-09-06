@@ -57,9 +57,15 @@ let styleWidth = 700;
 let styleHeight = 700;
 const windowWidth = window.innerWidth;
 
-if (windowWidth < 500) {
-  styleWidth = windowWidth;
-  styleHeight = windowWidth;
+if (windowWidth <= 996 && windowWidth > 776) {
+  styleWidth = 500;
+  styleHeight = 500;
+} else if (windowWidth <= 776 && windowWidth > 500) {
+  styleWidth = 300;
+  styleHeight = 300;
+} else if (windowWidth <= 500) {
+  styleWidth = 200;
+  styleHeight = 200;
 }
 
 const downloadChart = (downloadType) => {
@@ -295,7 +301,7 @@ const CVGPlot = ({ measurementLabels, refHAB }) => {
         pageRangeDisplayed={10}
         onChange={handlePageChange}
       />
-      <div id="colorVectorGraphics" className="col-md-8 md-offset-2 col-xs-12">
+      <div id="colorVectorGraphics">
         <Plot
           data={data}
           style={{ width: styleWidth, height: styleHeight }}
