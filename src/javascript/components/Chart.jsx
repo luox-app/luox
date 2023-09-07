@@ -26,14 +26,13 @@ const Chart = ({
 
   const downloadChart = (downloadType) => {
     if (downloadType === "png") {
-      htmlToImage
-        .toBlob(document.getElementById("canvasChart"))
-        .then(function (blob) {
-          saveAs(blob, "canvasChart.png");
-        });
+      const canvasChart = document.getElementById("canvasChart");
+      canvasChart.toBlob(function (blob) {
+        saveAs(blob, "canvasChart.png");
+      });
     } else if (downloadType === "svg") {
       htmlToImage
-        .toSvg(document.getElementById("canvasChart"))
+        .toSvg(document.getElementById("canvasChartDiv"))
         .then(function (blob) {
           saveAs(blob, "canvasChart.svg");
         });
@@ -151,21 +150,23 @@ const Chart = ({
             </div>
           </div>
           <div className="col-md-8 col-xs-12">
-            {windowWidth < 500 ? (
-              <canvas
-                width="800"
-                height="800"
-                ref={chartRef}
-                id="canvasChart"
-              />
-            ) : (
-              <canvas
-                width="400"
-                height="200"
-                ref={chartRef}
-                id="canvasChart"
-              />
-            )}
+            <div id="canvasChartDiv">
+              {windowWidth < 500 ? (
+                <canvas
+                  width="800"
+                  height="800"
+                  ref={chartRef}
+                  id="canvasChart"
+                />
+              ) : (
+                <canvas
+                  width="400"
+                  height="200"
+                  ref={chartRef}
+                  id="canvasChart"
+                />
+              )}
+            </div>
             <div className="col-md-12">
               <Button
                 variant="primary"
