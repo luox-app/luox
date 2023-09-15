@@ -107,14 +107,26 @@ const GenerateCSV = () => {
                 <div className="col-md-12 text-start">
                   <p>
                     To download example spectral power distribution, click on
-                    Download Button.
+                    Download Sample CSV Button.
                   </p>
                   <a
                     download="sample.csv"
                     href="/examples/sample.csv"
-                    className="btn btn-primary"
+                    className="btn btn-sm btn-primary"
                   >
-                    Download
+                    Download Sample CSV
+                  </a>
+                  <p className="mt-3">
+                    To download example SPDX sample file courtsey Mike Grather,
+                    LightLab International Allentown, click on Download Sample
+                    SPDX Button.
+                  </p>
+                  <a
+                    download="Sample LED-01.spdx"
+                    href="/examples/Sample LED-01.spdx"
+                    className="btn btn-sm btn-primary"
+                  >
+                    Download Sample SPDX
                   </a>
                   <p className="pt-3 text-start">
                     Please note that the accuracy of calculations implemented

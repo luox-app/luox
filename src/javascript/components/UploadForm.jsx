@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import PropTypes from "prop-types";
+import * as XLSX from "xlsx";
 import ErrorTable from "./ErrorTable";
 import parseCSV from "../csvParser";
 import { relativeToAbsolute } from "../calculations";
@@ -81,10 +82,14 @@ const UploadForm = ({
       setFileType(e.target.value);
     } else {
       if (e.target.value === "spdx") {
-        setFileType("csv");
+        setFileType("spdx");
         return;
       }
-      setFileType("spdx");
+      if (e.target.value === "xlsx") {
+        setFileType("xlsx");
+        return;
+      }
+      setFileType("csv");
     }
   };
 
@@ -145,6 +150,36 @@ const UploadForm = ({
             fileInput.current.value = null;
           }
         });
+      } else if (fileType === "xlsx") {
+        if (file.name.toLowerCase().indexOf(".xlsx") === -1) {
+          setErrors([
+            {
+              row: ALL_ROW_CONST,
+              message: "Invalid File Format. File Needs To Be In .XLSX Format",
+            },
+          ]);
+          reset();
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          const bstr = evt.target.result;
+          const wb = XLSX.read(bstr, { type: "binary" });
+          const wsname = wb.SheetNames[0];
+          const ws = wb.Sheets[wsname];
+          const xlsxData = XLSX.utils.sheet_to_csv(ws, { header: 1 });
+          parseCSV(xlsxData).then(({ data, errors: csvErrors }) => {
+            if (csvErrors.length > 0) {
+              setErrors(csvErrors);
+              reset();
+            } else {
+              handleData(data);
+              setModalView(true);
+              fileInput.current.value = null;
+            }
+          });
+        };
+        reader.readAsBinaryString(file);
       } else if (fileType === "spdx") {
         if (file.name.toLowerCase().indexOf(".spdx") === -1) {
           setErrors([
@@ -293,6 +328,20 @@ const UploadForm = ({
                   onChange={(e) => handleFileTypeChange(e)}
                 />{" "}
                 .SPDX
+              </label>
+            </div>
+
+            <div>
+              <label htmlFor="xlsx">
+                <input
+                  type="radio"
+                  id="xlsx"
+                  name="file_type"
+                  value="xlsx"
+                  checked={fileType === "xlsx"}
+                  onChange={(e) => handleFileTypeChange(e)}
+                />{" "}
+                .XLSX
               </label>
             </div>
 

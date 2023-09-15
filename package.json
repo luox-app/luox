@@ -94,6 +94,7 @@
     "swiper": "^10.0.3",
     "use-state-if-mounted": "^1.0.7",
     "val-loader": "^5.0.1",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "xlsx": "^0.18.5"
   }
 }
