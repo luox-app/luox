@@ -59,9 +59,10 @@ const Intro = () => {
               </p>
               <a
                 href="/format-info"
-                className="btn-get-started animate__animated animate__fadeInUp"
+                className="btn-get-started animate__animated animate__fadeInUp tooltip"
               >
                 Start Now
+                <span className="tooltiptext">Start Now</span>
               </a>
             </div>
           </div>
