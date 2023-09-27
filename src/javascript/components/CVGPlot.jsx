@@ -14,7 +14,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  * */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Plot from "react-plotly.js";
 import Pagination from "react-js-pagination";
@@ -86,9 +86,19 @@ const downloadChart = (downloadType) => {
 
 const CVGPlot = ({ measurementLabels, refHAB }) => {
   const [activePage, setCurrentPage] = useState(1);
+  const [isActive, setIsActive] = useState(false);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  useEffect(() => {
+    const tooltipTutorial = localStorage.getItem("tooltip_tutorial");
+    if (tooltipTutorial === "1") {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  });
 
   const spectraName = measurementLabels[activePage - 1];
   const binLines = drawBinDividers();
@@ -329,16 +339,26 @@ const CVGPlot = ({ measurementLabels, refHAB }) => {
         <Button
           variant="primary"
           onClick={() => downloadChart("png")}
-          className="btn-sm my-1"
+          className="btn-sm my-1 tooltip"
         >
           Download Chart as PNG
+          <span
+            className={isActive ? "tooltiptext" : "tooltiptext displayNone"}
+          >
+            Download Chart as PNG
+          </span>
         </Button>
         <Button
           variant="success"
           onClick={() => downloadChart("svg")}
-          className="btn-sm mx-3 my-1"
+          className="btn-sm mx-3 my-1 tooltip"
         >
           Download Chart as SVG
+          <span
+            className={isActive ? "tooltiptext" : "tooltiptext displayNone"}
+          >
+            Download Chart as SVG
+          </span>
         </Button>
       </div>
     </section>

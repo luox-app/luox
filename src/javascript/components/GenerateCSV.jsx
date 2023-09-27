@@ -1,10 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MultiStepProgressBar from "./MultiStepProgressBar";
 
 const GenerateCSV = () => {
+  const [isActive, setIsActive] = useState(false);
   useEffect(() => {
     document.title = "luox: Format instructions";
+    const tooltipTutorial = localStorage.getItem("tooltip_tutorial");
+    if (tooltipTutorial === "1") {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   });
 
   return (
@@ -115,7 +122,13 @@ const GenerateCSV = () => {
                     className="btn btn-sm btn-primary tooltip"
                   >
                     Download Sample CSV
-                    <span className="tooltiptext">Download Sample CSV</span>
+                    <span
+                      className={
+                        isActive ? "tooltiptext" : "tooltiptext displayNone"
+                      }
+                    >
+                      Download Sample CSV
+                    </span>
                   </a>
                   <p className="mt-3">
                     To download example SPDX sample file courtsey Mike Grather,
@@ -128,7 +141,13 @@ const GenerateCSV = () => {
                     className="btn btn-sm btn-primary tooltip"
                   >
                     Download Sample SPDX
-                    <span className="tooltiptext">Download Sample SPDX</span>
+                    <span
+                      className={
+                        isActive ? "tooltiptext" : "tooltiptext displayNone"
+                      }
+                    >
+                      Download Sample SPDX
+                    </span>
                   </a>
                   <p className="pt-3 text-start">
                     Please note that the accuracy of calculations implemented
@@ -144,7 +163,9 @@ const GenerateCSV = () => {
         <p className="mb-5 text-center">
           <Link to="/upload" className="btn btn-primary tooltip">
             Next
-            <span className="tooltiptext">
+            <span
+              className={isActive ? "tooltiptext" : "tooltiptext displayNone"}
+            >
               Upload Spectrum and Generate Report
             </span>
           </Link>

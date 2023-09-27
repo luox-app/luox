@@ -11,6 +11,10 @@
     height: auto !important;
 }
 
+.navbar button {
+    margin-left: 30px !important;
+}
+
 .portfolio {
     padding-bottom: 0px !important;
 }
@@ -338,11 +342,12 @@
     position: relative;
     display: inline-block;
     opacity: 1;
+    z-index: 10;
 }
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
+    width: 200px;
     background-color: black;
     color: #fff;
     text-align: center;
@@ -352,7 +357,7 @@
     z-index: 1;
     top: 150%;
     left: 50%;
-    margin-left: -60px;
+    margin-left: -90px;
 }
 
 .tooltip .tooltiptext::after {
