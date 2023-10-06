@@ -24,5 +24,8 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react", "jest"],
-  rules: {},
+  rules: {
+    "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
+    "no-param-reassign": 0,
+  },
 };

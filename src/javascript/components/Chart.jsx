@@ -1,18 +1,21 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
+import { saveAs } from "file-saver";
+import * as htmlToImage from "html-to-image";
+import { Button } from "react-bootstrap";
 import createChart from "../chart";
 import { referenceSpectraNames } from "../referenceSpectra";
 
 const Chart = ({
   radianceOrIrradiance,
-  rows,
-  sampleCount,
+  selectedRows,
+  selectedRowsSampleCount,
   measurementLabels,
 }) => {
+  const windowWidth = window.innerWidth;
   const chartRef = useRef();
   const [yAxisScaling, setYAxisScaling] = useState("raw");
   const [displayedReference, setDisplayedReference] = useState("none");
-
   const handleYAxisScaling = ({ target: { value } }) => {
     setYAxisScaling(value);
   };
@@ -21,15 +24,29 @@ const Chart = ({
     setDisplayedReference(value);
   };
 
+  const downloadChart = (downloadType) => {
+    if (downloadType === "png") {
+      const canvasChart = document.getElementById("canvasChart");
+      canvasChart.toBlob(function (blob) {
+        saveAs(blob, "canvasChart.png");
+      });
+    } else if (downloadType === "svg") {
+      htmlToImage
+        .toSvg(document.getElementById("canvasChartDiv"))
+        .then(function (blob) {
+          saveAs(blob, "canvasChart.svg");
+        });
+    }
+  };
+
   useEffect(() => {
     let chart;
-
     if (chartRef.current) {
       chart = createChart(
         chartRef.current,
         radianceOrIrradiance,
-        rows,
-        sampleCount,
+        selectedRows,
+        selectedRowsSampleCount,
         measurementLabels,
         yAxisScaling,
         displayedReference
@@ -43,8 +60,8 @@ const Chart = ({
     };
   }, [
     radianceOrIrradiance,
-    rows,
-    sampleCount,
+    selectedRows,
+    selectedRowsSampleCount,
     measurementLabels,
     yAxisScaling,
     displayedReference,
@@ -52,9 +69,9 @@ const Chart = ({
 
   return (
     <section>
-      <div className="container">
+      <div className="container p-4">
         <div className="row">
-          <div className="col-sm">
+          <div className="col-md-4 col-xs-12 pt-5">
             <div className="row">
               <div>
                 <h5>Y-axis scale</h5>
@@ -132,8 +149,40 @@ const Chart = ({
               </form>
             </div>
           </div>
-          <div className="col-8">
-            <canvas width="400" height="200" ref={chartRef} />
+          <div className="col-md-8 col-xs-12">
+            <div id="canvasChartDiv">
+              {windowWidth < 500 ? (
+                <canvas
+                  width="800"
+                  height="800"
+                  ref={chartRef}
+                  id="canvasChart"
+                />
+              ) : (
+                <canvas
+                  width="400"
+                  height="200"
+                  ref={chartRef}
+                  id="canvasChart"
+                />
+              )}
+            </div>
+            <div className="col-md-12">
+              <Button
+                variant="primary"
+                onClick={() => downloadChart("png")}
+                className="btn-sm my-1"
+              >
+                Download Chart as PNG
+              </Button>
+              <Button
+                variant="success"
+                onClick={() => downloadChart("svg")}
+                className="btn-sm mx-3 my-1"
+              >
+                Download Chart as SVG
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -143,8 +192,9 @@ const Chart = ({
 
 Chart.propTypes = {
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
-  rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
-  sampleCount: PropTypes.number.isRequired,
+  selectedRows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+    .isRequired,
+  selectedRowsSampleCount: PropTypes.number.isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 

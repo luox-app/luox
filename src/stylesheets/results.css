@@ -15,16 +15,14 @@
  **/
 
 
-.result-table {
-  display: block;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
-  margin: 0 auto;
-  overflow-x: auto;
-  white-space: nowrap;
+.result-table thead tr th:first-child, .result-table tbody tr th {  
+  left: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 1;  
 }
 
-.result-table th:not(:first-child), .result-table td:not(:first-child) {
+/* .result-table th:not(:first-child), .result-table td:not(:first-child) {
   text-align: center;
 }
 .result-table th:last-child, .result-table td:last-child {
@@ -47,7 +45,7 @@
 
 .result-table tbody tr:nth-child(odd) th, .result-table tbody tr:nth-child(odd) {  
   background-color: #ebeced;
-}
+} */
 
 .pagination {
   display: inline-block;

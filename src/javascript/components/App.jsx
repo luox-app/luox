@@ -1,4 +1,4 @@
-import "../../stylesheets/application.scss";
+import "../../stylesheets/custom.css";
 import React from "react";
 import { withRouter } from "react-router";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -12,34 +12,44 @@ import ScrollToTop from "./ScrollToTop";
 
 const NavBarWithRouter = withRouter(NavBar);
 
+let homeActive = false;
+if (window.location.pathname === "/") {
+  homeActive = true;
+}
+
 const App = () => {
   return (
     <div>
       <Router>
         <ScrollToTop />
-        <header>
+        <header
+          id="header"
+          className={
+            homeActive
+              ? "fixed-top d-flex align-items-center header-transparent"
+              : "fixed-top d-flex align-items-center"
+          }
+        >
           <NavBarWithRouter />
         </header>
 
-        <main className="container">
-          <Switch>
-            <Route path="/u/:id">
-              <Report />
-            </Route>
-            <Route path="/upload">
-              <Upload />
-            </Route>
-            <Route path="/format-info">
-              <GenerateCSV />
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/">
-              <Intro />
-            </Route>
-          </Switch>
-        </main>
+        <Switch>
+          <Route path="/u/:id">
+            <Report />
+          </Route>
+          <Route path="/upload">
+            <Upload />
+          </Route>
+          <Route path="/format-info">
+            <GenerateCSV />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/">
+            <Intro />
+          </Route>
+        </Switch>
       </Router>
     </div>
   );

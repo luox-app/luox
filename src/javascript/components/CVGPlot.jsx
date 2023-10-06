@@ -18,6 +18,9 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Plot from "react-plotly.js";
 import Pagination from "react-js-pagination";
+import { saveAs } from "file-saver";
+import * as htmlToImage from "html-to-image";
+import { Button } from "react-bootstrap";
 import hueBG from "../../images/hueBG.png";
 
 /**
@@ -48,6 +51,37 @@ const drawBinDividers = () => {
     });
   });
   return binDividerLines;
+};
+
+let styleWidth = 700;
+let styleHeight = 700;
+const windowWidth = window.innerWidth;
+
+if (windowWidth <= 996 && windowWidth > 776) {
+  styleWidth = 500;
+  styleHeight = 500;
+} else if (windowWidth <= 776 && windowWidth > 500) {
+  styleWidth = 300;
+  styleHeight = 300;
+} else if (windowWidth <= 500) {
+  styleWidth = 200;
+  styleHeight = 200;
+}
+
+const downloadChart = (downloadType) => {
+  if (downloadType === "png") {
+    htmlToImage
+      .toBlob(document.getElementById("colorVectorGraphics"))
+      .then(function (blob) {
+        saveAs(blob, "colorVectorGraphics.png");
+      });
+  } else if (downloadType === "svg") {
+    htmlToImage
+      .toSvg(document.getElementById("colorVectorGraphics"))
+      .then(function (blob) {
+        saveAs(blob, "colorVectorGraphics.svg");
+      });
+  }
 };
 
 const CVGPlot = ({ measurementLabels, refHAB }) => {
@@ -259,7 +293,7 @@ const CVGPlot = ({ measurementLabels, refHAB }) => {
   }
 
   return (
-    <section className="cvg">
+    <section className="cvg col-md-12">
       <Pagination
         activePage={activePage}
         itemsCountPerPage={1}
@@ -267,36 +301,53 @@ const CVGPlot = ({ measurementLabels, refHAB }) => {
         pageRangeDisplayed={10}
         onChange={handlePageChange}
       />
-
-      <Plot
-        data={data}
-        style={{ width: 700, height: 700 }}
-        layout={layout}
-        config={{
-          toImageButtonOptions: { width: 700, height: 700 },
-          displayModeBar: true,
-          showLink: false,
-          modeBarButtonsToRemove: [
-            "zoom2d",
-            "pan",
-            "pan2d",
-            "sendDataToCloud",
-            "hoverClosestCartesian",
-            "hoverCompareCartesian",
-            "autoScale2d",
-            "toggleSpikelines",
-            "toggleHover",
-          ],
-          displaylogo: false,
-        }}
-      />
+      <div id="colorVectorGraphics">
+        <Plot
+          data={data}
+          style={{ width: styleWidth, height: styleHeight }}
+          layout={layout}
+          config={{
+            toImageButtonOptions: { width: styleWidth, height: styleHeight },
+            displayModeBar: true,
+            showLink: false,
+            modeBarButtonsToRemove: [
+              "zoom2d",
+              "pan",
+              "pan2d",
+              "sendDataToCloud",
+              "hoverClosestCartesian",
+              "hoverCompareCartesian",
+              "autoScale2d",
+              "toggleSpikelines",
+              "toggleHover",
+            ],
+            displaylogo: false,
+          }}
+        />
+      </div>
+      <div className="col-md-12 my-1">
+        <Button
+          variant="primary"
+          onClick={() => downloadChart("png")}
+          className="btn-sm my-1"
+        >
+          Download Chart as PNG
+        </Button>
+        <Button
+          variant="success"
+          onClick={() => downloadChart("svg")}
+          className="btn-sm mx-3 my-1"
+        >
+          Download Chart as SVG
+        </Button>
+      </div>
     </section>
   );
 };
 
 CVGPlot.propTypes = {
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
-  refHAB: PropTypes.arrayOf(PropTypes.object),
+  refHAB: PropTypes.arrayOf(PropTypes.shape),
 };
 
 CVGPlot.defaultProps = {

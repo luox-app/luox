@@ -10,25 +10,43 @@ import {
   calculateChromaticity64,
 } from "./chromaticity";
 
-export const calculateLuminance = (rows, sampleCount) => {
+export const calculateLuminance = (selectedRows, selectedRowsSampleCount) => {
   const key = "vl1924";
   const K = 683.002;
-  const samplesInWatts = integrateWithWeights(rows, sampleCount, VL1924, key);
+  const samplesInWatts = integrateWithWeights(
+    selectedRows,
+    selectedRowsSampleCount,
+    VL1924,
+    key
+  );
   return samplesInWatts.map((sample) => sample * K);
 };
 
-export const relativeToAbsolute = (rows, sampleCount, relativePowers) => {
-  const powers = calculateLuminance(rows, sampleCount);
+export const relativeToAbsolute = (
+  selectedRows,
+  selectedRowsSampleCount,
+  relativePowers
+) => {
+  const powers = calculateLuminance(selectedRows, selectedRowsSampleCount);
 
   return mapSamples(
-    rows,
+    selectedRows,
     (wavelength, sample, index) =>
       sample * ((relativePowers[index] || 1) / powers[index])
   );
 };
 
-export const calculateAlphaOpic = (rows, sampleCount, key) => {
-  const samplesInWatts = integrateWithWeights(rows, sampleCount, CIES026, key);
+export const calculateAlphaOpic = (
+  selectedRows,
+  selectedRowsSampleCount,
+  key
+) => {
+  const samplesInWatts = integrateWithWeights(
+    selectedRows,
+    selectedRowsSampleCount,
+    CIES026,
+    key
+  );
   return samplesInWatts.map((sample) => sample * 1000);
 };
 
@@ -65,45 +83,68 @@ export const calculateAlphaOpicEfficiency = (
   };
 };
 
-export const calculateColourRenderingIndices = (rows) => {
-  return rowsToSpectra(rows).map((spectra) =>
+export const calculateColourRenderingIndices = (selectedRows) => {
+  return rowsToSpectra(selectedRows).map((spectra) =>
     calculateColourRenderingIndex(spectra)
   );
 };
 
-export const calculateColourFidelityIndices = (rows) => {
-  return rowsToSpectra(rows).map((spectra) =>
+export const calculateColourFidelityIndices = (selectedRows) => {
+  return rowsToSpectra(selectedRows).map((spectra) =>
     calculateColourFidelityIndex(spectra)
   );
 };
 
-export const calculateColourFidelityIndicesRounded = (rows) => {
-  return rowsToSpectra(rows).map((spectra) =>
+export const calculateColourFidelityIndicesRounded = (selectedRows) => {
+  return rowsToSpectra(selectedRows).map((spectra) =>
     calculateColourFidelityIndexRounded(spectra)
   );
 };
 
-export const calculateTM30ColourFidelityIndices = (rows) => {
-  return rowsToSpectra(rows).map((spectra) =>
+export const calculateTM30ColourFidelityIndices = (selectedRows) => {
+  return rowsToSpectra(selectedRows).map((spectra) =>
     calculateTM30ColourFidelityIndex(spectra)
   );
 };
 
-export const calculate = (rows, sampleCount) => {
-  const luminanceTotals = calculateLuminance(rows, sampleCount);
-  const sConeTotals = calculateAlphaOpic(rows, sampleCount, "sCone");
-  const mConeTotals = calculateAlphaOpic(rows, sampleCount, "mCone");
-  const lConeTotals = calculateAlphaOpic(rows, sampleCount, "lCone");
-  const rodTotals = calculateAlphaOpic(rows, sampleCount, "rod");
-  const melTotals = calculateAlphaOpic(rows, sampleCount, "mel");
+export const calculate = (selectedRows, selectedRowsSampleCount) => {
+  const luminanceTotals = calculateLuminance(
+    selectedRows,
+    selectedRowsSampleCount
+  );
+  const sConeTotals = calculateAlphaOpic(
+    selectedRows,
+    selectedRowsSampleCount,
+    "sCone"
+  );
+  const mConeTotals = calculateAlphaOpic(
+    selectedRows,
+    selectedRowsSampleCount,
+    "mCone"
+  );
+  const lConeTotals = calculateAlphaOpic(
+    selectedRows,
+    selectedRowsSampleCount,
+    "lCone"
+  );
+  const rodTotals = calculateAlphaOpic(
+    selectedRows,
+    selectedRowsSampleCount,
+    "rod"
+  );
+  const melTotals = calculateAlphaOpic(
+    selectedRows,
+    selectedRowsSampleCount,
+    "mel"
+  );
 
   return {
-    colourFidelityIndex: calculateColourFidelityIndices(rows),
+    colourFidelityIndex: calculateColourFidelityIndices(selectedRows),
     calculateColourFidelityIndexRounded: calculateColourFidelityIndicesRounded(
-      rows
+      selectedRows
     ),
-    tm30ColourFidelityIndex: calculateTM30ColourFidelityIndices(rows),
-    colourRenderingIndex: calculateColourRenderingIndices(rows),
+    tm30ColourFidelityIndex: calculateTM30ColourFidelityIndices(selectedRows),
+    colourRenderingIndex: calculateColourRenderingIndices(selectedRows),
     alphaOpicEfficiency: calculateAlphaOpicEfficiency(
       sConeTotals,
       mConeTotals,
@@ -112,8 +153,14 @@ export const calculate = (rows, sampleCount) => {
       melTotals,
       luminanceTotals
     ),
-    chromaticity31: calculateChromaticity31(rows, sampleCount),
-    chromaticity64: calculateChromaticity64(rows, sampleCount),
+    chromaticity31: calculateChromaticity31(
+      selectedRows,
+      selectedRowsSampleCount
+    ),
+    chromaticity64: calculateChromaticity64(
+      selectedRows,
+      selectedRowsSampleCount
+    ),
     equivalentDaylightAlphaOpic: calculateEquivalentDaylightAlphaOpic(
       sConeTotals,
       mConeTotals,

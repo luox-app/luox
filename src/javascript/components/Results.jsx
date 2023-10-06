@@ -9,8 +9,8 @@ import { rowsToURL } from "../sharing";
 // export const t0 = performance.now();
 
 const Results = ({
-  rows,
-  sampleCount,
+  selectedRows,
+  selectedRowsSampleCount,
   radianceOrIrradiance,
   measurementLabels,
   powerMode,
@@ -22,11 +22,15 @@ const Results = ({
   const originalButtonText = "Copy to clipboard";
   const [buttonText, setButtonText] = useState(originalButtonText);
 
-  if (rows.length === 0) {
+  if (selectedRows.length === 0) {
     return null;
   }
 
-  const sharingID = rowsToURL(rows, radianceOrIrradiance, measurementLabels);
+  const sharingID = rowsToURL(
+    selectedRows,
+    radianceOrIrradiance,
+    measurementLabels
+  );
   const sharingURL = `${window.location.origin}/u/${sharingID}`;
 
   const buttonDisabled = () => {
@@ -52,7 +56,7 @@ const Results = ({
         <h2 className="my-3">
           Step 3. Check we have understood your input correctly.
         </h2>
-        <p className="lead">
+        <p className="lead text-start">
           Check that we have loaded the correct number of observations. Also
           check the units of measurement. It may help to compare your spectra to
           a standard reference spectra. For example, if your measurements were
@@ -63,8 +67,8 @@ const Results = ({
         {!powerMode && (
           <Chart
             radianceOrIrradiance={radianceOrIrradiance}
-            rows={rows}
-            sampleCount={sampleCount}
+            selectedRows={selectedRows}
+            selectedRowsSampleCount={selectedRowsSampleCount}
             measurementLabels={measurementLabels}
           />
         )}
@@ -73,14 +77,14 @@ const Results = ({
           Step 4. Download the stimulus specification tables and include them in
           your report.
         </h2>
-        <p>
+        <p className="text-start">
           Heavy load may take some time to render (even if the loading has been
           processed). Please wait until it populates the table below.
         </p>
 
         <CalculationTable
-          rows={rows}
-          sampleCount={sampleCount}
+          selectedRows={selectedRows}
+          selectedRowsSampleCount={selectedRowsSampleCount}
           radianceOrIrradiance={radianceOrIrradiance}
           measurementLabels={measurementLabels}
           isLoaded={isLoaded}
@@ -94,7 +98,7 @@ const Results = ({
           supplementary material.
         </h2>
 
-        <p>
+        <p className="text-start">
           Where a journal does not offer the capability of making Supplementary
           Material available, files can be made available on{" "}
           <a href="https://figshare.com/">Figshare</a>, the{" "}
@@ -104,8 +108,8 @@ const Results = ({
         </p>
 
         <SpectraTable
-          rows={rows}
-          sampleCount={sampleCount}
+          selectedRows={selectedRows}
+          selectedRowsSampleCount={selectedRowsSampleCount}
           radianceOrIrradiance={radianceOrIrradiance}
           measurementLabels={measurementLabels}
         />
@@ -113,7 +117,7 @@ const Results = ({
         <h2 className="my-3">
           Step 6. Share an online version of this report.
         </h2>
-        <p>
+        <p className="text-start">
           In order to avoid the{" "}
           <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/431">
             HTTP 431 Request Header Fields Too Large
@@ -158,13 +162,14 @@ const Results = ({
 };
 
 Results.propTypes = {
-  rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
-  sampleCount: PropTypes.number.isRequired,
+  selectedRows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+    .isRequired,
+  selectedRowsSampleCount: PropTypes.number.isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   powerMode: PropTypes.bool.isRequired,
   isLoaded: PropTypes.bool.isRequired,
-  refHAB: PropTypes.arrayOf(PropTypes.object),
+  refHAB: PropTypes.arrayOf(PropTypes.shape),
   setLoaded: PropTypes.func.isRequired,
   setRefHAB: PropTypes.func.isRequired,
 };
