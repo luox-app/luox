@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import PropTypes from "prop-types";
 import SpectraCSV from "./SpectraCSV";
 import { asExponential, radianceOrIrradianceSIUnit } from "../helpers";
@@ -76,6 +76,16 @@ const SpectraTable = ({
 }) => {
   const [exponentialNotation, setExponentialNotation] = useState(true);
   const [displayAllRows, setDisplayAllRows] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    const tooltipTutorial = localStorage.getItem("tooltip_tutorial");
+    if (tooltipTutorial === "1") {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  });
 
   const spectraDownloadUrl = useMemo(
     () => SpectraCSV({ radianceOrIrradiance, selectedRows }),
@@ -132,10 +142,15 @@ const SpectraTable = ({
         <div className="col text-right">
           <a
             download="download-spectrum.csv"
-            className="btn btn-outline-secondary"
+            className="btn btn-outline-secondary tooltip"
             href={spectraDownloadUrl}
           >
             Download CSV
+            <span
+              className={isActive ? "tooltiptext" : "tooltiptext displayNone"}
+            >
+              Download Data as CSV
+            </span>
           </a>
         </div>
       </div>

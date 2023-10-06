@@ -46,10 +46,16 @@ const Upload = () => {
       )
     );
   };
-
+  const [isActive, setIsActive] = useState(false);
   useEffect(() => {
     // code to run after render goes here
     document.title = "luox: Upload spectrum and generate report";
+    const tooltipTutorial = localStorage.getItem("tooltip_tutorial");
+    if (tooltipTutorial === "1") {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   });
 
   return (
@@ -60,7 +66,10 @@ const Upload = () => {
             <div className="section-title">
               <h2>Upload spectrum and generate report</h2>
               <p className="justify-content-center">
-                <label htmlFor="pro_mode_checkbox" className="promode-label">
+                <label
+                  htmlFor="pro_mode_checkbox"
+                  className="promode-label tooltip"
+                >
                   <input
                     type="checkbox"
                     id="pro_mode_checkbox"
@@ -69,6 +78,14 @@ const Upload = () => {
                     onChange={userModeChange}
                   />{" "}
                   Power user mode (check if your SPD columns &gt; 5)
+                  <span
+                    className={
+                      isActive ? "tooltiptext" : "tooltiptext displayNone"
+                    }
+                  >
+                    Check to Enable Power User Mode and Uncheck to Disable Power
+                    User Mode
+                  </span>
                 </label>
               </p>
               <MultiStepProgressBar

@@ -26,49 +26,6 @@ const MultiStepProgressBar = ({ page }) => {
   }
 
   return (
-    // <ProgressBar percent={stepPercentage}>
-    //   <Step label="Start">
-    //     {({ accomplished, index }) => (
-    //       <div
-    //         className={`indexedStep ${accomplished ? "accomplished" : null}`}
-    //         onClick={() => onPageNumberClick("1")}
-    //       >
-    //         {index + 1}
-    //       </div>
-    //     )}
-    //   </Step>
-    //   <Step>
-    //     {({ accomplished, index }) => (
-    //       <div
-    //         className={`indexedStep ${accomplished ? "accomplished" : null}`}
-    //         onClick={() => onPageNumberClick("2")}
-    //       >
-    //         {index + 1}
-    //       </div>
-    //     )}
-    //   </Step>
-    //   <Step>
-    //     {({ accomplished, index }) => (
-    //       <div
-    //         className={`indexedStep ${accomplished ? "accomplished" : null}`}
-    //         onClick={() => onPageNumberClick("3")}
-    //       >
-    //         {index + 1}
-    //       </div>
-    //     )
-    //     }
-    //   </Step>
-    //   <Step>
-    //     {({ accomplished, index }) => (
-    //       <div
-    //         className={`indexedStep ${accomplished ? "accomplished" : null}`}
-    //         onClick={() => onPageNumberClick("4")}
-    //       >
-    //         {index + 1}
-    //       </div>
-    //     )}
-    //   </Step>
-    // </ProgressBar>
     <div className="progressBarDiv">
       <StepProgressBar
         startingStep={startingStep}

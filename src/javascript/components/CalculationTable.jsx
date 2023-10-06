@@ -88,7 +88,7 @@ const CalculationTable = ({
   const [exponentialNotation, setExponentialNotation] = useState(false);
   const [advanced, setAdvanced] = useState(false);
   const [tm30display, setTm30display] = useState(false);
-
+  const [isActive, setIsActive] = useState(false);
   const [
     calculationTableDownloadUrl,
     setCalculationTableDownloadUrl,
@@ -164,6 +164,12 @@ const CalculationTable = ({
     radianceOrIrradiance === "radiance" ? "EDL (cd/m²)" : "EDI (lx)";
 
   useEffect(() => {
+    const tooltipTutorial = localStorage.getItem("tooltip_tutorial");
+    if (tooltipTutorial === "1") {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
     const getIntermediateVals = (indexVals, keySet) => {
       let heading = "";
       const displayArray = [];
@@ -289,10 +295,15 @@ const CalculationTable = ({
         <div className="col text-right">
           <a
             download="download-calc.csv"
-            className="btn btn-outline-secondary"
+            className="btn btn-outline-secondary tooltip"
             href={calculationTableDownloadUrl}
           >
             Download CSV
+            <span
+              className={isActive ? "tooltiptext" : "tooltiptext displayNone"}
+            >
+              Download Data as CSV
+            </span>
           </a>
         </div>
       </div>

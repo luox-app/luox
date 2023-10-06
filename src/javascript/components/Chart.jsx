@@ -38,8 +38,14 @@ const Chart = ({
         });
     }
   };
-
+  const [isActive, setIsActive] = useState(false);
   useEffect(() => {
+    const tooltipTutorial = localStorage.getItem("tooltip_tutorial");
+    if (tooltipTutorial === "1") {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
     let chart;
     if (chartRef.current) {
       chart = createChart(
@@ -128,7 +134,7 @@ const Chart = ({
               <h5>Reference spectrum</h5>
               <form>
                 <div className="form-group">
-                  <label htmlFor="referenceSpectraSelect">
+                  <label htmlFor="referenceSpectraSelect" className="tooltip">
                     Reference spectra
                     <select
                       className="form-control"
@@ -144,6 +150,13 @@ const Chart = ({
                         </option>
                       ))}
                     </select>
+                    <span
+                      className={
+                        isActive ? "tooltiptext" : "tooltiptext displayNone"
+                      }
+                    >
+                      Select a specific reference spectrum from options
+                    </span>
                   </label>
                 </div>
               </form>
@@ -171,16 +184,30 @@ const Chart = ({
               <Button
                 variant="primary"
                 onClick={() => downloadChart("png")}
-                className="btn-sm my-1"
+                className="btn-sm my-1 tooltip"
               >
                 Download Chart as PNG
+                <span
+                  className={
+                    isActive ? "tooltiptext" : "tooltiptext displayNone"
+                  }
+                >
+                  Download Chart as PNG
+                </span>
               </Button>
               <Button
                 variant="success"
                 onClick={() => downloadChart("svg")}
-                className="btn-sm mx-3 my-1"
+                className="btn-sm mx-3 my-1 tooltip"
               >
                 Download Chart as SVG
+                <span
+                  className={
+                    isActive ? "tooltiptext" : "tooltiptext displayNone"
+                  }
+                >
+                  Download Chart as SVG
+                </span>
               </Button>
             </div>
           </div>

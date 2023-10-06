@@ -16,6 +16,11 @@ let homeActive = false;
 if (window.location.pathname === "/") {
   homeActive = true;
 }
+const tooltipTutorial = localStorage.getItem("tooltip_tutorial");
+if (tooltipTutorial === null) {
+  localStorage.setItem("tooltip_tutorial", "0");
+  localStorage.setItem("tooltip_btn_text", "Enable Tooltips");
+}
 
 const App = () => {
   return (
