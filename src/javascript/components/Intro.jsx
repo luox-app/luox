@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import WellcomeLogo from "../../images/wellcome-logo.png";
 import SllLogo from "../../images/society-of-light-and-lighting-logo.png";
 import UooLogo from "../../images/university-of-oxford-logo.svg";
@@ -7,8 +7,15 @@ import IesLogo from "../../images/illuminating-engineering-society-logo.png";
 import NRCLogo from "../../images/nrc-signature-e-kr.jpg";
 
 const Intro = () => {
+  const [isActive, setIsActive] = useState(false);
   useEffect(() => {
     document.title = "luox: Home";
+    const tooltipTutorial = localStorage.getItem("tooltip_tutorial");
+    if (tooltipTutorial === "1") {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   });
 
   return (
@@ -42,8 +49,15 @@ const Intro = () => {
               <p className="animate__animated animate__fadeInUp">
                 For further information about purpose, calculated quantities,
                 and key references, please see{" "}
-                <a href="/about" title="About page">
+                <a href="/about" title="About page" className="tooltip">
                   the About page
+                  <span
+                    className={
+                      isActive ? "tooltiptext" : "tooltiptext displayNone"
+                    }
+                  >
+                    Go to About Page
+                  </span>
                 </a>
                 .
               </p>
@@ -59,9 +73,16 @@ const Intro = () => {
               </p>
               <a
                 href="/format-info"
-                className="btn-get-started animate__animated animate__fadeInUp"
+                className="btn-get-started animate__animated animate__fadeInUp tooltip"
               >
                 Start Now
+                <span
+                  className={
+                    isActive ? "tooltiptext" : "tooltiptext displayNone"
+                  }
+                >
+                  Start Now
+                </span>
               </a>
             </div>
           </div>

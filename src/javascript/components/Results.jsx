@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
 import CalculationTable from "./CalculationTable";
@@ -21,6 +21,16 @@ const Results = ({
 }) => {
   const originalButtonText = "Copy to clipboard";
   const [buttonText, setButtonText] = useState(originalButtonText);
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    const tooltipTutorial = localStorage.getItem("tooltip_tutorial");
+    if (tooltipTutorial === "1") {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  });
 
   if (selectedRows.length === 0) {
     return null;
@@ -137,22 +147,34 @@ const Results = ({
           <div className="col">
             {!powerMode && (
               <button
-                className="btn btn-primary btn-block my-2"
+                className="btn btn-primary btn-block my-2 tooltip"
                 type="button"
                 onClick={copySharingURL}
                 disabled={buttonDisabled()}
               >
                 {buttonText}
+                <span
+                  className={
+                    isActive ? "tooltiptext" : "tooltiptext displayNone"
+                  }
+                >
+                  {buttonText}
+                </span>
               </button>
             )}
           </div>
           <div className="col">
             <HashLink
-              className="btn btn-secondary btn-block my-2"
+              className="btn btn-secondary btn-block my-2 tooltip"
               role="button"
               to="/about#requesting-doi-for-sharing-url"
             >
               Request DOI
+              <span
+                className={isActive ? "tooltiptext" : "tooltiptext displayNone"}
+              >
+                Request DOI
+              </span>
             </HashLink>
           </div>
         </div>
