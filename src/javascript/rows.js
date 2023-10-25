@@ -1,5 +1,5 @@
-export const mapSamples = (selectedRows, func) => {
-  return selectedRows.map((row) => {
+export const mapSamples = (rows, func) => {
+  return rows.map((row) => {
     const [wavelength, ...samples] = row;
     const mapped = samples.map((sample, sampleIndex) =>
       func(wavelength, sample, sampleIndex)
@@ -8,36 +8,31 @@ export const mapSamples = (selectedRows, func) => {
   });
 };
 
-const reduceSamples = (selectedRows, selectedRowsSampleCount, func) => {
-  return selectedRows.reduce((acc, row) => {
+const reduceSamples = (rows, sampleCount, func) => {
+  return rows.reduce((acc, row) => {
     const [wavelength, ...samples] = row;
     return acc.map((luminance, index) =>
       func(wavelength, luminance, samples[index])
     );
-  }, new Array(selectedRowsSampleCount).fill(0));
+  }, new Array(sampleCount).fill(0));
 };
 
-export const integrateWithWeights = (
-  selectedRows,
-  selectedRowsSampleCount,
-  data,
-  key
-) => {
-  const deltaLambda = selectedRows[1][0] - selectedRows[0][0];
+export const integrateWithWeights = (rows, sampleCount, data, key) => {
+  const deltaLambda = rows[1][0] - rows[0][0];
 
-  const weighted = mapSamples(selectedRows, (wavelength, sample) => {
+  const weighted = mapSamples(rows, (wavelength, sample) => {
     const weight = data[wavelength][key];
     return sample * weight * deltaLambda;
   });
 
   return reduceSamples(
     weighted,
-    selectedRowsSampleCount,
+    sampleCount,
     (w, runningTotal, sample) => runningTotal + sample
   );
 };
 
-export const scaleSamples = (selectedRows, areaUnit, powerUnit) => {
+export const scaleSamples = (rows, areaUnit, powerUnit) => {
   const powerScale = { microwatt: 1000000, milliwatt: 1000, watt: 1 }[
     powerUnit
   ];
@@ -46,16 +41,16 @@ export const scaleSamples = (selectedRows, areaUnit, powerUnit) => {
   ];
 
   return mapSamples(
-    selectedRows,
+    rows,
     (wavelength, sample) => (sample * areaScale) / powerScale
   );
 };
 
-export const rowsToSpectra = (selectedRows) => {
-  const selectedRowsSampleCount = selectedRows[0].length - 1;
+export const rowsToSpectra = (rows) => {
+  const sampleCount = rows[0].length - 1;
 
-  return [...Array(selectedRowsSampleCount).keys()].map((index) =>
-    selectedRows.map(([wavelength, ...measurements]) => [
+  return [...Array(sampleCount).keys()].map((index) =>
+    rows.map(([wavelength, ...measurements]) => [
       wavelength,
       measurements[index],
     ])

@@ -1,7 +1,7 @@
 import Papa from "papaparse";
 import { radianceOrIrradianceSIUnit } from "../helpers";
 
-const SpectraCSV = ({ selectedRows, radianceOrIrradiance }) => {
+const SpectraCSV = ({ rows, radianceOrIrradiance }) => {
   const csv = Papa.unparse([
     [
       "Wavelength [nm]",
@@ -9,7 +9,7 @@ const SpectraCSV = ({ selectedRows, radianceOrIrradiance }) => {
         radianceOrIrradiance
       )}]`,
     ],
-    ...selectedRows,
+    ...rows,
   ]);
 
   return window.URL.createObjectURL(

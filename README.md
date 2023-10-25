@@ -10,7 +10,6 @@ We use [Prettier](https://prettier.io) to ensure consistent code formatting and 
 
 ```
 $ brew install nvm
-$ source ~/.nvm/nvm.sh
 $ # Follow instructions to configure your bash config
 ```
 
