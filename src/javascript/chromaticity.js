@@ -2,27 +2,12 @@ import CIEXYZ31 from "../data/ciexyz31.json";
 import CIEXYZ64 from "../data/ciexyz64.json";
 import { integrateWithWeights } from "./rows";
 
-const calculateChromaticity = (selectedRows, selectedRowsSampleCount, data) => {
-  const allX = integrateWithWeights(
-    selectedRows,
-    selectedRowsSampleCount,
-    data,
-    "X"
-  );
-  const allY = integrateWithWeights(
-    selectedRows,
-    selectedRowsSampleCount,
-    data,
-    "Y"
-  );
-  const allZ = integrateWithWeights(
-    selectedRows,
-    selectedRowsSampleCount,
-    data,
-    "Z"
-  );
+const calculateChromaticity = (rows, sampleCount, data) => {
+  const allX = integrateWithWeights(rows, sampleCount, data, "X");
+  const allY = integrateWithWeights(rows, sampleCount, data, "Y");
+  const allZ = integrateWithWeights(rows, sampleCount, data, "Z");
 
-  const output = new Array(selectedRowsSampleCount);
+  const output = new Array(sampleCount);
 
   for (let i = 0; i < output.length; i += 1) {
     const x = allX[i] / (allX[i] + allY[i] + allZ[i]);
@@ -39,16 +24,10 @@ const calculateChromaticity = (selectedRows, selectedRowsSampleCount, data) => {
   return output;
 };
 
-export const calculateChromaticity31 = (
-  selectedRows,
-  selectedRowsSampleCount
-) => {
-  return calculateChromaticity(selectedRows, selectedRowsSampleCount, CIEXYZ31);
+export const calculateChromaticity31 = (rows, sampleCount) => {
+  return calculateChromaticity(rows, sampleCount, CIEXYZ31);
 };
 
-export const calculateChromaticity64 = (
-  selectedRows,
-  selectedRowsSampleCount
-) => {
-  return calculateChromaticity(selectedRows, selectedRowsSampleCount, CIEXYZ64);
+export const calculateChromaticity64 = (rows, sampleCount) => {
+  return calculateChromaticity(rows, sampleCount, CIEXYZ64);
 };

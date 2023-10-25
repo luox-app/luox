@@ -3,10 +3,10 @@ import { mapSamples } from "./rows";
 import { radianceOrIrradianceSIUnit } from "./helpers";
 import { referenceSpectrum } from "./referenceSpectra";
 
-const generateHues = (selectedRowsSampleCount) => {
+const generateHues = (sampleCount) => {
   const hues = [];
-  const hueInterval = 360 / selectedRowsSampleCount;
-  for (let i = 0; i < selectedRowsSampleCount; i += 1) {
+  const hueInterval = 360 / sampleCount;
+  for (let i = 0; i < sampleCount; i += 1) {
     hues.push(i * hueInterval);
   }
   return hues;
@@ -15,35 +15,31 @@ const generateHues = (selectedRowsSampleCount) => {
 const createChart = (
   chartCanvas,
   radianceOrIrradiance,
-  selectedRows,
-  selectedRowsSampleCount,
+  rows,
+  sampleCount,
   measurementLabels,
   yAxisScaling,
   displayedReference
 ) => {
   const datasets = [];
-  const hues = generateHues(selectedRowsSampleCount);
-  let data = selectedRows;
+  const hues = generateHues(sampleCount);
+  let data = rows;
   let yAxisLabel = `Spectral ${radianceOrIrradiance} [${radianceOrIrradianceSIUnit(
     radianceOrIrradiance
   )}]`;
 
   if (yAxisScaling === "normalised") {
     const maxValues = [];
-    for (
-      let sampleIdx = 0;
-      sampleIdx < selectedRowsSampleCount;
-      sampleIdx += 1
-    ) {
-      const spectrum = selectedRows.map((row) => row[sampleIdx + 1]);
+    for (let sampleIdx = 0; sampleIdx < sampleCount; sampleIdx += 1) {
+      const spectrum = rows.map((row) => row[sampleIdx + 1]);
       maxValues[sampleIdx] = Math.max(...spectrum);
     }
-    data = mapSamples(selectedRows, (wavelength, sample, sampleIndex) => {
+    data = mapSamples(rows, (wavelength, sample, sampleIndex) => {
       return sample / maxValues[sampleIndex];
     });
     yAxisLabel = `Normalised spectral ${radianceOrIrradiance} (relative to max.)`;
   } else if (yAxisScaling === "log10") {
-    data = mapSamples(selectedRows, (wavelength, sample) => {
+    data = mapSamples(rows, (wavelength, sample) => {
       return Math.log10(sample);
     });
     yAxisLabel = `Log₁₀ spectral ${radianceOrIrradiance} [log₁₀ ${radianceOrIrradianceSIUnit(
@@ -51,7 +47,7 @@ const createChart = (
     )}]`;
   }
 
-  for (let sampleIdx = 0; sampleIdx < selectedRowsSampleCount; sampleIdx += 1) {
+  for (let sampleIdx = 0; sampleIdx < sampleCount; sampleIdx += 1) {
     const lineColor = `hsl(${hues[sampleIdx]},100%,50%)`;
     datasets[sampleIdx] = {
       backgroundColor: lineColor,

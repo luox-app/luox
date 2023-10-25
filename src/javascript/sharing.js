@@ -4,31 +4,27 @@ import { SPD, encodeSPD, decodeSPD } from "spdurl";
  * This function will convert current results page into URL by
  * storing the information into hashed string
  *
- * @param {*} selectedRows
+ * @param {*} rows
  * @param {*} radianceOrIrradiance
  * @param {*} measurementLabels
  * @returns
  */
-export const rowsToURL = (
-  selectedRows,
-  radianceOrIrradiance,
-  measurementLabels
-) => {
-  if (selectedRows.length < 2) {
+export const rowsToURL = (rows, radianceOrIrradiance, measurementLabels) => {
+  if (rows.length < 2) {
     return "";
   }
 
   const url = [];
   const unit = radianceOrIrradiance === "radiance" ? "wr" : "wi";
 
-  for (let i = 1; i < selectedRows[0].length; i += 1) {
+  for (let i = 1; i < rows[0].length; i += 1) {
     const spd = SPD();
-    const [[baseWavelength], [secondWavelength]] = selectedRows;
+    const [[baseWavelength], [secondWavelength]] = rows;
 
     spd.base = baseWavelength;
     spd.delta = secondWavelength - baseWavelength;
     spd.unit = unit;
-    spd.data = selectedRows.map((row) => row[i]);
+    spd.data = rows.map((row) => row[i]);
     spd.name = measurementLabels[i - 1];
     url.push(encodeSPD(spd));
   }
@@ -78,13 +74,14 @@ export const urlToRows = (url) => {
       });
     });
 
-    const selectedRows = Array.from(
-      wavelengths
-    ).map(([wavelength, samples]) => [wavelength, ...samples]);
+    const rows = Array.from(wavelengths).map(([wavelength, samples]) => [
+      wavelength,
+      ...samples,
+    ]);
 
     const measurementLabelArrayLocal = { ...measurementLabelArray };
 
-    return [selectedRows, radianceOrIrradiance, measurementLabelArrayLocal];
+    return [rows, radianceOrIrradiance, measurementLabelArrayLocal];
   } catch (error) {
     // console.log(error);
     return [[]];

@@ -38,7 +38,7 @@ SpectraTableEllipsisRow.propTypes = {
 };
 
 const SpectraTableHeader = ({
-  selectedRowsSampleCount,
+  sampleCount,
   measurementLabels,
   radianceOrIrradiance,
 }) => {
@@ -47,7 +47,7 @@ const SpectraTableHeader = ({
   return (
     <thead>
       <tr>
-        <th colSpan={selectedRowsSampleCount + 1} className="text-center">
+        <th colSpan={sampleCount + 1}>
           Spectral {radianceOrIrradiance} [
           {radianceOrIrradianceSIUnit(radianceOrIrradiance)}]
         </th>
@@ -63,14 +63,14 @@ const SpectraTableHeader = ({
 };
 
 SpectraTableHeader.propTypes = {
-  selectedRowsSampleCount: PropTypes.number.isRequired,
+  sampleCount: PropTypes.number.isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
 };
 
 const SpectraTable = ({
-  selectedRows,
-  selectedRowsSampleCount,
+  rows,
+  sampleCount,
   radianceOrIrradiance,
   measurementLabels,
 }) => {
@@ -78,8 +78,8 @@ const SpectraTable = ({
   const [displayAllRows, setDisplayAllRows] = useState(false);
 
   const spectraDownloadUrl = useMemo(
-    () => SpectraCSV({ radianceOrIrradiance, selectedRows }),
-    [radianceOrIrradiance, selectedRows]
+    () => SpectraCSV({ radianceOrIrradiance, rows }),
+    [radianceOrIrradiance, rows]
   );
 
   const handleExponentialNotation = () => {
@@ -91,11 +91,11 @@ const SpectraTable = ({
   };
 
   const truncateTable = () => {
-    return selectedRows.length > 5;
+    return rows.length > 5;
   };
 
   const rowsToDisplay = () => {
-    return displayAllRows ? selectedRows : selectedRows.slice(0, 5);
+    return displayAllRows ? rows : rows.slice(0, 5);
   };
 
   const displayEllipsisRow = () => {
@@ -105,7 +105,7 @@ const SpectraTable = ({
   return (
     <section>
       <div className="row">
-        <div className="col text-left py-2">
+        <div className="col text-left">
           <label htmlFor="spectra-exponential-notation">
             <input
               type="checkbox"
@@ -116,7 +116,7 @@ const SpectraTable = ({
             {" Use exponential notation?"}
           </label>
         </div>
-        <div className="col text-center py-2">
+        <div className="col text-center">
           {truncateTable() && (
             <label htmlFor="spectra-all-rows">
               <input
@@ -139,36 +139,33 @@ const SpectraTable = ({
           </a>
         </div>
       </div>
-      <div className="row table-row">
-        <table className="table table-sm table-striped table-bordered table-hover generate-csv-table mt-5 result-table">
-          <SpectraTableHeader
-            selectedRowsSampleCount={selectedRowsSampleCount}
-            measurementLabels={measurementLabels}
-            radianceOrIrradiance={radianceOrIrradiance}
-          />
-          <tbody>
-            {rowsToDisplay().map(([wavelength, ...samples], index) => (
-              <SpectraTableRow
-                key={index}
-                wavelength={wavelength}
-                samples={samples}
-                exponentialNotation={exponentialNotation}
-              />
-            ))}
-            {displayEllipsisRow() && (
-              <SpectraTableEllipsisRow exampleRow={selectedRows[0]} />
-            )}
-          </tbody>
-        </table>
-      </div>
+      <table className="table table-sm mt-3 result-table">
+        <SpectraTableHeader
+          sampleCount={sampleCount}
+          measurementLabels={measurementLabels}
+          radianceOrIrradiance={radianceOrIrradiance}
+        />
+        <tbody>
+          {rowsToDisplay().map(([wavelength, ...samples], index) => (
+            <SpectraTableRow
+              key={index}
+              wavelength={wavelength}
+              samples={samples}
+              exponentialNotation={exponentialNotation}
+            />
+          ))}
+          {displayEllipsisRow() && (
+            <SpectraTableEllipsisRow exampleRow={rows[0]} />
+          )}
+        </tbody>
+      </table>
     </section>
   );
 };
 
 SpectraTable.propTypes = {
-  selectedRows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
-    .isRequired,
-  selectedRowsSampleCount: PropTypes.number.isRequired,
+  rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
+  sampleCount: PropTypes.number.isRequired,
   radianceOrIrradiance: PropTypes.oneOf(["radiance", "irradiance"]).isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
 };

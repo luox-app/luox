@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import PropTypes from "prop-types";
-import * as XLSX from "xlsx";
 import ErrorTable from "./ErrorTable";
+
 import parseCSV from "../csvParser";
 import { relativeToAbsolute } from "../calculations";
 import { scaleSamples } from "../rows";
@@ -24,7 +24,6 @@ const UploadForm = ({
   setRefHAB,
   isLoaded,
   setLoaded,
-  setModalView,
 }) => {
   const [powerScale, setPowerScale] = useState("watt");
   const [areaScale, setAreaScale] = useState("metresq");
@@ -82,14 +81,10 @@ const UploadForm = ({
       setFileType(e.target.value);
     } else {
       if (e.target.value === "spdx") {
-        setFileType("spdx");
+        setFileType("csv");
         return;
       }
-      if (e.target.value === "xlsx") {
-        setFileType("xlsx");
-        return;
-      }
-      setFileType("csv");
+      setFileType("spdx");
     }
   };
 
@@ -146,40 +141,8 @@ const UploadForm = ({
             reset();
           } else {
             handleData(data);
-            setModalView(true);
-            fileInput.current.value = null;
           }
         });
-      } else if (fileType === "xlsx") {
-        if (file.name.toLowerCase().indexOf(".xlsx") === -1) {
-          setErrors([
-            {
-              row: ALL_ROW_CONST,
-              message: "Invalid File Format. File Needs To Be In .XLSX Format",
-            },
-          ]);
-          reset();
-          return;
-        }
-        const reader = new FileReader();
-        reader.onload = (evt) => {
-          const bstr = evt.target.result;
-          const wb = XLSX.read(bstr, { type: "binary" });
-          const wsname = wb.SheetNames[0];
-          const ws = wb.Sheets[wsname];
-          const xlsxData = XLSX.utils.sheet_to_csv(ws, { header: 1 });
-          parseCSV(xlsxData).then(({ data, errors: csvErrors }) => {
-            if (csvErrors.length > 0) {
-              setErrors(csvErrors);
-              reset();
-            } else {
-              handleData(data);
-              setModalView(true);
-              fileInput.current.value = null;
-            }
-          });
-        };
-        reader.readAsBinaryString(file);
       } else if (fileType === "spdx") {
         if (file.name.toLowerCase().indexOf(".spdx") === -1) {
           setErrors([
@@ -261,8 +224,6 @@ const UploadForm = ({
   };
 
   useEffect(() => {
-    // const fileTypes = ["CSV", "SPDX"];
-    // const [file, setFile] = useState(null);
     if (csv.length > 0) {
       const sampleCount = csv[0].length - 1;
       if (absoluteOrRelative === "absolute") {
@@ -331,35 +292,15 @@ const UploadForm = ({
               </label>
             </div>
 
-            <div>
-              <label htmlFor="xlsx">
-                <input
-                  type="radio"
-                  id="xlsx"
-                  name="file_type"
-                  value="xlsx"
-                  checked={fileType === "xlsx"}
-                  onChange={(e) => handleFileTypeChange(e)}
-                />{" "}
-                .XLSX
-              </label>
-            </div>
-
             <div className="form-group">
-              <div className="file-drop-area col-md-6 offset-md-3 col-xs-12">
-                <span className="choose-file-button">Choose files</span>
-                <span className="file-message">
-                  or drag and drop files here
-                </span>
-                <input
-                  type="file"
-                  ref={fileInput}
-                  disabled={isLoaded}
-                  onChange={handleFileInput}
-                  className="form-control-file ml-100 mt-2 file-input"
-                  id="file-input"
-                />
-              </div>
+              <input
+                type="file"
+                ref={fileInput}
+                disabled={isLoaded}
+                onChange={handleFileInput}
+                className="form-control-file"
+                id="file-input"
+              />
             </div>
           </form>
           <ErrorTable errors={errors} />
@@ -370,7 +311,7 @@ const UploadForm = ({
         <div className="row">
           <div className="col">
             <h2 className="my-3">Step 2. Tell us more about your data.</h2>
-            <form className="form-inline text-start">
+            <form className="form-inline">
               <p className="lead" style={{ lineHeight: "2.5rem" }}>
                 {"My data contains "}
                 <select
@@ -418,9 +359,9 @@ UploadForm.propTypes = {
   radianceOrIrradiance: PropTypes.string.isRequired,
   measurementLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   relativePowers: PropTypes.objectOf(PropTypes.string).isRequired,
-  csv: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
+  csv: PropTypes.arrayOf(PropTypes.array).isRequired,
   powerMode: PropTypes.bool.isRequired,
-  fileInput: PropTypes.objectOf(PropTypes.shape).isRequired,
+  fileInput: PropTypes.objectOf(PropTypes.object).isRequired,
   isLoaded: PropTypes.bool.isRequired,
 
   setRadianceOrIrradiance: PropTypes.func.isRequired,
@@ -431,7 +372,6 @@ UploadForm.propTypes = {
   setCSV: PropTypes.func.isRequired,
   setRefHAB: PropTypes.func.isRequired,
   setLoaded: PropTypes.func.isRequired,
-  setModalView: PropTypes.func.isRequired,
 };
 
 const AbsoluteUnits = ({
