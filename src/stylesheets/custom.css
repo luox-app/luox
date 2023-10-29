@@ -333,6 +333,10 @@
 .modal-lg {
     --bs-modal-width: 70%;
 }
+
+.mt-50 {
+    margin-top: 50px !important;
+}
 @media screen and (max-width: 996px) {
     .upload-div, .container {
         max-width: 95% !important;
