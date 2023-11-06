@@ -277,6 +277,7 @@ const UploadForm = ({
       }
       setLoaded(true);
       setSampleCount(sampleCount);
+      setModalView(true);
     } else {
       setRows([]);
       setSampleCount(0);
@@ -291,6 +292,7 @@ const UploadForm = ({
     areaScale,
     absoluteOrRelative,
     relativePowers,
+    setModalView,
   ]);
 
   return (

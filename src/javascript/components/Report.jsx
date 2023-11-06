@@ -9,20 +9,20 @@ import "bootstrap/js/dist/alert";
 const Report = () => {
   const { id } = useParams();
 
-  const [rows, radianceOrIrradiance, measurementLabels] = urlToRows(id);
+  const [selectedRows, radianceOrIrradiance, measurementLabels] = urlToRows(id);
 
-  const sampleCount = rows[0].length - 1;
+  const selectedRowsSampleCount = selectedRows[0].length - 1;
 
   const [isLoaded, setLoaded] = useState(true);
   const [refHAB, setRefHAB] = useState(null);
 
-  const powerMode = sampleCount < 6;
+  const powerMode = selectedRowsSampleCount < 6;
 
   return (
-    <div className="row">
-      <div className="col">
+    <div className="row mt-50 text-center">
+      <div className="col px-5">
         <div
-          className="mt-3 alert alert-warning alert-dismissible fade show"
+          className="mt-5 text-center alert alert-warning alert-dismissible fade show"
           role="alert"
         >
           The reproduced spectrum has been compressed and then decompressed, so
@@ -37,7 +37,7 @@ const Report = () => {
           </button>
         </div>
 
-        <h2 className="my-3">Light Exposure Report</h2>
+        <h2 className="my-3 mt-5">Light Exposure Report</h2>
 
         <p>
           This report meets the{" "}
@@ -51,16 +51,16 @@ const Report = () => {
         {powerMode && (
           <Chart
             radianceOrIrradiance={radianceOrIrradiance}
-            rows={rows}
-            sampleCount={sampleCount}
+            selectedRows={selectedRows}
+            selectedRowsSampleCount={selectedRowsSampleCount}
             measurementLabels={measurementLabels}
           />
         )}
         <h2 className="my-3">Stimulus specification tables</h2>
 
         <CalculationTable
-          rows={rows}
-          sampleCount={sampleCount}
+          selectedRows={selectedRows}
+          selectedRowsSampleCount={selectedRowsSampleCount}
           radianceOrIrradiance={radianceOrIrradiance}
           measurementLabels={measurementLabels}
           isLoaded={isLoaded}
@@ -72,8 +72,8 @@ const Report = () => {
         <h2 className="my-3">Full spectral power distribution</h2>
 
         <SpectraTable
-          rows={rows}
-          sampleCount={sampleCount}
+          selectedRows={selectedRows}
+          selectedRowsSampleCount={selectedRowsSampleCount}
           radianceOrIrradiance={radianceOrIrradiance}
           measurementLabels={measurementLabels}
         />
