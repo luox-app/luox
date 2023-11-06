@@ -292,7 +292,7 @@ const UploadForm = ({
     areaScale,
     absoluteOrRelative,
     relativePowers,
-    setModalView
+    setModalView,
   ]);
 
   return (

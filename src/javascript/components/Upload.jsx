@@ -103,19 +103,18 @@ const Upload = () => {
               />
               {modalView ? (
                 <ManageCSV
-                rows={rows}
-                sampleCount={sampleCount}
-                setSelectedRows={setSelectedRows}
-                setSelectedRowsSampleCount={setSelectedRowsSampleCount}
-                measurementLabels={measurementLabels}
-                setMeasurementLabels={setMeasurementLabels}
-                modalView={modalView}
-                setModalView={setModalView}
-              />
+                  rows={rows}
+                  sampleCount={sampleCount}
+                  setSelectedRows={setSelectedRows}
+                  setSelectedRowsSampleCount={setSelectedRowsSampleCount}
+                  measurementLabels={measurementLabels}
+                  setMeasurementLabels={setMeasurementLabels}
+                  modalView={modalView}
+                  setModalView={setModalView}
+                />
               ) : (
-                <span></span>
+                <br />
               )}
-              
 
               <Results
                 selectedRows={selectedRows}
