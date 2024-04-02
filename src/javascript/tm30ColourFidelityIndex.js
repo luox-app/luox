@@ -458,6 +458,7 @@ const floor10 = (value, exp) => decimalAdjust("floor", value, exp);
  */
 export const getCESSummary = (Jabr, Jabt, deltaEi) => {
   const cesSummary = {};
+  const newCESSummary = {};
   let hi = 0;
   let j = 0;
 
@@ -493,8 +494,25 @@ export const getCESSummary = (Jabr, Jabt, deltaEi) => {
     cesSummary[j].testa.push(Jabt[i].aprime);
     cesSummary[j].testb.push(Jabt[i].bprime);
   });
+  let k = 1;
+  Object.keys(cesSummary).forEach((i) => {
+    if (
+      cesSummary[i].deltaEi.length > 0 &&
+      cesSummary[i].refJ.length > 0 &&
+      cesSummary[i].refa.length > 0 &&
+      cesSummary[i].refb.length > 0 &&
+      cesSummary[i].testJ.length > 0 &&
+      cesSummary[i].testa.length > 0 &&
+      cesSummary[i].testb.length > 0
+    ) {
+      newCESSummary[k] = cesSummary[i];
+      k += 1;
+    } else {
+      binCount -= 1;
+    }
+  });
 
-  return cesSummary;
+  return newCESSummary;
 };
 
 /**
